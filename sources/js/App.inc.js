@@ -2,12 +2,14 @@
 
 var App = {};
 
+include("Env.js");
 include("lib/helpers.js");
 include("lib/Updater.js");
 include("core/Literator.js");
 include("core/Constructor.js");
 include("core/WritingProcessor.js");
-include("dom/DomAssigner.js");
+include("dom/MenuBuilder.js");
+include("dom/DomEventAssigner.js");
 
 include("run.js");
 include("cleanup.js");
@@ -22,6 +24,6 @@ App.Constructor.enterAlphabets(
         include("../../data/alphabets/04-gothic_alphabet.json")
 );
 
-App.Constructor.enterLayout(
+App.Constructor.enterLayouts(
         include("../../data/layouts/00-uni.json")
 );

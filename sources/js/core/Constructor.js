@@ -20,23 +20,22 @@ App.Constructor = {
         };
     },
 
-    enterAlphabet: function (data) {
+    alphabetsData: [],
+    layoutsData: [],
+
+    buildAlphabet: function (data) {
         var map = new this.AlphMap(data);
         var id = App.Literator.alphMaps.length;
+
         App.Literator.alphMaps.push(map);
+        App.MenuBuilder.addAlphabetEntry(data.meta, id);
 
         var multiXCharEntities = [];
-        for (var e in data.entities) {
-            if (data.entities[e].chars.length > 1) {
-                multiXCharEntities.push(data.entities[e]);
-            }
-        }
-
-        if (multiXCharEntities.length > 0) {
-            for (var e in multiXCharEntities) {
-                var entity = multiXCharEntities[e];
-                var topicName = "char" + id + "_" + e;
-
+        for (var eId in data.entities) {
+            if (data.entities[eId].chars.length > 1) {
+                var entity = data.entities[eId];
+                var topicName = "xchar" + id + "_" + eId;
+                entity.topicName = topicName;
                 entity.map = map;
                 entity[topicName + "Handler"] = function (newXCharIndex) {
                     var newXChar = this.chars[newXCharIndex];
@@ -46,23 +45,40 @@ App.Constructor = {
                 };
 
                 Updater.register(topicName, entity);
+                multiXCharEntities.push(entity);
             }
+        }
+
+        App.MenuBuilder.addXCharsEntry(multiXCharEntities, id);
+    },
+
+    buildLayout: function (data) {
+        App.Literator.layouts.push(new this.Layout(data.map));
+    },
+
+    buildAlphabets: function () {
+        var data;
+        while (data = this.alphabetsData.shift()) {
+            this.buildAlphabet(data);
         }
     },
 
-    enterLayout: function (data) {
-        App.Literator.layouts.push(new this.Layout(data.map));
+    buildLayouts: function () {
+        var data;
+        while (data = this.layoutsData.shift()) {
+            this.buildLayout(data);
+        }
     },
 
     enterAlphabets: function () {
         for (var i = 0; i < arguments.length; i++) {
-            this.enterAlphabet(arguments[i]);
+            this.alphabetsData.push(arguments[i]);
         }
     },
 
     enterLayouts: function () {
         for (var i = 0; i < arguments.length; i++) {
-            this.enterLayout(arguments[i]);
+            this.layoutsData.push(arguments[i]);
         }
     }
 

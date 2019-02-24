@@ -4,7 +4,8 @@
 App.cleanUp = function () {
     window.removeEventListener("load", App.run);
     delete App.Constructor;
-    delete App.DomAssigner;
+    delete App.MenuBuilder;
+    delete App.DomEventAssigner;
     delete App.run;
     delete App.cleanUp;
 };
