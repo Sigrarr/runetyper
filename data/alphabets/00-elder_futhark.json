@@ -1,0 +1,151 @@
+{
+    "meta": {
+        "name": {
+            "en": "Elder Futhark",
+            "pl": "Futhark starszy"
+        },
+        "sample": "ᚠᚢᚦᚨᚱᚲ"
+    },
+    "entities": [
+        {
+            "chars": ["ᚠ"],
+            "trans": "f",
+            "keys": ["f"]
+        },
+        {
+            "chars": ["ᚢ"],
+            "trans": "u",
+            "keys": ["u"]
+        },
+        {
+            "chars": ["ᚦ"],
+            "trans": "þ",
+            "keys": ["th"]
+        },
+        {
+            "chars": ["ᚨ"],
+            "trans": "a",
+            "keys": ["a"]
+        },
+        {
+            "chars": ["ᚱ"],
+            "trans": "r",
+            "keys": ["r"]
+        },
+        {
+            "chars": ["ᚲ"],
+            "trans": "k",
+            "keys": ["k"]
+        },
+        {
+            "chars": ["ᚷ"],
+            "trans": "g",
+            "keys": ["g"]
+        },
+        {
+            "chars": ["ᚹ"],
+            "trans": "w",
+            "keys": ["w"]
+        },
+        {
+            "chars": ["ᚺ", "ᚻ"],
+            "trans": "h",
+            "keys": ["h"]
+        },
+        {
+            "chars": ["ᚾ"],
+            "trans": "n",
+            "keys": ["n"]
+        },
+        {
+            "chars": ["ᛁ"],
+            "trans": "i",
+            "keys": ["i"]
+        },
+        {
+            "chars": ["ᛃ"],
+            "trans": "j",
+            "keys": ["j"]
+        },
+        {
+            "chars": ["ᛇ"],
+            "trans": "ï",
+            "keys": ["ae", "ij", "I", "E"]
+        },
+        {
+            "chars": ["ᛈ"],
+            "trans": "p",
+            "keys": ["p"]
+        },
+        {
+            "chars": ["ᛉ"],
+            "trans": "z ʀ",
+            "keys": ["z", "R"]
+        },
+        {
+            "chars": ["ᛊ", "ᛋ"],
+            "trans": "s",
+            "keys": ["s"]
+        },
+        {
+            "chars": ["ᛏ"],
+            "trans": "t",
+            "keys": ["t"]
+        },
+        {
+            "chars": ["ᛒ"],
+            "trans": "b",
+            "keys": ["b"]
+        },
+        {
+            "chars": ["ᛖ"],
+            "trans": "e",
+            "keys": ["e"]
+        },
+        {
+            "chars": ["ᛗ"],
+            "trans": "m",
+            "keys": ["m"]
+        },
+        {
+            "chars": ["ᛚ"],
+            "trans": "l",
+            "keys": ["l"]
+        },
+        {
+            "chars": ["ᛜ", "ᛝ"],
+            "trans": "ŋ",
+            "keys": ["ng"]
+        },
+        {
+            "chars": ["ᛟ"],
+            "trans": "o",
+            "keys": ["o"]
+        },
+        {
+            "chars": ["ᛞ"],
+            "trans": "d",
+            "keys": ["d"]
+        },
+        {
+            "chars": ["᛫"],
+            "trans": "•",
+            "keys": [".", ","]
+        },
+        {
+            "chars": ["᛬"],
+            "trans": ":",
+            "keys": [":", ";"]
+        }
+    ],
+    "order": [
+        [
+            ["f", "u", "th", "a", "r", "k", "g", "w"],
+            ["h", "n", "i", "j", "ij", "p", "z", "s"],
+            ["t", "b", "e", "m", "l", "ng", "o", "d"]
+        ],
+        [
+            [".", ":"]
+        ]
+    ]
+}

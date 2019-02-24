@@ -1,0 +1,210 @@
+{
+    "meta": {
+        "name": {
+            "en": "Anglo-Saxon Futhorc",
+            "pl": "Futhorc anglosaski"
+        },
+        "sample": "ᚠᚢᚦᚩᚱᚳ"
+    },
+    "entities": [
+        {
+            "chars": ["ᚠ"],
+            "trans": "f",
+            "keys": ["f"]
+        },
+        {
+            "chars": ["ᚢ"],
+            "trans": "u",
+            "keys": ["u"]
+        },
+        {
+            "chars": ["ᚦ"],
+            "trans": "þ ð",
+            "keys": ["th", "dh"]
+        },
+        {
+            "chars": ["ᚩ"],
+            "trans": "o",
+            "keys": ["o"]
+        },
+        {
+            "chars": ["ᚱ"],
+            "trans": "r",
+            "keys": ["r"]
+        },
+        {
+            "chars": ["ᚳ"],
+            "trans": "c",
+            "keys": ["c"]
+        },
+        {
+            "chars": ["ᚷ"],
+            "trans": "ȝ g",
+            "keys": ["g"]
+        },
+        {
+            "chars": ["ᚹ"],
+            "trans": "ƿ w",
+            "keys": ["w"]
+        },
+        {
+            "chars": ["ᚻ"],
+            "trans": "h",
+            "keys": ["h"]
+        },
+        {
+            "chars": ["ᚾ"],
+            "trans": "n",
+            "keys": ["n"]
+        },
+        {
+            "chars": ["ᛁ"],
+            "trans": "i",
+            "keys": ["i"]
+        },
+        {
+            "chars": ["ᛄ", "ᛡ"],
+            "trans": "j",
+            "keys": ["j"]
+        },
+        {
+            "chars": ["ᛇ"],
+            "trans": "ï ʒ",
+            "keys": ["I", "H"]
+        },
+        {
+            "chars": ["ᛈ"],
+            "trans": "p",
+            "keys": ["p"]
+        },
+        {
+            "chars": ["ᛉ"],
+            "trans": "x",
+            "keys": ["x"]
+        },
+        {
+            "chars": ["ᛋ"],
+            "trans": "s",
+            "keys": ["s"]
+        },
+        {
+            "chars": ["ᛏ"],
+            "trans": "t",
+            "keys": ["t"]
+        },
+        {
+            "chars": ["ᛒ"],
+            "trans": "b",
+            "keys": ["b"]
+        },
+        {
+            "chars": ["ᛖ"],
+            "trans": "e",
+            "keys": ["e"]
+        },
+        {
+            "chars": ["ᛗ"],
+            "trans": "m",
+            "keys": ["m"]
+        },
+        {
+            "chars": ["ᛚ"],
+            "trans": "l",
+            "keys": ["l"]
+        },
+        {
+            "chars": ["ᛝ"],
+            "trans": "ŋ ng",
+            "keys": ["ng"]
+        },
+        {
+            "chars": ["ᛟ"],
+            "trans": "œ",
+            "keys": ["oe"]
+        },
+        {
+            "chars": ["ᛞ"],
+            "trans": "d",
+            "keys": ["d"]
+        },
+        {
+            "chars": ["ᚪ"],
+            "trans": "a",
+            "keys": ["a"]
+        },
+        {
+            "chars": ["ᚫ"],
+            "trans": "æ",
+            "keys": ["ae"]
+        },
+        {
+            "chars": ["ᚣ"],
+            "trans": "y",
+            "keys": ["y"]
+        },
+        {
+            "chars": ["ᛡ"],
+            "trans": "io ia",
+            "keys": ["io", "ia"]
+        },
+        {
+            "chars": ["ᛠ"],
+            "trans": "ea",
+            "keys": ["ea"]
+        },
+        {
+            "chars": ["ᚸ"],
+            "trans": "g",
+            "keys": ["G"]
+        },
+        {
+            "chars": ["ᛣ"],
+            "trans": "k",
+            "keys": ["k"]
+        },
+        {
+            "chars": ["ᛤ"],
+            "trans": "kk",
+            "keys": ["K"]
+        },
+        {
+            "chars": ["ᛥ"],
+            "trans": "st",
+            "keys": ["st"]
+        },
+        {
+            "chars": ["ᛢ"],
+            "trans": "cƿ kw",
+            "keys": ["q"]
+        },
+        {
+            "chars": ["᛫"],
+            "trans": "•",
+            "keys": [".", ","]
+        },
+        {
+            "chars": ["᛬"],
+            "trans": ":",
+            "keys": [":", ";"]
+        },
+        {
+            "chars": ["᛭"],
+            "trans": "+",
+            "keys": ["+"]
+        }
+    ],
+    "order": [
+        [
+            ["f", "u", "th", "o", "r", "c", "g", "w"],
+            ["h", "n", "i", "j", "I", "p", "x", "s"],
+            ["t", "b", "e", "m", "l", "ng", "oe", "d"],
+            ["a", "ae", "y", "io", "ea"]
+        ],
+        [
+            ["G", "k", "K", "st", "q"]
+        ],
+        [
+            [".", ":", "+"]
+        ]
+    ]
+}

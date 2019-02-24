@@ -1,0 +1,116 @@
+{
+    "meta": {
+        "name": {
+            "en": "Younger Futhark",
+            "pl": "Futhark młodszy"
+        },
+        "sample": "ᚠᚢᚦᚬᚱᚴ"
+    },
+    "entities": [
+        {
+            "chars": ["ᚠ"],
+            "trans": "f",
+            "keys": ["f"]
+        },
+        {
+            "chars": ["ᚢ"],
+            "trans": "u v y o ø ǫ",
+            "keys": ["u", "v", "w", "y", "o"]
+        },
+        {
+            "chars": ["ᚦ"],
+            "trans": "þ ð",
+            "keys": ["th", "dh"]
+        },
+        {
+            "chars": ["ᚬ", "ᚭ"],
+            "trans": "ą o æ a",
+            "keys": ["A", "O", "an"]
+        },
+        {
+            "chars": ["ᚱ"],
+            "trans": "r",
+            "keys": ["r"]
+        },
+        {
+            "chars": ["ᚴ"],
+            "trans": "k g",
+            "keys": ["k", "g", "c"]
+        },
+        {
+            "chars": ["ᚼ", "ᚽ"],
+            "trans": "h",
+            "keys": ["h"]
+        },
+        {
+            "chars": ["ᚾ", "ᚿ"],
+            "trans": "n",
+            "keys": ["n"]
+        },
+        {
+            "chars": ["ᛁ"],
+            "trans": "i e j",
+            "keys": ["i", "e", "j"]
+        },
+        {
+            "chars": ["ᛅ", "ᛆ"],
+            "trans": "a æ ǫ",
+            "keys": ["a"]
+        },
+        {
+            "chars": ["ᛋ", "ᛌ"],
+            "trans": "s",
+            "keys": ["s"]
+        },
+        {
+            "chars": ["ᛏ", "ᛐ"],
+            "trans": "t d",
+            "keys": ["t", "d"]
+        },
+        {
+            "chars": ["ᛒ", "ᛓ"],
+            "trans": "b p",
+            "keys": ["b", "p"]
+        },
+        {
+            "chars": ["ᛘ", "ᛙ"],
+            "trans": "m",
+            "keys": ["m"]
+        },
+        {
+            "chars": ["ᛚ"],
+            "trans": "l",
+            "keys": ["l"]
+        },
+        {
+            "chars": ["ᛦ", "ᛧ"],
+            "trans": "ʀ",
+            "keys": ["R"]
+        },
+        {
+            "chars": ["᛫"],
+            "trans": "•",
+            "keys": [".", ","]
+        },
+        {
+            "chars": ["᛬"],
+            "trans": ":",
+            "keys": [":", ";"]
+        },
+        {
+            "chars": ["᛭"],
+            "trans": "+",
+            "keys": ["+"]
+        }
+    ],
+    "order": [
+        [
+            ["f", "u", "th", "A", "r", "k"],
+            ["h", "n", "i", "a", "s"],
+            ["t", "b", "m", "l", "R"]
+        ],
+        [
+            [".", ":", "+"]
+        ]
+    ]
+}

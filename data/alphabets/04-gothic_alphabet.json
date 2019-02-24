@@ -1,0 +1,167 @@
+{
+    "meta": {
+        "name": {
+            "en": "Gothic Alphabet",
+            "pl": "Alfabet gocki"
+        },
+        "sample": "𐌰𐌱𐌲𐍇𐍈𐍉"
+    },
+    "entities": [
+        {
+            "chars": ["𐌰"],
+            "trans": "a",
+            "keys": ["a"]
+        },
+        {
+            "chars": ["𐌱"],
+            "trans": "b",
+            "keys": ["b"]
+        },
+        {
+            "chars": ["𐌲"],
+            "trans": "g",
+            "keys": ["g"]
+        },
+        {
+            "chars": ["𐌳"],
+            "trans": "d",
+            "keys": ["d"]
+        },
+        {
+            "chars": ["𐌴"],
+            "trans": "e",
+            "keys": ["e"]
+        },
+        {
+            "chars": ["𐌵"],
+            "trans": "q",
+            "keys": ["q"]
+        },
+        {
+            "chars": ["𐌶"],
+            "trans": "z",
+            "keys": ["z"]
+        },
+        {
+            "chars": ["𐌷"],
+            "trans": "h",
+            "keys": ["h"]
+        },
+        {
+            "chars": ["𐌸"],
+            "trans": "þ",
+            "keys": ["th"]
+        },
+        {
+            "chars": ["𐌹"],
+            "trans": "i",
+            "keys": ["i"]
+        },
+        {
+            "chars": ["𐌺"],
+            "trans": "k",
+            "keys": ["k"]
+        },
+        {
+            "chars": ["𐌻"],
+            "trans": "l",
+            "keys": ["l"]
+        },
+        {
+            "chars": ["𐌼"],
+            "trans": "m",
+            "keys": ["m"]
+        },
+        {
+            "chars": ["𐌽"],
+            "trans": "n",
+            "keys": ["n"]
+        },
+        {
+            "chars": ["𐌾"],
+            "trans": "j",
+            "keys": ["j"]
+        },
+        {
+            "chars": ["𐌿"],
+            "trans": "u",
+            "keys": ["u"]
+        },
+        {
+            "chars": ["𐍀"],
+            "trans": "p",
+            "keys": ["p"]
+        },
+        {
+            "chars": ["𐍂"],
+            "trans": "r",
+            "keys": ["r"]
+        },
+        {
+            "chars": ["𐍃"],
+            "trans": "s",
+            "keys": ["s"]
+        },
+        {
+            "chars": ["𐍄"],
+            "trans": "t",
+            "keys": ["t"]
+        },
+        {
+            "chars": ["𐍅"],
+            "trans": "w",
+            "keys": ["w"]
+        },
+        {
+            "chars": ["𐍆"],
+            "trans": "f",
+            "keys": ["f"]
+        },
+        {
+            "chars": ["𐍇"],
+            "trans": "x",
+            "keys": ["x"]
+        },
+        {
+            "chars": ["𐍈"],
+            "trans": "ƕ",
+            "keys": ["hw", "hv"]
+        },
+        {
+            "chars": ["𐍉"],
+            "trans": "o",
+            "keys": ["o"]
+        },
+        {
+            "chars": ["𐍁"],
+            "trans": "90",
+            "keys": ["Q"]
+        },
+        {
+            "chars": ["𐍊"],
+            "trans": "900",
+            "keys": ["T"]
+        },
+        {
+            "chars": ["᛫"],
+            "trans": "•",
+            "keys": [".", ","]
+        },
+        {
+            "chars": ["᛬"],
+            "trans": ":",
+            "keys": [":", ";"]
+        }
+    ],
+    "order": [
+        [
+            ["a", "b", "g", "d", "e", "q", "z"],
+            ["h", "th", "i", "k", "l", "m"],
+            ["n", "j", "u", "p", "r", "s"],
+            ["t", "w", "f", "x", "hw", "o"]
+        ],
+        [
+            ["Q", "T", ".", ":"]
+        ]
+    ]
+}
