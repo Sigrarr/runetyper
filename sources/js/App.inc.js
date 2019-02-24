@@ -6,6 +6,8 @@ include("lib/helpers.js");
 include("lib/Updater.js");
 include("core/Literator.js");
 include("core/Constructor.js");
+include("core/WritingProcessor.js");
+include("dom/DomAssigner.js");
 
 include("run.js");
 include("cleanup.js");

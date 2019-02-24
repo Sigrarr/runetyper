@@ -7,6 +7,8 @@ App.run = function () {
     Updater.register("alphabet", App.Literator);
     Updater.register("layout", App.Literator);
 
+    App.DomAssigner.initializeWritingOutput();
+
     Updater.push("alphabet", 0);
     Updater.push("layout", 0);
 
