@@ -5,8 +5,10 @@ App.MenuBuilder = {
 
     alphIndicatorA: null,
     alphSelectUl: null,
-    xCharSelectionLi: null,
+    xCharSelectLi: null,
     xCharIndicatorA: null,
+    layoutIndicatorA: null,
+    layoutSelectUl: null,
 
     addAlphabetEntry: function (meta, id) {
         if (!this.alphIndicatorA || !this.alphSelectUl) {
@@ -31,9 +33,9 @@ App.MenuBuilder = {
     },
 
     addXCharsEntry: function (entities, alphId) {
-        if (!this.xCharSelectionLi || !this.xCharIndicatorA) {
-            this.xCharSelectionLi = findElement(".selector-xchars");
-            this.xCharIndicatorA = this.xCharSelectionLi.firstElementChild;
+        if (!this.xCharSelectLi || !this.xCharIndicatorA) {
+            this.xCharSelectLi = findElement(".selector-xchars");
+            this.xCharIndicatorA = this.xCharSelectLi.firstElementChild;
         }
 
         this.xCharIndicatorA.appendChild(
@@ -71,7 +73,22 @@ App.MenuBuilder = {
             ul.appendChild(li);
         }
 
-        this.xCharSelectionLi.appendChild(ul);
+        this.xCharSelectLi.appendChild(ul);
+    },
+
+    addLayoutEntry: function (meta, id) {
+        if (!this.layoutIndicatorA || !this.layoutSelectUl) {
+            this.layoutIndicatorA = findElement(".selector-layout").firstElementChild;
+            this.layoutSelectUl = findElement(".selector-layout").lastElementChild;
+        }
+
+        this.layoutIndicatorA.appendChild(
+                createElement("span", null, {"data-layout": id}, [createTextNode(meta.name)])
+        );
+
+        this.layoutSelectUl.appendChild(
+                createElement("li", null, {"data-layout": id}, [createTextNode(meta.name)])
+        );
     }
 
 };

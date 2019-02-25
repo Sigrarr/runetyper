@@ -53,7 +53,9 @@ App.Constructor = {
     },
 
     buildLayout: function (data) {
+        var id = App.Literator.layouts.length;
         App.Literator.layouts.push(new this.Layout(data.map));
+        App.MenuBuilder.addLayoutEntry(data.meta, id);
     },
 
     buildAlphabets: function () {

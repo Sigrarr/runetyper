@@ -8,6 +8,7 @@ App.run = function () {
     App.Constructor.buildLayouts();
     App.DomEventAssigner.initializeAlphabetSelector();
     App.DomEventAssigner.initializeXCharsSelector();
+    App.DomEventAssigner.initializeLayoutSelector();
 
     App.WritingProcessor.textArea = findElement("#output");
     App.DomEventAssigner.initializeWritingOutput();

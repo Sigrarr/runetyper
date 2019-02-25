@@ -26,13 +26,21 @@ App.DomEventAssigner = {
     },
 
     initializeXCharsSelector: function() {
-        App.MenuBuilder.xCharSelectionLi.addEventListener("click", function (event) {
+        App.MenuBuilder.xCharSelectLi.addEventListener("click", function (event) {
             var target = event.target;
             if (target.hasAttribute("data-topic") && target.hasAttribute("data-xchar")) {
                 Updater.push(
                         target.getAttribute("data-topic"),
                         target.getAttribute("data-xchar")
                 );
+            }
+        });
+    },
+
+    initializeLayoutSelector: function() {
+        App.MenuBuilder.layoutSelectUl.addEventListener("click", function (event) {
+            if (event.target.hasAttribute("data-layout")) {
+                Updater.push("layout", event.target.getAttribute("data-layout"));
             }
         });
     }
