@@ -8,7 +8,12 @@ function createElement(tagName, classes, attributes, childNodes) {
         }
     }
 
-    if (typeof attributes === "object") {
+    if (Array.isArray(attributes)) {
+        for (var p in attributes) {
+            var pair = attributes[p];
+            element.setAttribute(pair[0], pair[1]);
+        }
+    } else if (typeof attributes === "object") {
         for (var name in attributes) {
             element.setAttribute(name, attributes[name]);
         }

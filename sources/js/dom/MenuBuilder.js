@@ -53,20 +53,19 @@ App.MenuBuilder = {
             var entity = entities[i];
             var topicName = entity.topicName;
             var li = createElement("li");
-
             for (var ch in entity.chars) {
-                var xCharA = createElement(
+                li.appendChild(createElement(
                         "a",
-                        ["receiver-" + topicName],
-                        {"href": "#", "data-topic": topicName, "data-xchar": ch},
+                        ["receiver-" + topicName].concat(ch === 0 ? ["active"] : []),
+                        [
+                            ["href", "#"],
+                            ["data-topic", topicName],
+                            ["data-xchar", ch],
+                            ["data-depend-" + topicName, "class"],
+                            ["data-class-" + topicName + "-" + ch, "active"]
+                        ],
                         [createTextNode(entity.chars[ch])]
-                );
-                xCharA.setAttribute("data-depend-" + topicName, "class");
-                xCharA.setAttribute("data-class-" + topicName + "-" + ch, "active");
-                if (ch === 0) {
-                    xCharA.classList.add("active");
-                }
-                li.appendChild(xCharA);
+                ));
             }
 
             ul.appendChild(li);
