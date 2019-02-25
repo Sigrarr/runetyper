@@ -3,21 +3,21 @@
 
 App.MenuBuilder = {
 
-    alphIndicatorA: null,
+    alphIndicatorEm: null,
     alphSelectUl: null,
     xCharSelectLi: null,
-    xCharIndicatorA: null,
-    layoutIndicatorA: null,
+    xCharIndicatorEm: null,
+    layoutIndicatorEm: null,
     layoutSelectUl: null,
 
     addAlphabetEntry: function (meta, id) {
-        if (!this.alphIndicatorA || !this.alphSelectUl) {
-            this.alphIndicatorA = findElement(".selector-alphabet").firstElementChild;
+        if (!this.alphIndicatorEm || !this.alphSelectUl) {
+            this.alphIndicatorEm = findElement(".selector-alphabet").children[1];
             this.alphSelectUl = findElement(".selector-alphabet").lastElementChild;
         }
         var name = meta.name[Env.lang];
 
-        this.alphIndicatorA.appendChild(
+        this.alphIndicatorEm.appendChild(
                 createElement("span", null, {"data-alphabet": id}, [
                     createTextNode(name)
                 ])
@@ -25,27 +25,29 @@ App.MenuBuilder = {
 
         this.alphSelectUl.appendChild(
                 createElement("li", null, {"data-alphabet": id}, [
-                    createElement("span", null, null, [createTextNode(name)]),
-                    createTextNode(" "),
-                    createElement("span", null, null, [createTextNode(meta.sample)])
+                    createElement("button", null, {"data-alphabet": id}, [
+                        createElement("span", null, null, [createTextNode(name)]),
+                        createTextNode(" "),
+                        createElement("span", null, null, [createTextNode(meta.sample)])
+                    ])
                 ])
         );
     },
 
     addXCharsEntry: function (entities, alphId) {
-        if (!this.xCharSelectLi || !this.xCharIndicatorA) {
+        if (!this.xCharSelectLi || !this.xCharIndicatorEm) {
             this.xCharSelectLi = findElement(".selector-xchars");
-            this.xCharIndicatorA = this.xCharSelectLi.firstElementChild;
+            this.xCharIndicatorEm = this.xCharSelectLi.children[1];
         }
 
-        this.xCharIndicatorA.appendChild(
+        this.xCharIndicatorEm.appendChild(
                 createElement("span", null, {"data-alphabet": alphId}, [
                     createTextNode(entities.length)
                 ])
         );
 
         if (entities.length === 0) {
-            this.xCharIndicatorA.setAttribute("data-class-alphabet-" + alphId, "disabled");
+            this.xCharSelectLi.setAttribute("data-class-alphabet-" + alphId, "disabled");
             return;
         }
 
@@ -57,10 +59,9 @@ App.MenuBuilder = {
             var li = createElement("li");
             for (var ch in entity.chars) {
                 li.appendChild(createElement(
-                        "a",
-                        ["receiver-" + topicName].concat(ch === 0 ? ["active"] : []),
+                        "button",
+                        ["receiver-" + topicName].concat(ch == 0 ? ["active"] : []),
                         [
-                            ["href", "#"],
                             ["data-topic", topicName],
                             ["data-xchar", ch],
                             ["data-depend-" + topicName, "class"],
@@ -77,17 +78,19 @@ App.MenuBuilder = {
     },
 
     addLayoutEntry: function (meta, id) {
-        if (!this.layoutIndicatorA || !this.layoutSelectUl) {
-            this.layoutIndicatorA = findElement(".selector-layout").firstElementChild;
+        if (!this.layoutIndicatorEm || !this.layoutSelectUl) {
+            this.layoutIndicatorEm = findElement(".selector-layout").children[1];
             this.layoutSelectUl = findElement(".selector-layout").lastElementChild;
         }
 
-        this.layoutIndicatorA.appendChild(
+        this.layoutIndicatorEm.appendChild(
                 createElement("span", null, {"data-layout": id}, [createTextNode(meta.name)])
         );
 
         this.layoutSelectUl.appendChild(
-                createElement("li", null, {"data-layout": id}, [createTextNode(meta.name)])
+                createElement("li", null, null, [
+                    createElement("button", null, {"data-layout": id}, [createTextNode(meta.name)])
+                ])
         );
     }
 

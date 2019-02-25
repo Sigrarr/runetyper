@@ -34,39 +34,36 @@
                 <h2>Workspace</h2>
                     <ul class="menu">
                         <li class="select selector-alphabet">
-                            <a class="receiver-alphabet"
-                               data-depend-alphabet="children"
-                               title="Alphabet selection"
-                               href="#">
-                                <span>ᚱ</span>
-                            </a>
+                            <h4 title="Alphabet selection">ᚱ</h4>
+                            <em class="receiver-alphabet"
+                                data-depend-alphabet="children"
+                                title="Alphabet selection">
+                            </em>
                             <ul></ul>
                         </li>
-                        <li class="select selector-xchars receiver-alphabet" data-depend-alphabet="children">
-                            <a class="receiver-alphabet"
-                               data-depend-alphabet="children,class"
-                               title="Characters' variant selection"
-                               href="#">
-                                <span>&#x2605;</span>
-                            </a>
+                        <li class="select selector-xchars receiver-alphabet" data-depend-alphabet="children,class">
+                            <h4 title="Letter variant selection">&#x2605;</h4>
+                            <em class="receiver-alphabet"
+                                data-depend-alphabet="children"
+                                title="Letter variant selection">
+                            </em>
                         </li>
                         <li class="select selector-layout">
-                            <a class="receiver-layout"
-                               data-depend-layout="children"
-                               title="Keyboard layout selection"
-                               href="#">
-                                <span>&#x2328;</span>
-                            </a>
+                            <h4 title="Keyboard layout selection">&#x2328;</h4>
+                            <em class="receiver-layout"
+                                data-depend-layout="children"
+                                title="Keyboard layout selection">
+                            </em>
                             <ul></ul>
                         </li>
                     </ul>
             </header>
 
-            <div id="editor-space"></div>
-
-            <div id="kboard-space">
-                <textarea id="output" spellcheck="false"></textarea>
+            <div id="editor-space">
+                    <textarea id="output" spellcheck="false"></textarea>
             </div>
+
+            <div id="kboard-space"></div>
 
         </section>
 
