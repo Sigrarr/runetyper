@@ -10,7 +10,6 @@ App.Constructor = {
                 this[entity.keys[k]] = entity.chars[0];
             }
         }
-        this[' '] = ' ';
     },
 
     Layout: function (map) {

@@ -4,35 +4,40 @@
 App.WritingProcessor = {
 
     textArea: null,
-    queue: [],
+    buffer: "0123456789abcdef".split(''),
+    bSize: 0,
 
     catchDown: function (event) {
-        if (!event.ctrlKey && event.key.length === 1) {
-            this.queue.push(event.key);
+        if (!event.ctrlKey && event.key.length === 1 && event.key !== ' ') {
+            this.buffer[this.bSize++] = event.key;
             event.preventDefault();
-        } else if (event.key === "Enter") {
+        }
+
+        if (event.key === ' ' || event.key === "Enter" || this.bSize === 16) {
             this.dispatch();
         }
     },
 
     dispatch: function () {
-        if (this.queue.length === 0) {
+        if (this.bSize === 0) {
             return;
         }
 
-        var key = '';
         var xChar = '';
         var insertionText = "";
+        var limit = this.bSize - 1;
 
-        while (key = this.queue.shift()) {
-            if (this.queue.length > 0 && (xChar = App.Literator.tryTransliterate(key + this.queue[0]))) {
-                this.queue.shift();
+        for (var bIndex = 0; bIndex <= limit; bIndex++) {
+            var key = this.buffer[bIndex];
+            if (bIndex < limit && (xChar = App.Literator.tryTransliterate(key + this.buffer[bIndex + 1]))) {
+                bIndex++;
             } else {
                 xChar = App.Literator.tryTransliterate(key);
             }
             insertionText += xChar;
         }
 
+        this.bSize = 0;
         if (insertionText) {
             this.write(insertionText);
         }
