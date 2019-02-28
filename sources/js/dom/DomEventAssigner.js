@@ -15,7 +15,7 @@ App.DomEventAssigner = {
         });
     },
 
-    initializeAlphabetSelector: function () {
+    initializeMenuSelects: function () {
         App.MenuBuilder.alphSelectUl.addEventListener("click", function (event) {
             if (event.target.hasAttribute("data-alphabet")) {
                 Updater.push("alphabet", event.target.getAttribute("data-alphabet"));
@@ -23,9 +23,7 @@ App.DomEventAssigner = {
                 Updater.push("alphabet", event.target.parentNode.getAttribute("data-alphabet"));
             }
         });
-    },
 
-    initializeXCharsSelector: function() {
         App.MenuBuilder.xCharSelectLi.addEventListener("click", function (event) {
             var target = event.target;
             if (target.hasAttribute("data-topic") && target.hasAttribute("data-xchar")) {
@@ -35,12 +33,20 @@ App.DomEventAssigner = {
                 );
             }
         });
-    },
 
-    initializeLayoutSelector: function() {
         App.MenuBuilder.layoutSelectUl.addEventListener("click", function (event) {
             if (event.target.hasAttribute("data-layout")) {
                 Updater.push("layout", event.target.getAttribute("data-layout"));
+            }
+        });
+    },
+
+    initializeKBoards: function () {
+        App.KBoardProvider.container.addEventListener("click", function (event) {
+            if (event.target.hasAttribute("data-xchar")) {
+                App.WritingProcessor.write(
+                        event.target.getAttribute("data-xchar")
+                );
             }
         });
     }

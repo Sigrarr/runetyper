@@ -1,15 +1,18 @@
 "use strict";
 
-var App = {};
-
-include("Env.js");
 include("lib/helpers.js");
 include("lib/Updater.js");
+include("Env.js");
+
+var App = {};
+
 include("core/Literator.js");
-include("core/Constructor.js");
+include("core/KBoardProvider.js");
 include("core/WritingProcessor.js");
 include("dom/MenuBuilder.js");
+include("dom/KBoardBuilder.js");
 include("dom/DomEventAssigner.js");
+include("core/Constructor.js");
 
 include("run.js");
 include("cleanup.js");
