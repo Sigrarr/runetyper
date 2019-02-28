@@ -12,8 +12,8 @@ App.MenuBuilder = {
 
     addAlphabetEntry: function (meta, id) {
         if (!this.alphIndicatorEm || !this.alphSelectUl) {
-            this.alphIndicatorEm = findElement(".selector-alphabet").children[1];
-            this.alphSelectUl = findElement(".selector-alphabet").lastElementChild;
+            this.alphIndicatorEm = findElement(".selector-alphabet").children[0].children[1];
+            this.alphSelectUl = findElement(".selector-alphabet").children[1];
         }
         var name = meta.name[Env.lang];
 
@@ -37,7 +37,7 @@ App.MenuBuilder = {
     addXCharsEntry: function (entities, alphId) {
         if (!this.xCharSelectLi || !this.xCharIndicatorEm) {
             this.xCharSelectLi = findElement(".selector-xchars");
-            this.xCharIndicatorEm = this.xCharSelectLi.children[1];
+            this.xCharIndicatorEm = this.xCharSelectLi.children[0].children[1];
         }
 
         this.xCharIndicatorEm.appendChild(
@@ -79,8 +79,8 @@ App.MenuBuilder = {
 
     addLayoutEntry: function (meta, id) {
         if (!this.layoutIndicatorEm || !this.layoutSelectUl) {
-            this.layoutIndicatorEm = findElement(".selector-layout").children[1];
-            this.layoutSelectUl = findElement(".selector-layout").lastElementChild;
+            this.layoutIndicatorEm = findElement(".selector-layout").children[0].children[1];
+            this.layoutSelectUl = findElement(".selector-layout").children[1];
         }
 
         this.layoutIndicatorEm.appendChild(

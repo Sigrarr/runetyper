@@ -12,8 +12,52 @@
 </head>
 <body>
     <main>
+        <section id="workspace">
+            <header>
+                <h2 class="implicit">Workspace</h2>
+                    <ul class="menu">
+                        <li class="select selector-alphabet"
+                            title="Alphabet selection">
+                            <div>
+                                <h4>ᚱ</h4>
+                                <em class="receiver-alphabet"
+                                    data-depend-alphabet="children">
+                                </em>
+                            </div>
+                            <ul></ul>
+                        </li>
+                        <li class="select selector-xchars receiver-alphabet"
+                            data-depend-alphabet="children,class"
+                            title="Letter variant selection">
+                            <div>
+                                <h4>&#x2605;</h4>
+                                <em class="receiver-alphabet"
+                                    data-depend-alphabet="children">
+                                </em>
+                            </div>
+                        </li>
+                        <li class="select selector-layout"
+                            title="Keyboard layout selection">
+                            <div>
+                                <h4>&#x2328;</h4>
+                                <em class="receiver-layout"
+                                    data-depend-layout="children">
+                                </em>
+                            </div>
+                            <ul></ul>
+                        </li>
+                    </ul>
+            </header>
 
-        <section id="information">
+            <div id="editor-space">
+                    <textarea id="output" spellcheck="false"></textarea>
+            </div>
+
+            <div id="kboard-space"></div>
+
+        </section>
+
+        <section id="information" class="hidden">
             <header>
                 <h1 class="logo">Runetyper</h1>
                 <address>
@@ -28,45 +72,6 @@
                 </address>
             </header>
         </section>
-
-        <section id="workspace">
-            <header>
-                <h2>Workspace</h2>
-                    <ul class="menu">
-                        <li class="select selector-alphabet">
-                            <h4 title="Alphabet selection">ᚱ</h4>
-                            <em class="receiver-alphabet"
-                                data-depend-alphabet="children"
-                                title="Alphabet selection">
-                            </em>
-                            <ul></ul>
-                        </li>
-                        <li class="select selector-xchars receiver-alphabet" data-depend-alphabet="children,class">
-                            <h4 title="Letter variant selection">&#x2605;</h4>
-                            <em class="receiver-alphabet"
-                                data-depend-alphabet="children"
-                                title="Letter variant selection">
-                            </em>
-                        </li>
-                        <li class="select selector-layout">
-                            <h4 title="Keyboard layout selection">&#x2328;</h4>
-                            <em class="receiver-layout"
-                                data-depend-layout="children"
-                                title="Keyboard layout selection">
-                            </em>
-                            <ul></ul>
-                        </li>
-                    </ul>
-            </header>
-
-            <div id="editor-space">
-                    <textarea id="output" spellcheck="false"></textarea>
-            </div>
-
-            <div id="kboard-space"></div>
-
-        </section>
-
     </main>
     <footer>
         <span class="logo">Runetyper</span> &copy; 2019 Wiktor Banaszewski
