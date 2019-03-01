@@ -31,6 +31,24 @@ App.DomEventAssigner = {
                         target.getAttribute("data-topic"),
                         target.getAttribute("data-xchar")
                 );
+            } else if (target.hasAttribute("data-d-xchar")) {
+                var delta = parseInt(target.getAttribute("data-d-xchar"));
+                var li = target.parentNode;
+                while (li = li.nextElementSibling) {
+                    var buttons = li.children;
+                    for (var i = 0; i < buttons.length; i++) {
+                        if (buttons[i].classList.contains("active")) {
+                            var newActiveIndex = i + delta;
+                            if (newActiveIndex >= 0 && newActiveIndex < buttons.length) {
+                                Updater.push(
+                                        buttons[i].getAttribute("data-topic"),
+                                        newActiveIndex
+                                );
+                            }
+                            break;
+                        }
+                    }
+                }
             }
         });
 

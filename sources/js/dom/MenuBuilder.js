@@ -7,6 +7,7 @@ App.MenuBuilder = {
     alphSelectUl: null,
     xCharSelectLi: null,
     xCharIndicatorEm: null,
+    xCharMassControlLi: null,
     layoutIndicatorEm: null,
     layoutSelectUl: null,
 
@@ -38,6 +39,7 @@ App.MenuBuilder = {
         if (!this.xCharSelectLi || !this.xCharIndicatorEm) {
             this.xCharSelectLi = findElement(".selector-xchars");
             this.xCharIndicatorEm = this.xCharSelectLi.children[0].children[1];
+            this.xCharMassControlLi = this.xCharSelectLi.children[1].children[0];
         }
 
         this.xCharIndicatorEm.appendChild(
@@ -52,6 +54,8 @@ App.MenuBuilder = {
         }
 
         var ul = createElement("ul", ["selector-xchar"], {"data-alphabet": alphId});
+
+        ul.appendChild(this.xCharMassControlLi.cloneNode(true));
 
         for (var i in entities) {
             var entity = entities[i];
