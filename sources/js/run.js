@@ -8,8 +8,7 @@ App.run = function () {
     App.Constructor.buildLayouts();
     App.Constructor.buildAlphabets();
     App.EventAssigner.initializeKBoards();
-    App.EventAssigner.initializeMenuSelects();
-    App.EventAssigner.initializeMenuSwitches();
+    App.EventAssigner.initializeClickControls();
 
     App.WritingProcessor.textArea = findOne("#output");
     App.EventAssigner.initializeWritingOutput();
