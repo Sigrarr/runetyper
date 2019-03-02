@@ -25,7 +25,8 @@ App.run = function () {
     Updater.push("alphabet", 0);
     Updater.push("layout", 0);
     Updater.push("subtitles", "trans");
-    Updater.push("view", App.UrlHandler.requestedView);
 
+    App.fillEmail();
     App.cleanUp();
+    Updater.push("view", App.UrlHandler.requestedView);
 };

@@ -14,6 +14,7 @@ include("dom/MenuBuilder.js");
 include("dom/KBoardBuilder.js");
 include("dom/EventAssigner.js");
 include("aux/UrlHandler.js");
+include("aux/fillEmail.js");
 
 include("run.js");
 include("cleanup.js");

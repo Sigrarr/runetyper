@@ -6,6 +6,7 @@ App.cleanUp = function () {
     delete App.MenuBuilder;
     delete App.KBoardBuilder;
     delete App.EventAssigner;
+    delete App.fillEmail;
     delete App.run;
     delete App.cleanUp;
 
