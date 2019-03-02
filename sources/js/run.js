@@ -9,6 +9,7 @@ App.run = function () {
     App.Constructor.buildAlphabets();
     App.EventAssigner.initializeKBoards();
     App.EventAssigner.initializeMenuSelects();
+    App.EventAssigner.initializeMenuSwitches();
 
     App.WritingProcessor.textArea = findOne("#output");
     App.EventAssigner.initializeWritingOutput();
@@ -16,11 +17,13 @@ App.run = function () {
     Updater.register("alphabet", App.KBoardProvider);
     Updater.register("alphabet", App.Literator);
     Updater.register("layout", App.Literator);
+    Updater.confirmTopic("subtitles");
     for (var t in Updater.topics) {
         Updater.registerDomReceivers(Updater.topics[t].name);
     }
     Updater.push("alphabet", 0);
     Updater.push("layout", 0);
+    Updater.push("subtitles", "trans");
 
     App.cleanUp();
 };

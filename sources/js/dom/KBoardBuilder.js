@@ -76,7 +76,7 @@ App.KBoardBuilder = {
 
         box.appendChild(createElement(
                 "p", ["trans"], {"data-subtitles": "trans"}, [
-                    createTextNode(entity.trans)
+                    createElement("i", null, null, [createTextNode(entity.trans)])
                 ]
         ));
 

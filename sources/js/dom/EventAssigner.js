@@ -1,5 +1,5 @@
 
-/* global App, Updater */
+/* global App, Updater, findOne */
 
 App.EventAssigner = {
 
@@ -55,6 +55,18 @@ App.EventAssigner = {
         App.MenuBuilder.layoutSelectUl.addEventListener("click", function (event) {
             if (event.target.hasAttribute("data-layout")) {
                 Updater.push("layout", event.target.getAttribute("data-layout"));
+            }
+        });
+    },
+
+    initializeMenuSwitches: function () {
+        findOne(".switch-subtitles").addEventListener("click", function (event) {
+            if (event.target.hasAttribute("data-subtitles")) {
+                Updater.push(
+                        "subtitles",
+                        (event.target.nextElementSibling || event.target.parentNode.firstElementChild)
+                                .getAttribute("data-subtitles")
+                );
             }
         });
     },

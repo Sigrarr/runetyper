@@ -9,6 +9,7 @@
 <meta name="keywords" content="runes, runic, writing, text editor, virtual keyboard, gothic alphabet, scripts">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script charset="utf-8" src="assets/js/app.min.js"></script>
+<link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
 </head>
 <body>
     <main>
@@ -52,9 +53,19 @@
                             </div>
                             <ul></ul>
                         </li>
+                        <li class="switch-subtitles">
+                            <h4 class="receiver-subtitles"
+                                data-depend-subtitles="children,title"
+                                data-title-subtitles-trans="Subtitles: transliteration/transcription"
+                                data-title-subtitles-keys="Subtitles: keys"
+                                data-title-subtitles-off="Subtitles: off">
+                                <button data-subtitles="trans"><i>Æ</i></button>
+                                <button data-subtitles="keys">&#x1F130;&#x1F134;</button>
+                                <button data-subtitles="off">&#x2205;</button>
+                            </h4>
+                        </li>
                     </ul>
             </header>
-
             <div id="editor-space">
                     <textarea id="output" spellcheck="false"></textarea>
             </div>
