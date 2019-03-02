@@ -1,0 +1,14 @@
+{
+    "meta": {
+        "name": "SV"
+    },
+    "map": {
+        "å": "A",
+        "A": null,
+        "ä": "ae",
+        "ae": null,
+        "ö": "oe",
+        "oe": null,
+        "Ä": "ea"
+    }
+}

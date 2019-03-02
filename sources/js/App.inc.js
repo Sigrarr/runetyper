@@ -30,5 +30,10 @@ App.Constructor.enterAlphabets(
 );
 
 App.Constructor.enterLayouts(
-        include("../../data/layouts/00-uni.json")
+        include("../../data/layouts/00-uni.json"),
+        include("../../data/layouts/01-da-no.json"),
+        include("../../data/layouts/02-de.json"),
+        include("../../data/layouts/03-fo.json"),
+        include("../../data/layouts/04-is.json"),
+        include("../../data/layouts/05-sv.json")
 );

@@ -1,0 +1,12 @@
+{
+    "meta": {
+        "name": "DE"
+    },
+    "map": {
+        "ä": "ae",
+        "ae": null,
+        "ö": "oe",
+        "oe": null,
+        "Ä": "ea"
+    }
+}

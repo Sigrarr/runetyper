@@ -1,0 +1,15 @@
+{
+    "meta": {
+        "name": "DA/NO"
+    },
+    "map": {
+        "æ": "ae",
+        "ae": null,
+        "ø": "oe",
+        "oe": null,
+        "å": "A",
+        "A": null,
+        "O": null,
+        "Æ": "ea"        
+    }
+}

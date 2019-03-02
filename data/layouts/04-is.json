@@ -1,0 +1,20 @@
+{
+    "meta": {
+        "name": "IS"
+    },
+    "map": {
+        "þ": "th",
+        "th": null,
+        "ð": "dh",
+        "dh": null,
+        "æ": "ae",
+        "ae": null,
+        "ö": "oe",
+        "oe": null,
+        "á": "A",
+        "ó": "O",
+        "O": null,
+        "í": "io",
+        "Æ": "ea"
+    }
+}
