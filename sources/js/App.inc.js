@@ -11,7 +11,7 @@ include("core/KBoardProvider.js");
 include("core/WritingProcessor.js");
 include("dom/MenuBuilder.js");
 include("dom/KBoardBuilder.js");
-include("dom/DomEventAssigner.js");
+include("dom/EventAssigner.js");
 include("core/Constructor.js");
 
 include("run.js");

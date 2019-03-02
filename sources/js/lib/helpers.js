@@ -19,8 +19,8 @@ function createElement(tagName, classes, attributes, childNodes) {
         }
     }
 
-    if (typeof childNodes === "object" && typeof childNodes.length !== "undefined") {
-        for (var i = 0; i < childNodes.length; i++) {
+    if (Array.isArray(childNodes)) {
+        for (var i in childNodes) {
             element.appendChild(childNodes[i]);
         }
     }
@@ -32,7 +32,11 @@ function createTextNode(text) {
     return document.createTextNode(text);
 }
 
-function findElement(query) {
+function removeNode(node) {
+    node.parentNode.removeChild(node);
+}
+
+function findOne(query) {
     switch (query.substr(0, 1)) {
         case '.':
             return document.getElementsByClassName(query.substr(1))[0];

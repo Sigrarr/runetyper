@@ -1,7 +1,7 @@
 
-/* global App, Updater, findElement */
+/* global App, Updater */
 
-App.DomEventAssigner = {
+App.EventAssigner = {
 
     initializeWritingOutput: function() {
         var output = App.WritingProcessor.textArea;

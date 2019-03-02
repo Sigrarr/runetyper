@@ -1,17 +1,17 @@
 
-/* global App, Updater, findElement */
+/* global App, Updater, findOne */
 
 App.run = function () {
     console.log("@run");
 
-    App.KBoardProvider.container = findElement("#kboard-space");
+    App.KBoardProvider.container = findOne("#kboard-space");
     App.Constructor.buildLayouts();
     App.Constructor.buildAlphabets();
-    App.DomEventAssigner.initializeKBoards();
-    App.DomEventAssigner.initializeMenuSelects();
+    App.EventAssigner.initializeKBoards();
+    App.EventAssigner.initializeMenuSelects();
 
-    App.WritingProcessor.textArea = findElement("#output");
-    App.DomEventAssigner.initializeWritingOutput();
+    App.WritingProcessor.textArea = findOne("#output");
+    App.EventAssigner.initializeWritingOutput();
 
     Updater.register("alphabet", App.KBoardProvider);
     Updater.register("alphabet", App.Literator);

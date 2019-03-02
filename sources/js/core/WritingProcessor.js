@@ -53,4 +53,5 @@ App.WritingProcessor = {
 
         this.textArea.selectionEnd = this.textArea.selectionStart = selectionStart + insertionText.length;
     }
+
 };

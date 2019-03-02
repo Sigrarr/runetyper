@@ -30,4 +30,5 @@ App.Literator = {
             this.currentLayout = this.layouts[newLayoutId];
         }
     }
+
 };

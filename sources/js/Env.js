@@ -1,6 +1,6 @@
 
-/* global findElement */
+/* global findOne */
 
 var Env = {
-    lang: findElement("html").getAttribute("lang")
+    lang: findOne("html").getAttribute("lang")
 };

@@ -1,18 +1,18 @@
 
-/* global App, findMany */
+/* global App, removeNode */
 
 App.cleanUp = function () {
     delete App.Constructor;
     delete App.MenuBuilder;
     delete App.KBoardBuilder;
-    delete App.DomEventAssigner;
+    delete App.EventAssigner;
     delete App.run;
     delete App.cleanUp;
 
     window.removeEventListener("load", App.run);
 
-    var protoNodes = findMany(".proto");
-    for (var i = 0; i < protoNodes.length; i++) {
-        protoNodes[i].parentNode.removeChild(protoNodes[i]);
+    var prototypeNodes = findMany(".prototype");
+    for (var i = 0; i < prototypeNodes.length; i++) {
+        removeNode(prototypeNodes[i]);
     }
 };
