@@ -9,10 +9,11 @@ var App = {};
 include("core/Literator.js");
 include("core/KBoardProvider.js");
 include("core/WritingProcessor.js");
+include("core/Constructor.js");
 include("dom/MenuBuilder.js");
 include("dom/KBoardBuilder.js");
 include("dom/EventAssigner.js");
-include("core/Constructor.js");
+include("aux/UrlHandler.js");
 
 include("run.js");
 include("cleanup.js");

@@ -12,8 +12,8 @@
 <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
 </head>
 <body>
-    <main>
-        <section id="workspace">
+    <main class="receiver-view" data-depend-view="children">
+        <section id="workspace" data-view="workspace">
             <header>
                 <h2 class="implicit">Workspace</h2>
                     <ul class="menu">
@@ -53,15 +53,22 @@
                             </div>
                             <ul></ul>
                         </li>
-                        <li class="switch-subtitles">
-                            <h4 class="receiver-subtitles"
-                                data-depend-subtitles="children,title"
-                                data-title-subtitles-trans="Subtitles: transliteration/transcription"
-                                data-title-subtitles-keys="Subtitles: keys"
-                                data-title-subtitles-off="Subtitles: off">
+                        <li class="switch-subtitles receiver-subtitles"
+                            data-depend-subtitles="title"
+                            data-title-subtitles-trans="Subtitles: transliteration/transcription"
+                            data-title-subtitles-keys="Subtitles: keys"
+                            data-title-subtitles-off="Subtitles: off">
+                            <h4 class="receiver-subtitles" data-depend-subtitles="children">
                                 <button data-subtitles="trans"><i>Æ</i></button>
                                 <button data-subtitles="keys">&#x1F130;&#x1F134;</button>
                                 <button data-subtitles="off">&#x2205;</button>
+                            </h4>
+                        </li>
+                        <li title="Information">
+                            <h4>
+                                <button data-topic="view" data-view="information">
+                                    &#x1f6c8;
+                                </button>
                             </h4>
                         </li>
                     </ul>
@@ -77,7 +84,7 @@
 
         </section>
 
-        <section id="information" class="hidden">
+        <section id="information" data-view="information">
             <header>
                 <h1 class="logo">Runetyper</h1>
                 <address>
@@ -91,9 +98,20 @@
                     </dl>
                 </address>
             </header>
+            <div class="menu">
+                <h4 title="Close information view">
+                    <button data-topic="view"
+                            data-view="workspace">
+                        &#x1f5d9;
+                    </button>
+                </h4>
+            </div>
         </section>
     </main>
-    <footer>
+    <footer class="receiver-view"
+            data-depend-view="class"
+            data-class-view-workspace="sub-workspace"
+            data-class-view-information="sub-information">
         <span class="logo">Runetyper</span> &copy; 2019 Wiktor Banaszewski
     </footer>
 </body>

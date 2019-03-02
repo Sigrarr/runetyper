@@ -16,13 +16,16 @@ App.run = function () {
     Updater.register("alphabet", App.KBoardProvider);
     Updater.register("alphabet", App.Literator);
     Updater.register("layout", App.Literator);
+    Updater.register("view", App.UrlHandler);
     Updater.confirmTopic("subtitles");
     for (var t in Updater.topics) {
         Updater.registerDomReceivers(Updater.topics[t].name);
     }
+
     Updater.push("alphabet", 0);
     Updater.push("layout", 0);
     Updater.push("subtitles", "trans");
+    Updater.push("view", App.UrlHandler.requestedView);
 
     App.cleanUp();
 };

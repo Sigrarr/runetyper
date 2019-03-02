@@ -16,17 +16,20 @@ App.EventAssigner = {
     },
 
     initializeClickControls: function () {
-        findOne(".menu").addEventListener("click", function (event) {
-            var target = event.target;
-            if (target.hasAttribute("data-topic")
-                    || (target = target.parentNode).hasAttribute("data-topic")) {
-                var topic = target.getAttribute("data-topic");
-                Updater.push(
-                        topic,
-                        target.getAttribute("data-" + topic)
-                );
-            }
-        });
+        var menus = findMany(".menu");
+        for (var i = 0; i < menus.length; i++) {
+            menus[i].addEventListener("click", function (event) {
+                var target = event.target;
+                if (target.hasAttribute("data-topic")
+                        || (target = target.parentNode).hasAttribute("data-topic")) {
+                    var topic = target.getAttribute("data-topic");
+                    Updater.push(
+                            topic,
+                            target.getAttribute("data-" + topic)
+                    );
+                }
+            });
+        }
 
         findOne(".selector-xchars").addEventListener("click", function (event) {
             var target = event.target;
