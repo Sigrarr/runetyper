@@ -15,7 +15,7 @@
         {
             "chars": ["ᚢ"],
             "trans": "u v y o ø ǫ",
-            "keys": ["u", "v", "w", "y", "o"]
+            "keys": ["u", "v", "w", "y", "o", "oe"]
         },
         {
             "chars": ["ᚦ"],
@@ -25,7 +25,7 @@
         {
             "chars": ["ᚬ", "ᚭ"],
             "trans": "ą o æ a",
-            "keys": ["A", "O", "an"]
+            "keys": ["A", "O"]
         },
         {
             "chars": ["ᚱ"],

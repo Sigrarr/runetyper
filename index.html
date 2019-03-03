@@ -8,8 +8,8 @@
 <meta name="description" content="Simple text editor for writing in old Germanic alphabets, especially runic. HTML5 + JS, running in a web browser.">
 <meta name="keywords" content="runes, runic, writing, text editor, virtual keyboard, gothic alphabet, scripts">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script charset="utf-8" src="assets/js/app.min.js"></script>
 <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
+<script charset="utf-8" src="assets/js/app.min.js"></script>
 </head>
 <body>
     <main class="receiver-view" data-depend-view="children">
@@ -44,7 +44,7 @@
                             </ul>
                         </li>
                         <li class="select selector-layout"
-                            title="Keyboard layout selection">
+                            title="Input alphabet selection">
                             <div>
                                 <h4>&#x2328;</h4>
                                 <em class="receiver-layout"
@@ -55,7 +55,7 @@
                         </li>
                         <li class="switch-subtitles receiver-subtitles"
                             data-depend-subtitles="title"
-                            data-title-subtitles-trans="Subtitles: transliteration/transcription"
+                            data-title-subtitles-trans="Subtitles: transliteration/transcriptions"
                             data-title-subtitles-keys="Subtitles: keys"
                             data-title-subtitles-off="Subtitles: off">
                             <h4 class="receiver-subtitles" data-depend-subtitles="children">
@@ -101,7 +101,7 @@
                 </address>
             </header>
             <div class="menu">
-                <h4 title="Close information view">
+                <h4 title="Close the information view">
                     <button data-topic="view"
                             data-view="workspace">
                         &#x1f5d9;

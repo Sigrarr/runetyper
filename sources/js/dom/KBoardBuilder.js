@@ -97,31 +97,28 @@ App.KBoardBuilder = {
     },
 
     resolveKeys: function (layoutMap, uniKeys) {
-        var resolvedKeys = [];
+        var preservedKeys = [];
+        var addedKeys = [];
 
         for (var uk in uniKeys) {
             var uniKey = uniKeys[uk];
             var preserveUniKey = true;
-            var keysToAdd = [];
 
             for (var mapKey in layoutMap) {
                 var mapValue = layoutMap[mapKey];
                 if (mapValue === null && mapKey === uniKey) {
                     preserveUniKey = false;
                 } else if (mapValue === uniKey) {
-                    keysToAdd.push(mapKey);
+                    addedKeys.push(mapKey);
                 }
             }
 
             if (preserveUniKey) {
-                resolvedKeys.push(uniKey);
-            }
-            if (keysToAdd.length > 0) {
-                resolvedKeys = resolvedKeys.concat(keysToAdd);
+                preservedKeys.push(uniKey);
             }
         }
 
-        return resolvedKeys.join(" ");
+        return preservedKeys.concat(addedKeys).join(" ");
     }
 
 };

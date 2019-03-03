@@ -29,10 +29,10 @@ App.WritingProcessor = {
 
         for (var bIndex = 0; bIndex <= limit; bIndex++) {
             var key = this.buffer[bIndex];
-            if (bIndex < limit && (xChar = App.Literator.tryTransliterate(key + this.buffer[bIndex + 1]))) {
+            if (bIndex < limit && (xChar = App.Literator.tryTrans(key + this.buffer[bIndex + 1]))) {
                 bIndex++;
             } else {
-                xChar = App.Literator.tryTransliterate(key);
+                xChar = App.Literator.tryTrans(key);
             }
             insertionText += xChar;
         }

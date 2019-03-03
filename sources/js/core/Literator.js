@@ -8,11 +8,8 @@ App.Literator = {
     currentAlphMap: {},
     currentLayout: {},
 
-    tryTransliterate: function (rawInput) {
-        var normalInput = this.currentLayout.normalize(rawInput);
-
-        return this.currentAlphMap.hasOwnProperty(normalInput) ?
-                this.currentAlphMap[normalInput] : '';
+    tryTrans: function (rawInput) {
+        return this.currentAlphMap[this.currentLayout.normalize(rawInput)] || '';
     },
 
     alphabetHandler: function (newAlphabetId) {
