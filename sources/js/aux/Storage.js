@@ -3,19 +3,23 @@
 
 App.Storage = {
 
-    blackList: ["_update", "view"],
+    topicBlackList: ["_update", "view"],
 
-    isAllowed: function (topicName) {
-        return this.blackList.indexOf(topicName) < 0;
+    passesTopic: function (topicName) {
+        return this.topicBlackList.indexOf(topicName) < 0;
     },
 
-    get: function (topicName) {
-        return window.localStorage.getItem(topicName);
+    get: function (key) {
+        return window.localStorage.getItem(key);
+    },
+
+    set: function (key, value) {
+        window.localStorage.setItem(key, value);
     },
 
     _updateHandler: function (record) {
-        if (this.isAllowed(record.topicName)) {
-            window.localStorage.setItem(record.topicName, record.value);
+        if (this.passesTopic(record.topicName)) {
+            this.set(record.topicName, record.value);
         }
     }
 

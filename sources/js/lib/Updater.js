@@ -136,12 +136,14 @@ var Updater = {
                 if (children[c].getAttribute("data-" + topic.name) == newValue) {
                     childrenToActivate.push(children[c]);
                 } else {
-                    children[c].setAttribute("style", "display: none;");
+                    children[c].style.display = "none";
+                    children[c].classList.remove("active");
                 }
             }
         }
         for (var i in childrenToActivate) {
-            childrenToActivate[i].setAttribute("style", "");
+            childrenToActivate[i].classList.add("active");
+            childrenToActivate[i].style.removeProperty("display");
         }
     }
 };

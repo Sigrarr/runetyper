@@ -17,9 +17,8 @@
             <header>
                 <h2 class="implicit">Workspace</h2>
                     <ul class="menu">
-                        <li class="select selector-alphabet"
-                            title="Alphabet selection">
-                            <div>
+                        <li class="select selector-alphabet">
+                            <div title="Select alphabet">
                                 <h4>ᚱ</h4>
                                 <em class="receiver-alphabet"
                                     data-depend-alphabet="children">
@@ -28,9 +27,8 @@
                             <ul></ul>
                         </li>
                         <li class="select selector-xchars receiver-alphabet"
-                            data-depend-alphabet="children,class"
-                            title="Letter variant selection">
-                            <div>
+                            data-depend-alphabet="children,class">
+                            <div title="Select letter variants">
                                 <h4>&#x2605;</h4>
                                 <em class="receiver-alphabet"
                                     data-depend-alphabet="children">
@@ -38,14 +36,13 @@
                             </div>
                             <ul class="prototype">
                                 <li>
-                                    <button title="All backward" data-d-xchar="-1">&#x2B84;</button>
-                                    <button title="All forward" data-d-xchar="1">&#x2B86;</button>
+                                    <button title="Shift all backward" data-d-xchar="-1">&#x2B84;</button>
+                                    <button title="Shift all forward" data-d-xchar="1">&#x2B86;</button>
                                 </li>
                             </ul>
                         </li>
-                        <li class="select selector-layout"
-                            title="Input alphabet selection">
-                            <div>
+                        <li class="select selector-layout">
+                            <div title="Select input alphabet (keyboard)">
                                 <h4>&#x2328;</h4>
                                 <em class="receiver-layout"
                                     data-depend-layout="children">
@@ -55,9 +52,9 @@
                         </li>
                         <li class="switch-subtitles receiver-subtitles"
                             data-depend-subtitles="title"
-                            data-title-subtitles-trans="Subtitles: transliteration/transcriptions"
-                            data-title-subtitles-keys="Subtitles: keys"
-                            data-title-subtitles-off="Subtitles: off">
+                            data-title-subtitles-trans="Subtitles: transliteration/transcriptions. Click to toogle"
+                            data-title-subtitles-keys="Subtitles: keys. Click to toogle"
+                            data-title-subtitles-off="Subtitles: off. Click to toogle">
                             <h4 class="receiver-subtitles" data-depend-subtitles="children">
                                 <button data-subtitles="trans"><i>Æ</i></button>
                                 <button data-subtitles="keys">&#x1F130;&#x1F134;</button>

@@ -11,10 +11,12 @@ App.WritingProcessor = {
         if (!event.ctrlKey && event.key.length === 1 && event.key !== ' ') {
             this.buffer[this.bSize++] = event.key;
             event.preventDefault();
+            event.stopPropagation();
         }
 
         if (event.key === ' ' || event.key === "Enter" || this.bSize === 16) {
             this.dispatch();
+            event.stopPropagation();
         }
     },
 

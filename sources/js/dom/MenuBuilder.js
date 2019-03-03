@@ -4,17 +4,18 @@
 App.MenuBuilder = {
 
     addAlphabetEntry: function (meta, id) {
-        var alphIndicatorEm = findOne(".selector-alphabet").children[0].children[1];
-        var alphSelectUl = findOne(".selector-alphabet").children[1];
+        var parentLi = App.MenuProvider.alphSelectLi;
+        var indicatorEm = parentLi.children[0].children[1];
+        var optionsUl = parentLi.children[1];
         var name = meta.name[Env.lang];
 
-        alphIndicatorEm.appendChild(
+        indicatorEm.appendChild(
                 createElement("span", null, {"data-alphabet": id}, [
                     createTextNode(name)
                 ])
         );
 
-        alphSelectUl.appendChild(
+        optionsUl.appendChild(
                 createElement("li", null, null, [
                     createElement(
                             "button",
@@ -31,24 +32,24 @@ App.MenuBuilder = {
     },
 
     addXCharsEntry: function (entities, alphId) {
-        var xCharSelectLi = findOne(".selector-xchars");
-        var xCharIndicatorEm = xCharSelectLi.children[0].children[1];
+        var parentLi = App.MenuProvider.xCharsSelectLi;
+        var indicatorEm = parentLi.children[0].children[1];
 
-        xCharIndicatorEm.appendChild(
+        indicatorEm.appendChild(
                 createElement("span", null, {"data-alphabet": alphId}, [
                     createTextNode(entities.length)
                 ])
         );
 
         if (entities.length === 0) {
-            xCharSelectLi.setAttribute("data-class-alphabet-" + alphId, "disabled");
+            parentLi.setAttribute("data-class-alphabet-" + alphId, "disabled");
             return;
         }
 
         var ul = createElement("ul", ["selector-xchar"], {"data-alphabet": alphId});
 
-        var xCharMassControlLi = xCharSelectLi.children[1].children[0];
-        ul.appendChild(xCharMassControlLi.cloneNode(true));
+        var massShiftLi = parentLi.children[1].children[0];
+        ul.appendChild(massShiftLi.cloneNode(true));
 
         for (var i in entities) {
             var entity = entities[i];
@@ -71,18 +72,19 @@ App.MenuBuilder = {
             ul.appendChild(li);
         }
 
-        xCharSelectLi.appendChild(ul);
+        parentLi.appendChild(ul);
     },
 
     addLayoutEntry: function (meta, id) {
-        var layoutIndicatorEm = findOne(".selector-layout").children[0].children[1];
-        var layoutSelectUl = findOne(".selector-layout").children[1];
+        var parentLi = App.MenuProvider.layoutSelectLi;
+        var indicatorEm = parentLi.children[0].children[1];
+        var optionsUl = parentLi.children[1];
 
-        layoutIndicatorEm.appendChild(
+        indicatorEm.appendChild(
                 createElement("span", null, {"data-layout": id}, [createTextNode(meta.name)])
         );
 
-        layoutSelectUl.appendChild(
+        optionsUl.appendChild(
                 createElement("li", null, null, [
                     createElement(
                             "button",

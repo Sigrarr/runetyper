@@ -5,13 +5,18 @@ App.run = function () {
     console.log("@run");
 
     App.KBoardProvider.container = findOne("#kboard-space");
+    App.WritingProcessor.textArea = findOne("#output");
+    App.MenuProvider.alphSelectLi = findOne(".selector-alphabet");
+    App.MenuProvider.xCharsSelectLi = findOne(".selector-xchars");
+    App.MenuProvider.layoutSelectLi = findOne(".selector-layout");
+    App.MenuProvider.subtitlesSwitchLi = findOne(".switch-subtitles");
+
     App.Constructor.buildLayouts();
     App.Constructor.buildAlphabets();
-    App.EventAssigner.initializeKBoards();
-    App.EventAssigner.initializeClickControls();
-
-    App.WritingProcessor.textArea = findOne("#output");
     App.EventAssigner.initializeWritingOutput();
+    App.EventAssigner.initializeClickControls();
+    App.EventAssigner.initializeKBoards();
+    App.EventAssigner.initializeKeyCommands();
 
     Updater.register("_update", App.Storage);
     Updater.register("alphabet", App.KBoardProvider);
@@ -26,7 +31,7 @@ App.run = function () {
     var nonZeroDefaults = {"subtitles": "trans"};
     for (var t in Updater.topics) {
         var topicName = Updater.topics[t].name;
-        if (App.Storage.isAllowed(topicName)) {
+        if (App.Storage.passesTopic(topicName)) {
             Updater.push(
                     topicName,
                     App.Storage.get(topicName) || nonZeroDefaults[topicName] || 0

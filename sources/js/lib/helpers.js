@@ -55,3 +55,13 @@ function findMany(query) {
             return document.getElementsByTagName(query);
     }
 }
+
+function findActiveChild(parent) {
+    var children = parent.children;
+    for (var i = 0; i < children.length; i++) {
+        if (children[i].classList.contains("active")) {
+            return children[i];
+        }
+    }
+    return null;
+}
