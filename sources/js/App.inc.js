@@ -13,6 +13,7 @@ include("core/Constructor.js");
 include("dom/MenuBuilder.js");
 include("dom/KBoardBuilder.js");
 include("dom/EventAssigner.js");
+include("aux/Storage.js");
 include("aux/UrlHandler.js");
 include("aux/fillEmail.js");
 

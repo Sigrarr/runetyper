@@ -14,12 +14,23 @@ var Updater = {
         };
     },
 
-    topics: {},
+    Record: function (topicName, value) {
+        this.topicName = topicName;
+        this.value = value;
+    },
+
+    topics: null,
+
+    initialize: function () {
+        this.topics = {
+            _update: new this.Topic("_update")
+        };
+    },
 
     confirmTopic: function (topicName) {
         if (!this.topics.hasOwnProperty(topicName)) {
-            if (topicName.indexOf('-') >= 0) {
-                throw "Illegal character: '-'";
+            if (topicName.charAt(0) === '_' || topicName.indexOf('-') >= 0) {
+                throw "Illegal topic name: starts with '_' or contains '-'";
             }
             this.topics[topicName] = new this.Topic(topicName);
         }
@@ -92,6 +103,10 @@ var Updater = {
         for (var i = 0; i < n && updateId === topic.upId; i++) {
             this.updateByChildren(topic.receivers.byChildren[i], topic, newValue);
         }
+
+        if (topicName !== "_update") {
+            this.push("_update", new this.Record(topicName, newValue));
+        }
     },
 
     updateByAttribute: function (receiver, attrName, topic, newValue) {
@@ -130,3 +145,5 @@ var Updater = {
         }
     }
 };
+
+Updater.initialize();

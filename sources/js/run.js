@@ -13,6 +13,7 @@ App.run = function () {
     App.WritingProcessor.textArea = findOne("#output");
     App.EventAssigner.initializeWritingOutput();
 
+    Updater.register("_update", App.Storage);
     Updater.register("alphabet", App.KBoardProvider);
     Updater.register("alphabet", App.Literator);
     Updater.register("layout", App.Literator);
@@ -22,9 +23,16 @@ App.run = function () {
         Updater.registerDomReceivers(Updater.topics[t].name);
     }
 
-    Updater.push("alphabet", 0);
-    Updater.push("layout", 0);
-    Updater.push("subtitles", "trans");
+    var nonZeroDefaults = {"subtitles": "trans"};
+    for (var t in Updater.topics) {
+        var topicName = Updater.topics[t].name;
+        if (App.Storage.isAllowed(topicName)) {
+            Updater.push(
+                    topicName,
+                    App.Storage.get(topicName) || nonZeroDefaults[topicName] || 0
+            );
+        }
+    }
 
     App.fillEmail();
     App.cleanUp();
