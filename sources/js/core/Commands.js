@@ -3,6 +3,42 @@
 
 App.Commands = {
 
+    catchKeyDown: function (event) {
+        var commandMatch = false;
+        switch (event.key) {
+            case "Escape":
+                App.Commands.closeInformationView();
+                commandMatch = true;
+                break;
+            case "ArrowLeft":
+                if (event.ctrlKey) {
+                    App.Commands.shiftXChars(-1);
+                    commandMatch = true;
+                }
+                break;
+            case "ArrowRight":
+                if (event.ctrlKey) {
+                    App.Commands.shiftXChars(1);
+                    commandMatch = true;
+                }
+                break;
+            case "Insert":
+                App.Commands.shiftSubtitles();
+                commandMatch = true;
+                break;
+            case 's':
+                if (event.ctrlKey) {
+                    App.Commands.saveText();
+                    commandMatch = true;
+                }
+        }
+
+        if (commandMatch) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    },
+
     closeInformationView: function () {
         Updater.push("view", "workspace");
     },

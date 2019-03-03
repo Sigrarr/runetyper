@@ -7,7 +7,7 @@ App.WritingProcessor = {
     buffer: "0123456789abcdef".split(''),
     bSize: 0,
 
-    catchDown: function (event) {
+    catchKeyDown: function (event) {
         if (!event.ctrlKey && event.key.length === 1 && event.key !== ' ') {
             this.buffer[this.bSize++] = event.key;
             event.preventDefault();

@@ -1,5 +1,5 @@
 
-/* global App, Updater, findOne */
+/* global App, Updater, Env, findOne, removeNode */
 
 App.run = function () {
     console.log("@run");
@@ -14,9 +14,9 @@ App.run = function () {
     App.Constructor.buildLayouts();
     App.Constructor.buildAlphabets();
     App.EventAssigner.initializeWritingOutput();
+    App.EventAssigner.initializeKeyCommands();
     App.EventAssigner.initializeClickControls();
     App.EventAssigner.initializeKBoards();
-    App.EventAssigner.initializeKeyCommands();
 
     Updater.register("_update", App.Storage);
     Updater.register("alphabet", App.KBoardProvider);
@@ -38,8 +38,16 @@ App.run = function () {
             );
         }
     }
-
-    App.fillEmail();
-    App.cleanUp();
     Updater.push("view", App.UrlHandler.requestedView);
+    App.fillEmail();
+
+    if (Env.browser === "ms") {
+        App.Ms.runOverride();
+    }
+
+    if (Env.ok) {
+        removeNode(findOne("#loader"));
+    }
+
+    App.cleanUp();
 };

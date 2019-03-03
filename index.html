@@ -16,69 +16,68 @@
         <section id="workspace" data-view="workspace">
             <header>
                 <h2 class="implicit">Workspace</h2>
-                    <ul class="menu">
-                        <li class="select selector-alphabet">
-                            <div title="Select alphabet">
-                                <h4>ᚱ</h4>
-                                <em class="receiver-alphabet"
-                                    data-depend-alphabet="children">
-                                </em>
-                            </div>
-                            <ul></ul>
-                        </li>
-                        <li class="select selector-xchars receiver-alphabet"
-                            data-depend-alphabet="children,class">
-                            <div title="Select letter variants">
-                                <h4>&#x2605;</h4>
-                                <em class="receiver-alphabet"
-                                    data-depend-alphabet="children">
-                                </em>
-                            </div>
-                            <ul class="prototype">
-                                <li>
-                                    <button title="Shift all backward" data-d-xchar="-1">&#x2B84;</button>
-                                    <button title="Shift all forward" data-d-xchar="1">&#x2B86;</button>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="select selector-layout">
-                            <div title="Select input alphabet (keyboard)">
-                                <h4>&#x2328;</h4>
-                                <em class="receiver-layout"
-                                    data-depend-layout="children">
-                                </em>
-                            </div>
-                            <ul></ul>
-                        </li>
-                        <li class="switch-subtitles receiver-subtitles"
-                            data-depend-subtitles="title"
-                            data-title-subtitles-trans="Subtitles: transliteration/transcriptions. Click to toogle"
-                            data-title-subtitles-keys="Subtitles: keys. Click to toogle"
-                            data-title-subtitles-off="Subtitles: off. Click to toogle">
-                            <h4 class="receiver-subtitles" data-depend-subtitles="children">
-                                <button data-subtitles="trans"><i>Æ</i></button>
-                                <button data-subtitles="keys">&#x1F130;&#x1F134;</button>
-                                <button data-subtitles="off">&#x2205;</button>
-                            </h4>
-                        </li>
-                        <li title="Information">
-                            <h4>
-                                <button data-topic="view" data-view="information">
-                                    &#x1f6c8;
-                                </button>
-                            </h4>
-                        </li>
-                    </ul>
+                <ul class="menu">
+                    <li class="select selector-alphabet">
+                        <div title="Select alphabet">
+                            <h4>ᚱ</h4>
+                            <em class="receiver-alphabet"
+                                data-depend-alphabet="children">
+                            </em>
+                        </div>
+                        <ul></ul>
+                    </li>
+                    <li class="select selector-xchars receiver-alphabet"
+                        data-depend-alphabet="children,class">
+                        <div title="Select letter variants">
+                            <h4>&#x2605;</h4>
+                            <em class="receiver-alphabet"
+                                data-depend-alphabet="children">
+                            </em>
+                        </div>
+                        <ul class="prototype">
+                            <li>
+                                <button title="Shift all backward" data-d-xchar="-1">&#x2B84;</button>
+                                <button title="Shift all forward" data-d-xchar="1">&#x2B86;</button>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="select selector-layout">
+                        <div title="Select input alphabet (keyboard)">
+                            <h4>&#x2328;</h4>
+                            <em class="receiver-layout"
+                                data-depend-layout="children">
+                            </em>
+                        </div>
+                        <ul></ul>
+                    </li>
+                    <li class="switch-subtitles receiver-subtitles"
+                        data-depend-subtitles="title"
+                        data-title-subtitles-trans="Subtitles: transliteration/transcriptions. Click to toogle"
+                        data-title-subtitles-keys="Subtitles: keys. Click to toogle"
+                        data-title-subtitles-off="Subtitles: off. Click to toogle">
+                        <h4 class="receiver-subtitles" data-depend-subtitles="children">
+                            <button data-subtitles="trans"><i>Æ</i></button>
+                            <button data-subtitles="keys">&#x1F130;&#x1F134;</button>
+                            <button data-subtitles="off">&#x2205;</button>
+                        </h4>
+                    </li>
+                    <li title="Information">
+                        <h4>
+                            <button data-topic="view" data-view="information">
+                                &#x1f6c8;
+                            </button>
+                        </h4>
+                    </li>
+                </ul>
             </header>
             <div id="editor-space">
-                    <textarea id="output" spellcheck="false"></textarea>
+                <textarea id="output" spellcheck="false"></textarea>
             </div>
 
             <div id="kboard-space"
                  class="receiver-alphabet"
                  data-depend-alphabet="children">
             </div>
-
         </section>
 
         <section id="information" data-view="information">
@@ -106,7 +105,28 @@
                 </h4>
             </div>
         </section>
+
     </main>
+    <aside id="loader">
+        <h1 class="logo">Runetyper</h1>
+        <p>Application is loading...</p>
+        <p>
+            <small>
+                If you see this message for more than a few seconds,
+                please ensure that JavaScript is enabled in your browser and that the browser is up to date.
+            </small>
+        </p>
+        <!--[if lt IE 9]>
+            <p>
+                <small>
+                    Internet Explorer's version not less than 9 is a requirement to run the application.
+                </small>
+            </p>
+            <script>
+                Env.ok = false;
+            </script>
+        <![endif]-->
+    </aside>
     <footer class="receiver-view"
             data-depend-view="class"
             data-class-view-workspace="sub-workspace"

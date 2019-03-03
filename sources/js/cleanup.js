@@ -1,7 +1,13 @@
 
-/* global App, removeNode */
+/* global App, Env, removeNode */
 
 App.cleanUp = function () {
+
+    if (Env.browser === "ms") {
+        delete App.Ms.runOverride;
+    } else {
+        delete App.Ms;
+    }
     delete App.Constructor;
     delete App.MenuBuilder;
     delete App.KBoardBuilder;

@@ -18,6 +18,7 @@ include("dom/EventAssigner.js");
 include("aux/Storage.js");
 include("aux/UrlHandler.js");
 include("aux/fillEmail.js");
+include("overrides/Ms.js");
 
 include("run.js");
 include("cleanup.js");
