@@ -1,37 +1,40 @@
 
 /* global App */
 
-App.WritingProcessor = {
+App.Writer = {
 
     textArea: null,
     buffer: "0123456789abcdef".split(''),
     bSize: 0,
 
     catchKeyDown: function (event) {
+        var writer = App.Writer;
+
         if (!event.ctrlKey && event.key.length === 1 && event.key !== ' ') {
-            this.buffer[this.bSize++] = event.key;
+            writer.buffer[writer.bSize++] = event.key;
             event.preventDefault();
             event.stopPropagation();
         }
 
-        if (event.key === ' ' || event.key === "Enter" || this.bSize === 16) {
-            this.dispatch();
+        if (event.key === ' ' || event.key === "Enter" || writer.bSize === 16) {
+            writer.dispatch();
             event.stopPropagation();
         }
     },
 
     dispatch: function () {
-        if (this.bSize === 0) {
+        var writer = App.Writer;
+        if (writer.bSize === 0) {
             return;
         }
 
         var xChar = '';
         var insertionText = "";
-        var limit = this.bSize - 1;
+        var limit = writer.bSize - 1;
 
         for (var bIndex = 0; bIndex <= limit; bIndex++) {
-            var key = this.buffer[bIndex];
-            if (bIndex < limit && (xChar = App.Literator.tryTrans(key + this.buffer[bIndex + 1]))) {
+            var key = writer.buffer[bIndex];
+            if (bIndex < limit && (xChar = App.Literator.tryTrans(key + writer.buffer[bIndex + 1]))) {
                 bIndex++;
             } else {
                 xChar = App.Literator.tryTrans(key);
@@ -39,9 +42,9 @@ App.WritingProcessor = {
             insertionText += xChar;
         }
 
-        this.bSize = 0;
+        writer.bSize = 0;
         if (insertionText) {
-            this.write(insertionText);
+            writer.write(insertionText);
         }
     },
 

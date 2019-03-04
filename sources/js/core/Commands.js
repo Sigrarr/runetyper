@@ -72,14 +72,14 @@ App.Commands = {
     },
 
     saveText: function () {
-        App.Storage.set("_text", App.WritingProcessor.textArea.value);
+        App.Storage.set("_text", App.Writer.textArea.value);
     },
 
     loadText: function () {
         var text = App.Storage.get("_text");
         if (text) {
-            App.WritingProcessor.textArea.value = '';
-            App.WritingProcessor.write(text);
+            App.Writer.textArea.value = '';
+            App.Writer.write(text);
         }
     }
 

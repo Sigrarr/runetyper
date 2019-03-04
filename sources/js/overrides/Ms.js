@@ -11,15 +11,15 @@ App.Ms = {
     },
 
     runOverride: function () {
-        App.WritingProcessor.baseCatchKeyDown = App.WritingProcessor.catchKeyDown;
-        App.WritingProcessor.catchKeyDown = function (event) {
-            this.baseCatchKeyDown(App.Ms.filter(event));
-        };
+        App.Writer.textArea.removeEventListener("keydown", App.Writer.catchKeyDown);
+        App.Writer.textArea.addEventListener("keydown", function (event) {
+            App.Writer.catchKeyDown(App.Ms.filter(event));
+        });
 
-        App.Commands.baseCatchKeyDown = App.Commands.catchKeyDown;
-        App.Commands.catchKeyDown = function (event) {
-            this.baseCatchKeyDown(App.Ms.filter(event));
-        };
+        document.removeEventListener("keydown", App.Commands.catchKeyDown);
+        document.addEventListener("keydown", function (event) {
+            App.Commands.catchKeyDown(App.Ms.filter(event));
+        });
     },
 
     filter: function (event) {

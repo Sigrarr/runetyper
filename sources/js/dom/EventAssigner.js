@@ -3,25 +3,15 @@
 
 App.EventAssigner = {
 
-    initializeWritingOutput: function () {
-        var output = App.WritingProcessor.textArea;
+    initializeKeyboardEvents: function () {
+        var output = App.Writer.textArea;
+        output.addEventListener("keydown", App.Writer.catchKeyDown);
+        output.addEventListener("keyup", App.Writer.dispatch);
 
-        output.addEventListener("keydown", function (event) {
-            App.WritingProcessor.catchKeyDown(event);
-        });
-
-        output.addEventListener("keyup", function () {
-            App.WritingProcessor.dispatch();
-        });
+        document.addEventListener("keydown", App.Commands.catchKeyDown);
     },
 
-    initializeKeyCommands: function () {
-        document.addEventListener("keydown", function (event) {
-            App.Commands.catchKeyDown(event);
-        });
-    },
-
-    initializeClickControls: function () {
+    initializeControlsClicks: function () {
         var menus = findMany(".menu");
         for (var i = 0; i < menus.length; i++) {
             menus[i].addEventListener("click", function (event) {
@@ -56,10 +46,10 @@ App.EventAssigner = {
         });
     },
 
-    initializeKBoards: function () {
+    initializeKBoardsClicks: function () {
         App.KBoardProvider.container.addEventListener("click", function (event) {
             if (event.target.hasAttribute("data-xchar")) {
-                App.WritingProcessor.write(
+                App.Writer.write(
                         event.target.getAttribute("data-xchar")
                 );
             }
