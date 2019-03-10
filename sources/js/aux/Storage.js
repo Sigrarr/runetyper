@@ -3,7 +3,7 @@
 
 App.Storage = {
 
-    topicBlackList: ["_update", "view"],
+    topicBlackList: ['_', "view"],
 
     passesTopic: function (topicName) {
         return this.topicBlackList.indexOf(topicName) < 0;
@@ -17,9 +17,9 @@ App.Storage = {
         window.localStorage.setItem(key, value);
     },
 
-    _updateHandler: function (record) {
-        if (this.passesTopic(record.topicName)) {
-            this.set(record.topicName, record.value);
+    _Handler: function (record) {
+        if (record.upId === record.topic.upId && this.passesTopic(record.topic.name)) {
+            this.set(record.topic.name, record.value);
         }
     }
 

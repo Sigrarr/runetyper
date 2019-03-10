@@ -14,17 +14,19 @@ var Updater = {
         };
     },
 
-    Record: function (topicName, value) {
-        this.topicName = topicName;
+    Record: function (topic, value, updateId) {
+        this.topic = topic;
         this.value = value;
+        this.upId = updateId;
     },
 
-    topics: null,
+    topics: {},
 
-    initialize: function () {
-        this.topics = {
-            _update: new this.Topic("_update")
-        };
+    reportTopic: {
+        name: '_',
+        receivers: [],
+        queue: [],
+        isBusy: false
     },
 
     confirmTopic: function (topicName) {
@@ -37,12 +39,21 @@ var Updater = {
     },
 
     register: function (topicName, receiver, isTopicConfirmed) {
+        var hasHandler = (typeof receiver[topicName + "Handler"] === "function");
+
+        if (topicName === '_') {
+            if (hasHandler) {
+                this.reportTopic.receivers.push(receiver);
+            }
+            return;
+        }
         if (!isTopicConfirmed) {
             this.confirmTopic(topicName);
         }
+
         var list = this.topics[topicName].receivers;
 
-        if (typeof receiver[topicName + "Handler"] === "function") {
+        if (hasHandler) {
             list.byHandler.push(receiver);
         }
 
@@ -78,6 +89,10 @@ var Updater = {
     },
 
     push: function (topicName, newValue) {
+        if (!this.topics.hasOwnProperty(topicName)) {
+            throw "Unregistered topic: " + topicName;
+        }
+
         var topic = this.topics[topicName];
         var updateId = ++topic.upId;
         var n;
@@ -104,8 +119,25 @@ var Updater = {
             this.updateByChildren(topic.receivers.byChildren[i], topic, newValue);
         }
 
-        if (topicName !== "_update") {
-            this.push("_update", new this.Record(topicName, newValue));
+        this.reportTopic.queue.push(new this.Record(topic, newValue, updateId));
+        this.processReportQueue();
+    },
+
+    processReportQueue: function () {
+        var topic = Updater.reportTopic;
+        if (topic.isBusy || topic.queue.length === 0) {
+            return;
+        }
+
+        topic.isBusy = true;
+        var record = topic.queue.shift();
+        for (var i in topic.receivers) {
+            topic.receivers[i]["_Handler"](record);
+        }
+        topic.isBusy = false;
+
+        if (topic.queue.length > 0) {
+            setTimeout(Updater.processReportQueue, 0);
         }
     },
 
@@ -117,11 +149,16 @@ var Updater = {
 
     updateByClass: function (receiver, topic, newValue) {
         var attrs = receiver.attributes;
+        var confirmedClasses = [];
+
         for (var a = 0; a < attrs.length; a++) {
             if (attrs[a].name.startsWith("data-class-" + topic.name + "-")) {
+                var className = attrs[a].value;
+
                 if (attrs[a].name.endsWith("-" + newValue)) {
-                    receiver.classList.add(attrs[a].value);
-                } else {
+                    receiver.classList.add(className);
+                    confirmedClasses.push(className);
+                } else if (confirmedClasses.indexOf(className) < 0) {
                     receiver.classList.remove(attrs[a].value);
                 }
             }
@@ -147,5 +184,3 @@ var Updater = {
         }
     }
 };
-
-Updater.initialize();

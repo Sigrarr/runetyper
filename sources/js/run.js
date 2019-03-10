@@ -17,7 +17,7 @@ App.run = function () {
     App.EventAssigner.initializeControlsClicks();
     App.EventAssigner.initializeKBoardsClicks();
 
-    Updater.register("_update", App.Storage);
+    Updater.register('_', App.Storage);
     Updater.register("alphabet", App.KBoardProvider);
     Updater.register("alphabet", App.Literator);
     Updater.register("layout", App.Literator);
