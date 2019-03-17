@@ -12,8 +12,10 @@
 <script charset="utf-8" src="assets/js/app.min.js"></script>
 </head>
 <body>
-    <main class="receiver-view" data-depend-view="children">
-        <section id="workspace" data-view="workspace">
+    <main class="receiver-view"
+          data-depend-view="children,class"
+          data-class-view-workspace="sup-workspace">
+        <section class="workspace" id="workspace" data-view="workspace">
             <header>
                 <h2 class="implicit">Workspace</h2>
                 <ul class="menu">
@@ -56,9 +58,9 @@
                         data-title-subtitles-keys="Subtitles: keys. Click to toogle"
                         data-title-subtitles-off="Subtitles: off. Click to toogle">
                         <h4 class="receiver-subtitles" data-depend-subtitles="children">
-                            <button data-subtitles="trans"><i>Æ</i></button>
-                            <button data-subtitles="keys">&#x1F130;&#x1F134;</button>
-                            <button data-subtitles="off">&#x2205;</button>
+                            <button class="full" data-subtitles="trans"><i>Æ</i></button>
+                            <button class="full" data-subtitles="keys">&#x1F130;&#x1F134;</button>
+                            <button class="full" data-subtitles="off">&#x2205;</button>
                         </h4>
                     </li>
                     <li title="Information">
@@ -70,17 +72,21 @@
                     </li>
                 </ul>
             </header>
-            <div id="editor-space">
+            <div class="editor-space" id="editor-space">
                 <textarea id="output" spellcheck="false"></textarea>
             </div>
 
-            <div id="kboard-space"
-                 class="receiver-alphabet"
-                 data-depend-alphabet="children">
+            <div class="kboard-space receiver-alphabet receiver-subtitles"
+                 id="kboard-space"
+                 data-depend-alphabet="children"
+                 data-depend-subtitles="class"
+                 data-class-subtitles-trans="sup-subtitles-trans"
+                 data-class-subtitles-keys="sup-subtitles-keys"
+                 data-class-subtitles-off="sup-subtitles-off">
             </div>
         </section>
 
-        <section id="information" data-view="information">
+        <section class="information" id="information" data-view="information">
             <header>
                 <h1 class="logo">Runetyper</h1>
                 <address>
@@ -107,7 +113,7 @@
         </section>
 
     </main>
-    <aside id="loader">
+    <aside class="loader" id="loader">
         <h1 class="logo">Runetyper</h1>
         <p>Application is loading...</p>
         <p>

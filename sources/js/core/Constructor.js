@@ -49,10 +49,7 @@ App.Constructor = {
         }
 
         App.MenuBuilder.addXCharsEntry(multiXCharEntities, id);
-
-        App.KBoardProvider.addKBoard(
-                App.KBoardBuilder.build(data, id)
-        );
+        App.KBoardBuilder.buildAndAddKboard(data, id);
     },
 
     buildLayout: function (data) {

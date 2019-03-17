@@ -6,7 +6,7 @@ App.KBoardBuilder = {
     xCharToButton: {},
     keyToEntity: {},
 
-    build: function (data, alphId) {
+    buildAndAddKboard: function (data, alphId) {
         this.xCharToButton = {};
         this.keyToEntity = {};
         var kBoard = createElement("div", ["kboard"], {"data-alphabet": alphId});
@@ -34,7 +34,8 @@ App.KBoardBuilder = {
         }
 
         kBoard.backMap = this.xCharToButton;
-        return kBoard;
+        App.KBoardProvider.kBoards.push(kBoard);
+        App.KBoardProvider.container.appendChild(kBoard);
     },
 
     buildXCharButtons: function (entity) {
@@ -62,12 +63,10 @@ App.KBoardBuilder = {
 
         var box = createElement(
                 "div",
-                ["xletter-box", "receiver-subtitles"].concat(
+                ["xletter-box"].concat(
                         xCharsN > 1 ? ["receiver-" + entity.topicName] : []
                 ),
-                [["data-depend-subtitles", "children"]].concat(
-                        xCharsN > 1 ? [["data-depend-" + entity.topicName, "children"]] : []
-                )
+                xCharsN > 1 ? [["data-depend-" + entity.topicName, "children"]] : null
         );
 
         for (var x = 0; x < xCharsN; x++) {
@@ -75,14 +74,14 @@ App.KBoardBuilder = {
         }
 
         box.appendChild(createElement(
-                "p", ["trans"], {"data-subtitles": "trans"}, [
+                "p", ["trans"], null, [
                     createElement("i", null, null, [createTextNode(entity.trans)])
                 ]
         ));
 
         var keysP = createElement(
                 "p",
-                ["keylist", "receiver-layout"],
+                ["keys", "receiver-layout"],
                 {"data-subtitles": "keys", "data-depend-layout": "children"}
         );
 

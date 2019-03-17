@@ -7,11 +7,6 @@ App.KBoardProvider = {
     kBoards: [],
     currentKBoard: null,
 
-    addKBoard: function (kBoard) {
-        this.kBoards.push(kBoard);
-        this.container.appendChild(kBoard);
-    },
-
     getButton: function (xChar) {
         return this.currentKBoard.backMap[xChar];
     },

@@ -4,7 +4,7 @@
 App.Writer = {
 
     textArea: null,
-    buffer: "0123456789abcdef".split(''),
+    buffer: "0123456789abcdefghijkmlmopqrstuvwxyz,./;'|[]-=`".split(''),
     bSize: 0,
 
     catchKeyDown: function (event) {
@@ -16,7 +16,7 @@ App.Writer = {
             event.stopPropagation();
         }
 
-        if (event.key === ' ' || event.key === "Enter" || writer.bSize === 16) {
+        if (event.key === ' ' || event.key === "Enter") {
             writer.dispatch();
             event.stopPropagation();
         }
@@ -28,7 +28,7 @@ App.Writer = {
             return;
         }
 
-        var xChar = '';
+        var xChar;
         var insertionText = "";
         var limit = writer.bSize - 1;
 
