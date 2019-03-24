@@ -27,13 +27,26 @@ App.run = function () {
         Updater.registerDomReceivers(Updater.topics[t].name);
     }
 
-    var nonZeroDefaults = {"subtitles": "trans"};
+    var primaryDefaults = {
+        "alphabet": 0,
+        "layout": 0,
+        "subtitles": "trans"
+    };
+
+    for (var topicName in primaryDefaults) {
+        Updater.push(
+                topicName,
+                App.Storage.get(topicName) || primaryDefaults[topicName]
+        );
+    }
+
     for (var t in Updater.topics) {
         var topicName = Updater.topics[t].name;
-        if (App.Storage.passesTopic(topicName)) {
+        if (App.Storage.passesTopic(topicName)
+                && !primaryDefaults.hasOwnProperty(topicName)) {
             Updater.push(
                     topicName,
-                    App.Storage.get(topicName) || nonZeroDefaults[topicName] || 0
+                    App.Storage.get(topicName) || 0
             );
         }
     }
