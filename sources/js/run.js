@@ -4,7 +4,7 @@
 App.run = function () {
     console.log("@run");
 
-    App.KBoardProvider.container = findOne("#kboard-space");
+    App.KBoardSignaler.container = findOne(".kboard-space");
     App.Writer.textArea = findOne("#output");
     App.MenuProvider.alphSelectLi = findOne(".selector-alphabet");
     App.MenuProvider.xCharsSelectLi = findOne(".selector-xchars");
@@ -18,7 +18,7 @@ App.run = function () {
     App.EventAssigner.initializeKBoardsClicks();
 
     Updater.register('_', App.Storage);
-    Updater.register("alphabet", App.KBoardProvider);
+    Updater.register("alphabet", App.KBoardSignaler);
     Updater.register("alphabet", App.Literator);
     Updater.register("layout", App.Literator);
     Updater.register("view", App.UrlHandler);

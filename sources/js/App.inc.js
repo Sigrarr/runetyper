@@ -10,7 +10,7 @@ include("core/Literator.js");
 include("core/Writer.js");
 include("core/Constructor.js");
 include("core/Commands.js");
-include("core/KBoardProvider.js");
+include("core/KBoardSignaler.js");
 include("core/MenuProvider.js");
 include("dom/MenuBuilder.js");
 include("dom/KBoardBuilder.js");

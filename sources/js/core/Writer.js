@@ -45,7 +45,13 @@ App.Writer = {
         writer.bSize = 0;
         if (insertionText) {
             writer.write(insertionText);
+            App.KBoardSignaler.signalByXString(insertionText);
         }
+    },
+
+    clickWrite: function (xChar) {
+        App.Writer.write(xChar);
+        App.KBoardSignaler.signalByXString(xChar);
     },
 
     write: function (insertionText) {

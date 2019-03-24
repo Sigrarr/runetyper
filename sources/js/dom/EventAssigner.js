@@ -47,9 +47,9 @@ App.EventAssigner = {
     },
 
     initializeKBoardsClicks: function () {
-        App.KBoardProvider.container.addEventListener("click", function (event) {
+        App.KBoardSignaler.container.addEventListener("click", function (event) {
             if (event.target.hasAttribute("data-xchar")) {
-                App.Writer.write(
+                App.Writer.clickWrite(
                         event.target.getAttribute("data-xchar")
                 );
             }
