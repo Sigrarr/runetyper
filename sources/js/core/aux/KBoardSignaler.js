@@ -6,8 +6,12 @@ App.KBoardSignaler = {
     container: null,
     kBoards: [],
     currentMap: null,
+    isOff: true,
 
     signalByXString: function (xString) {
+        if (this.isOff) {
+            return;
+        }
         var multibyteXCharCandidate = "";
         var button = null;
         for (var i = 0; i < xString.length; i++) {
