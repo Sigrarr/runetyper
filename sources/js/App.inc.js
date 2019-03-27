@@ -8,16 +8,16 @@ var App = {};
 
 include("core/Literator.js");
 include("core/Writer.js");
-include("core/Constructor.js");
 include("core/Commands.js");
-include("core/KBoardSignaler.js");
 include("core/MenuProvider.js");
-include("dom/MenuBuilder.js");
-include("dom/KBoardBuilder.js");
-include("dom/EventAssigner.js");
-include("aux/Storage.js");
-include("aux/UrlHandler.js");
-include("aux/fillEmail.js");
+include("core/aux/KBoardSignaler.js");
+include("core/aux/Storage.js");
+include("core/aux/UrlHandler.js");
+include("building/Constructor.js");
+include("building/MenuBuilder.js");
+include("building/KBoardBuilder.js");
+include("building/EventAssigner.js");
+include("building/aux/fillEmail.js");
 include("overrides/Ms.js");
 
 include("run.js");
