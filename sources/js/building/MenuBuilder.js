@@ -19,8 +19,13 @@ App.MenuBuilder = {
                 createElement("li", null, null, [
                     createElement(
                             "button",
-                            null,
-                            [["data-topic", "alphabet"], ["data-alphabet", id]],
+                            ["receiver-alphabet"],
+                            [
+                                ["data-topic", "alphabet"],
+                                ["data-alphabet", id],
+                                ["data-depend-alphabet", "class"],
+                                ["data-class-alphabet-" + id, "active"]
+                            ],
                             [
                                 createElement("span", null, null, [createTextNode(name)]),
                                 createTextNode(" "),
@@ -77,19 +82,19 @@ App.MenuBuilder = {
 
     addLayoutEntry: function (meta, id) {
         var parentLi = App.MenuProvider.layoutSelectLi;
-        var indicatorEm = parentLi.children[0].children[1];
         var optionsUl = parentLi.children[1];
-
-        indicatorEm.appendChild(
-                createElement("span", null, {"data-layout": id}, [createTextNode(meta.name)])
-        );
 
         optionsUl.appendChild(
                 createElement("li", null, null, [
                     createElement(
                             "button",
-                            null,
-                            [["data-topic", "layout"], ["data-layout", id]],
+                            ["receiver-layout"],
+                            [
+                                ["data-topic", "layout"],
+                                ["data-layout", id],
+                                ["data-depend-layout", "class"],
+                                ["data-class-layout-" + id, "active"]
+                            ],
                             [createTextNode(meta.name)]
                     )
                 ])

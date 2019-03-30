@@ -11,7 +11,13 @@
 <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
 <script charset="utf-8" src="assets/js/app.min.js"></script>
 </head>
-<body>
+<body class="receiver-xfont receiver-theme"
+      data-depend-xfont="class"
+      data-class-xfont-noto="xfont-noto"
+      data-class-xfont-pfeffer="xfont-pfeffer"
+      data-depend-theme="class"
+      data-class-theme-bright="theme-bright"
+      data-class-theme-dark="theme-dark">
     <main class="receiver-view"
           data-depend-view="children,class"
           data-class-view-workspace="sup-workspace">
@@ -21,7 +27,7 @@
                 <ul class="menu">
                     <li class="select selector-alphabet">
                         <div title="Select alphabet">
-                            <h4>ᚱ</h4>
+                            <h4 class="icon">ᚱ</h4>
                             <em class="receiver-alphabet"
                                 data-depend-alphabet="children">
                             </em>
@@ -31,7 +37,7 @@
                     <li class="select selector-xchars receiver-alphabet"
                         data-depend-alphabet="children,class">
                         <div title="Select letter variants">
-                            <h4>&#x2605;</h4>
+                            <h4 class="icon">&#x2605;</h4>
                             <em class="receiver-alphabet"
                                 data-depend-alphabet="children">
                             </em>
@@ -43,28 +49,91 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="select selector-layout">
-                        <div title="Select input alphabet (keyboard)">
-                            <h4>&#x2328;</h4>
-                            <em class="receiver-layout"
-                                data-depend-layout="children">
-                            </em>
+                    <li class="select selector-settings">
+                        <div title="Settings">
+                            <h4 class="icon">&#x2699;</h4>
                         </div>
-                        <ul></ul>
+                        <ul>
+                            <li class="select selector-layout">
+                                <div>
+                                    <h5>
+                                        <span class="icon">&#x2328;</span>
+                                        Input alphabet
+                                    </h5>
+                                </div>
+                                <ul></ul>
+                            </li>
+                            <li class="select selector-xfont">
+                                <div>
+                                    <h5>
+                                        <span class="icon">&#x2619;</span>
+                                        Historical font style
+                                    </h5>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <button class="receiver-xfont"
+                                                data-topic="xfont"
+                                                data-xfont="noto"
+                                                data-depend-xfont="class"
+                                                data-class-xfont-noto="active">
+                                            Google Noto Sans
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="receiver-xfont"
+                                                data-topic="xfont"
+                                                data-xfont="pfeffer"
+                                                data-depend-xfont="class"
+                                                data-class-xfont-pfeffer="active">
+                                            Pfeffer Mediæval
+                                        </button>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="select selector-theme">
+                                <div>
+                                    <h5>
+                                        <span class="icon">&#x25D0;</span>
+                                        Theme
+                                    </h5>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <button class="receiver-theme"
+                                                data-topic="theme"
+                                                data-theme="bright"
+                                                data-depend-theme="class"
+                                                data-class-theme-bright="active">
+                                            Bright
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="receiver-theme"
+                                                data-topic="theme"
+                                                data-theme="dark"
+                                                data-depend-theme="class"
+                                                data-class-theme-dark="active">
+                                            Dark
+                                        </button>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
                     <li class="switch-subtitles receiver-subtitles"
                         data-depend-subtitles="title"
                         data-title-subtitles-trans="Subtitles: transliteration/transcriptions. Click to toogle"
                         data-title-subtitles-keys="Subtitles: keys. Click to toogle"
                         data-title-subtitles-off="Subtitles: off. Click to toogle">
-                        <h4 class="receiver-subtitles" data-depend-subtitles="children">
+                        <h4 class="icon receiver-subtitles" data-depend-subtitles="children">
                             <button class="full" data-subtitles="trans"><i>Æ</i></button>
                             <button class="full" data-subtitles="keys">&#x1F130;&#x1F134;</button>
                             <button class="full" data-subtitles="off">&#x2205;</button>
                         </h4>
                     </li>
                     <li title="Information">
-                        <h4>
+                        <h4 class="icon">
                             <button data-topic="view" data-view="information">
                                 &#x1f6c8;
                             </button>

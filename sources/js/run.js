@@ -23,6 +23,8 @@ App.run = function () {
     Updater.register("layout", App.Literator);
     Updater.register("view", App.UrlHandler);
     Updater.confirmTopic("subtitles");
+    Updater.confirmTopic("xfont");
+    Updater.confirmTopic("theme");
     for (var t in Updater.topics) {
         Updater.registerDomReceivers(Updater.topics[t].name);
     }
@@ -30,7 +32,9 @@ App.run = function () {
     var primaryDefaults = {
         "alphabet": 0,
         "layout": 0,
-        "subtitles": "trans"
+        "subtitles": "trans",
+        "theme": "bright",
+        "xfont": "noto"
     };
 
     for (var topicName in primaryDefaults) {
