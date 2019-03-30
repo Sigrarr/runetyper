@@ -50,7 +50,8 @@ App.Writer = {
     },
 
     clickWrite: function (xChar) {
-        App.Writer.write(xChar);
+        this.textArea.focus();
+        this.write(xChar);
         App.KBoardSignaler.signalByXString(xChar);
     },
 

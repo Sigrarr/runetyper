@@ -56,7 +56,7 @@ App.run = function () {
     }
     Updater.push("view", App.UrlHandler.requestedView);
 
-    App.KBoardSignaler.isOff = false;
+    App.KBoardSignaler.initialize();
     App.fillEmail();
 
     if (Env.browser === "ms") {

@@ -4,20 +4,22 @@
 App.Literator = {
 
     alphMaps: [],
-    layouts: [],
-    currentAlphMap: {},
-    currentLayout: {},
+    layoutMaps: [],
+    alphMap: {},
+    layoutMap: {},
 
     tryTrans: function (rawInput) {
-        return this.currentAlphMap[this.currentLayout.normalize(rawInput)] || '';
+        return this.alphMap[
+            this.layoutMap.hasOwnProperty(rawInput) ? this.layoutMap[rawInput] : rawInput
+        ] || '';
     },
 
     alphabetHandler: function (newAlphabetId) {
-        this.currentAlphMap = this.alphMaps[newAlphabetId];
+        this.alphMap = this.alphMaps[newAlphabetId];
     },
 
     layoutHandler: function (newLayoutId) {
-        this.currentLayout = this.layouts[newLayoutId];
+        this.layoutMap = this.layoutMaps[newLayoutId];
     }
 
 };

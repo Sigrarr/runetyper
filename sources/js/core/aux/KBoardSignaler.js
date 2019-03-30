@@ -6,22 +6,23 @@ App.KBoardSignaler = {
     container: null,
     kBoards: [],
     currentMap: null,
-    isOff: true,
 
-    signalByXString: function (xString) {
-        if (this.isOff) {
-            return;
-        }
-        var multibyteXCharCandidate = "";
-        var button = null;
-        for (var i = 0; i < xString.length; i++) {
-            multibyteXCharCandidate += xString.charAt(i);
-            if (button = this.currentMap[multibyteXCharCandidate]) {
-                this.signalButton(button);
-                multibyteXCharCandidate = "";
+    initialize: function () {
+        this.signalByXString = function (xString) {
+            var multibyteXCharCandidate = "";
+            var button = null;
+            for (var i = 0; i < xString.length; i++) {
+                multibyteXCharCandidate += xString.charAt(i);
+                if (button = this.currentMap[multibyteXCharCandidate]) {
+                    this.signalButton(button);
+                    multibyteXCharCandidate = "";
+                }
             }
-        }
+        };
+        delete App.KBoardSignaler.initialize;
     },
+
+    signalByXString: function () {},
 
     signalButton: function (button) {
         button.classList.add("signal");

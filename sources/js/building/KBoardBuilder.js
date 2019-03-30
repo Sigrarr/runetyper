@@ -85,9 +85,9 @@ App.KBoardBuilder = {
                 {"data-subtitles": "keys", "data-depend-layout": "children"}
         );
 
-        for (var i in App.Literator.layouts) {
+        for (var i in App.Literator.layoutMaps) {
             keysP.appendChild(createElement("span", null, {"data-layout": i}, [
-                createTextNode(this.resolveKeys(App.Literator.layouts[i].map, entity.keys))
+                createTextNode(this.resolveKeys(App.Literator.layoutMaps[i], entity.keys))
             ]));
         }
 

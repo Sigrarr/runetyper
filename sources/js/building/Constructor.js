@@ -12,13 +12,6 @@ App.Constructor = {
         }
     },
 
-    Layout: function (map) {
-        this.map = map;
-        this.normalize = function (rawInput) {
-            return this.map.hasOwnProperty(rawInput) ? this.map[rawInput] : rawInput;
-        };
-    },
-
     alphabetsData: [],
     layoutsData: [],
 
@@ -54,8 +47,8 @@ App.Constructor = {
     },
 
     buildLayout: function (data) {
-        var id = App.Literator.layouts.length;
-        App.Literator.layouts.push(new this.Layout(data.map));
+        var id = App.Literator.layoutMaps.length;
+        App.Literator.layoutMaps.push(data.map);
         App.MenuBuilder.addLayoutEntry(data.meta, id);
     },
 
