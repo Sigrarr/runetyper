@@ -13,6 +13,7 @@ App.run = function () {
 
     App.Constructor.buildLayouts();
     App.Constructor.buildAlphabets();
+    App.Constructor.buildHalfKeySets();
     App.EventAssigner.initializeKeyboardEvents();
     App.EventAssigner.initializeControlsClicks();
     App.EventAssigner.initializeKBoardsClicks();

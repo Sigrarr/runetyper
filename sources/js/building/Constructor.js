@@ -52,6 +52,26 @@ App.Constructor = {
         App.MenuBuilder.addLayoutEntry(data.meta, id);
     },
 
+    buildHalfKeySets: function () {
+        for (var a = 0; a < App.Literator.alphMaps.length; a++) {
+            var alphMap = App.Literator.alphMaps[a];
+            App.Literator.halfKeySets[a] = [];
+            for (var l = 0; l < App.Literator.layoutMaps.length; l++) {
+                var layoutMap = App.Literator.layoutMaps[l];
+                var set = {};
+
+                for (var key in alphMap) {
+                    var isActive = !(layoutMap.hasOwnProperty(key) && layoutMap[key] === null);
+                    if (isActive && key.length > 1) {
+                        set[key.charAt(0)] = true;
+                    }
+                }
+
+                App.Literator.halfKeySets[a][l] = set;
+            }
+        }
+    },
+
     buildAlphabets: function () {
         var data;
         while (data = this.alphabetsData.shift()) {
