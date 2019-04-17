@@ -4,55 +4,83 @@
 App.Writer = {
 
     textArea: null,
-    buffer: "0123456789abcdefghijkmlmopqrstuvwxyz,./;'|[]-=`".split(''),
-    bSize: 0,
+    buffChar: '',
+    xText: "",
 
     catchKeyDown: function (event) {
         var writer = App.Writer;
+        var key = event.key;
 
-        if (!event.ctrlKey && event.key.length === 1 && event.key !== ' ') {
-            writer.buffer[writer.bSize++] = event.key;
+        if (!event.ctrlKey && key.length === 1 && key !== ' ') {
+            var newSequence = true;
+            if (writer.buffChar) {
+                var previousChar = writer.popBuffChar();
+                if (writer.tryAdd(previousChar + key)) {
+                    newSequence = false;
+                } else {
+                    writer.tryAdd(previousChar);
+                }
+            }
+
+            if (newSequence) {
+                if (App.Literator.isHalfKey(key)) {
+                    writer.buffChar = key;
+                } else {
+                    writer.tryAdd(key);
+                }
+            }
+
             event.preventDefault();
             event.stopPropagation();
         }
 
         if (event.key === ' ' || event.key === "Enter") {
-            writer.dispatch();
+            writer.dispatchBuffChar();
             event.stopPropagation();
+        }
+
+        writer.finalizeHandling();
+    },
+
+    catchKeyUp: function () {
+        App.Writer.dispatchBuffChar();
+        App.Writer.finalizeHandling();
+    },
+
+    dispatchBuffChar: function () {
+        if (this.buffChar) {
+            this.tryAdd(this.popBuffChar());
         }
     },
 
-    dispatch: function () {
-        var writer = App.Writer;
-        if (writer.bSize === 0) {
-            return;
+    popBuffChar: function () {
+        var takenBuffChar = this.buffChar;
+        this.buffChar = '';
+        return takenBuffChar;
+    },
+
+    tryAdd: function (input) {
+        var toXText = App.Literator.tryTrans(input);
+        if (toXText) {
+            this.xText += toXText;
+            return true;
         }
+        return false;
+    },
 
-        var xChar;
-        var insertionText = "";
-        var limit = writer.bSize - 1;
-
-        for (var bIndex = 0; bIndex <= limit; bIndex++) {
-            var key = writer.buffer[bIndex];
-            if (bIndex < limit && (xChar = App.Literator.tryTrans(key + writer.buffer[bIndex + 1]))) {
-                bIndex++;
-            } else {
-                xChar = App.Literator.tryTrans(key);
-            }
-            insertionText += xChar;
-        }
-
-        writer.bSize = 0;
-        if (insertionText) {
-            writer.write(insertionText);
-            App.KBoardSignaler.signalByXString(insertionText);
+    finalizeHandling: function () {
+        var completeXText = this.xText;
+        if (completeXText) {
+            this.write(completeXText);
+            this.xText = "";
+            setTimeout(App.KBoardSignaler.signalByXString, 0, completeXText);
         }
     },
 
     clickWrite: function (xChar) {
         this.textArea.focus();
         this.write(xChar);
-        App.KBoardSignaler.signalByXString(xChar);
+        setTimeout(App.KBoardSignaler.signalByXString, 0, xChar);
     },
 
     write: function (insertionText) {

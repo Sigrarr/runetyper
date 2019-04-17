@@ -6,7 +6,7 @@ App.EventAssigner = {
     initializeKeyboardEvents: function () {
         var output = App.Writer.textArea;
         output.addEventListener("keydown", App.Writer.catchKeyDown);
-        output.addEventListener("keyup", App.Writer.dispatch);
+        output.addEventListener("keyup", App.Writer.catchKeyUp);
 
         document.addEventListener("keydown", App.Commands.catchKeyDown);
     },

@@ -13,8 +13,8 @@ App.KBoardSignaler = {
             var button = null;
             for (var i = 0; i < xString.length; i++) {
                 multibyteXCharCandidate += xString.charAt(i);
-                if (button = this.currentMap[multibyteXCharCandidate]) {
-                    this.signalButton(button);
+                if (button = App.KBoardSignaler.currentMap[multibyteXCharCandidate]) {
+                    App.KBoardSignaler.signalButton(button);
                     multibyteXCharCandidate = "";
                 }
             }
