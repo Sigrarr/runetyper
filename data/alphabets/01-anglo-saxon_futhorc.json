@@ -39,7 +39,7 @@
         },
         {
             "chars": ["ᚷ"],
-            "trans": "ȝ g",
+            "trans": "g",
             "keys": ["g"]
         },
         {
@@ -144,8 +144,8 @@
         },
         {
             "chars": ["ᛡ"],
-            "trans": "io ia",
-            "keys": ["io", "ia"]
+            "trans": "j io ia",
+            "keys": ["J", "io", "ia"]
         },
         {
             "chars": ["ᛠ"],
@@ -154,7 +154,7 @@
         },
         {
             "chars": ["ᚸ"],
-            "trans": "g",
+            "trans": "ḡ",
             "keys": ["G"]
         },
         {
@@ -164,7 +164,7 @@
         },
         {
             "chars": ["ᛤ"],
-            "trans": "kk",
+            "trans": "k kk",
             "keys": ["K"]
         },
         {

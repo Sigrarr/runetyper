@@ -29,7 +29,7 @@ App.MenuBuilder = {
                             [
                                 createElement("span", null, null, [createTextNode(name)]),
                                 createTextNode(" "),
-                                createElement("span", null, null, [createTextNode(meta.sample)])
+                                createElement("span", ["xtext"], null, [createTextNode(meta.sample)])
                             ]
                     )
                 ])

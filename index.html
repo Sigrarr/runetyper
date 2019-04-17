@@ -8,6 +8,7 @@
 <meta name="description" content="Simple text editor for writing in old Germanic alphabets, especially runic. HTML5 + JS, running in a web browser.">
 <meta name="keywords" content="runes, runic, writing, text editor, virtual keyboard, gothic alphabet, scripts">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="assets/css/fontfaces.css">
 <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
 <script charset="utf-8" src="assets/js/app.min.js"></script>
 </head>
@@ -18,6 +19,26 @@
       data-depend-theme="class"
       data-class-theme-bright="theme-bright"
       data-class-theme-dark="theme-dark">
+    <aside class="loader" id="loader">
+        <h1 class="logo">Runetyper</h1>
+        <p>Application is loading...</p>
+        <p>
+            <small>
+                If you see this message for more than a few seconds,
+                please ensure that JavaScript is enabled in your browser and that the browser is up to date.
+            </small>
+        </p>
+        <!--[if lt IE 10]>
+            <p>
+                <small>
+                    Internet Explorer's version not less than 10 is a requirement to run the application.
+                </small>
+            </p>
+            <script>
+                Env.ok = false;
+            </script>
+        <![endif]-->
+    </aside>
     <main class="receiver-view"
           data-depend-view="children,class"
           data-class-view-workspace="sup-workspace">
@@ -143,7 +164,8 @@
             </header>
             <div class="editor-space" id="editor-space">
                 <textarea id="output"
-                          placeholder="..."
+                          class="xtext"
+                          placeholder="&#x16eb;&#x16eb;&#x16eb;"
                           spellcheck="false"></textarea>
             </div>
 
@@ -184,26 +206,6 @@
         </section>
 
     </main>
-    <aside class="loader" id="loader">
-        <h1 class="logo">Runetyper</h1>
-        <p>Application is loading...</p>
-        <p>
-            <small>
-                If you see this message for more than a few seconds,
-                please ensure that JavaScript is enabled in your browser and that the browser is up to date.
-            </small>
-        </p>
-        <!--[if lt IE 9]>
-            <p>
-                <small>
-                    Internet Explorer's version not less than 9 is a requirement to run the application.
-                </small>
-            </p>
-            <script>
-                Env.ok = false;
-            </script>
-        <![endif]-->
-    </aside>
     <footer class="receiver-view"
             data-depend-view="class"
             data-class-view-workspace="sub-workspace"

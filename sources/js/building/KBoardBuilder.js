@@ -81,7 +81,7 @@ App.KBoardBuilder = {
 
         var keysP = createElement(
                 "p",
-                ["keys", "receiver-layout"],
+                ["keys", "receiver-layout", "typetext"],
                 {"data-subtitles": "keys", "data-depend-layout": "children"}
         );
 

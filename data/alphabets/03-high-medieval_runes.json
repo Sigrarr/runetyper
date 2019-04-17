@@ -49,8 +49,8 @@
         },
         {
             "chars": ["ᛁ"],
-            "trans": "i",
-            "keys": ["i"]
+            "trans": "i j",
+            "keys": ["i", "j"]
         },
         {
             "chars": ["ᚴ"],
