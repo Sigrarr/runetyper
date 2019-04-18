@@ -52,22 +52,22 @@ App.Constructor = {
         App.MenuBuilder.addLayoutEntry(data.meta, id);
     },
 
-    buildHalfKeySets: function () {
-        for (var a = 0; a < App.Literator.alphMaps.length; a++) {
-            var alphMap = App.Literator.alphMaps[a];
-            App.Literator.halfKeySets[a] = [];
-            for (var l = 0; l < App.Literator.layoutMaps.length; l++) {
-                var layoutMap = App.Literator.layoutMaps[l];
+    buildKeyHeadSets: function () {
+        for (var aId = 0; aId < App.Literator.alphMaps.length; aId++) {
+            var alphMap = App.Literator.alphMaps[aId];
+            App.Literator.keyHeadSets[aId] = [];
+            for (var lId = 0; lId < App.Literator.layoutMaps.length; lId++) {
+                var layoutMap = App.Literator.layoutMaps[lId];
                 var set = {};
 
                 for (var key in alphMap) {
-                    var isActive = !(layoutMap.hasOwnProperty(key) && layoutMap[key] === null);
-                    if (isActive && key.length > 1) {
+                    if (key.length > 1
+                            && !(layoutMap.hasOwnProperty(key) && layoutMap[key] === null)) {
                         set[key.charAt(0)] = true;
                     }
                 }
 
-                App.Literator.halfKeySets[a][l] = set;
+                App.Literator.keyHeadSets[aId][lId] = set;
             }
         }
     },

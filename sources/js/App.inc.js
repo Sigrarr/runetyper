@@ -4,7 +4,9 @@ include("lib/helpers.js");
 include("lib/Updater.js");
 include("Env.js");
 
-var App = {};
+var App = {
+    overrides: []
+};
 
 include("core/Literator.js");
 include("core/Writer.js");
@@ -18,7 +20,8 @@ include("building/MenuBuilder.js");
 include("building/KBoardBuilder.js");
 include("building/EventAssigner.js");
 include("building/aux/fillEmail.js");
-include("overrides/Ms.js");
+include("overrides/MsKeys.js");
+include("overrides/NoSetRangeText.js");
 
 include("run.js");
 include("cleanup.js");

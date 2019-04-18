@@ -5,12 +5,12 @@ App.Literator = {
 
     alphMaps: [],
     layoutMaps: [],
-    halfKeySets: [],
+    keyHeadSets: [],
     alphId: -1,
     layoutId: -1,
     alphMap: {},
     layoutMap: {},
-    halfKeySet: {},
+    keyHeadSet: {},
 
     tryTrans: function (rawInput) {
         return this.alphMap[
@@ -18,24 +18,20 @@ App.Literator = {
         ] || '';
     },
 
-    isHalfKey: function (keyChar) {
-        return this.halfKeySet[keyChar];
-    },
-
     alphabetHandler: function (newAlphabetId) {
         this.alphId = newAlphabetId;
         this.alphMap = this.alphMaps[newAlphabetId];
-        this.setHalfKeySet();
+        this.setKeyHeadSet();
     },
 
     layoutHandler: function (newLayoutId) {
         this.layoutId = newLayoutId;
         this.layoutMap = this.layoutMaps[newLayoutId];
-        this.setHalfKeySet();
+        this.setKeyHeadSet();
     },
 
-    setHalfKeySet: function () {
-        this.halfKeySet = this.halfKeySets[this.alphId][this.layoutId];
+    setKeyHeadSet: function () {
+        this.keyHeadSet = this.keyHeadSets[this.alphId][this.layoutId];
     }
 
 };

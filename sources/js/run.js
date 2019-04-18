@@ -13,7 +13,7 @@ App.run = function () {
 
     App.Constructor.buildLayouts();
     App.Constructor.buildAlphabets();
-    App.Constructor.buildHalfKeySets();
+    App.Constructor.buildKeyHeadSets();
     App.EventAssigner.initializeKeyboardEvents();
     App.EventAssigner.initializeControlsClicks();
     App.EventAssigner.initializeKBoardsClicks();
@@ -60,8 +60,12 @@ App.run = function () {
     App.KBoardSignaler.initialize();
     App.fillEmail();
 
-    if (Env.browser === "ms") {
-        App.Ms.runOverride();
+    for (var i in App.overrides) {
+        var override = App.overrides[i];
+        if (override.test()) {
+            console.log("@override:", override.message);
+            override.run();
+        }
     }
 
     if (Env.ok) {

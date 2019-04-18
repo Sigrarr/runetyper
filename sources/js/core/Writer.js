@@ -23,7 +23,7 @@ App.Writer = {
             }
 
             if (newSequence) {
-                if (App.Literator.isHalfKey(key)) {
+                if (App.Literator.keyHeadSet[key]) {
                     writer.buffChar = key;
                 } else {
                     writer.tryAdd(key);
@@ -35,21 +35,18 @@ App.Writer = {
         }
 
         if (event.key === ' ' || event.key === "Enter") {
-            writer.dispatchBuffChar();
+            writer.tryAdd(writer.popBuffChar());
             event.stopPropagation();
         }
 
-        writer.finalizeHandling();
+        writer.writeResult();
     },
 
-    catchKeyUp: function () {
-        App.Writer.dispatchBuffChar();
-        App.Writer.finalizeHandling();
-    },
-
-    dispatchBuffChar: function () {
-        if (this.buffChar) {
-            this.tryAdd(this.popBuffChar());
+    catchKeyUp: function (event) {
+        var writer = App.Writer;
+        if (writer.buffChar === event.key) {
+            writer.tryAdd(writer.popBuffChar());
+            writer.writeResult();
         }
     },
 
@@ -60,20 +57,17 @@ App.Writer = {
     },
 
     tryAdd: function (input) {
-        var toXText = App.Literator.tryTrans(input);
-        if (toXText) {
-            this.xText += toXText;
-            return true;
-        }
-        return false;
+        var addition = App.Literator.tryTrans(input);
+        this.xText += addition;
+        return addition;
     },
 
-    finalizeHandling: function () {
-        var completeXText = this.xText;
-        if (completeXText) {
-            this.write(completeXText);
+    writeResult: function () {
+        var result = this.xText;
+        if (result) {
+            this.write(result);
             this.xText = "";
-            setTimeout(App.KBoardSignaler.signalByXString, 0, completeXText);
+            setTimeout(App.KBoardSignaler.signalByXString, 0, result);
         }
     },
 
@@ -84,14 +78,12 @@ App.Writer = {
     },
 
     write: function (insertionText) {
-        var selectionStart = this.textArea.selectionStart;
-        var selectionEnd = this.textArea.selectionEnd;
-
-        this.textArea.value = this.textArea.value.substr(0, selectionStart)
-                + insertionText
-                + this.textArea.value.substr(selectionEnd);
-
-        this.textArea.selectionEnd = this.textArea.selectionStart = selectionStart + insertionText.length;
+        this.textArea.setRangeText(
+                insertionText,
+                this.textArea.selectionStart,
+                this.textArea.selectionEnd,
+                "end"
+        );
     }
 
 };
