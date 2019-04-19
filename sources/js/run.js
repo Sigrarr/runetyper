@@ -4,28 +4,33 @@
 App.run = function () {
     console.log("@run");
 
-    App.KBoardSignaler.container = findOne(".kboard-space");
+    App.DomLandmarks.kBoardContainer = findOne(".kboard-space");
     App.Writer.textArea = findOne("#output");
-    App.MenuProvider.alphSelectLi = findOne(".selector-alphabet");
-    App.MenuProvider.xCharsSelectLi = findOne(".selector-xchars");
-    App.MenuProvider.layoutSelectLi = findOne(".selector-layout");
-    App.MenuProvider.subtitlesSwitchLi = findOne(".switch-subtitles");
+    App.DomLandmarks.alphSelectLi = findOne(".selector-alphabet");
+    App.DomLandmarks.xCharsSelectLi = findOne(".selector-xchars");
+    App.DomLandmarks.layoutSelectLi = findOne(".selector-layout");
+    App.DomLandmarks.subtitlesSwitchLi = findOne(".switch-subtitles");
+    App.DomLandmarks.saveTextButton = findOne("#save-text-button");
 
     App.Constructor.buildLayouts();
     App.Constructor.buildAlphabets();
     App.Constructor.buildKeyHeadSets();
     App.EventAssigner.initializeKeyboardEvents();
-    App.EventAssigner.initializeControlsClicks();
-    App.EventAssigner.initializeKBoardsClicks();
+    App.EventAssigner.initializeMenuClicks();
+    App.EventAssigner.initializeXCharButtonClicks();
 
     Updater.register('_', App.Storage);
-    Updater.register("alphabet", App.KBoardSignaler);
+    Updater.register("alphabet", App.DomSignaler);
     Updater.register("alphabet", App.Literator);
     Updater.register("layout", App.Literator);
+    Updater.register("command", App.Commands);
     Updater.register("view", App.UrlHandler);
+    Updater.register("fontsize", App.OutFontSizeController);
     Updater.confirmTopic("subtitles");
     Updater.confirmTopic("xfont");
     Updater.confirmTopic("theme");
+    Updater.confirmTopic("toolbar");
+    Updater.confirmTopic("loadable_text");
     for (var t in Updater.topics) {
         Updater.registerDomReceivers(Updater.topics[t].name);
     }
@@ -33,6 +38,7 @@ App.run = function () {
     var primaryDefaults = {
         "alphabet": 0,
         "layout": 0,
+        "toolbar": "on",
         "subtitles": "trans",
         "theme": "bright",
         "xfont": "noto"
@@ -57,7 +63,7 @@ App.run = function () {
     }
     Updater.push("view", App.UrlHandler.requestedView);
 
-    App.KBoardSignaler.initialize();
+    App.DomSignaler.initialize();
     App.fillEmail();
 
     for (var i in App.overrides) {

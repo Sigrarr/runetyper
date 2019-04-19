@@ -1,9 +1,8 @@
 
 /* global App */
 
-App.KBoardSignaler = {
+App.DomSignaler = {
 
-    container: null,
     kBoards: [],
     currentMap: null,
 
@@ -13,13 +12,13 @@ App.KBoardSignaler = {
             var button = null;
             for (var i = 0; i < xString.length; i++) {
                 multibyteXCharCandidate += xString.charAt(i);
-                if (button = App.KBoardSignaler.currentMap[multibyteXCharCandidate]) {
-                    App.KBoardSignaler.signalButton(button);
+                if (button = App.DomSignaler.currentMap[multibyteXCharCandidate]) {
+                    App.DomSignaler.signalButton(button);
                     multibyteXCharCandidate = "";
                 }
             }
         };
-        delete App.KBoardSignaler.initialize;
+        delete App.DomSignaler.initialize;
     },
 
     signalByXString: function () {},

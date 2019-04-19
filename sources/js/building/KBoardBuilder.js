@@ -34,8 +34,8 @@ App.KBoardBuilder = {
         }
 
         kBoard.backMap = this.xCharToButton;
-        App.KBoardSignaler.kBoards.push(kBoard);
-        App.KBoardSignaler.container.appendChild(kBoard);
+        App.DomSignaler.kBoards.push(kBoard);
+        App.DomLandmarks.kBoardContainer.appendChild(kBoard);
     },
 
     buildXCharButtons: function (entity) {

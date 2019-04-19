@@ -1,12 +1,14 @@
 
 /* global App */
 
-App.MenuProvider = {
+App.DomLandmarks = {
 
     alphSelectLi: null,
     xCharsSelectLi: null,
     layoutSelectLi: null,
     subtitlesSwitchLi: null,
-    viewSwitchLi: null
+    viewSwitchLi: null,
+    kBoardContainer: null,
+    saveTextButton: null
 
 };

@@ -34,7 +34,7 @@ App.Constructor = {
                     for (var k in this.keys) {
                         this.map[this.keys[k]] = newXChar;
                     }
-                    App.KBoardSignaler.signalByXString(newXChar);
+                    App.DomSignaler.signalByXString(newXChar);
                 };
 
                 Updater.register(topicName, entity);

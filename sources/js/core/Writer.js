@@ -67,14 +67,14 @@ App.Writer = {
         if (result) {
             this.write(result);
             this.xText = "";
-            setTimeout(App.KBoardSignaler.signalByXString, 0, result);
+            setTimeout(App.DomSignaler.signalByXString, 0, result);
         }
     },
 
     clickWrite: function (xChar) {
         this.textArea.focus();
         this.write(xChar);
-        setTimeout(App.KBoardSignaler.signalByXString, 0, xChar);
+        setTimeout(App.DomSignaler.signalByXString, 0, xChar);
     },
 
     write: function (insertionText) {

@@ -11,43 +11,28 @@ App.EventAssigner = {
         document.addEventListener("keydown", App.Commands.catchKeyDown);
     },
 
-    initializeControlsClicks: function () {
-        var menus = findMany(".menu");
-        for (var i = 0; i < menus.length; i++) {
-            menus[i].addEventListener("click", function (event) {
-                var target = event.target;
-                if (target.hasAttribute("data-topic")
-                        || (target = target.parentNode).hasAttribute("data-topic")) {
-                    var topic = target.getAttribute("data-topic");
-                    Updater.push(
-                            topic,
-                            target.getAttribute("data-" + topic)
-                    );
-                }
-            });
-        }
-
-        App.MenuProvider.xCharsSelectLi.addEventListener("click", function (event) {
+    initializeMenuClicks: function () {
+        var menuClickHandler = function (event) {
             var target = event.target;
-            if (target.hasAttribute("data-d-xchar")) {
-                App.Commands.shiftXChars(
-                        parseInt(target.getAttribute("data-d-xchar")),
-                        target.parentNode
+            for (var i = 0; i < 3 && target && !target.hasAttribute("data-topic"); i++) {
+                target = target.parentNode;
+            }
+            if (target && target.hasAttribute("data-topic")) {
+                var topic = target.getAttribute("data-topic");
+                Updater.push(
+                        topic,
+                        target.getAttribute("data-" + topic)
                 );
             }
-        });
-
-        App.MenuProvider.subtitlesSwitchLi.addEventListener("click", function (event) {
-            var target = event.target;
-            if (target.hasAttribute("data-subtitles")
-                    || (target = target.parentNode).hasAttribute("data-subtitles")) {
-                App.Commands.shiftSubtitles(target);
-            }
-        });
+        };
+        var menus = findMany(".menu");
+        for (var i = 0; i < menus.length; i++) {
+            menus[i].addEventListener("click", menuClickHandler);
+        }
     },
 
-    initializeKBoardsClicks: function () {
-        App.KBoardSignaler.container.addEventListener("click", function (event) {
+    initializeXCharButtonClicks: function () {
+        App.DomLandmarks.kBoardContainer.addEventListener("click", function (event) {
             if (event.target.hasAttribute("data-xchar")) {
                 App.Writer.clickWrite(
                         event.target.getAttribute("data-xchar")

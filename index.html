@@ -43,7 +43,7 @@
           data-depend-view="children,class"
           data-class-view-workspace="sup-workspace">
         <section class="workspace" id="workspace" data-view="workspace">
-            <header>
+            <header class="sup-menu">
                 <h2 class="implicit">Workspace</h2>
                 <ul class="menu">
                     <li class="select selector-alphabet">
@@ -65,8 +65,12 @@
                         </div>
                         <ul class="prototype">
                             <li>
-                                <button title="Shift all backward" data-d-xchar="-1">&#x2B84;</button>
-                                <button title="Shift all forward" data-d-xchar="1">&#x2B86;</button>
+                                <button title="Shift all backward [Ctrl+⬅]"
+                                        data-topic="command"
+                                        data-command="shiftXChars:-1">&#x2B84;</button>
+                                <button title="Shift all forward [Ctrl+➡]"
+                                        data-topic="command"
+                                        data-command="shiftXChars:1">&#x2B86;</button>
                             </li>
                         </ul>
                     </li>
@@ -143,10 +147,12 @@
                         </ul>
                     </li>
                     <li class="switch-subtitles receiver-subtitles"
+                        data-topic="command"
+                        data-command="switchSubtitles"
                         data-depend-subtitles="title"
-                        data-title-subtitles-trans="Subtitles: transliteration/transcriptions. Click to toogle"
-                        data-title-subtitles-keys="Subtitles: keys. Click to toogle"
-                        data-title-subtitles-off="Subtitles: off. Click to toogle">
+                        data-title-subtitles-trans="Subtitles: transliteration/transcriptions. Toggle: click or [Insert]"
+                        data-title-subtitles-keys="Subtitles: keys. Toggle: click or [Insert]"
+                        data-title-subtitles-off="Subtitles: off. Toggle: click or [Insert]">
                         <h4 class="icon receiver-subtitles" data-depend-subtitles="children">
                             <button class="full" data-subtitles="trans"><i>Æ</i></button>
                             <button class="full" data-subtitles="keys">&#x1F130;&#x1F134;</button>
@@ -166,7 +172,70 @@
                 <textarea id="output"
                           class="xtext"
                           placeholder="&#x16eb;&#x16eb;&#x16eb;"
-                          spellcheck="false"></textarea>
+                          spellcheck="false"
+                          data-min-font-size="8"
+                          data-max-font-size="100"
+                          data-step-font-size="4"></textarea>
+                <div class="sup-menu receiver-toolbar"
+                     data-depend-toolbar="class"
+                     data-class-toolbar-off="collapse">
+                    <ul class="menu receiver-toolbar"
+                        data-depend-toolbar="children">
+                        <li title="Collapse editor toolbar" data-toolbar="on">
+                            <h4>
+                                <button data-topic="toolbar" data-toolbar="off">&#x25C2;</button>
+                            </h4>
+                        </li>
+                        <li title="Increase font size [Ctrl+Shift++]" data-toolbar="on">
+                            <h4 class="icon">
+                                <button data-topic="command" data-command="changeFontSize:1">&#x1F5DA;</button>
+                            </h4>
+                        </li>
+                        <li title="Decrease font size [Ctrl+Shift+-]" data-toolbar="on">
+                            <h4 class="icon">
+                                <button data-topic="command" data-command="changeFontSize:-1">&#x1F5DB;</button>
+                            </h4>
+                        </li>
+                        <li class="receiver-loadable_text"
+                            data-depend-loadable_text="title"
+                            title="Save in the browser's local storage [Ctrl+s]"
+                            data-title-loadable_text-0="Save in the browser's local storage [Ctrl+s]"
+                            data-title-loadable_text-1="Save in the browser's local storage (overrides the previous save) [Ctrl+s]"
+                            data-toolbar="on">
+                            <h4 class="icon receiver-loadable_text"
+                                data-depend-loadable_text="class"
+                                data-class-loadable_text-1="caution">
+                                <button data-topic="command"
+                                        data-command="saveText"
+                                        id="save-text-button">&#x1F4BE;</button>
+                            </h4>
+                        </li>
+                        <li title="Load text from local storage (overrides current content)" data-toolbar="on">
+                            <h4 class="icon caution">
+                                <button data-topic="command"
+                                        data-command="loadText"
+                                        class="receiver-loadable_text"
+                                        data-depend-loadable_text="class"
+                                        data-class-loadable_text-0="disabled">&#x1F4C2;</button>
+                            </h4>
+                        </li>
+                        <li title="Select all [Ctrl+a]" data-toolbar="on">
+                            <h4 class="icon">
+                                <button data-topic="command" data-command="selectAll">&#x1F5A2;</button>
+                            </h4>
+                        </li>
+                        <li title="Clear" data-toolbar="on">
+                            <h4 class="icon danger">
+                                <button data-topic="command" data-command="clearOutput">&#x2327;</button>
+                            </h4>
+                        </li>
+                        <li title="Expand editor toolbar" data-toolbar="off">
+                            <h4>
+                                <button data-topic="toolbar" data-toolbar="on">&#x25B8;</button>
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div class="kboard-space receiver-alphabet receiver-subtitles"

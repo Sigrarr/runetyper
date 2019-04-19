@@ -11,10 +11,11 @@ var App = {
 include("core/Literator.js");
 include("core/Writer.js");
 include("core/Commands.js");
-include("core/MenuProvider.js");
-include("core/aux/KBoardSignaler.js");
+include("core/DomLandmarks.js");
+include("core/aux/DomSignaler.js");
 include("core/aux/Storage.js");
 include("core/aux/UrlHandler.js");
+include("core/aux/OutFontSizeController.js");
 include("building/Constructor.js");
 include("building/MenuBuilder.js");
 include("building/KBoardBuilder.js");
