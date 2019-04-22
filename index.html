@@ -82,7 +82,7 @@
                             <li class="select selector-layout">
                                 <div>
                                     <h5>
-                                        <span class="icon">&#x2328;</span>
+                                        <span class="icon">&#x1F5AE;</span>
                                         Input alphabet
                                     </h5>
                                 </div>
@@ -154,16 +154,14 @@
                         data-title-subtitles-keys="Subtitles: keys. Toggle: click or [Insert]"
                         data-title-subtitles-off="Subtitles: off. Toggle: click or [Insert]">
                         <h4 class="icon receiver-subtitles" data-depend-subtitles="children">
-                            <button class="full" data-subtitles="trans"><i>Æ</i></button>
+                            <button class="full" data-subtitles="trans">Æ</button>
                             <button class="full" data-subtitles="keys">&#x1F130;&#x1F134;</button>
-                            <button class="full" data-subtitles="off">&#x2205;</button>
+                            <button class="full" data-subtitles="off">&#x2014;</button>
                         </h4>
                     </li>
                     <li title="Information">
                         <h4 class="icon">
-                            <button data-topic="view" data-view="information">
-                                &#x1f6c8;
-                            </button>
+                            <button data-topic="view" data-view="information">&#x1F6C8;</button>
                         </h4>
                     </li>
                 </ul>
@@ -198,25 +196,25 @@
                         </li>
                         <li class="receiver-loadable_text"
                             data-depend-loadable_text="title"
-                            title="Save in the browser's local storage [Ctrl+s]"
-                            data-title-loadable_text-0="Save in the browser's local storage [Ctrl+s]"
-                            data-title-loadable_text-1="Save in the browser's local storage (overrides the previous save) [Ctrl+s]"
+                            title="Save locally [Ctrl+s]"
+                            data-title-loadable_text-0="Save locally [Ctrl+s]"
+                            data-title-loadable_text-1="Save locally (overwrites the previous save) [Ctrl+s]"
                             data-toolbar="on">
                             <h4 class="icon receiver-loadable_text"
                                 data-depend-loadable_text="class"
                                 data-class-loadable_text-1="caution">
                                 <button data-topic="command"
                                         data-command="saveText"
-                                        id="save-text-button">&#x1F4BE;</button>
+                                        id="save-text-button">&#x1F5F8;</button>
                             </h4>
                         </li>
-                        <li title="Load text from local storage (overrides current content)" data-toolbar="on">
-                            <h4 class="icon caution">
+                        <li title="Paste stored text" data-toolbar="on">
+                            <h4 class="icon">
                                 <button data-topic="command"
-                                        data-command="loadText"
+                                        data-command="pasteText"
                                         class="receiver-loadable_text"
                                         data-depend-loadable_text="class"
-                                        data-class-loadable_text-0="disabled">&#x1F4C2;</button>
+                                        data-class-loadable_text-0="disabled">&#x1F4CB;</button>
                             </h4>
                         </li>
                         <li title="Select all [Ctrl+a]" data-toolbar="on">
@@ -224,9 +222,9 @@
                                 <button data-topic="command" data-command="selectAll">&#x1F5A2;</button>
                             </h4>
                         </li>
-                        <li title="Clear" data-toolbar="on">
+                        <li title="Erase selected text" data-toolbar="on">
                             <h4 class="icon danger">
-                                <button data-topic="command" data-command="clearOutput">&#x2327;</button>
+                                <button data-topic="command" data-command="eraseSelection">&#x2327;</button>
                             </h4>
                         </li>
                         <li title="Expand editor toolbar" data-toolbar="off">

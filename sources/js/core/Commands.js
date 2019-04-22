@@ -101,11 +101,11 @@ App.Commands = {
         App.DomSignaler.signalButton(App.DomLandmarks.saveTextButton);
     },
 
-    loadText: function () {
+    pasteText: function () {
         var text = App.Storage.get("_text");
         if (text) {
-            this.clearOutput();
             App.Writer.write(text);
+            App.Writer.textArea.focus();
         }
     },
 
@@ -116,8 +116,9 @@ App.Commands = {
         textArea.focus();
     },
 
-    clearOutput: function () {
-        App.Writer.textArea.value = '';
+    eraseSelection: function () {
+        App.Writer.write('');
+        App.Writer.textArea.focus();
     },
 
     commandHandler: function (message) {

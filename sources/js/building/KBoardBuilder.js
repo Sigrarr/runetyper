@@ -44,7 +44,7 @@ App.KBoardBuilder = {
             var xChar = entity.chars[x];
             this.xCharToButton[xChar] = createElement(
                 "button",
-                ["xchar"],
+                ["xtext"],
                 [["data-xchar", xChar]]
                         .concat(
                             xCharsN > 1 ? [["data-" + entity.topicName, x]] : []

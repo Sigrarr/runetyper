@@ -13,12 +13,11 @@ App.EventAssigner = {
 
     initializeMenuClicks: function () {
         var menuClickHandler = function (event) {
-            var target = event.target;
-            for (var i = 0; i < 3 && target && !target.hasAttribute("data-topic"); i++) {
-                target = target.parentNode;
+            var topic = null;
+            for (var i = 0, target = event.target; i < 3 && target && !topic; i++) {
+                (topic = target.getAttribute("data-topic")) || (target = target.parentNode);
             }
-            if (target && target.hasAttribute("data-topic")) {
-                var topic = target.getAttribute("data-topic");
+            if (topic) {
                 Updater.push(
                         topic,
                         target.getAttribute("data-" + topic)
