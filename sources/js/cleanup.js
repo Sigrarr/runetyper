@@ -9,6 +9,7 @@ App.cleanUp = function () {
     delete App.KBoardBuilder;
     delete App.EventAssigner;
     delete App.fillEmail;
+    delete App.buildOutline;
     delete App.run;
     delete App.cleanUp;
 

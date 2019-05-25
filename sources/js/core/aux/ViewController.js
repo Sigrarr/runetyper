@@ -36,8 +36,8 @@ App.ViewController = {
         }
     },
 
-    isInfoSectionHash: function (hash) {
-        return hash === "#information" || (hash.charAt(1) === "i" && findOne(hash));
+    isInfoSectionHash: function (hash, confirmed) {
+        return hash === "#information" || (hash.charAt(1) === 'i' && (confirmed || findOne(hash)));
     },
 
     scrollHandler: function () {

@@ -21,6 +21,7 @@ include("building/MenuBuilder.js");
 include("building/KBoardBuilder.js");
 include("building/EventAssigner.js");
 include("building/aux/fillEmail.js");
+include("building/aux/buildOutline.js");
 include("overrides/MsKeys.js");
 include("overrides/NoSetRangeText.js");
 

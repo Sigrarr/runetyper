@@ -66,6 +66,7 @@ App.run = function () {
 
     App.DomSignaler.initialize();
     App.fillEmail();
+    App.buildOutline(2);
 
     for (var i in App.overrides) {
         var override = App.overrides[i];
