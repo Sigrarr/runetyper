@@ -63,7 +63,7 @@ App.MenuBuilder = {
             for (var ch in entity.chars) {
                 li.appendChild(createElement(
                         "button",
-                        ["receiver-" + topicName].concat(ch == 0 ? ["active"] : []),
+                        ["xtext", "receiver-" + topicName].concat(ch == 0 ? ["active"] : []),
                         [
                             ["data-topic", topicName],
                             ["data-" + topicName, ch],
