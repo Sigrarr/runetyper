@@ -25,7 +25,7 @@ App.Commands = {
                 }
                 break;
             case "Insert":
-                commands.switchSubtitles();
+                commands.switchCaptions();
                 commandMatch = true;
                 break;
             case 's':
@@ -82,12 +82,12 @@ App.Commands = {
         }
     },
 
-    switchSubtitles: function () {
-        var target = findActiveChild(App.DomLandmarks.subtitlesSwitchLi.firstElementChild);
+    switchCaptions: function () {
+        var target = findActiveChild(App.DomLandmarks.captionsSwitchLi.firstElementChild);
         Updater.push(
-                "subtitles",
+                "captions",
                 (target.nextElementSibling || target.parentNode.firstElementChild)
-                    .getAttribute("data-subtitles")
+                    .getAttribute("data-captions")
         );
     },
 

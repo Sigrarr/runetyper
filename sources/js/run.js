@@ -9,8 +9,9 @@ App.run = function () {
     App.DomLandmarks.alphSelectLi = findOne(".selector-alphabet");
     App.DomLandmarks.xCharsSelectLi = findOne(".selector-xchars");
     App.DomLandmarks.layoutSelectLi = findOne(".selector-layout");
-    App.DomLandmarks.subtitlesSwitchLi = findOne(".switch-subtitles");
+    App.DomLandmarks.captionsSwitchLi = findOne(".switch-captions");
     App.DomLandmarks.saveTextButton = findOne("#save-text-button");
+    App.DomLandmarks.goTopButton = findOne("#go-top");
 
     App.Constructor.buildLayouts();
     App.Constructor.buildAlphabets();
@@ -24,9 +25,9 @@ App.run = function () {
     Updater.register("alphabet", App.Literator);
     Updater.register("layout", App.Literator);
     Updater.register("command", App.Commands);
-    Updater.register("view", App.UrlHandler);
+    Updater.register("view", App.ViewController);
     Updater.register("fontsize", App.OutFontSizeController);
-    Updater.confirmTopic("subtitles");
+    Updater.confirmTopic("captions");
     Updater.confirmTopic("xfont");
     Updater.confirmTopic("theme");
     Updater.confirmTopic("toolbar");
@@ -39,7 +40,7 @@ App.run = function () {
         "alphabet": 0,
         "layout": 0,
         "toolbar": "on",
-        "subtitles": "trans",
+        "captions": "roman",
         "theme": "bright",
         "xfont": "noto"
     };
@@ -61,7 +62,7 @@ App.run = function () {
             );
         }
     }
-    Updater.push("view", App.UrlHandler.requestedView);
+    Updater.push("view", App.ViewController.getRequestedView());
 
     App.DomSignaler.initialize();
     App.fillEmail();
@@ -75,7 +76,12 @@ App.run = function () {
     }
 
     if (Env.ok) {
-        removeNode(findOne("#loader"));
+        setTimeout(function () {
+            findOne("#loader").classList.add("fading");
+            setTimeout(function () {
+                removeNode(findOne("#loader"));
+            }, 500);
+        }, 500);
     }
 
     App.cleanUp();

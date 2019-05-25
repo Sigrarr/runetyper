@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="assets/css/fontfaces.css">
 <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
+<link rel="icon" href="assets/images/icon.png" sizes="196x196" type="image/png">
 <script charset="utf-8" src="assets/js/app.min.js"></script>
 </head>
 <body class="receiver-xfont receiver-theme"
@@ -20,24 +21,26 @@
       data-class-theme-bright="theme-bright"
       data-class-theme-dark="theme-dark">
     <aside class="loader" id="loader">
-        <h1 class="logo">Runetyper</h1>
-        <p>Application is loading...</p>
-        <p>
-            <small>
-                If you see this message for more than a few seconds,
-                please ensure that JavaScript is enabled in your browser and that the browser is up to date.
-            </small>
-        </p>
-        <!--[if lt IE 10]>
+        <div>
+            <h1 class="logo"><span>R</span>unetyper</h1>
+            <p>Application is loading...</p>
             <p>
                 <small>
-                    Internet Explorer's version not less than 10 is a requirement to run the application.
+                    If you see this message for more than a few seconds,
+                    please ensure that JavaScript is enabled in your browser and that the browser is up to date.
                 </small>
             </p>
-            <script>
-                Env.ok = false;
-            </script>
-        <![endif]-->
+            <!--[if lt IE 10]>
+                <p>
+                    <small>
+                        Internet Explorer's version not less than 10 is a requirement to run the application.
+                    </small>
+                </p>
+                <script>
+                    Env.ok = false;
+                </script>
+            <![endif]-->
+        </div>
     </aside>
     <main class="receiver-view"
           data-depend-view="children,class"
@@ -48,7 +51,7 @@
                 <ul class="menu">
                     <li class="select selector-alphabet">
                         <div title="Select alphabet">
-                            <h4 class="icon">ᚱ</h4>
+                            <h4 class="icon logotext">ᚱ</h4>
                             <em class="receiver-alphabet"
                                 data-depend-alphabet="children">
                             </em>
@@ -146,17 +149,17 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="switch-subtitles receiver-subtitles"
+                    <li class="switch-captions receiver-captions"
                         data-topic="command"
-                        data-command="switchSubtitles"
-                        data-depend-subtitles="title"
-                        data-title-subtitles-trans="Subtitles: transliteration/transcriptions. Toggle: click or [Insert]"
-                        data-title-subtitles-keys="Subtitles: keys. Toggle: click or [Insert]"
-                        data-title-subtitles-off="Subtitles: off. Toggle: click or [Insert]">
-                        <h4 class="icon receiver-subtitles" data-depend-subtitles="children">
-                            <button class="full" data-subtitles="trans">Æ</button>
-                            <button class="full" data-subtitles="keys">&#x1F130;&#x1F134;</button>
-                            <button class="full" data-subtitles="off">&#x2014;</button>
+                        data-command="switchCaptions"
+                        data-depend-captions="title"
+                        data-title-captions-roman="Captions: romanization. Toggle: click or [Insert]"
+                        data-title-captions-keys="Captions: keys. Toggle: click or [Insert]"
+                        data-title-captions-off="Captions: off. Toggle: click or [Insert]">
+                        <h4 class="icon receiver-captions" data-depend-captions="children">
+                            <button class="full" data-captions="roman">Æ</button>
+                            <button class="full" data-captions="keys">&#x1F130;&#x1F134;</button>
+                            <button class="full" data-captions="off">&#x2014;</button>
                         </h4>
                     </li>
                     <li title="Information">
@@ -236,19 +239,19 @@
                 </div>
             </div>
 
-            <div class="kboard-space receiver-alphabet receiver-subtitles"
+            <div class="kboard-space receiver-alphabet receiver-captions"
                  id="kboard-space"
                  data-depend-alphabet="children"
-                 data-depend-subtitles="class"
-                 data-class-subtitles-trans="sup-subtitles-trans"
-                 data-class-subtitles-keys="sup-subtitles-keys"
-                 data-class-subtitles-off="sup-subtitles-off">
+                 data-depend-captions="class"
+                 data-class-captions-roman="sup-captions-roman"
+                 data-class-captions-keys="sup-captions-keys"
+                 data-class-captions-off="sup-captions-off">
             </div>
         </section>
 
         <section class="information" id="information" data-view="information">
             <header>
-                <h1 class="logo">Runetyper</h1>
+                <h1 class="logo"><span>R</span>unetyper</h1>
                 <address>
                     <dl>
                         <dt>Author</dt>
@@ -262,22 +265,68 @@
                     </dl>
                 </address>
             </header>
-            <div class="menu">
-                <h4 title="Close the information view">
-                    <button data-topic="view"
-                            data-view="workspace">
-                        &#x1f5d9;
-                    </button>
-                </h4>
-            </div>
-        </section>
 
+            <div class="sup-menu" id="info-closing">
+                <ul class="menu">
+                    <li>
+                        <h4 title="Close [Esc]">
+                            <button data-topic="view" data-view="workspace">&#x1F5D9;</button>
+                        </h4>
+                    </li>
+                </ul>
+            </div>
+
+            <aside id="outline">
+                <h4>Contents</h4>
+                <ul>
+                    <li><a href="#i1">General information</a></li>
+                    <li>
+                        <a href="#i2">Manual</a>
+                        <ul>
+                            <li><a href="#i2_1">Basics</a></li>
+                            <li><a href="#i2_2">Main options</a></li>
+                            <li><a href="#i2_3">Editor toolbar</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#i3">Representation of the alphabets</a>
+                        <ul>
+                            <li><a href="#i3_1">Unicode standard</a></li>
+                            <li><a href="#i3_2">Romanization and sections</a></li>
+                            <li><a href="#i3_3">The alphabets</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#i4">Credits and references</a>
+                        <ul>
+                            <li><a href="#i4_1">Fonts</a></li>
+                            <li><a href="#i4_2">References on runology and Germanic linguistics</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+
+            <div class="sup-menu" id="go-top">
+                <ul class="menu">
+                    <li title="Go back to the top">
+                        <h4>
+                            <a href="#information">
+                                <button>&#x25B4;</button>
+                            </a>
+                        </h4>
+                    </li>
+                </ul>
+            </div>
+
+        </section>
     </main>
     <footer class="receiver-view"
             data-depend-view="class"
             data-class-view-workspace="sub-workspace"
             data-class-view-information="sub-information">
-        <span class="logo">Runetyper</span> &copy; 2019 Wiktor Banaszewski
+        <small>
+            <span class="logo"><span>R</span>unetyper</span> &copy; 2019 Wiktor Banaszewski
+        </small>
     </footer>
 </body>
 </html>

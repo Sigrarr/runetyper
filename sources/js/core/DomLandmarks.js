@@ -1,4 +1,3 @@
-
 /* global App */
 
 App.DomLandmarks = {
@@ -6,9 +5,10 @@ App.DomLandmarks = {
     alphSelectLi: null,
     xCharsSelectLi: null,
     layoutSelectLi: null,
-    subtitlesSwitchLi: null,
+    captionsSwitchLi: null,
     viewSwitchLi: null,
     kBoardContainer: null,
-    saveTextButton: null
+    saveTextButton: null,
+    goTopButton: null
 
 };

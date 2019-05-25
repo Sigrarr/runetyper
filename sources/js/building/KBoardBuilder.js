@@ -74,15 +74,15 @@ App.KBoardBuilder = {
         }
 
         box.appendChild(createElement(
-                "p", ["trans"], null, [
-                    createElement("i", null, null, [createTextNode(entity.trans)])
+                "p", ["roman"], null, [
+                    createElement("i", null, null, [createTextNode(entity.roman)])
                 ]
         ));
 
         var keysP = createElement(
                 "p",
                 ["keys", "receiver-layout", "typetext"],
-                {"data-subtitles": "keys", "data-depend-layout": "children"}
+                {"data-captions": "keys", "data-depend-layout": "children"}
         );
 
         for (var i in App.Literator.layoutMaps) {

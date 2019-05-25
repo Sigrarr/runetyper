@@ -9,162 +9,177 @@
     "entities": [
         {
             "chars": ["ᛆ"],
-            "trans": "a æ",
+            "roman": "a æ",
             "keys": ["a"]
         },
         {
             "chars": ["ᛒ"],
-            "trans": "b",
+            "roman": "b",
             "keys": ["b"]
         },
         {
             "chars": ["ᛍ"],
-            "trans": "c",
+            "roman": "c",
             "keys": ["c"]
         },
         {
             "chars": ["ᛑ"],
-            "trans": "d",
+            "roman": "d",
             "keys": ["d"]
         },
         {
             "chars": ["ᛂ"],
-            "trans": "e",
+            "roman": "e",
             "keys": ["e"]
         },
         {
             "chars": ["ᚠ"],
-            "trans": "f",
+            "roman": "f",
             "keys": ["f"]
         },
         {
             "chars": ["ᚵ"],
-            "trans": "g",
+            "roman": "g",
             "keys": ["g"]
         },
         {
             "chars": ["ᚼ"],
-            "trans": "h",
+            "roman": "h",
             "keys": ["h"]
         },
         {
             "chars": ["ᛁ"],
-            "trans": "i j",
+            "roman": "i j",
             "keys": ["i", "j"]
         },
         {
             "chars": ["ᚴ"],
-            "trans": "k",
+            "roman": "k",
             "keys": ["k"]
         },
         {
             "chars": ["ᛚ"],
-            "trans": "l",
+            "roman": "l",
             "keys": ["l"]
         },
         {
             "chars": ["ᛘ"],
-            "trans": "m",
+            "roman": "m",
             "keys": ["m"]
         },
         {
             "chars": ["ᚿ"],
-            "trans": "n",
+            "roman": "n",
             "keys": ["n"]
         },
         {
             "chars": ["ᚮ"],
-            "trans": "o",
+            "roman": "o",
             "keys": ["o"]
         },
         {
             "chars": ["ᛔ", "ᛕ"],
-            "trans": "p",
+            "roman": "p",
             "keys": ["p"]
         },
         {
             "chars": ["ᛩ"],
-            "trans": "q",
+            "roman": "q",
             "keys": ["q"]
         },
         {
             "chars": ["ᚱ"],
-            "trans": "r",
+            "roman": "r",
             "keys": ["r"]
         },
         {
             "chars": ["ᛌ", "ᛋ"],
-            "trans": "s",
+            "roman": "s",
             "keys": ["s"]
         },
         {
             "chars": ["ᛐ"],
-            "trans": "t",
+            "roman": "t",
             "keys": ["t"]
         },
         {
             "chars": ["ᚢ"],
-            "trans": "u v",
+            "roman": "u v",
             "keys": ["u"]
         },
         {
             "chars": ["ᚡ"],
-            "trans": "v",
+            "roman": "v",
             "keys": ["v"]
         },
         {
             "chars": ["ᚥ"],
-            "trans": "w",
+            "roman": "w",
             "keys": ["w"]
         },
         {
             "chars": ["ᛪ"],
-            "trans": "x",
+            "roman": "x",
             "keys": ["x"]
         },
         {
             "chars": ["ᛦ", "ᚤ", "ᛨ"],
-            "trans": "y",
+            "roman": "y",
             "keys": ["y"]
         },
         {
             "chars": ["ᛎ"],
-            "trans": "z",
+            "roman": "z",
             "keys": ["z"]
         },
         {
             "chars": ["ᚦ"],
-            "trans": "þ",
+            "roman": "þ",
             "keys": ["th"]
         },
         {
             "chars": ["ᚧ"],
-            "trans": "ð",
+            "roman": "ð",
             "keys": ["dh"]
         },
         {
             "chars": ["ᛅ"],
-            "trans": "æ",
+            "roman": "æ",
             "keys": ["ae"]
         },
         {
             "chars": ["ᚯ"],
-            "trans": "ø",
+            "roman": "ø ö",
             "keys": ["oe"]
         },
         {
+            "chars": ["ᛮ"],
+            "roman": "17.",
+            "keys": ["17"]
+        },
+        {
+            "chars": ["ᛯ"],
+            "roman": "18.",
+            "keys": ["18"]
+        },
+        {
+            "chars": ["ᛰ"],
+            "roman": "19.",
+            "keys": ["19"]
+        },
+        {
             "chars": ["᛫"],
-            "trans": "•",
+            "roman": "•",
             "keys": [".", ","]
         },
         {
             "chars": ["᛬"],
-            "trans": ":",
+            "roman": ":",
             "keys": [":", ";"]
         },
         {
             "chars": ["᛭"],
-            "trans": "+",
+            "roman": "+",
             "keys": ["+", "="]
         }
     ],
@@ -174,6 +189,9 @@
             ["h", "i", "k", "l", "m", "n", "o"],
             ["p", "q", "r", "s", "t", "u", "v", "w"],
             ["x", "y", "z", "th", "dh", "ae", "oe"]
+        ],
+        [
+            ["17", "18", "19"]
         ],
         [
             [".", ":", "+"]

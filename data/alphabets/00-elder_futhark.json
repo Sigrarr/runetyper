@@ -9,132 +9,132 @@
     "entities": [
         {
             "chars": ["ᚠ"],
-            "trans": "f",
+            "roman": "f",
             "keys": ["f"]
         },
         {
             "chars": ["ᚢ"],
-            "trans": "u",
+            "roman": "u",
             "keys": ["u"]
         },
         {
             "chars": ["ᚦ"],
-            "trans": "þ",
+            "roman": "þ",
             "keys": ["th"]
         },
         {
             "chars": ["ᚨ"],
-            "trans": "a",
+            "roman": "a",
             "keys": ["a"]
         },
         {
             "chars": ["ᚱ"],
-            "trans": "r",
+            "roman": "r",
             "keys": ["r"]
         },
         {
             "chars": ["ᚲ"],
-            "trans": "k",
+            "roman": "k",
             "keys": ["k"]
         },
         {
             "chars": ["ᚷ"],
-            "trans": "g",
+            "roman": "g",
             "keys": ["g"]
         },
         {
             "chars": ["ᚹ"],
-            "trans": "w",
+            "roman": "w",
             "keys": ["w"]
         },
         {
             "chars": ["ᚺ", "ᚻ"],
-            "trans": "h",
+            "roman": "h",
             "keys": ["h"]
         },
         {
             "chars": ["ᚾ"],
-            "trans": "n",
+            "roman": "n",
             "keys": ["n"]
         },
         {
             "chars": ["ᛁ"],
-            "trans": "i",
+            "roman": "i",
             "keys": ["i"]
         },
         {
             "chars": ["ᛃ"],
-            "trans": "j",
+            "roman": "j",
             "keys": ["j"]
         },
         {
             "chars": ["ᛇ"],
-            "trans": "ï",
-            "keys": ["I", "E"]
+            "roman": "ï æ",
+            "keys": ["I", "E", "ae"]
         },
         {
             "chars": ["ᛈ"],
-            "trans": "p",
+            "roman": "p",
             "keys": ["p"]
         },
         {
             "chars": ["ᛉ"],
-            "trans": "z ʀ",
+            "roman": "z ʀ",
             "keys": ["z", "R"]
         },
         {
             "chars": ["ᛊ", "ᛋ"],
-            "trans": "s",
+            "roman": "s",
             "keys": ["s"]
         },
         {
             "chars": ["ᛏ"],
-            "trans": "t",
+            "roman": "t",
             "keys": ["t"]
         },
         {
             "chars": ["ᛒ"],
-            "trans": "b",
+            "roman": "b",
             "keys": ["b"]
         },
         {
             "chars": ["ᛖ"],
-            "trans": "e",
+            "roman": "e",
             "keys": ["e"]
         },
         {
             "chars": ["ᛗ"],
-            "trans": "m",
+            "roman": "m",
             "keys": ["m"]
         },
         {
             "chars": ["ᛚ"],
-            "trans": "l",
+            "roman": "l",
             "keys": ["l"]
         },
         {
-            "chars": ["ᛜ", "ᛝ"],
-            "trans": "ŋ ng",
+            "chars": ["ᛜ"],
+            "roman": "ŋ ng",
             "keys": ["ng"]
         },
         {
             "chars": ["ᛟ"],
-            "trans": "o",
+            "roman": "o",
             "keys": ["o"]
         },
         {
             "chars": ["ᛞ"],
-            "trans": "d",
+            "roman": "d",
             "keys": ["d"]
         },
         {
             "chars": ["᛫"],
-            "trans": "•",
+            "roman": "•",
             "keys": [".", ","]
         },
         {
             "chars": ["᛬"],
-            "trans": ":",
+            "roman": ":",
             "keys": [":", ";"]
         }
     ],

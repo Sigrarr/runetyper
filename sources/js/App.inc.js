@@ -14,7 +14,7 @@ include("core/Commands.js");
 include("core/DomLandmarks.js");
 include("core/aux/DomSignaler.js");
 include("core/aux/Storage.js");
-include("core/aux/UrlHandler.js");
+include("core/aux/ViewController.js");
 include("core/aux/OutFontSizeController.js");
 include("building/Constructor.js");
 include("building/MenuBuilder.js");
