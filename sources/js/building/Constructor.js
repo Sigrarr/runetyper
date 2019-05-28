@@ -77,6 +77,12 @@ App.Constructor = {
         while (data = this.alphabetsData.shift()) {
             this.buildAlphabet(data);
         }
+
+        var longRowKBoards = App.KBoardBuilder.kBoardsOfMaxRowN;
+        for (var d in longRowKBoards) {
+            longRowKBoards[d].classList.add("longRow");
+        }
+        App.KBoardFitController.longRowKBoard = longRowKBoards[0];
     },
 
     buildLayouts: function () {

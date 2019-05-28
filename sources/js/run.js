@@ -4,8 +4,8 @@
 App.run = function () {
     console.log("@run");
 
-    App.DomLandmarks.kBoardContainer = findOne(".kboard-space");
     App.Writer.textArea = findOne("#output");
+    App.DomLandmarks.kBoardContainer = findOne(".kboard-space");
     App.DomLandmarks.alphSelectLi = findOne(".selector-alphabet");
     App.DomLandmarks.xCharsSelectLi = findOne(".selector-xchars");
     App.DomLandmarks.layoutSelectLi = findOne(".selector-layout");
@@ -19,13 +19,15 @@ App.run = function () {
     App.EventAssigner.initializeKeyboardEvents();
     App.EventAssigner.initializeMenuClicks();
     App.EventAssigner.initializeXCharButtonClicks();
+    App.EventAssigner.initializeResizeHandling();
 
     Updater.register('_', App.Storage);
-    Updater.register("alphabet", App.DomSignaler);
+    Updater.register("alphabet", App.DomLandmarks);
     Updater.register("alphabet", App.Literator);
     Updater.register("layout", App.Literator);
     Updater.register("command", App.Commands);
     Updater.register("view", App.ViewController);
+    Updater.register("view", App.KBoardFitController);
     Updater.register("fontsize", App.OutFontSizeController);
     Updater.confirmTopic("captions");
     Updater.confirmTopic("xfont");

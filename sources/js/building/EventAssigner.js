@@ -38,6 +38,10 @@ App.EventAssigner = {
                 );
             }
         });
+    },
+
+    initializeResizeHandling: function () {
+        window.addEventListener("resize", App.KBoardFitController.resizeHandler);
     }
 
 };

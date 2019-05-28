@@ -5,6 +5,8 @@ App.KBoardBuilder = {
 
     xCharToButton: {},
     keyToEntity: {},
+    maxRowN: 0,
+    kBoardsOfMaxRowN: [],
 
     buildAndAddKboard: function (data, alphId) {
         this.xCharToButton = {};
@@ -25,7 +27,10 @@ App.KBoardBuilder = {
             for (var r in sectionOrder) {
                 var row = createElement("section", ["row"]);
                 var rowOrder = sectionOrder[r];
-                for (var k in rowOrder) {
+                var rowN = rowOrder.length;
+                this.checkForMaxRowN(rowN, kBoard);
+
+                for (var k = 0; k < rowN; k++) {
                     row.appendChild(this.buildXLetterBox(rowOrder[k]));
                 }
                 section.appendChild(row);
@@ -34,7 +39,7 @@ App.KBoardBuilder = {
         }
 
         kBoard.backMap = this.xCharToButton;
-        App.DomSignaler.kBoards.push(kBoard);
+        App.DomLandmarks.kBoards.push(kBoard);
         App.DomLandmarks.kBoardContainer.appendChild(kBoard);
     },
 
@@ -43,17 +48,17 @@ App.KBoardBuilder = {
         for (var x = 0; x < xCharsN; x++) {
             var xChar = entity.chars[x];
             this.xCharToButton[xChar] = createElement(
-                "button",
-                ["xtext"],
-                [["data-xchar", xChar]]
-                        .concat(
+                    "button",
+                    ["xtext"],
+                    [["data-xchar", xChar]]
+                    .concat(
                             xCharsN > 1 ? [["data-" + entity.topicName, x]] : []
-                        )
-                        .concat(
+                            )
+                    .concat(
                             x > 0 ? [["style", "display: none;"]] : []
-                        ),
-                [createTextNode(xChar)]
-            );
+                            ),
+                    [createTextNode(xChar)]
+                    );
         }
     },
 
@@ -64,10 +69,10 @@ App.KBoardBuilder = {
         var box = createElement(
                 "div",
                 ["xletter-box"].concat(
-                        xCharsN > 1 ? ["receiver-" + entity.topicName] : []
+                xCharsN > 1 ? ["receiver-" + entity.topicName] : []
                 ),
                 xCharsN > 1 ? [["data-depend-" + entity.topicName, "children"]] : null
-        );
+                );
 
         for (var x = 0; x < xCharsN; x++) {
             box.appendChild(this.xCharToButton[entity.chars[x]]);
@@ -75,9 +80,9 @@ App.KBoardBuilder = {
 
         box.appendChild(createElement(
                 "p", ["roman"], null, [
-                    createElement("i", null, null, [createTextNode(entity.roman)])
-                ]
-        ));
+            createElement("i", null, null, [createTextNode(entity.roman)])
+        ]
+                ));
 
         var keysP = createElement(
                 "p",
@@ -118,6 +123,15 @@ App.KBoardBuilder = {
         }
 
         return preservedKeys.concat(addedKeys).join(" ");
+    },
+
+    checkForMaxRowN: function (rowN, kBoard) {
+        if (rowN > this.maxRowN) {
+            this.maxRowN = rowN;
+            this.kBoardsOfMaxRowN = [kBoard];
+        } else if (rowN === this.maxRowN && this.kBoardsOfMaxRowN.indexOf(kBoard) < 0) {
+            this.kBoardsOfMaxRowN.push(kBoard);
+        }
     }
 
 };

@@ -2,6 +2,8 @@
 
 App.DomLandmarks = {
 
+    kBoards: [],
+    activeKBoard: null,
     alphSelectLi: null,
     xCharsSelectLi: null,
     layoutSelectLi: null,
@@ -9,6 +11,10 @@ App.DomLandmarks = {
     viewSwitchLi: null,
     kBoardContainer: null,
     saveTextButton: null,
-    goTopButton: null
+    goTopButton: null,
+
+    alphabetHandler: function (alphId) {
+        this.activeKBoard = this.kBoards[alphId];
+    }
 
 };
