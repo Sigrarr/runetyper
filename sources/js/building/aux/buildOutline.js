@@ -39,7 +39,7 @@ App.buildOutline = function (depth) {
     };
 
     var parentUl = findOne("#outline").children[1];
-    var infoChildren = findOne("#information").children;
+    var infoChildren = findOne(".long-text-content").children;
 
     for (var i = 0, entry = null; i < infoChildren.length; i++) {
         if ((entry = buildSectionEntry(infoChildren[i], depth))) {

@@ -1,307 +1,305 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Runetyper</title>
-<meta name="application-name" content="Runetyper">
-<meta name="author" content="Wiktor Banaszewski">
-<meta name="description" content="Simple text editor for writing in old Germanic alphabets, especially runic. HTML5 + JS, running in a web browser.">
-<meta name="keywords" content="runes, runic, writing, text editor, virtual keyboard, gothic alphabet, scripts">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="assets/css/fontfaces.css">
-<link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
-<link rel="icon" href="assets/images/icon.png" sizes="196x196" type="image/png">
-<script charset="utf-8" src="assets/js/app.min.js"></script>
-</head>
-<body class="receiver-xfont receiver-theme"
-      data-depend-xfont="class"
-      data-class-xfont-noto="xfont-noto"
-      data-class-xfont-pfeffer="xfont-pfeffer"
-      data-depend-theme="class"
-      data-class-theme-bright="theme-bright"
-      data-class-theme-dark="theme-dark">
-    <aside class="loader" id="loader">
-        <div>
-            <h1 class="logo"><span>R</span>unetyper</h1>
-            <p>Application is loading...</p>
-            <p>
-                <small>
-                    If you see this message for more than a few seconds,
-                    please ensure that JavaScript is enabled in your browser and that the browser is up to date.
-                </small>
-            </p>
-            <!--[if lt IE 10]>
+    <head>
+        <meta charset="utf-8">
+        <title>Runetyper</title>
+        <meta name="application-name" content="Runetyper">
+        <meta name="author" content="Wiktor Banaszewski">
+        <meta name="description" content="Simple text editor for writing in old Germanic alphabets, especially runic. HTML5 + JS, running in a web browser.">
+        <meta name="keywords" content="runes, runic, writing, text editor, virtual keyboard, gothic alphabet, scripts">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="assets/css/fontfaces.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
+        <link rel="icon" href="assets/images/icon.png" sizes="196x196" type="image/png">
+        <script charset="utf-8" src="assets/js/app.min.js"></script>
+    </head>
+    <body class="receiver-xfont receiver-theme sup-loader"
+          data-depend-xfont="class"
+          data-class-xfont-noto="xfont-noto"
+          data-class-xfont-pfeffer="xfont-pfeffer"
+          data-depend-theme="class"
+          data-class-theme-bright="theme-bright"
+          data-class-theme-dark="theme-dark">
+        <aside class="loader" id="loader">
+            <div>
+                <h1 class="logo"><span>R</span>unetyper</h1>
+                <p>Application is loading...</p>
                 <p>
                     <small>
-                        Internet Explorer's version not less than 10 is a requirement to run the application.
+                        If you see this message for more than a few seconds,
+                        please ensure that JavaScript is enabled in your browser and that the browser is up to date.
                     </small>
                 </p>
-                <script>
-                    Env.ok = false;
-                </script>
-            <![endif]-->
-        </div>
-    </aside>
-    <main class="receiver-view"
-          data-depend-view="children,class"
-          data-class-view-workspace="sup-workspace">
-        <section class="workspace" id="workspace" data-view="workspace">
-            <header class="sup-menu">
-                <h2 class="implicit">Workspace</h2>
-                <ul class="menu">
-                    <li class="select selector-alphabet">
-                        <div title="Select alphabet">
-                            <h4 class="icon logotext">ᚱ</h4>
-                            <em class="receiver-alphabet"
-                                data-depend-alphabet="children">
-                            </em>
-                        </div>
-                        <ul></ul>
-                    </li>
-                    <li class="select selector-xchars receiver-alphabet"
-                        data-depend-alphabet="children,class">
-                        <div title="Select letter variants">
-                            <h4 class="icon">&#x2605;</h4>
-                            <em class="receiver-alphabet"
-                                data-depend-alphabet="children">
-                            </em>
-                        </div>
-                        <ul class="prototype">
-                            <li>
-                                <button title="Shift all backward [Ctrl+⬅]"
-                                        data-topic="command"
-                                        data-command="shiftXChars:-1">&#x2B84;</button>
-                                <button title="Shift all forward [Ctrl+➡]"
-                                        data-topic="command"
-                                        data-command="shiftXChars:1">&#x2B86;</button>
+                <!--[if lt IE 10]>
+                    <p>
+                        <small>
+                            Internet Explorer's version not less than 10 is a requirement to run the application.
+                        </small>
+                    </p>
+                    <script>
+                        Env.ok = false;
+                    </script>
+                <![endif]-->
+            </div>
+        </aside>
+        <main class="receiver-view"
+              data-depend-view="children,class"
+              data-class-view-workspace="sup-workspace">
+            <section class="workspace" id="workspace" data-view="workspace">
+                <header class="sup-menu">
+                    <h2 class="implicit">Workspace</h2>
+                    <ul class="menu">
+                        <li class="select selector-alphabet">
+                            <div title="Select alphabet">
+                                <h4 class="icon logotext">ᚱ</h4>
+                                <em class="receiver-alphabet"
+                                    data-depend-alphabet="children">
+                                </em>
+                            </div>
+                            <ul></ul>
+                        </li>
+                        <li class="select selector-xchars receiver-alphabet"
+                            data-depend-alphabet="children,class">
+                            <div title="Select letter variants">
+                                <h4 class="icon">&#x2605;</h4>
+                                <em class="receiver-alphabet"
+                                    data-depend-alphabet="children">
+                                </em>
+                            </div>
+                            <ul class="prototype">
+                                <li>
+                                    <button title="Shift all backward [Ctrl+⬅]"
+                                            data-topic="command"
+                                            data-command="shiftXChars:-1">&#x2B84;</button>
+                                    <button title="Shift all forward [Ctrl+➡]"
+                                            data-topic="command"
+                                            data-command="shiftXChars:1">&#x2B86;</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="select selector-settings">
+                            <div title="Settings">
+                                <h4 class="icon">&#x2699;</h4>
+                            </div>
+                            <ul>
+                                <li class="select selector-layout">
+                                    <div>
+                                        <h5>
+                                            <span class="icon">&#x1F5AE;</span>
+                                            Input alphabet
+                                        </h5>
+                                    </div>
+                                    <ul></ul>
+                                </li>
+                                <li class="select selector-xfont">
+                                    <div>
+                                        <h5>
+                                            <span class="icon">&#x2619;</span>
+                                            Historical font style
+                                        </h5>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <button class="receiver-xfont"
+                                                    data-topic="xfont"
+                                                    data-xfont="noto"
+                                                    data-depend-xfont="class"
+                                                    data-class-xfont-noto="active">
+                                                Google Noto Sans
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="receiver-xfont"
+                                                    data-topic="xfont"
+                                                    data-xfont="pfeffer"
+                                                    data-depend-xfont="class"
+                                                    data-class-xfont-pfeffer="active">
+                                                Pfeffer Mediæval
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="select selector-theme">
+                                    <div>
+                                        <h5>
+                                            <span class="icon">&#x25D0;</span>
+                                            Theme
+                                        </h5>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <button class="receiver-theme"
+                                                    data-topic="theme"
+                                                    data-theme="bright"
+                                                    data-depend-theme="class"
+                                                    data-class-theme-bright="active">
+                                                Bright
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="receiver-theme"
+                                                    data-topic="theme"
+                                                    data-theme="dark"
+                                                    data-depend-theme="class"
+                                                    data-class-theme-dark="active">
+                                                Dark
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="switch-captions receiver-captions"
+                            data-topic="command"
+                            data-command="switchCaptions"
+                            data-depend-captions="title"
+                            data-title-captions-roman="Captions: romanization. Toggle: click or [Insert]"
+                            data-title-captions-keys="Captions: keys. Toggle: click or [Insert]"
+                            data-title-captions-off="Captions: off. Toggle: click or [Insert]">
+                            <h4 class="icon receiver-captions" data-depend-captions="children">
+                                <button class="full" data-captions="roman">Æ</button>
+                                <button class="full" data-captions="keys">&#x1F130;&#x1F134;</button>
+                                <button class="full" data-captions="off">&#x2014;</button>
+                            </h4>
+                        </li>
+                        <li title="Information">
+                            <h4 class="icon">
+                                <button data-topic="view" data-view="information">&#x1F6C8;</button>
+                            </h4>
+                        </li>
+                    </ul>
+                </header>
+                <div class="editor-space" id="editor-space">
+                    <textarea id="output"
+                              class="xtext"
+                              placeholder="&#x16eb;&#x16eb;&#x16eb;"
+                              spellcheck="false"
+                              data-min-font-size="8"
+                              data-max-font-size="100"
+                              data-step-font-size="4"></textarea>
+                    <div class="sup-menu receiver-toolbar"
+                         data-depend-toolbar="class"
+                         data-class-toolbar-off="collapse">
+                        <ul class="menu receiver-toolbar"
+                            data-depend-toolbar="children">
+                            <li title="Collapse editor toolbar" data-toolbar="on">
+                                <h4>
+                                    <button data-topic="toolbar" data-toolbar="off">&#x25C2;</button>
+                                </h4>
+                            </li>
+                            <li title="Increase font size [Ctrl+Shift++]" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button data-topic="command" data-command="changeFontSize:1">&#x1F5DA;</button>
+                                </h4>
+                            </li>
+                            <li title="Decrease font size [Ctrl+Shift+-]" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button data-topic="command" data-command="changeFontSize:-1">&#x1F5DB;</button>
+                                </h4>
+                            </li>
+                            <li class="receiver-loadable_text"
+                                data-depend-loadable_text="title"
+                                title="Save locally [Ctrl+s]"
+                                data-title-loadable_text-0="Save locally [Ctrl+s]"
+                                data-title-loadable_text-1="Save locally (overwrites the previous save) [Ctrl+s]"
+                                data-toolbar="on">
+                                <h4 class="icon receiver-loadable_text"
+                                    data-depend-loadable_text="class"
+                                    data-class-loadable_text-1="caution">
+                                    <button data-topic="command"
+                                            data-command="saveText"
+                                            id="save-text-button">&#x1F5F8;</button>
+                                </h4>
+                            </li>
+                            <li title="Paste stored text" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button data-topic="command"
+                                            data-command="pasteText"
+                                            class="receiver-loadable_text"
+                                            data-depend-loadable_text="class"
+                                            data-class-loadable_text-0="disabled">&#x1F4CB;</button>
+                                </h4>
+                            </li>
+                            <li title="Select all [Ctrl+a]" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button data-topic="command" data-command="selectAll">&#x1F5A2;</button>
+                                </h4>
+                            </li>
+                            <li title="Erase selected text" data-toolbar="on">
+                                <h4 class="icon danger">
+                                    <button data-topic="command" data-command="eraseSelection">&#x2327;</button>
+                                </h4>
+                            </li>
+                            <li title="Expand editor toolbar" data-toolbar="off">
+                                <h4>
+                                    <button data-topic="toolbar" data-toolbar="on">&#x25B8;</button>
+                                </h4>
                             </li>
                         </ul>
-                    </li>
-                    <li class="select selector-settings">
-                        <div title="Settings">
-                            <h4 class="icon">&#x2699;</h4>
-                        </div>
-                        <ul>
-                            <li class="select selector-layout">
-                                <div>
-                                    <h5>
-                                        <span class="icon">&#x1F5AE;</span>
-                                        Input alphabet
-                                    </h5>
-                                </div>
-                                <ul></ul>
-                            </li>
-                            <li class="select selector-xfont">
-                                <div>
-                                    <h5>
-                                        <span class="icon">&#x2619;</span>
-                                        Historical font style
-                                    </h5>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <button class="receiver-xfont"
-                                                data-topic="xfont"
-                                                data-xfont="noto"
-                                                data-depend-xfont="class"
-                                                data-class-xfont-noto="active">
-                                            Google Noto Sans
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button class="receiver-xfont"
-                                                data-topic="xfont"
-                                                data-xfont="pfeffer"
-                                                data-depend-xfont="class"
-                                                data-class-xfont-pfeffer="active">
-                                            Pfeffer Mediæval
-                                        </button>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="select selector-theme">
-                                <div>
-                                    <h5>
-                                        <span class="icon">&#x25D0;</span>
-                                        Theme
-                                    </h5>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <button class="receiver-theme"
-                                                data-topic="theme"
-                                                data-theme="bright"
-                                                data-depend-theme="class"
-                                                data-class-theme-bright="active">
-                                            Bright
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button class="receiver-theme"
-                                                data-topic="theme"
-                                                data-theme="dark"
-                                                data-depend-theme="class"
-                                                data-class-theme-dark="active">
-                                            Dark
-                                        </button>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="switch-captions receiver-captions"
-                        data-topic="command"
-                        data-command="switchCaptions"
-                        data-depend-captions="title"
-                        data-title-captions-roman="Captions: romanization. Toggle: click or [Insert]"
-                        data-title-captions-keys="Captions: keys. Toggle: click or [Insert]"
-                        data-title-captions-off="Captions: off. Toggle: click or [Insert]">
-                        <h4 class="icon receiver-captions" data-depend-captions="children">
-                            <button class="full" data-captions="roman">Æ</button>
-                            <button class="full" data-captions="keys">&#x1F130;&#x1F134;</button>
-                            <button class="full" data-captions="off">&#x2014;</button>
-                        </h4>
-                    </li>
-                    <li title="Information">
-                        <h4 class="icon">
-                            <button data-topic="view" data-view="information">&#x1F6C8;</button>
-                        </h4>
-                    </li>
-                </ul>
-            </header>
-            <div class="editor-space" id="editor-space">
-                <textarea id="output"
-                          class="xtext"
-                          placeholder="&#x16eb;&#x16eb;&#x16eb;"
-                          spellcheck="false"
-                          data-min-font-size="8"
-                          data-max-font-size="100"
-                          data-step-font-size="4"></textarea>
-                <div class="sup-menu receiver-toolbar"
-                     data-depend-toolbar="class"
-                     data-class-toolbar-off="collapse">
-                    <ul class="menu receiver-toolbar"
-                        data-depend-toolbar="children">
-                        <li title="Collapse editor toolbar" data-toolbar="on">
-                            <h4>
-                                <button data-topic="toolbar" data-toolbar="off">&#x25C2;</button>
-                            </h4>
-                        </li>
-                        <li title="Increase font size [Ctrl+Shift++]" data-toolbar="on">
-                            <h4 class="icon">
-                                <button data-topic="command" data-command="changeFontSize:1">&#x1F5DA;</button>
-                            </h4>
-                        </li>
-                        <li title="Decrease font size [Ctrl+Shift+-]" data-toolbar="on">
-                            <h4 class="icon">
-                                <button data-topic="command" data-command="changeFontSize:-1">&#x1F5DB;</button>
-                            </h4>
-                        </li>
-                        <li class="receiver-loadable_text"
-                            data-depend-loadable_text="title"
-                            title="Save locally [Ctrl+s]"
-                            data-title-loadable_text-0="Save locally [Ctrl+s]"
-                            data-title-loadable_text-1="Save locally (overwrites the previous save) [Ctrl+s]"
-                            data-toolbar="on">
-                            <h4 class="icon receiver-loadable_text"
-                                data-depend-loadable_text="class"
-                                data-class-loadable_text-1="caution">
-                                <button data-topic="command"
-                                        data-command="saveText"
-                                        id="save-text-button">&#x1F5F8;</button>
-                            </h4>
-                        </li>
-                        <li title="Paste stored text" data-toolbar="on">
-                            <h4 class="icon">
-                                <button data-topic="command"
-                                        data-command="pasteText"
-                                        class="receiver-loadable_text"
-                                        data-depend-loadable_text="class"
-                                        data-class-loadable_text-0="disabled">&#x1F4CB;</button>
-                            </h4>
-                        </li>
-                        <li title="Select all [Ctrl+a]" data-toolbar="on">
-                            <h4 class="icon">
-                                <button data-topic="command" data-command="selectAll">&#x1F5A2;</button>
-                            </h4>
-                        </li>
-                        <li title="Erase selected text" data-toolbar="on">
-                            <h4 class="icon danger">
-                                <button data-topic="command" data-command="eraseSelection">&#x2327;</button>
-                            </h4>
-                        </li>
-                        <li title="Expand editor toolbar" data-toolbar="off">
-                            <h4>
-                                <button data-topic="toolbar" data-toolbar="on">&#x25B8;</button>
+                    </div>
+                </div>
+
+                <div class="kboard-space receiver-alphabet receiver-captions"
+                     id="kboard-space"
+                     data-depend-alphabet="children"
+                     data-depend-captions="class"
+                     data-class-captions-roman="sup-captions-roman"
+                     data-class-captions-keys="sup-captions-keys"
+                     data-class-captions-off="sup-captions-off">
+                </div>
+            </section>
+
+            <section class="information" id="information" data-view="information">
+                <header>
+                    <h1 class="logo"><span>R</span>unetyper</h1>
+                    <address>
+                        <dl>
+                            <dt>Author</dt>
+                            <dd>Wiktor Banaszewski</dd>
+                            <dt>Contact</dt>
+                            <dd><a class="email"></a></dd>
+                            <dt>Project repository</dt>
+                            <dd>
+                                <a href="https://github.com/Sigrarr/Runetyper" target="_blank">https://github.com/Sigrarr/Runetyper</a>
+                            </dd>
+                        </dl>
+                    </address>
+                </header>
+
+                <div class="sup-menu" id="info-closing">
+                    <ul class="menu">
+                        <li>
+                            <h4 title="Close [Esc]">
+                                <button data-topic="view" data-view="workspace">&#x1F5D9;</button>
                             </h4>
                         </li>
                     </ul>
                 </div>
-            </div>
 
-            <div class="kboard-space receiver-alphabet receiver-captions"
-                 id="kboard-space"
-                 data-depend-alphabet="children"
-                 data-depend-captions="class"
-                 data-class-captions-roman="sup-captions-roman"
-                 data-class-captions-keys="sup-captions-keys"
-                 data-class-captions-off="sup-captions-off">
-            </div>
-        </section>
+                <div class="long-text-content">
+                    <aside id="outline" class="super-p">
+                        <h5>Contents</h5>
+                        <ul></ul>
+                    </aside>
+                </div>
 
-        <section class="information" id="information" data-view="information">
-            <header>
-                <h1 class="logo"><span>R</span>unetyper</h1>
-                <address>
-                    <dl>
-                        <dt>Author</dt>
-                            <dd>Wiktor Banaszewski</dd>
-                        <dt>Contact</dt>
-                            <dd><a class="email"></a></dd>
-                        <dt>Project repository</dt>
-                            <dd>
-                                <a href="https://github.com/Sigrarr/Runetyper" target="_blank">https://github.com/Sigrarr/Runetyper</a>
-                            </dd>
-                    </dl>
-                </address>
-            </header>
-
-            <div class="sup-menu" id="info-closing">
-                <ul class="menu">
-                    <li>
-                        <h4 title="Close [Esc]">
-                            <button data-topic="view" data-view="workspace">&#x1F5D9;</button>
-                        </h4>
-                    </li>
-                </ul>
-            </div>
-
-            <aside id="outline">
-                <h5>Contents</h5>
-                <ul></ul>
-            </aside>
-
-            <div class="sup-menu" id="go-top">
-                <ul class="menu">
-                    <li title="Go back to the top">
-                        <h4>
-                            <a href="#information">
-                                <button>&#x25B4;</button>
-                            </a>
-                        </h4>
-                    </li>
-                </ul>
-            </div>
-
-        </section>
-    </main>
-    <footer class="receiver-view"
-            data-depend-view="class"
-            data-class-view-workspace="sub-workspace"
-            data-class-view-information="sub-information">
-        <small>
-            <span class="logo"><span>R</span>unetyper</span> &copy; 2019 Wiktor Banaszewski
-        </small>
-    </footer>
-</body>
+                <div class="sup-menu" id="go-top">
+                    <ul class="menu">
+                        <li title="Go back to the top">
+                            <h4>
+                                <a href="#information">
+                                    <button>&#x25B4;</button>
+                                </a>
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+                <footer>
+                    <small>
+                        <span class="logo"><span>R</span>unetyper</span> &copy; 2019 Wiktor Banaszewski
+                    </small>
+                </footer>
+            </section>
+        </main>
+    </body>
 </html>

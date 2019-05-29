@@ -1,4 +1,5 @@
 "use strict";
+var startT = Date.now();
 
 include("lib/helpers.js");
 include("lib/Updater.js");
@@ -29,8 +30,6 @@ include("overrides/NoSetRangeText.js");
 include("run.js");
 include("cleanup.js");
 
-window.addEventListener("load", App.run);
-
 App.Constructor.enterAlphabets(
         include("../../data/alphabets/00-elder_futhark.json"),
         include("../../data/alphabets/01-anglo-saxon_futhorc.json"),
@@ -47,3 +46,5 @@ App.Constructor.enterLayouts(
         include("../../data/layouts/04-is.json"),
         include("../../data/layouts/05-sv.json")
 );
+
+window.addEventListener("load", App.run);

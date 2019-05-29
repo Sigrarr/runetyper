@@ -1,8 +1,8 @@
 
-/* global App, Updater, Env, findOne, removeNode */
+/* global App, Updater, Env, findOne, removeNode, startT */
 
 App.run = function () {
-    console.log("@run");
+    console.log("@run", (Date.now() - startT) + "ms");
 
     App.Writer.textArea = findOne("#output");
     App.DomLandmarks.kBoardContainer = findOne(".kboard-space");
@@ -78,13 +78,17 @@ App.run = function () {
         }
     }
 
+    var deltaT = Date.now() - startT;
+    console.log("@built", deltaT + "ms");
+
     if (Env.ok) {
         setTimeout(function () {
             findOne("#loader").classList.add("fading");
             setTimeout(function () {
                 removeNode(findOne("#loader"));
+                document.body.classList.remove("sup-loader");
             }, 500);
-        }, 500);
+        }, Math.max(500 - deltaT, 0));
     }
 
     App.cleanUp();
