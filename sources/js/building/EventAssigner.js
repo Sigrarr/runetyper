@@ -28,6 +28,24 @@ App.EventAssigner = {
         for (var i = 0; i < menus.length; i++) {
             menus[i].addEventListener("click", menuClickHandler);
         }
+
+        var workspace = findOne("#workspace");
+
+        var selectSwitchHandler = function (event) {
+            var select = App.MenuSelectController.findContainingSelect(event.target, true);
+            if (select) {
+                event.stopPropagation();
+                App.MenuSelectController.handle(select);
+            }
+        };
+        workspace.firstElementChild.children[1].addEventListener("click", selectSwitchHandler);
+
+        var selectClearingHandler = function (event) {
+            if (!App.MenuSelectController.findContainingSelect(event.target, false)) {
+                App.MenuSelectController.clear();
+            }
+        };
+        workspace.addEventListener("click", selectClearingHandler);
     },
 
     initializeXCharButtonClicks: function () {

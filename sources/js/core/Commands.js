@@ -9,6 +9,7 @@ App.Commands = {
 
         switch (event.key) {
             case "Escape":
+                App.MenuSelectController.clear();
                 Updater.push("view", "workspace");
                 commandMatch = true;
                 break;

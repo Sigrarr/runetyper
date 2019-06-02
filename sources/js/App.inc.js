@@ -18,6 +18,7 @@ include("core/aux/Storage.js");
 include("core/aux/ViewController.js");
 include("core/aux/KBoardFitController.js");
 include("core/aux/OutFontSizeController.js");
+include("core/aux/MenuSelectController.js");
 include("building/Constructor.js");
 include("building/MenuBuilder.js");
 include("building/KBoardBuilder.js");

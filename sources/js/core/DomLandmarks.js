@@ -4,12 +4,12 @@ App.DomLandmarks = {
 
     kBoards: [],
     activeKBoard: null,
+    kBoardContainer: null,
     alphSelectLi: null,
     xCharsSelectLi: null,
     layoutSelectLi: null,
     captionsSwitchLi: null,
     viewSwitchLi: null,
-    kBoardContainer: null,
     saveTextButton: null,
     goTopButton: null,
 

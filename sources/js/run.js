@@ -17,8 +17,8 @@ App.run = function () {
     App.Constructor.buildAlphabets();
     App.Constructor.buildKeyHeadSets();
     App.EventAssigner.initializeKeyboardEvents();
-    App.EventAssigner.initializeMenuClicks();
     App.EventAssigner.initializeXCharButtonClicks();
+    App.EventAssigner.initializeMenuClicks();
     App.EventAssigner.initializeResizeHandling();
 
     Updater.register('_', App.Storage);
