@@ -1,5 +1,5 @@
 
-/* global App, Env, removeNode */
+/* global App, Env, removeNode, T */
 
 App.cleanUp = function () {
 
@@ -19,4 +19,7 @@ App.cleanUp = function () {
     for (var i = 0; i < prototypeNodes.length; i++) {
         removeNode(prototypeNodes[i]);
     }
+
+    T.t1 = Date.now();
+    console.log("@ready", (T.t1 - T.t0) + "ms");
 };

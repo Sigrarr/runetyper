@@ -1,5 +1,4 @@
 "use strict";
-var startT = Date.now();
 
 include("lib/helpers.js");
 include("lib/Updater.js");

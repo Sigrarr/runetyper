@@ -8,6 +8,9 @@
         <meta name="description" content="Simple text editor for writing in old Germanic alphabets, especially runic. HTML5 + JS, running in a web browser.">
         <meta name="keywords" content="runes, runic, writing, text editor, virtual keyboard, gothic alphabet, scripts">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            var T = {t0: Date.now()};
+        </script>
         <link rel="stylesheet" type="text/css" href="assets/css/fontfaces.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
         <link rel="icon" href="assets/images/icon.png" sizes="196x196" type="image/png">
@@ -183,8 +186,8 @@
                         <ul class="menu receiver-toolbar"
                             data-depend-toolbar="children">
                             <li title="Collapse editor toolbar" data-toolbar="on">
-                                <h4>
-                                    <button data-topic="toolbar" data-toolbar="off">&#x25C2;</button>
+                                <h4 class="icon">
+                                    <button data-topic="toolbar" data-toolbar="off"><span class="horizontal">&#x2BC7;</span><span class="vertical">&#x2BC5;</span></button>
                                 </h4>
                             </li>
                             <li title="Increase font size [Ctrl+Shift++]" data-toolbar="on">
@@ -231,8 +234,8 @@
                                 </h4>
                             </li>
                             <li title="Expand editor toolbar" data-toolbar="off">
-                                <h4>
-                                    <button data-topic="toolbar" data-toolbar="on">&#x25B8;</button>
+                                <h4 class="icon">
+                                    <button data-topic="toolbar" data-toolbar="on"><span class="horizontal">&#x2BC8;</span><span class="vertical">&#x2BC6;</span></button>
                                 </h4>
                             </li>
                         </ul>
@@ -269,7 +272,7 @@
                 <div class="sup-menu" id="info-closing">
                     <ul class="menu">
                         <li>
-                            <h4 title="Close [Esc]">
+                            <h4 title="Close [Esc]" class="icon">
                                 <button data-topic="view" data-view="workspace">&#x1F5D9;</button>
                             </h4>
                         </li>
@@ -286,9 +289,9 @@
                 <div class="sup-menu" id="go-top">
                     <ul class="menu">
                         <li title="Go back to the top">
-                            <h4>
+                            <h4 class="icon">
                                 <a href="#information">
-                                    <button>&#x25B4;</button>
+                                    <button>&#x2BC5;</button>
                                 </a>
                             </h4>
                         </li>
