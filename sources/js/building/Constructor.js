@@ -78,11 +78,19 @@ App.Constructor = {
             this.buildAlphabet(data);
         }
 
-        var longRowKBoards = App.KBoardBuilder.kBoardsOfMaxRowN;
-        for (var d in longRowKBoards) {
-            longRowKBoards[d].classList.add("longRow");
+        var fitController = App.KBoardFitController;
+
+        var wideKBoards = App.KBoardBuilder.wideKBoards;
+        for (var d in wideKBoards) {
+            wideKBoards[d].classList.add(fitController.modes.wide.mClass);
         }
-        App.KBoardFitController.longRowKBoard = longRowKBoards[0];
+        fitController.modes.wide.mKBoard = wideKBoards[0];
+
+        var tallKBoards = App.KBoardBuilder.tallKBoards;
+        for (var d in tallKBoards) {
+            tallKBoards[d].classList.add(fitController.modes.narrow.mClass);
+        }
+        fitController.modes.narrow.mKBoard = tallKBoards[0];
     },
 
     buildLayouts: function () {

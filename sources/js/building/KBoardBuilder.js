@@ -5,8 +5,11 @@ App.KBoardBuilder = {
 
     xCharToButton: {},
     keyToEntity: {},
-    maxRowN: 0,
-    kBoardsOfMaxRowN: [],
+    wideKBoards: [],
+    maxColsN: 0,
+    tallKBoards: [],
+    maxRowsN: 0,
+    subMaxSectionsN: 0,
 
     buildAndAddKboard: function (data, alphId) {
         this.xCharToButton = {};
@@ -21,16 +24,20 @@ App.KBoardBuilder = {
             }
         }
 
+        var rowsN = 0;
+        var sectionsN = 0;
         for (var s in data.order) {
+            sectionsN++;
             var section = createElement("section");
             var sectionOrder = data.order[s];
             for (var r in sectionOrder) {
+                rowsN++;
                 var row = createElement("section", ["row"]);
                 var rowOrder = sectionOrder[r];
-                var rowN = rowOrder.length;
-                this.checkForMaxRowN(rowN, kBoard);
+                var colsN = rowOrder.length;
+                this.checkForWide(kBoard, colsN);
 
-                for (var k = 0; k < rowN; k++) {
+                for (var k = 0; k < colsN; k++) {
                     row.appendChild(this.buildXLetterBox(rowOrder[k]));
                 }
                 section.appendChild(row);
@@ -38,6 +45,7 @@ App.KBoardBuilder = {
             kBoard.appendChild(section);
         }
 
+        this.checkForTall(kBoard, rowsN, sectionsN);
         kBoard.backMap = this.xCharToButton;
         App.DomLandmarks.kBoards.push(kBoard);
         App.DomLandmarks.kBoardContainer.appendChild(kBoard);
@@ -53,12 +61,12 @@ App.KBoardBuilder = {
                     [["data-xchar", xChar]]
                     .concat(
                             xCharsN > 1 ? [["data-" + entity.topicName, x]] : []
-                            )
+                    )
                     .concat(
                             x > 0 ? [["style", "display: none;"]] : []
-                            ),
+                    ),
                     [createTextNode(xChar)]
-                    );
+            );
         }
     },
 
@@ -125,12 +133,23 @@ App.KBoardBuilder = {
         return preservedKeys.concat(addedKeys).join(" ");
     },
 
-    checkForMaxRowN: function (rowN, kBoard) {
-        if (rowN > this.maxRowN) {
-            this.maxRowN = rowN;
-            this.kBoardsOfMaxRowN = [kBoard];
-        } else if (rowN === this.maxRowN && this.kBoardsOfMaxRowN.indexOf(kBoard) < 0) {
-            this.kBoardsOfMaxRowN.push(kBoard);
+    checkForWide: function (kBoard, colsN) {
+        if (colsN > this.maxColsN) {
+            this.maxColsN = colsN;
+            this.wideKBoards = [kBoard];
+        } else if (colsN === this.maxColsN && this.wideKBoards.indexOf(kBoard) < 0) {
+            this.wideKBoards.push(kBoard);
+        }
+    },
+
+    checkForTall: function (kBoard, rowsN, sectionsN) {
+        if (rowsN > this.maxRowsN || (rowsN === this.maxRowsN && sectionsN > this.subMaxSectionsN)) {
+            this.maxRowsN = rowsN;
+            this.subMaxSectionsN = sectionsN;
+            this.tallKBoards = [kBoard];
+        } else if (rowsN === this.maxRowsN && sectionsN === this.subMaxSectionsN
+                && this.tallKBoards.indexOf(kBoard) < 0) {
+            this.tallKBoards.push(kBoard);
         }
     }
 
