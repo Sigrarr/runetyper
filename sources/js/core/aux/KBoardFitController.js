@@ -22,13 +22,20 @@ App.KBoardFitController = {
         container.classList.add(mode.fitClass);
 
         var activeKBoard = App.DomLandmarks.activeKBoard;
+        var previousMKBoard = controller.kBoard;
+
         if (activeKBoard.classList.contains(mode.mClass)) {
             controller.kBoard = mode.mKBoard = activeKBoard;
         } else {
             activeKBoard.style.display = "none";
             controller.kBoard = mode.mKBoard;
-            controller.kBoard.style.display = "block";
+            controller.kBoard.style.removeProperty("display");
         }
+
+        if (previousMKBoard !== controller.kBoard && previousMKBoard) {
+            previousMKBoard.style.display = "none";
+        }
+
         controller.box = controller.kBoard
                 .firstElementChild
                 .firstElementChild
