@@ -77,10 +77,10 @@ App.KBoardBuilder = {
         var box = createElement(
                 "div",
                 ["xletter-box"].concat(
-                xCharsN > 1 ? ["receiver-" + entity.topicName] : []
+                        xCharsN > 1 ? ["receiver-" + entity.topicName] : []
                 ),
                 xCharsN > 1 ? [["data-depend-" + entity.topicName, "children"]] : null
-                );
+        );
 
         for (var x = 0; x < xCharsN; x++) {
             box.appendChild(this.xCharToButton[entity.chars[x]]);
@@ -88,23 +88,46 @@ App.KBoardBuilder = {
 
         box.appendChild(createElement(
                 "p", ["roman"], null, [
-            createElement("i", null, null, [createTextNode(entity.roman)])
-        ]
-                ));
+                    createElement("i", null, null, [createTextNode(entity.roman)])
+                ]
+        ));
 
-        var keysP = createElement(
-                "p",
-                ["keys", "receiver-layout", "typetext"],
-                {"data-captions": "keys", "data-depend-layout": "children"}
-        );
-
-        for (var i in App.Literator.layoutMaps) {
-            keysP.appendChild(createElement("span", null, {"data-layout": i}, [
-                createTextNode(this.resolveKeys(App.Literator.layoutMaps[i], entity.keys))
-            ]));
+        var keySetToLayoutIds = {};
+        var keySetsN = 0;
+        for (var lId in App.Literator.layoutMaps) {
+            var keySet = this.resolveKeys(App.Literator.layoutMaps[lId], entity.keys);
+            if (keySetToLayoutIds[keySet]) {
+                keySetToLayoutIds[keySet] += ',' + lId;
+            } else {
+                keySetToLayoutIds[keySet] = lId;
+                keySetsN++;
+            }
         }
 
-        box.appendChild(keysP);
+        var layoutDependency = keySetsN > 1;
+        var keySpans = [];
+        for (var keySet in keySetToLayoutIds) {
+            keySpans.push(
+                    createElement(
+                        "span",
+                        null,
+                        layoutDependency ? {"data-layout": keySetToLayoutIds[keySet]} : null,
+                        [createTextNode(keySet)]
+                    )
+            );
+        }
+
+        box.appendChild(createElement(
+                "p",
+                ["keys", "typetext"].concat(
+                        layoutDependency ? ["receiver-layout"] : []
+                ),
+                [["data-captions", "keys"]].concat(
+                        layoutDependency ? [["data-depend-layout", "children"]] : []
+                ),
+                keySpans
+        ));
+
         return box;
     },
 
@@ -130,7 +153,7 @@ App.KBoardBuilder = {
             }
         }
 
-        return preservedKeys.concat(addedKeys).join(" ");
+        return preservedKeys.concat(addedKeys).join(' ');
     },
 
     checkForWide: function (kBoard, colsN) {

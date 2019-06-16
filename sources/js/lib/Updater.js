@@ -88,13 +88,14 @@ var Updater = {
         }
     },
 
-    push: function (topicName, newValue) {
+    push: function (topicName, newValueMixed) {
         if (!this.topics.hasOwnProperty(topicName)) {
             throw "Unregistered topic: " + topicName;
         }
 
         var topic = this.topics[topicName];
         var updateId = ++topic.upId;
+        var newValue = String(newValueMixed);
         var n;
 
         n = topic.receivers.byHandler.length;
@@ -170,7 +171,7 @@ var Updater = {
         var childrenToActivate = [];
         for (var c = 0; c < children.length; c++) {
             if (children[c].hasAttribute("data-" + topic.name)) {
-                if (children[c].getAttribute("data-" + topic.name) == newValue) {
+                if (children[c].getAttribute("data-" + topic.name).split(',').indexOf(newValue) >= 0) {
                     childrenToActivate.push(children[c]);
                 } else {
                     children[c].style.display = "none";
