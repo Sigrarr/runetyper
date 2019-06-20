@@ -6,6 +6,7 @@ App.run = function () {
 
     App.Writer.textArea = findOne("#output");
     App.DomLandmarks.kBoardContainer = findOne(".kboard-space");
+    App.DomLandmarks.outputContainer = findOne(".editor-space");
     App.DomLandmarks.alphSelectLi = findOne(".selector-alphabet");
     App.DomLandmarks.xCharsSelectLi = findOne(".selector-xchars");
     App.DomLandmarks.layoutSelectLi = findOne(".selector-layout");
@@ -20,6 +21,7 @@ App.run = function () {
     App.EventAssigner.initializeXCharButtonClicks();
     App.EventAssigner.initializeMenuClicks();
     App.EventAssigner.initializeResizeHandling();
+    App.FitController.initialize();
 
     Updater.register('_', App.Storage);
     Updater.register("alphabet", App.DomLandmarks);
@@ -27,7 +29,9 @@ App.run = function () {
     Updater.register("layout", App.Literator);
     Updater.register("command", App.Commands);
     Updater.register("view", App.ViewController);
-    Updater.register("view", App.KBoardFitController);
+    Updater.register("view", App.FitController);
+    Updater.register("alphabet", App.FitController);
+    Updater.register("kbmode", App.FitController);
     Updater.register("fontsize", App.OutFontSizeController);
     Updater.confirmTopic("captions");
     Updater.confirmTopic("xfont");
@@ -44,7 +48,8 @@ App.run = function () {
         "toolbar": "on",
         "captions": "roman",
         "theme": "bright",
-        "xfont": "noto"
+        "xfont": "noto",
+        "kbmode": "auto"
     };
 
     for (var topicName in primaryDefaults) {

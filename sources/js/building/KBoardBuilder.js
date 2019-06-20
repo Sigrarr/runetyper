@@ -86,9 +86,14 @@ App.KBoardBuilder = {
             box.appendChild(this.xCharToButton[entity.chars[x]]);
         }
 
+        var romans = entity.roman.split(' ');
         box.appendChild(createElement(
                 "p", ["roman"], null, [
-                    createElement("i", null, null, [createTextNode(entity.roman)])
+                    createElement("i", null, null, [
+                        createElement("span", null, null, [createTextNode(romans[0])])
+                    ].concat(
+                        romans.length > 1 ? [createTextNode(" " + romans.slice(1).join(' '))] : []
+                    ))
                 ]
         ));
 
@@ -107,12 +112,17 @@ App.KBoardBuilder = {
         var layoutDependency = keySetsN > 1;
         var keySpans = [];
         for (var keySet in keySetToLayoutIds) {
+            var keys = keySet.split(' ');
             keySpans.push(
                     createElement(
                         "span",
                         null,
                         layoutDependency ? {"data-layout": keySetToLayoutIds[keySet]} : null,
-                        [createTextNode(keySet)]
+                        [
+                            createElement("span", null, null, [createTextNode(keys[0])])
+                        ].concat(
+                                keys.length > 1 ? [createTextNode(" " + keys.slice(1).join(' '))] : []
+                        )
                     )
             );
         }

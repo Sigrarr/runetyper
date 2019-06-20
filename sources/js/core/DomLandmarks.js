@@ -5,6 +5,7 @@ App.DomLandmarks = {
     kBoards: [],
     activeKBoard: null,
     kBoardContainer: null,
+    outputContainer: null,
     alphSelectLi: null,
     xCharsSelectLi: null,
     layoutSelectLi: null,
