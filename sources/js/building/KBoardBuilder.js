@@ -1,5 +1,5 @@
 
-/* global App, createElement */
+/* global App, Env, createElement */
 
 App.KBoardBuilder = {
 
@@ -97,6 +97,14 @@ App.KBoardBuilder = {
                 ]
         ));
 
+        if (Env.stdDev()) {
+            box.appendChild(this.buildKeysP(entity));
+        }
+
+        return box;
+    },
+
+    buildKeysP: function(entity) {
         var keySetToLayoutIds = {};
         var keySetsN = 0;
         for (var lId in App.Literator.layoutMaps) {
@@ -127,7 +135,7 @@ App.KBoardBuilder = {
             );
         }
 
-        box.appendChild(createElement(
+        return createElement(
                 "p",
                 ["keys", "typetext"].concat(
                         layoutDependency ? ["receiver-layout"] : []
@@ -136,9 +144,7 @@ App.KBoardBuilder = {
                         layoutDependency ? [["data-depend-layout", "children"]] : []
                 ),
                 keySpans
-        ));
-
-        return box;
+        );
     },
 
     resolveKeys: function (layoutMap, uniKeys) {

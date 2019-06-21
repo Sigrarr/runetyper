@@ -14,10 +14,12 @@ App.Constructor = {
 
     alphabetsData: [],
     layoutsData: [],
+    alphId: -1,
+    layId: -1,
 
     buildAlphabet: function (data) {
         var map = new this.AlphMap(data);
-        var id = App.Literator.alphMaps.length;
+        var id = ++this.alphId;
 
         App.Literator.alphMaps.push(map);
         App.MenuBuilder.addAlphabetEntry(data.meta, id);
@@ -47,7 +49,7 @@ App.Constructor = {
     },
 
     buildLayout: function (data) {
-        var id = App.Literator.layoutMaps.length;
+        var id = ++this.layId;
         App.Literator.layoutMaps.push(data.map);
         App.MenuBuilder.addLayoutEntry(data.meta, id);
     },

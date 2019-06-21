@@ -5,7 +5,7 @@ include("lib/Updater.js");
 include("Env.js");
 
 var App = {
-    overrides: []
+    overrides: {}
 };
 
 include("core/Literator.js");
@@ -27,6 +27,7 @@ include("building/aux/buildOutline.js");
 include("overrides/MsKeys.js");
 include("overrides/NoJsSetRangeText.js");
 include("overrides/NoCssPointerEvents.js");
+include("overrides/TouchDevice.js");
 
 include("run.js");
 include("cleanup.js");

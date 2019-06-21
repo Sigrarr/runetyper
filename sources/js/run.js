@@ -45,11 +45,11 @@ App.run = function () {
     var primaryDefaults = {
         "alphabet": 0,
         "layout": 0,
-        "toolbar": "on",
-        "captions": "roman",
-        "theme": "bright",
         "xfont": "noto",
-        "kbmode": "auto"
+        "kbmode": "auto",
+        "toolbar": Env.touchDev() ? "off" : "on",
+        "captions": Env.touchDev() ? "off" : "roman",
+        "theme": Env.touchDev() ? "dark" : "bright"
     };
 
     for (var topicName in primaryDefaults) {
@@ -75,12 +75,21 @@ App.run = function () {
     App.fillEmail();
     App.buildOutline(2);
 
-    for (var i in App.overrides) {
-        var override = App.overrides[i];
+    for (var key in App.overrides) {
+        var override = App.overrides[key];
+
+        for (var i in override.depend) {
+            var dependencyKey = override.depend[i];
+            if (!App.overrides[dependencyKey].resolved) {
+                throw "@orverride " + key + ": unresolved dependency " + dependencyKey;
+            }
+        }
+
         if (override.test()) {
-            console.log("@override:", override.message);
+            console.log("@override", key);
             override.run();
         }
+        override.resolved = true;
     }
 
     T.run1 = Date.now();

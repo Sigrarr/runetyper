@@ -1,13 +1,13 @@
 
 /* global App, findActiveChild */
 
-App.overrides.push({
-
-    message: "CSS property 'pointer-events' is not supported",
+App.overrides.NoCssPointerEvents = {
 
     test: function () {
         return typeof document.body.style.pointerEvents === "undefined";
     },
+
+    depend: [],
 
     run: function () {
         App.DomLandmarks.kBoardContainer.addEventListener("click", function (event) {
@@ -26,4 +26,4 @@ App.overrides.push({
         });
     }
 
-});
+};

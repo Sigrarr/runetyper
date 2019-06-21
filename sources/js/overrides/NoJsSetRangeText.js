@@ -1,13 +1,13 @@
 
 /* global App */
 
-App.overrides.push({
-
-    message: "TextArea lacks native method 'setRangeText'",
+App.overrides.NoJsSetRangeText = {
 
     test: function () {
         return typeof App.Writer.textArea.setRangeText !== "function";
     },
+
+    depend: [],
 
     run: function () {
         App.Writer.write = function (insertionText) {
@@ -22,4 +22,4 @@ App.overrides.push({
         };
     }
 
-});
+};

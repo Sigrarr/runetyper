@@ -182,12 +182,11 @@ App.FitController = {
     },
 
     initialize: function () {
-        var probeBox = createElement("div", ["xletter-box", "extremes-probe"]);
+        var probeBox = createElement("div", ["extremes-probe", "protobox"]);
         document.body.appendChild(probeBox);
         var probeBoxStyle = getComputedStyle(probeBox);
         this.boxMaxSize = parseInt(probeBoxStyle.getPropertyValue("max-width"));
         this.boxMinSize = parseInt(probeBoxStyle.getPropertyValue("min-width"));
-        removeNode(probeBox);
         delete this.initialize;
     }
 

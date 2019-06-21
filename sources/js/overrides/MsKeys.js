@@ -1,13 +1,13 @@
 
 /* global App, Env */
 
-App.overrides.push({
-
-    message: "MS browser - keyboard events may have non-standard 'key' field",
+App.overrides.MsKeys = {
 
     test: function () {
-        return Env.browser === "ms";
+        return Env.stdDev() && Env.browser === "ms";
     },
+
+    depend: [],
 
     run: function () {
         App.MsKeys = this.MsKeys;
@@ -47,4 +47,4 @@ App.overrides.push({
             return event;
         }
     }
-});
+};

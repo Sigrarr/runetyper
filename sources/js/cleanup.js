@@ -15,9 +15,9 @@ App.cleanUp = function () {
 
     window.removeEventListener("load", App.run);
 
-    var prototypeNodes = findMany(".prototype");
-    for (var i = 0; i < prototypeNodes.length; i++) {
-        removeNode(prototypeNodes[i]);
+    var protoboxNodes = findMany(".protobox");
+    while (protoboxNodes.length > 0) {
+        removeNode(protoboxNodes[0]);
     }
 
     T.t1 = Date.now();
