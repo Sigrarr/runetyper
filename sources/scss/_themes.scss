@@ -1,0 +1,163 @@
+$coolColor: #324c5a;
+$coolColorDarker: darken($coolColor, 10);
+$darkColor: #131516;
+$brightColor: #e6e8ea;
+
+$flatRatio: 6.18;
+@function darkColorFlatten($level) {
+    @return if($level <= 0, $darkColor, lighten(darkColorFlatten($level - 1), $flatRatio));
+}
+@function brightColorFlatten($level) {
+    @return if($level <= 0, $brightColor, darken(brightColorFlatten($level - 1), $flatRatio));
+}
+
+$boxShadowSpread: 3px;
+
+body, #loader {
+    background-color: darkColorFlatten(2);
+    color: $brightColor;
+}
+
+.workspace {
+    color: $darkColor;
+}
+
+.editor-space, #output {
+    background-color: white;
+}
+
+#output {
+    &, &:focus {
+        border-right-color: $brightColor;
+    }
+}
+
+.kboard-space {
+    background-color: $brightColor;
+    color: darkColorFlatten(4);
+}
+
+.kboard > section:not(:last-child) .row:last-child {
+    &:after {
+        border-top-color: brightColorFlatten(2);
+    }
+    &:before {
+        background-color: brightColorFlatten(2);
+    }
+}
+
+.kboard button {
+    background-color: darkColorFlatten(2);
+
+    &:hover {
+        background-color: mix(darkColorFlatten(2), $coolColor);
+    }
+    &.signal {
+        &, &:hover {
+            background-color: $coolColor;
+        }
+    }
+    box-shadow: 0 0 $boxShadowSpread darkColorFlatten(1);
+}
+
+.kboard button, .compact .kboard p {
+    color: $brightColor;
+}
+
+#information {
+    background-color: darkColorFlatten(2);
+    color: $brightColor;
+
+    .long-text-content {
+        background-color: $brightColor;
+        color: $darkColor;
+    }
+
+    footer {
+        color: brightColorFlatten(2);
+    }
+
+    $internalLinkColor: saturate($coolColor, $flatRatio*3);
+    .op, a {
+        &, &:link, &:visited {
+            color: $internalLinkColor;
+        }
+        &:hover {
+            color: lighten($internalLinkColor, $flatRatio*2);
+        }
+    }
+
+    $externalLinkColor: #0366d6;
+    $externalLinkActiveColor: lighten(#0366d6, $flatRatio*3);
+    section a[target] {
+        &, &:link, &:visited {
+            color: $externalLinkColor;
+        }
+        &:hover {
+            color: $externalLinkActiveColor;
+        }
+    }
+    header a {
+        &, &:link, &:visited {
+            color: $externalLinkActiveColor;
+        }
+        &:hover {
+            color: lighten($externalLinkActiveColor, $flatRatio);
+        }
+    }
+
+    h6 {
+        color: darkColorFlatten(4);
+    }
+}
+
+body.theme-dark {
+
+    .editor-space, #output {
+        background-color: darkColorFlatten(1);
+    }
+
+    #output {
+        color: brightColorFlatten(1);
+        &, &:focus {
+            border-right-color: darkColorFlatten(2);
+        }
+    }
+
+    .kboard-space {
+        background-color: darkColorFlatten(2);
+        color: brightColorFlatten(3);
+    }
+
+    .kboard > section:not(:last-child) .row:last-child {
+        &:after {
+            border-top-color: darkColorFlatten(3);
+        }
+        &:before {
+            background-color: darkColorFlatten(3);
+        }
+    }
+
+    $darkThemeXButtonCoolColor: saturate($coolColorDarker, $flatRatio);
+    .kboard button {
+        background-color: darkColorFlatten(1);
+
+        &:hover {
+            background-color: mix(darkColorFlatten(1), $darkThemeXButtonCoolColor);
+        }
+        &.signal {
+            &, &:hover {
+                background-color: $darkThemeXButtonCoolColor;
+            }
+        }
+        box-shadow: 0 0 $boxShadowSpread darkColorFlatten(4);
+    }
+
+    .kboard button, .compact .kboard p {
+        color: brightColorFlatten(2);
+    }
+}
+
+button, .menu > li {
+    text-shadow: 2px 2px 2px black, 1px 1px 1px black;
+}

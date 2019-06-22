@@ -1,0 +1,27 @@
+
+button, .menu > li {
+    transition: background-color 0.07s linear;
+}
+
+.editor-space .sup-menu {
+    transition: left 0.07s linear,
+        opacity 0.07s linear;
+}
+
+.loader {
+    opacity: 1;
+    &.fading {
+        opacity: 0;
+    }
+    transition: opacity 0.5s;
+}
+
+.select > div:first-child:after {
+    transition: transform 0.07s linear,
+        color 0.07s linear;
+}
+
+.kboard > section:not(:last-child) .row:last-child:after {
+    transition: bottom 0.07s linear;
+}
+

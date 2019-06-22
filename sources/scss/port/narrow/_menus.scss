@@ -1,0 +1,129 @@
+
+/**
+ * The width is too low to keep a distance between the expanded xFont submenu
+ * and the vertically aligned editor tooblar.
+ */
+$WBreakpoint2: 620px + 3*$spaceS + $tileSize;
+
+@media only screen and (max-width: $WBreakpoint2) {
+
+    .sup-menu {
+        .select:not(.active):hover > ul, .select .select:not(.active):hover > ul {
+            display: none;
+        }
+
+        .select:hover:not(.disabled), .select.active {
+            & > div:first-child:before {
+                display: none;
+            }
+            .select:hover, .select.active {
+                & > div:first-child:before {
+                    display: none;
+                }
+            }
+        }
+
+        .select.active:not(.disabled) div:hover {
+            background-color: $darkColor;
+        }
+    }
+
+    .workspace .sup-menu li.select {
+        em {
+            display: none;
+        }
+
+        & > ul {
+            position: absolute;
+            left: 0;
+            width: 100vw;
+            padding: 0;
+        }
+
+        &.active .select.active, & ul {
+            top: $tileSize;
+        }
+
+        &.active {
+            float: none;
+            position: fixed;
+            top: 0;
+            left:0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 6;
+
+            h4.icon, h5 .icon {
+                min-width: $subOptionIconMinWidth;
+                padding-right: 0;
+            }
+
+            &, .select.active {
+                & > div:first-child {
+                    display: block;
+                    position: relative;
+                    width: 100%;
+                    border-bottom: 1px solid $coolColor;
+                }
+            }
+
+            & > div:first-child {
+                &:after {
+                    content: attr(title);
+                    margin-left: 0;
+                    font-family: $baseFontFamily;
+                    font-weight: bold;
+                    transform: none;
+                    transition: none;
+                }
+            }
+            .sub-select:not(.active) > div:first-child:after {
+                content: "\2BC6";
+            }
+
+            &:after {
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: $tileSize;
+                height: $tileSize;
+                content: "\1F5D9";
+            }
+            &.sub-select:after {
+                content: "\2BC5";
+            }
+
+            background-color: $darkColor;
+        }
+
+        & > ul {
+            border-bottom: $menuOptionLightBorder;
+            & > li:first-child > button:only-child {
+                border-top: 0;
+            }
+        }
+    }
+
+    .selector-alphabet {
+        div, li {
+            min-width: initial;
+        }
+    }
+
+    .selector-xchars {
+        div {
+            min-width: initial;
+        }
+        &.active ul.selector-xchar.active {
+            padding: 2*$spaceS;
+        }
+    }
+
+    .selector-settings {
+        li li {
+            border-left: 0;
+            border-right: 0;
+        }
+    }
+}

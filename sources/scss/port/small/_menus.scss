@@ -1,0 +1,50 @@
+
+/**
+ * The height is too low for the full xChars submenu.
+ */
+$HBreakpoint: 495px;
+$longOptionRowN: 3;
+
+@media only screen and (max-height: $HBreakpoint) and (max-width: $WBreakpoint2) {
+    .selector-xchars, .selector-layout {
+        &.active ul {
+            max-width: 100%;
+            white-space: normal;
+        }
+    }
+
+    .selector-xchars.active li:not(:first-child), .selector-layout.active li {
+        display: inline-block;
+        width: (100% / $longOptionRowN);
+    }
+
+    .selector-layout.active li {
+        &:not(:nth-child(#{$longOptionRowN}n+1)) {
+            border-left: $menuOptionLightBorder;
+        }
+        &:nth-child(-n+#{$longOptionRowN}) {
+            button {
+                border-top: 0;
+            }
+        }
+    }
+}
+
+@media only screen and (max-height: $HBreakpoint) and (min-width: #{$WBreakpoint2 + 1px}) {
+    .select.selector-xchars {
+        &.active, &:hover:not(.lock) {
+            ul {
+                width: #{130px * $longOptionRowN};
+                white-space: normal;
+
+                padding-bottom: $spaceS;
+                background-color: $darkColor;
+            }
+
+            li:not(:first-child) {
+                display: inline-block;
+                width: (100% / $longOptionRowN);
+            }
+        }
+    }
+}

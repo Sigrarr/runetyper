@@ -1,0 +1,25 @@
+
+$tileSize: 42px;
+$spaceS: 4px;
+
+$baseFontSize: 16px;
+$editorBaseFontSize: 18px;
+$iconBaseFontSize: 18px;
+
+$phiWidePart: 0.618;
+$phiNarrowPart: 1 - $phiWidePart;
+
+@import 'general';
+@import 'fontfamilies';
+@import 'logo';
+@import 'loader';
+@import 'layout';
+@import 'themes';
+@import 'menus';
+@import 'output';
+@import 'kboard';
+@import 'information';
+@import 'port/narrow/layout_kboard';
+@import 'port/narrow/menus';
+@import 'port/small/menus';
+@import 'effects';

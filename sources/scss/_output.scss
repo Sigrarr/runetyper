@@ -1,0 +1,19 @@
+
+#output {
+    width: calc(100% - #{4 * $spaceS + 2px});
+    height: calc(100% - #{4 * $spaceS});
+    resize: none;
+    padding: 0 $spaceS;
+    overflow-x: hidden;
+    font-size: $editorBaseFontSize;
+    line-height: $editorBaseFontSize * 1.25;
+
+    &, &:focus {
+        border-left: 0;
+        border-right-width: $spaceS;
+        border-right-style: solid;
+        border-top: 0;
+        border-bottom: 0;
+        outline: 0;
+    }
+}

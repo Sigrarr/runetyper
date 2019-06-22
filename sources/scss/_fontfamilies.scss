@@ -1,0 +1,39 @@
+
+$baseFontFamily: LinBiolinum, sans-serif;
+body, button {
+    font-family: $baseFontFamily;
+}
+
+.logo, .logotext {
+    &, &.icon, &.itext {
+        font-family: RunetyperLogo;
+    }
+}
+
+.xfont-noto {
+    .xtext {
+        font-family: NotoSansRunicGothic;
+    }
+}
+
+.xfont-pfeffer {
+    .xtext {
+        font-family: PfefferMediaeval, NotoSansRunicGothic;
+    }
+}
+
+.typetext {
+    font-family: CourierPrime, "Courier New", Courier, monospace;
+}
+
+.icon, .itext {
+    &, button {
+        font-family: NotoSansMix;
+    }
+}
+
+.select, .select div {
+    &:before, &:after {
+        font-family: NotoSansMix;
+    }
+}

@@ -1,0 +1,300 @@
+
+$midButtonSize: $tileSize - $spaceS;
+$disabledColor: darkColorFlatten(4);
+$menuOptionLightBorder: 1px solid darkColorFlatten(1);
+
+.menu {
+    text-align: center;
+    white-space: nowrap;
+
+    &, li {
+        list-style-type: none;
+    }
+
+    h4, h5, em {
+        display: inline-block;
+        font-weight: 400;
+    }
+
+    button {
+        width: $midButtonSize;
+        height: $midButtonSize;
+        line-height: $midButtonSize;
+
+        &.full, &:only-child {
+            width: 100%;
+            height: 100%;
+            line-height: 100%;
+        }
+    }
+}
+
+.select {
+
+    & > div:first-child {
+        display: inline-block;
+        position: relative;
+
+        &:after {
+            display: inline-block;
+            margin-left: $spaceS;
+            content: "\2BC6"
+        }
+    }
+    &.active > div:first-child:after {
+        transform: rotate(45deg);
+    }
+    &.lock > div:first-child:after {
+        color: $disabledColor;
+    }
+    &.disabled > div:first-child:after {
+        content: " ";
+    }
+
+    & > ul {
+        display: none;
+        position: absolute;
+        z-index: 3;
+    }
+
+    &:not(.lock):hover, &.active {
+        & > ul {
+            display: block;
+        }
+    }
+
+    .select {
+        position: relative;
+
+        &:hover, &.active {
+            & > ul {
+                position: absolute;
+                top: 0;
+                left: 100%;
+                z-index: 4;
+            }
+        }
+
+        & > div:first-child {
+            &:after {
+                float: right;
+                margin-right: $spaceS;
+                content: "\2BC8";
+            }
+        }
+
+        &.active > div:first-child:after {
+            transform: rotate(30deg);
+        }
+    }
+}
+
+.sup-menu {
+    z-index: 2;
+
+    & > ul > li {
+        display: block;
+        float: left;
+        min-width: $tileSize;
+
+        & > h4 {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            button {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+
+    h4, h5, em, div, li, button.full, button:only-child {
+        height: $tileSize;
+        line-height: $tileSize;
+    }
+
+    .select {
+        ul {
+            top: $tileSize;
+            padding-bottom: $tileSize * 0.75;
+        }
+        h4, h5 {
+            padding-right: $spaceS;
+        }
+        button, div {
+            padding: 0 2*$spaceS;
+        }
+    }
+
+    div {
+        text-align: left;
+    }
+
+    li li button {
+        border-top: $menuOptionLightBorder;
+        &.active:not(:hover) {
+            background-color: $coolColorDarker;
+        }
+    }
+
+    em {
+        font-style: normal;
+    }
+
+    &, button, .select li {
+        background-color: $darkColor;
+        color: $brightColor;
+    }
+
+    .disabled {
+        color: $disabledColor;
+    }
+
+    button:not(.disabled), .select:not(.disabled) div {
+        &:hover {
+            background-color: $coolColor;
+        }
+    }
+
+    .select:hover:not(.disabled), .select.active {
+        & > div:first-child:before {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: $spaceS;
+            background-color: $coolColor;
+            content: " ";
+        }
+        .select:hover, .select.active {
+            & > div:first-child:before {
+                height: 100%;
+                width: $spaceS;
+            }
+        }
+    }
+
+}
+
+.selector-alphabet {
+    div, li {
+        min-width: 230px;
+    }
+
+    .icon.logotext {
+        font-size: $iconBaseFontSize * $logoInitialRatio;
+    }
+
+    ul {
+        &, & button {
+            text-align: left;
+        }
+
+        span:last-child {
+            float: right;
+            margin-left: 5*$spaceS;
+        }
+    }
+}
+
+.selector-xchars {
+    div {
+        min-width: 70px;
+    }
+
+    li {
+        padding: 0 2*$spaceS;
+        &:first-child {
+            height: $midButtonSize + 4*$spaceS;
+            padding-top: 2*$spaceS;
+            padding-bottom: $spaceS;
+        }
+        &:last-child {
+            height: $midButtonSize + 2*$spaceS;
+            padding-bottom: $spaceS;
+        }
+    }
+
+    &.select > ul > li {
+        border: 0;
+    }
+
+    button {
+        border: $menuOptionLightBorder;
+        border-right: 0;
+        &:last-child {
+            border-right: $menuOptionLightBorder;
+        }
+    }
+
+    ul li:first-child {
+        button {
+            &:last-child {
+                margin-left: $spaceS;
+            }
+            border-right: $menuOptionLightBorder;
+        }
+    }
+}
+
+$subOptionIconMinWidth: 30px;
+.selector-settings {
+    & > ul {
+        & > li {
+            div {
+                width: 100%;
+            }
+            .icon {
+                min-width: $subOptionIconMinWidth;
+            }
+        }
+    }
+
+    li li {
+        border-left: $menuOptionLightBorder;
+    }
+}
+
+.icon [data-captions|=keys] {
+    font-size: ($baseFontSize + $iconBaseFontSize)/2;
+    letter-spacing: -2px;
+}
+
+.editor-space {
+    .sup-menu {
+        position: fixed;
+        bottom: $spaceS;
+        left: calc((#{100% * $phiNarrowPart} - #{7 * $tileSize}) / 2);
+        &.collapse {
+            left: $spaceS;
+        }
+    }
+
+    .menu {
+        float: left;
+        height: $tileSize;
+    }
+}
+
+.editor-space, #information {
+    .sup-menu {
+        opacity: 0.775;
+        &:hover {
+            opacity: 0.925;
+        }
+    }
+}
+
+h4.danger button:hover:not(.disabled) {
+    background-color: firebrick;
+}
+
+h4.caution button:hover:not(.disabled) {
+    background-color: #ce792f;
+}
+
+#save-text-button.signal {
+    background-color: saturate(lighten($coolColor, $flatRatio), 2*$flatRatio);
+}

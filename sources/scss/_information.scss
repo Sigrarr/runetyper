@@ -1,0 +1,152 @@
+
+$columnW: 920px;
+
+#information {
+    position: relative;
+    padding-bottom: $spaceS;
+
+    .long-text-content {
+        padding: $spaceS 0;
+
+        & > section, & > aside {
+            max-width: $columnW;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    header {
+        padding: 2*$spaceS;
+    }
+
+    h1 {
+        font-size: $baseFontSize*2.5;
+        padding: $spaceS;
+    }
+
+    #outline {
+        padding: ($tileSize/2 - $spaceS) 0 $tileSize/2 0;
+    }
+
+    p, ul, ol, h3, h4, h5, h6 {
+        margin-left: $tileSize;
+        margin-right: $tileSize;
+    }
+
+    p, ul, ol, h4, h5, h6 {
+        text-align: justify;
+    }
+
+    p, ul, ol, h4, h5, h6, dl {
+        line-height: 150%;
+    }
+
+    p, ul, ol {
+        margin-top: $baseFontSize;
+        margin-bottom: $baseFontSize;
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    .super-p {
+        & > * {
+            &:not(:first-child) {
+                margin-top: 0;
+            }
+            &:not(:last-child) {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .entities li:not(:last-child) {
+        margin-bottom: $baseFontSize;
+    }
+
+    section section:first-of-type h5:first-child {
+        margin-top: $baseFontSize;
+    }
+
+    ul, ol {
+        text-align: left;
+        padding: 0 $tileSize;
+        ul, ol {
+            padding-left: 0;
+        }
+    }
+
+    h3 {
+        font-size: $baseFontSize + 4px;
+        padding: 2*$spaceS;
+        margin-top: $spaceS;
+    }
+
+    h4 {
+        font-size: $baseFontSize + 2px;
+    }
+
+    .xtext {
+        font-family: NotoSansRunicGothic;
+    }
+
+    .sup-menu, ul.menu, .menu li, .menu h4 {
+        width: $tileSize;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+#info-closing {
+    position: fixed;
+    top: $spaceS;
+    right: $spaceS;
+}
+
+#go-top {
+    position: fixed;
+    bottom: $spaceS;
+    right: $spaceS;
+    &:not(.active) {
+        opacity: 0;
+    }
+}
+
+dl {
+    position: relative;
+    width: 100%;
+}
+dt, dd {
+    display: inline-block;
+    margin: 0;
+}
+dt {
+    width: calc(50% - #{$tileSize*2.5});
+    padding-right: 2*$spaceS;
+    text-align: right;
+    font-style: italic;
+    &:after {
+        display: inline;
+        content: ":";
+    }
+}
+dd {
+    width: calc(50% - #{2*$spaceS});
+    text-align: left;
+}
+
+.hint {
+    white-space: nowrap;
+
+    .op {
+        display: inline-block;
+        margin: 0 1px;
+    }
+}
+
+.itext[data-captions|=keys] {
+    font-size: $baseFontSize - 2px;
+    letter-spacing: -2px;
+    margin-right: 2px;
+}

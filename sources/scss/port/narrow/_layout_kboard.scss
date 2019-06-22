@@ -1,0 +1,99 @@
+
+.editor-space .vertical {
+    display: none;
+}
+
+/**
+ * The vertical layout.
+ * The width is too low to align the editor toolbar horizontally.
+ */
+$WBreakpoint1: 910px;
+
+@media only screen and (orientation: portrait), (max-width: $WBreakpoint1) {
+
+    .workspace {
+        header.sup-menu {
+            width: calc(100% - #{$tileSize});
+            z-index: 5;
+        }
+
+        & > div {
+            clear: both;
+        }
+    }
+
+    $narrowEditorVPart: 0.5;
+    .editor-space {
+        width: 100%;
+        height: calc((100vh - #{$tileSize}) * #{$narrowEditorVPart});
+
+        .sup-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: $tileSize;
+            &, &.collapse {
+                left: auto;
+                bottom: auto;
+            }
+        }
+
+        .menu {
+            clear: both;
+            height: auto;
+            width: $tileSize;
+        }
+
+        .horizontal {
+            display: none;
+        }
+        .vertical {
+            display: inline;
+        }
+    }
+
+    #output {
+        border-right: 0;
+        width: 100%;
+        padding: 0 2*$spaceS;
+    }
+
+    $narrowKBoardVPart: 1 - $narrowEditorVPart;
+    .kboard-space {
+        width: 100%;
+        min-height: calc((100vh - #{$tileSize}) * #{$narrowKBoardVPart});
+        height: calc((100vh - #{$tileSize}) * #{$narrowKBoardVPart});
+    }
+
+    .fit-w {
+        @include kboardRelativeSize(100vw, $fillRatio, $wBaseBoxPart, 0);
+    }
+
+    .fit-h {
+        @include kboardRelativeSize(100vh, $fillRatio * $narrowKBoardVPart, $hBaseBoxPart, $tileSize);
+    }
+
+    .kboard-space.compact {
+        @include compactKBoardRelativeSize(100vh, $narrowKBoardVPart, $tileSize);
+    }
+
+}
+
+@media only screen and (orientation: landscape) and (max-width: $WBreakpoint1) {
+    .editor-space {
+        height: calc((100vh - #{$tileSize}) * #{$phiNarrowPart});
+    }
+
+    .kboard-space {
+        min-height: calc((100vh - #{$tileSize}) * #{$phiWidePart});
+        height: calc((100vh - #{$tileSize}) * #{$phiWidePart});
+    }
+
+    .fit-h {
+        @include kboardRelativeSize(100vh, $fillRatio * $phiWidePart, $hBaseBoxPart, $tileSize);
+    }
+
+    .kboard-space.compact {
+        @include compactKBoardRelativeSize(100vh, $phiWidePart, $tileSize);
+    }
+}

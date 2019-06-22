@@ -1,0 +1,309 @@
+
+$maxBoxSize: 112px;
+$minBoxSize: 67.5px;
+$fillRatio: 0.96;
+$spacePart: 0.06;
+$xPart: 0.725;
+$capPart: 1 - $xPart;
+$xTxtPart: 0.45;
+$capTxtPart: 0.775;
+$keyToRoman: 0.9;
+$keyPadToCap: (1 - $capTxtPart * $keyToRoman) / 2;
+
+$maxColsN: 8;
+$maxRowsN: 6;
+$maxSectionsN: 3;
+$maxSpacesN: $maxRowsN + $maxSectionsN;
+$wBaseBoxPart: 1 / $maxColsN;
+$hBaseBoxPart: 1 / ($maxRowsN + $maxSpacesN * $spacePart);
+
+@mixin kboardAppliedSize(
+$boxSize,
+$buttonSize,
+$space,
+$capH,
+$xFontS,
+$romanFontS,
+$keyFontS,
+$keyPadding) {
+
+    .kboard > section {
+        padding-top: $space;
+    }
+
+    .row {
+        padding-bottom: $space;
+    }
+
+    .xletter-box {
+        width: $boxSize;
+        height: $boxSize;
+    }
+
+    button {
+        font-size: $xFontS;
+        line-height: $buttonSize;
+    }
+
+    p {
+        line-height: $capH;
+        font-size: $romanFontS;
+
+        &.keys {
+            padding-top: $keyPadding;
+            font-size: $keyFontS;
+        }
+    }
+}
+
+@mixin kboardRelativeSize($whole, $areaPart, $boxPart, $pad) {
+
+    @if $pad == 0 {
+
+        $boxSize:           #{$whole * $areaPart * $boxPart};
+        $buttonSize:        #{$whole * $areaPart * $boxPart * $xPart};
+        $space:             #{$whole * $areaPart * $boxPart * $spacePart};
+        $capH:              #{$whole * $areaPart * $boxPart * $capPart};
+        $xFontS:            #{$whole * $areaPart * $boxPart * $xPart * $xTxtPart};
+        $romanFontS:        #{$whole * $areaPart * $boxPart * $capPart * $capTxtPart};
+        $keyFontS:          #{$whole * $areaPart * $boxPart * $capPart * $capTxtPart * $keyToRoman};
+        $keyPadding:        #{$whole * $areaPart * $boxPart * $capPart * $keyPadToCap};
+
+        @include kboardAppliedSize(
+        $boxSize,
+        $buttonSize,
+        $space,
+        $capH,
+        $xFontS,
+        $romanFontS,
+        $keyFontS,
+        $keyPadding);
+
+    } @else {
+
+        $boxSize:           calc((#{$whole} - #{$pad}) * #{$areaPart * $boxPart});
+        $buttonSize:        calc((#{$whole} - #{$pad}) * #{$areaPart * $boxPart * $xPart});
+        $space:             calc((#{$whole} - #{$pad}) * #{$areaPart * $boxPart * $spacePart});
+        $capH:              calc((#{$whole} - #{$pad}) * #{$areaPart * $boxPart * $capPart});
+        $xFontS:            calc((#{$whole} - #{$pad}) * #{$areaPart * $boxPart * $xPart * $xTxtPart});
+        $romanFontS:        calc((#{$whole} - #{$pad}) * #{$areaPart * $boxPart * $capPart * $capTxtPart});
+        $keyFontS:          calc((#{$whole} - #{$pad}) * #{$areaPart * $boxPart * $capPart * $capTxtPart * $keyToRoman});
+        $keyPadding:        calc((#{$whole} - #{$pad}) * #{$areaPart * $boxPart * $capPart * $keyPadToCap});
+
+        @include kboardAppliedSize(
+        $boxSize,
+        $buttonSize,
+        $space,
+        $capH,
+        $xFontS,
+        $romanFontS,
+        $keyFontS,
+        $keyPadding);
+
+    }
+
+}
+
+.resizing .kboard {
+    visibility: hidden;
+    overflow: hidden;
+}
+
+.kboard {
+    & > section {
+        &:not(:last-child) .row:last-child {
+            display: inline-block;
+            &:after {
+                display: block;
+                width: 100%;
+                height: 1px;
+                position: absolute;
+                bottom: -1px;
+                border-top-style: solid;
+                border-top-width: 1px;
+                content: "";
+            }
+        }
+    }
+
+    p {
+        display: none;
+    }
+}
+
+.sup-captions-roman .kboard p.roman, .sup-captions-keys .kboard p.keys {
+    display: block;
+}
+
+.sup-captions-off .kboard > section:not(:last-child) .row:last-child:after {
+    $capHtoRowH: $capPart/(1 + $spacePart);
+    bottom: calc(#{100% * $capHtoRowH / 2} - 1px);
+}
+
+.row {
+    position: relative;
+    white-space: nowrap;
+}
+
+.xletter-box {
+    display: inline-block;
+    position: relative;
+
+    button {
+        width: (100% * $xPart);
+        height: (100% * $xPart);
+        border-radius: 50%;
+    }
+
+    p {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: (100% * $capPart);
+        white-space: nowrap;
+        overflow: visible;
+
+        &:before {
+            content: "";
+            margin-left: -100%;
+        }
+
+        &:after {
+            content: "";
+            margin-right: -100%;
+        }
+    }
+}
+
+.extremes-probe {
+    max-width: $maxBoxSize;
+    max-height: $maxBoxSize;
+    min-width: $minBoxSize;
+    min-height: $minBoxSize;
+}
+
+.fit-h {
+    @include kboardRelativeSize(100vh, $fillRatio, $hBaseBoxPart, $tileSize);
+}
+
+.fit-w {
+    @include kboardRelativeSize(100vw, $fillRatio * $phiWidePart, $wBaseBoxPart, 0);
+}
+
+.fit-max {
+    @include kboardRelativeSize($maxBoxSize * $maxColsN, 1, $wBaseBoxPart, 0);
+}
+
+@mixin compactKBoardRelativeSize($whole, $areaPart, $pad) {
+
+    $keyPadToCap: (1 - $xTxtPart * $keyToRoman) / 2;
+    $buttonH:       calc((#{$whole * $areaPart} - #{$pad * $areaPart + 2 * $spaceS}) * #{$fillRatio / $maxRowsN});
+    $fontS:         calc((#{$whole * $areaPart} - #{$pad * $areaPart + 2 * $spaceS}) * #{(1 / $fillRatio) / $maxRowsN * $xTxtPart});
+    $keyFontS:      calc((#{$whole * $areaPart} - #{$pad * $areaPart + 2 * $spaceS}) * #{(1 / $fillRatio) / $maxRowsN * $xTxtPart * $keyToRoman});
+    $keyPadding:    calc((#{$whole * $areaPart} - #{$pad * $areaPart + 2 * $spaceS}) * #{(1 / $fillRatio) / $maxRowsN * $xTxtPart * $keyPadToCap});
+
+    button {
+        line-height: $buttonH;
+    }
+
+    button, p i span, p span span {
+        font-size: $fontS;
+    }
+
+    p.keys {
+        span span {
+            font-size: $keyFontS;
+        }
+        padding-top: $keyPadding;
+    }
+
+}
+
+.kboard-space.compact {
+    display: block;
+    position: relative;
+    overflow: hidden;
+
+    .kboard {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        padding: $spaceS 0;
+
+        & > section {
+            display: inline;
+            &:not(:last-child) .row:last-child {
+                display: block;
+                &:after {
+                    display: none;
+                }
+                &:before {
+                    display: block;
+                    position: absolute;
+                    top: (100% * (1 - $phiNarrowPart/2));
+                    height: (100% * $phiNarrowPart);
+                    width: 100%;
+                    z-index: 0;
+                    content: "";
+                }
+            }
+        }
+    }
+
+    .row {
+        height: (100% / $maxRowsN);
+        z-index: 1;
+    }
+
+    .xletter-box {
+        top: (100% * (1 - $fillRatio) / 2);
+        height: (100% * $fillRatio);
+        width: (100% * $fillRatio / $maxColsN);
+        &:not(:first-child) {
+            margin-left: (100% * (1 - $fillRatio) / ($maxColsN + 1));
+        }
+    }
+
+    button {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 12.5%;
+        text-shadow: none;
+    }
+
+    &:not(.sup-captions-off) {
+        button {
+            font-size: 0;
+        }
+    }
+
+    &.sup-captions-roman .kboard p.roman, &.sup-captions-keys .kboard p.keys {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    p {
+        overflow: hidden;
+        pointer-events: none;
+        height: 100%;
+        max-height: 100%;
+        font-size: 0;
+
+        span {
+            letter-spacing: -0.055ch;
+        }
+
+        &:before, &:after {
+            display: none;
+        }
+    }
+
+    @include compactKBoardRelativeSize(100vh, 1, $tileSize);
+
+}
