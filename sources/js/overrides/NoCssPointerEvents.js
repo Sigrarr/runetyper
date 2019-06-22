@@ -15,12 +15,14 @@ App.overrides.NoCssPointerEvents = {
                 return;
             }
 
-            var targetIsBox = false;
-            for (var i = 0, target = event.target; i < 4 && target && !targetIsBox; i++) {
-                (targetIsBox = target.classList.contains("xletter-box")) || (target = target.parentNode);
+            var target = event.target;
+            var p = false;
+            for (var i = 0; !p && target && i < 4; i++) {
+                p = (target.tagName.toLowerCase() === "p");
+                target = target.parentNode;
             }
 
-            if (targetIsBox) {
+            if (p && target) {
                 (findActiveChild(target) || target.firstElementChild).click();
             }
         });

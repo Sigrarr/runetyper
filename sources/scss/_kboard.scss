@@ -152,6 +152,9 @@ $keyPadding) {
     button {
         width: (100% * $xPart);
         height: (100% * $xPart);
+        position: absolute;
+        top: 0;
+        left: (100% * (1 - $xPart) / 2);
         border-radius: 50%;
     }
 
@@ -196,7 +199,7 @@ $keyPadding) {
 
 @mixin compactKBoardRelativeSize($whole, $areaPart, $pad) {
 
-    $keyPadToCap: (1 - $xTxtPart * $keyToRoman) / 2;
+    $keyPadToCap:   (1 - $xTxtPart * $keyToRoman) / 2;
     $buttonH:       calc((#{$whole * $areaPart} - #{$pad * $areaPart + 2 * $spaceS}) * #{$fillRatio / $maxRowsN});
     $fontS:         calc((#{$whole * $areaPart} - #{$pad * $areaPart + 2 * $spaceS}) * #{(1 / $fillRatio) / $maxRowsN * $xTxtPart});
     $keyFontS:      calc((#{$whole * $areaPart} - #{$pad * $areaPart + 2 * $spaceS}) * #{(1 / $fillRatio) / $maxRowsN * $xTxtPart * $keyToRoman});
@@ -206,7 +209,7 @@ $keyPadding) {
         line-height: $buttonH;
     }
 
-    button, p i span, p span span {
+    button, p i span {
         font-size: $fontS;
     }
 
@@ -221,7 +224,6 @@ $keyPadding) {
 
 .kboard-space.compact {
     display: block;
-    position: relative;
     overflow: hidden;
 
     .kboard {
@@ -269,15 +271,13 @@ $keyPadding) {
     button {
         width: 100%;
         height: 100%;
-        position: absolute;
-        top: 0;
         left: 0;
         border-radius: 12.5%;
         text-shadow: none;
     }
 
     &:not(.sup-captions-off) {
-        button {
+        button:not(.itext) {
             font-size: 0;
         }
     }
