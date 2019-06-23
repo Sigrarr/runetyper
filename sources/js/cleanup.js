@@ -1,7 +1,9 @@
 
-/* global App, Env, removeNode, T */
+/* global App, removeNode, T */
 
 App.cleanUp = function () {
+
+    window.removeEventListener("load", App.run);
 
     delete App.overrides;
     delete App.Constructor;
@@ -12,8 +14,6 @@ App.cleanUp = function () {
     delete App.buildOutline;
     delete App.run;
     delete App.cleanUp;
-
-    window.removeEventListener("load", App.run);
 
     var protoboxNodes = findMany(".protobox");
     while (protoboxNodes.length > 0) {

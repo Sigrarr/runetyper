@@ -1,10 +1,10 @@
 
-/* global App, Env, Updater, findOne, removeNode */
+/* global App, Updater, findOne, removeNode */
 
 App.overrides.TouchDevice = {
 
     test: function () {
-        return Env.touchDev();
+        return App.touchDev();
     },
 
     depend: [

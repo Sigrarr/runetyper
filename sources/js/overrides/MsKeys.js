@@ -4,7 +4,7 @@
 App.overrides.MsKeys = {
 
     test: function () {
-        return Env.stdDev() && Env.browser === "ms";
+        return App.stdDev() && Env.browser === "ms";
     },
 
     depend: [],

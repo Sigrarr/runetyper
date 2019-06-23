@@ -1,0 +1,40 @@
+
+/* global App, Env */
+
+App.device = Env.device;
+
+App.stdDev = function () {
+    return App.device === "std";
+};
+
+App.touchDev = function () {
+    return App.device === "touch";
+};
+
+App.DeviceController = {
+
+    initialize: function () {
+        App.device = App.Storage.get("device") || Env.device;
+        delete this.initialize;
+    },
+
+    deviceHandler: function (device) {
+        var storage = App.Storage;
+        var textKey = "_text_dev_switch";
+
+        if (device === App.device) {
+            var textBeforeDeviceSwitch = storage.get(textKey);
+            if (textBeforeDeviceSwitch) {
+                if (App.Writer.textArea.value.length === 0) {
+                    App.Writer.write(textBeforeDeviceSwitch);
+                }
+                storage.clear(textKey);
+            }
+        } else {
+            storage.set("device", device);
+            storage.set(textKey, App.Writer.textArea.value);
+            location.reload();
+        }
+    }
+
+};

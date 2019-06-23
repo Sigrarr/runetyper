@@ -14,6 +14,7 @@ App.run = function () {
     App.DomLandmarks.saveTextButton = findOne("#save-text-button");
     App.DomLandmarks.goTopButton = findOne("#go-top");
 
+    App.DeviceController.initialize();
     App.Constructor.buildLayouts();
     App.Constructor.buildAlphabets();
     App.Constructor.buildKeyHeadSets();
@@ -24,6 +25,7 @@ App.run = function () {
     App.FitController.initialize();
 
     Updater.register('_', App.Storage);
+    Updater.register("device", App.DeviceController);
     Updater.register("alphabet", App.DomLandmarks);
     Updater.register("alphabet", App.Literator);
     Updater.register("layout", App.Literator);
@@ -43,13 +45,14 @@ App.run = function () {
     }
 
     var primaryDefaults = {
+        "device": App.device,
         "alphabet": 0,
         "layout": 0,
         "xfont": "noto",
         "kbmode": "auto",
-        "toolbar": Env.touchDev() ? "off" : "on",
-        "captions": Env.touchDev() ? "off" : "roman",
-        "theme": Env.touchDev() ? "dark" : "bright"
+        "toolbar": App.touchDev() ? "off" : "on",
+        "captions": App.touchDev() ? "off" : "roman",
+        "theme": App.touchDev() ? "dark" : "bright"
     };
 
     for (var topicName in primaryDefaults) {

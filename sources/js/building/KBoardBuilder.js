@@ -1,5 +1,5 @@
 
-/* global App, Env, createElement */
+/* global App, createElement */
 
 App.KBoardBuilder = {
 
@@ -97,7 +97,7 @@ App.KBoardBuilder = {
                 ]
         ));
 
-        if (Env.stdDev()) {
+        if (App.stdDev()) {
             box.appendChild(this.buildKeysP(entity));
         }
 

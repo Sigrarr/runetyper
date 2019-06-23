@@ -10,11 +10,15 @@ App.Storage = {
     },
 
     get: function (key) {
-        return window.localStorage.getItem(key);
+        return localStorage.getItem(key);
     },
 
     set: function (key, value) {
-        window.localStorage.setItem(key, value);
+        localStorage.setItem(key, value);
+    },
+
+    clear: function (key) {
+        localStorage.removeItem(key);
     },
 
     _Handler: function (record) {

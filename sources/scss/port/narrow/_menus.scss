@@ -1,9 +1,9 @@
 
 /**
- * The width is too low to keep a distance between the expanded xFont submenu
+ * The width is too low to keep a distance between the expanded device submenu
  * and the vertically aligned editor tooblar.
  */
-$WBreakpoint2: 620px + 3*$spaceS + $tileSize;
+$WBreakpoint2: 700px;
 
 @media only screen and (max-width: $WBreakpoint2) {
 

@@ -12,6 +12,7 @@ include("core/Literator.js");
 include("core/Writer.js");
 include("core/Commands.js");
 include("core/DomLandmarks.js");
+include("core/aux/DeviceController.js");
 include("core/aux/DomSignaler.js");
 include("core/aux/Storage.js");
 include("core/aux/ViewController.js");
