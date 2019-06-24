@@ -111,6 +111,10 @@ body, #loader {
     }
 }
 
+.messages {
+    color: $brightColor;
+}
+
 body.theme-dark {
 
     .editor-space, #output {
@@ -158,6 +162,7 @@ body.theme-dark {
     }
 }
 
+$optionShadow: 2px 2px 2px black, 1px 1px 1px black;
 button, .menu > li {
-    text-shadow: 2px 2px 2px black, 1px 1px 1px black;
+    text-shadow: $optionShadow;
 }

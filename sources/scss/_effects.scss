@@ -25,3 +25,10 @@ button, .menu > li {
     transition: bottom 0.07s linear;
 }
 
+button, .messages p {
+    cursor: pointer;
+}
+
+.select div {
+    cursor: context-menu;
+}

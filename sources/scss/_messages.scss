@@ -1,0 +1,40 @@
+
+.messages {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    max-width: 920px;
+    margin: ($tileSize + 2*$spaceS) ($tileSize + $spaceS);
+    
+    p {
+        position: relative;
+        min-height: $midButtonSize+4*$spaceS;
+        &:not(:first-child) {
+            margin-top: 2*$spaceS;
+        }
+        padding: 2*$spaceS;
+        text-align: justify;
+        
+        &:before {
+            display: block;
+            float: right;
+            width: $midButtonSize;
+            height: $midButtonSize;
+            text-align: center;
+            line-height: $midButtonSize;
+            margin-left: 3*$spaceS;
+            content: "\1F5D9";
+            font-style: NotoSanxMix;
+            text-shadow: $optionShadow;
+            border: $menuOptionLightBorder;
+        }
+        &:hover:before {
+            background-color: $coolColor;
+        }
+        
+        border-left: $spaceS solid $coolColor;
+        background-color: black;
+    }
+    opacity: $middleOpaque;
+}

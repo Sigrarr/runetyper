@@ -3,7 +3,7 @@
 
 App.Storage = {
 
-    topicBlackList: ['_', "view", "command"],
+    topicBlackList: ['_', "view", "command", "fit"],
 
     passesTopic: function (topicName) {
         return this.topicBlackList.indexOf(topicName) < 0;

@@ -40,6 +40,7 @@ App.run = function () {
     Updater.confirmTopic("theme");
     Updater.confirmTopic("toolbar");
     Updater.confirmTopic("loadable_text");
+    Updater.confirmTopic("fit");
     for (var t in Updater.topics) {
         Updater.registerDomReceivers(Updater.topics[t].name);
     }
@@ -75,6 +76,7 @@ App.run = function () {
     Updater.push("view", App.ViewController.getRequestedView());
 
     App.DomSignaler.initialize();
+    App.MsgController.initialize();
     App.fillEmail();
     App.buildOutline(2);
 

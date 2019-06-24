@@ -1,5 +1,5 @@
 
-/* global App, findOne, createElement, removeNode */
+/* global App, Updater, findOne, createElement, removeNode */
 
 App.FitController = {
 
@@ -132,6 +132,7 @@ App.FitController = {
             this.fit();
         } else {
             container.classList.remove("resizing");
+            Updater.push("fit", 1);
         }
     },
 

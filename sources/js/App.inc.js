@@ -17,6 +17,7 @@ include("core/aux/DomSignaler.js");
 include("core/aux/Storage.js");
 include("core/aux/ViewController.js");
 include("core/aux/FitController.js");
+include("core/aux/MsgController.js");
 include("core/aux/OutFontSizeController.js");
 include("core/aux/MenuSelectController.js");
 include("building/Constructor.js");
