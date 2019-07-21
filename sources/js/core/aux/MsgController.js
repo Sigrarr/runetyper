@@ -91,13 +91,15 @@ App.MsgController = {
         var container = this.container;
 
         if (this.n <= 0) {
-            removeNode(container);
+            setTimeout(removeNode, 250, container);
             delete App.MsgController;
         } else if (this.showN > 0 && !this.supShow) {
             container.classList.remove("hidden");
             this.supShow = true;
         } else if (this.showN <= 0 && this.supShow) {
-            container.classList.add("hidden");
+            setTimeout(function (container) {
+                container.classList.add("hidden");
+            }, 250, container);
             this.supShow = false;
         }
     },
@@ -134,7 +136,8 @@ App.MsgController = {
             this.showN--;
         }
         this.n--;
-        removeNode(module.p);
+        module.p.classList.add("fading");
+        setTimeout(removeNode, 250, module.p);
         this.modules.splice(this.modules.indexOf(module), 1);
         delete this.modules[module.key];
     }

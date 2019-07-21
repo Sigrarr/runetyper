@@ -30,6 +30,10 @@ body, #loader {
     &, &:focus {
         border-right-color: $brightColor;
     }
+    color: black;
+    &.touch-dev span.caret:after {
+        background-color: black;
+    }
 }
 
 .kboard-space {
@@ -122,9 +126,12 @@ body.theme-dark {
     }
 
     #output {
-        color: brightColorFlatten(1);
         &, &:focus {
             border-right-color: darkColorFlatten(2);
+        }
+        color: brightColorFlatten(1);
+        &.touch-dev span.caret:after {
+            background-color: brightColorFlatten(1);
         }
     }
 

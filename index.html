@@ -85,7 +85,9 @@
                                 <h4 class="icon">&#x2699;</h4>
                             </div>
                             <ul>
-                                <li class="select sub-select selector-layout">
+                                <li class="select sub-select selector-layout receiver-device"
+                                    data-depend-device="class"
+                                    data-class-device-touch="protobox">
                                     <div>
                                         <h5>
                                             <span class="icon">&#x1F5AE;</span>
@@ -217,17 +219,33 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="switch-captions receiver-captions"
-                            data-topic="command"
-                            data-command="switchCaptions"
-                            data-depend-captions="title"
-                            data-title-captions-roman="Captions: romanization. Toggle: click or [Insert]"
-                            data-title-captions-keys="Captions: keys. Toggle: click or [Insert]"
-                            data-title-captions-off="Captions: off. Toggle: click or [Insert]">
-                            <h4 class="icon receiver-captions" data-depend-captions="children">
-                                <button class="full" data-captions="roman">Æ</button>
-                                <button class="full" data-captions="keys">&#x1F130;&#x1F134;</button>
-                                <button class="full" data-captions="off">&#x2014;</button>
+                        <li class="switch-captions">
+                            <h4 class="icon receiver-captions receiver-device"
+                                data-topic="captions"
+                                data-depend-captions="children,data-captions"
+                                data-data-captions-captions-roman="keys"
+                                data-data-captions-captions-keys="off"
+                                data-data-captions-captions-off="roman"
+                                data-depend-device="class"
+                                data-class-device-touch="protobox">
+                                <button class="full"
+                                        data-captions="roman"
+                                        title="Captions: romanization. Toggle: click or [Insert]">Æ</button>
+                                <button class="full"
+                                        data-captions="keys"
+                                        title="Captions: keys. Toggle: click or [Insert]">&#x1F130;&#x1F134;</button>
+                                <button class="full"
+                                        data-captions="off"
+                                        title="Captions: off. Toggle: click or [Insert]">&#x2014;</button>
+                            </h4>
+                            <h4 class="icon receiver-captions receiver-device"
+                                data-topic="captions"
+                                data-depend-captions="data-captions"
+                                data-data-captions-captions-off="roman"
+                                data-data-captions-captions-roman="off"
+                                data-depend-device="class"
+                                data-class-device-std="protobox">
+                                <button class="full">&#x1F130;<sub>&#x1f5d8;</sub></button>
                             </h4>
                         </li>
                         <li title="Information">
@@ -294,7 +312,11 @@
                                     <button data-topic="command" data-command="selectAll">&#x1F5A2;</button>
                                 </h4>
                             </li>
-                            <li title="Erase selected text" data-toolbar="on">
+                            <li title="Erase selected text"
+                                data-toolbar="on"
+                                class="receiver-device"
+                                data-depend-device="class"
+                                data-class-device-touch="protobox">
                                 <h4 class="icon danger">
                                     <button data-topic="command" data-command="eraseSelection">&#x2327;</button>
                                 </h4>
@@ -317,7 +339,7 @@
                      data-class-captions-off="sup-captions-off">
                     <aside class="protobox" id="touchdev-inputs">
                         <div class="xletter-box">
-                            <button class="itext" data-xchar="@s">&#x2423;</button>
+                            <button class="itext" data-xchar=" ">&#x2423;</button>
                         </div>
                         <div class="xletter-box">
                             <button class="itext" data-xchar="@n">&#x2BA0;</button>

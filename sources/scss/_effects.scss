@@ -29,6 +29,10 @@ button, .messages p {
     cursor: pointer;
 }
 
+.messages p {
+    transition: opacity 0.25s linear;
+}
+
 .select div {
     cursor: context-menu;
 }

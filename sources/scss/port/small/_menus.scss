@@ -2,10 +2,12 @@
 /**
  * The height is too low for the full xChars submenu.
  */
-$HBreakpoint: 495px;
+$HBreakpoint1: 530px;
+$HBreakpoint2: 495px;
+
 $longOptionRowN: 3;
 
-@media only screen and (max-height: $HBreakpoint) and (max-width: $WBreakpoint2) {
+@media only screen and (max-height: $HBreakpoint2) and (max-width: $WBreakpoint2) {
     .selector-xchars, .selector-layout {
         &.active ul {
             max-width: 100%;
@@ -30,7 +32,10 @@ $longOptionRowN: 3;
     }
 }
 
-@media only screen and (max-height: $HBreakpoint) and (min-width: #{$WBreakpoint2 + 1px}) {
+@media
+only screen and (max-height: $HBreakpoint2) and (min-width: #{$WBreakpoint2 + 1px}),
+only screen and (max-height: $HBreakpoint1) and (min-width: #{$WBreakpoint1 + 1px})
+{
     .select.selector-xchars {
         &.active, &:hover:not(.lock) {
             ul {

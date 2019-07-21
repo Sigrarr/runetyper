@@ -25,12 +25,16 @@
             line-height: $midButtonSize;
             margin-left: 3*$spaceS;
             content: "\1F5D9";
-            font-style: NotoSanxMix;
+            font-family: NotoSansMix;
             text-shadow: $optionShadow;
             border: $menuOptionLightBorder;
         }
         &:hover:before {
             background-color: $coolColor;
+        }
+        
+        &.fading {
+            opacity: 0;
         }
         
         border-left: $spaceS solid $coolColor;

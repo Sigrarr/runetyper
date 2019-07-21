@@ -150,3 +150,7 @@ dd {
     letter-spacing: -2px;
     margin-right: 2px;
 }
+
+a[target] {
+    white-space: nowrap;
+}

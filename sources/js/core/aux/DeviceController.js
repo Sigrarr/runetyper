@@ -25,9 +25,7 @@ App.DeviceController = {
         if (device === App.device) {
             var textBeforeDeviceSwitch = storage.get(textKey);
             if (textBeforeDeviceSwitch) {
-                if (App.Writer.textArea.value.length === 0) {
-                    App.Writer.write(textBeforeDeviceSwitch);
-                }
+                App.Writer.textArea.value = textBeforeDeviceSwitch;
                 storage.clear(textKey);
             }
         } else {

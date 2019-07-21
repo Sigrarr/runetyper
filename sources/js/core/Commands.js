@@ -83,15 +83,6 @@ App.Commands = {
         }
     },
 
-    switchCaptions: function () {
-        var target = findActiveChild(App.DomLandmarks.captionsSwitchLi.firstElementChild);
-        Updater.push(
-                "captions",
-                (target.nextElementSibling || target.parentNode.firstElementChild)
-                    .getAttribute("data-captions")
-        );
-    },
-
     changeFontSize: function(deltaSgn) {
         App.OutFontSizeController.tryChange(+deltaSgn);
     },

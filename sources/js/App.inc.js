@@ -27,7 +27,6 @@ include("building/EventAssigner.js");
 include("building/aux/fillEmail.js");
 include("building/aux/buildOutline.js");
 include("overrides/MsKeys.js");
-include("overrides/NoJsSetRangeText.js");
 include("overrides/NoCssPointerEvents.js");
 include("overrides/TouchDevice.js");
 
