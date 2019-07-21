@@ -7,10 +7,10 @@ var Updater = {
         this.name = name;
         this.upId = -1;
         this.receivers = {
-            byHandler: [],
-            byAttribute: {},
-            byClass: [],
-            byChildren: []
+            handler: [],
+            attr: {},
+            class: [],
+            children: []
         };
     },
 
@@ -38,7 +38,7 @@ var Updater = {
         }
     },
 
-    register: function (topicName, receiver, isTopicConfirmed) {
+    register: function (receiver, topicName, isTopicConfirmed) {
         var hasHandler = (typeof receiver[topicName + "Handler"] === "function");
 
         if (topicName === '_') {
@@ -54,7 +54,7 @@ var Updater = {
         var list = this.topics[topicName].receivers;
 
         if (hasHandler) {
-            list.byHandler.push(receiver);
+            list.handler.push(receiver);
         }
 
         if (typeof receiver.nodeType !== "undefined"
@@ -62,19 +62,14 @@ var Updater = {
                 && receiver.hasAttribute("data-depend-" + topicName)) {
             var dependencies = receiver.getAttribute("data-depend-" + topicName).split(',');
             for (var i in dependencies) {
-                switch (dependencies[i]) {
-                    case "children":
-                        list.byChildren.push(receiver);
-                        break;
-                    case "class":
-                        list.byClass.push(receiver);
-                        break;
-                    default:
-                        var attributeName = dependencies[i];
-                        if (!list.byAttribute.hasOwnProperty(attributeName)) {
-                            list.byAttribute[attributeName] = [];
-                        }
-                        list.byAttribute[attributeName].push(receiver);
+                var dependency = dependencies[i];
+                if (dependency === "children" || dependency === "class") {
+                    list[dependencies[i]].push(receiver);
+                } else {
+                    if (!(dependency in list.attr)) {
+                        list.attr[dependency] = [];
+                    }
+                    list.attr[dependency].push(receiver);
                 }
             }
         }
@@ -84,7 +79,25 @@ var Updater = {
         this.confirmTopic(topicName);
         var receivers = findMany(".receiver-" + topicName);
         for (var i = 0; i < receivers.length; i++) {
-            this.register(topicName, receivers[i], true);
+            this.register(receivers[i], topicName, true);
+        }
+    },
+
+    unregister: function (receiver, topicName) {
+        var listsToRemoveFrom = [];
+        var topicReceivers = this.topics[topicName].receivers;
+
+        if ((topicName + "Handler") in receiver) {
+            listsToRemoveFrom.push(topicReceivers.handler);
+        } else {
+            var dependencies = receiver.getAttribute("data-depend-" + topicName).split(',');
+            for (var d in dependencies) {
+                listsToRemoveFrom.push(topicReceivers[dependencies[d]] || topicReceivers.attr[dependencies[d]] || []);
+            }
+        }
+
+        for (var i in listsToRemoveFrom) {
+            listsToRemoveFrom[i].splice(listsToRemoveFrom[i].indexOf(receiver), 1);
         }
     },
 
@@ -98,26 +111,26 @@ var Updater = {
         var newValue = String(newValueMixed);
         var n;
 
-        n = topic.receivers.byHandler.length;
+        n = topic.receivers.handler.length;
         for (var i = 0; i < n && updateId === topic.upId; i++) {
-            topic.receivers.byHandler[i][topicName + "Handler"](newValue);
+            topic.receivers.handler[i][topicName + "Handler"](newValue);
         }
 
-        for (var attrName in topic.receivers.byAttribute) {
-            n = topic.receivers.byAttribute[attrName].length;
+        for (var attrName in topic.receivers.attr) {
+            n = topic.receivers.attr[attrName].length;
             for (var i = 0; i < n && updateId === topic.upId; i++) {
-                this.updateByAttribute(topic.receivers.byAttribute[attrName][i], attrName, topic, newValue);
+                this.updateByAttr(topic.receivers.attr[attrName][i], attrName, topic, newValue);
             }
         }
 
-        n = topic.receivers.byClass.length;
+        n = topic.receivers.class.length;
         for (var i = 0; i < n && updateId === topic.upId; i++) {
-            this.updateByClass(topic.receivers.byClass[i], topic, newValue);
+            this.updateByClass(topic.receivers.class[i], topic, newValue);
         }
 
-        n = topic.receivers.byChildren.length;
+        n = topic.receivers.children.length;
         for (var i = 0; i < n && updateId === topic.upId; i++) {
-            this.updateByChildren(topic.receivers.byChildren[i], topic, newValue);
+            this.updateByChildren(topic.receivers.children[i], topic, newValue);
         }
 
         this.reportTopic.queue.push(new this.Record(topic, newValue, updateId));
@@ -142,7 +155,7 @@ var Updater = {
         }
     },
 
-    updateByAttribute: function (receiver, attrName, topic, newValue) {
+    updateByAttr: function (receiver, attrName, topic, newValue) {
         var dataKey = "data-" + attrName + "-" + topic.name + "-" + newValue;
         var newAttrValue = receiver.hasAttribute(dataKey) ? receiver.getAttribute(dataKey) : "";
         receiver.setAttribute(attrName, newAttrValue);

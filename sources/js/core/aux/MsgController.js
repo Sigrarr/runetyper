@@ -24,11 +24,10 @@ App.MsgController = {
 
             rec: {
                 start: function (module) {
-                    Updater.register("fit", module);
+                    Updater.register(module, "fit");
                 },
                 stop: function (module) {
-                    var observers = Updater.topics.fit.receivers.byHandler;
-                    observers.splice(observers.indexOf(module), 1);
+                    Updater.unregister(module, "fit");
                 }
             },
 

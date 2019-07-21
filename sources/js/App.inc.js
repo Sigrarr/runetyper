@@ -1,7 +1,5 @@
 "use strict";
 
-include("lib/helpers.js");
-include("lib/Updater.js");
 include("Env.js");
 
 var App = {
@@ -17,6 +15,8 @@ var App = {
     }
 };
 
+include("lib/Updater.js");
+include("lib/helpers.js");
 include("core/Literator.js");
 include("core/Writer.js");
 include("core/Commands.js");

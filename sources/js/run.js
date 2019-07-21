@@ -24,17 +24,17 @@ App.run = function () {
     App.EventAssigner.initializeResizeHandling();
     App.FitController.initialize();
 
-    Updater.register('_', App.Storage);
-    Updater.register("device", App.DeviceController);
-    Updater.register("alphabet", App.DomMarks);
-    Updater.register("alphabet", App.Literator);
-    Updater.register("layout", App.Literator);
-    Updater.register("command", App.Commands);
-    Updater.register("view", App.ViewController);
-    Updater.register("view", App.FitController);
-    Updater.register("alphabet", App.FitController);
-    Updater.register("kbmode", App.FitController);
-    Updater.register("fontsize", App.OutFontSizeController);
+    Updater.register(App.Storage, '_');
+    Updater.register(App.DeviceController, "device");
+    Updater.register(App.DomMarks, "alphabet");
+    Updater.register(App.Literator, "alphabet");
+    Updater.register(App.Literator, "layout");
+    Updater.register(App.Commands, "command");
+    Updater.register(App.ViewController, "view");
+    Updater.register(App.FitController, "view");
+    Updater.register(App.FitController, "alphabet");
+    Updater.register(App.FitController, "kbmode");
+    Updater.register(App.OutFontSizeController, "fontsize");
     Updater.confirmTopic("captions");
     Updater.confirmTopic("xfont");
     Updater.confirmTopic("theme");

@@ -1,4 +1,6 @@
 
+/* global Updater */
+
 function createElement(tagName, classes, attributes, childNodes) {
     var element = document.createElement(tagName);
 
@@ -34,6 +36,15 @@ function createTextNode(text) {
 
 function removeNode(node) {
     node.parentNode.removeChild(node);
+    var classes = node.classList;
+    if (classes) {
+        for (var i = classes.length - 1; i >= 0; i--) {
+            var parts = classes[i].split('-', 2);
+            if (parts[0] === "receiver") {
+                Updater.unregister(node, parts[1]);
+            }
+        }
+    }
 }
 
 function findOne(query) {

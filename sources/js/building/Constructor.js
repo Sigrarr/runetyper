@@ -39,7 +39,7 @@ App.Constructor = {
                     App.DomSignaler.signalByXString(newXChar);
                 };
 
-                Updater.register(topicName, entity);
+                Updater.register(entity, topicName);
                 multiXCharEntities.push(entity);
             }
         }

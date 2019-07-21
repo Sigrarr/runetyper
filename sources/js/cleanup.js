@@ -1,5 +1,5 @@
 
-/* global App, removeNode, timePts */
+/* global App, Updater, removeNode, timePts */
 
 App.cleanUp = function () {
 
@@ -14,6 +14,11 @@ App.cleanUp = function () {
     delete App.buildOutline;
     delete App.run;
     delete App.cleanUp;
+
+    var deviceTopicReceivers = Updater.topics.device.receivers;
+    deviceTopicReceivers.attr = {};
+    deviceTopicReceivers.class = [];
+    deviceTopicReceivers.children = [];
 
     var tmpNodes = findMany(".tmp");
     while (tmpNodes.length > 0) {
