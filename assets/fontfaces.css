@@ -16,7 +16,7 @@
 /*
  * LinBiolinum: Linux Libertine by Philipp H. Poll
  * http://www.linuxlibertine.org
- * Licence: OFL 1.1, http://scripts.sil.org/OFL
+ * License: OFL 1.1, http://scripts.sil.org/OFL
  * Subset. Converted from OTF with Font Squirrel Webfont Generator,
  *     https://www.fontsquirrel.com/tools/webfont-generator
  */
@@ -33,24 +33,24 @@
     font-family: 'LinBiolinum';
     font-style: italic;
     font-weight: 400;
-    src: url(../fonts/LinBiolinum/LinBiolinumI--sub.woff2) format('woff2'),
-         url(../fonts/LinBiolinum/LinBiolinumI--sub.woff) format('woff');
+    src: url(fonts/LinBiolinum/LinBiolinumI--sub.woff2) format('woff2'),
+         url(fonts/LinBiolinum/LinBiolinumI--sub.woff) format('woff');
 }
 
 @font-face {
     font-family: 'LinBiolinum';
     font-style: normal;
     font-weight: 400;
-    src: url(../fonts/LinBiolinum/LinBiolinumR--sub.woff2) format('woff2'),
-         url(../fonts/LinBiolinum/LinBiolinumR--sub.woff) format('woff');
+    src: url(fonts/LinBiolinum/LinBiolinumR--sub.woff2) format('woff2'),
+         url(fonts/LinBiolinum/LinBiolinumR--sub.woff) format('woff');
 }
 
 @font-face {
     font-family: 'LinBiolinum';
     font-style: normal;
     font-weight: 700;
-    src: url(../fonts/LinBiolinum/LinBiolinumB--sub.woff2) format('woff2'),
-         url(../fonts/LinBiolinum/LinBiolinumB--sub.woff) format('woff');
+    src: url(fonts/LinBiolinum/LinBiolinumB--sub.woff2) format('woff2'),
+         url(fonts/LinBiolinum/LinBiolinumB--sub.woff) format('woff');
 }
 
 /*
@@ -61,7 +61,7 @@
  * Noto Sans Symbols2 by Google
  * Copyright 2017 Google Inc. All Rights Reserved.
  * https://www.google.com/get/noto/
- * Licence: OFL 1.1, http://scripts.sil.org/OFL
+ * License: OFL 1.1, http://scripts.sil.org/OFL
  * Merged subsets. Converted from TTF with Font Squirrel Webfont Generator,
  *     https://www.fontsquirrel.com/tools/webfont-generator
  */
@@ -76,7 +76,7 @@
  * Noto Sans Runic by Google
  * Copyright 2017 Google Inc. All Rights Reserved.
  * https://www.google.com/get/noto/
- * Licence: OFL 1.1, http://scripts.sil.org/OFL
+ * License: OFL 1.1, http://scripts.sil.org/OFL
  * Converted from TTF with Font Squirrel Webfont Generator,
  *     https://www.fontsquirrel.com/tools/webfont-generator
  */
@@ -92,7 +92,7 @@
  * Noto Sans Gothic by Google
  * Copyright 2012 Google Inc. All Rights Reserved.
  * http://www.google.com/fonts/earlyaccess
- * Licence: Apache License 2.0, http://www.apache.org/licenses/LICENSE-2.0
+ * License: Apache License 2.0, http://www.apache.org/licenses/LICENSE-2.0
  */
 @font-face {
     font-family: 'NotoSansRunicGothic';
@@ -106,7 +106,7 @@
  * Pfeffer Mediæval by Robert Pfeffer
  * Copyright (c) Robert Pfeffer, Hessen, 2010.
  * http://robert-pfeffer.net/schriftarten
- * Licence: Free for non commercial purposes.
+ * License: Free for non commercial purposes.
  * Modifications:
  *     Small letters in the Gothic block replaced by Gothic capital letters from a private use area.
  *     The combination glyph for I+dieresis renamed and reconfigured for Gothic eis+dieresis.
@@ -124,6 +124,6 @@
     font-family: 'CourierPrime';
     font-style: normal;
     font-weight: 400;
-    src: url(../fonts/CourierPrime/CourierPrime--sub.woff2) format('woff2'),
-        url(../fonts/CourierPrime/CourierPrime--sub.woff) format('woff');
+    src: url(fonts/CourierPrime/CourierPrime--sub.woff2) format('woff2'),
+        url(fonts/CourierPrime/CourierPrime--sub.woff) format('woff');
 }
