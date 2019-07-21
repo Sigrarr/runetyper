@@ -7,8 +7,6 @@ App.overrides.MsKeys = {
         return App.stdDev() && Env.browser === "ms";
     },
 
-    depend: [],
-
     run: function () {
         App.MsKeys = this.MsKeys;
 

@@ -4,7 +4,7 @@
 App.MenuBuilder = {
 
     addAlphabetEntry: function (meta, id) {
-        var parentLi = App.DomLandmarks.alphSelectLi;
+        var parentLi = App.DomMarks.alphSelectLi;
         var indicatorEm = parentLi.children[0].children[1];
         var optionsUl = parentLi.children[1];
         var name = meta.name[Env.lang];
@@ -37,7 +37,7 @@ App.MenuBuilder = {
     },
 
     addXCharsEntry: function (entities, alphId) {
-        var parentLi = App.DomLandmarks.xCharsSelectLi;
+        var parentLi = App.DomMarks.xCharsSelectLi;
         var indicatorEm = parentLi.children[0].children[1];
 
         indicatorEm.appendChild(
@@ -81,7 +81,7 @@ App.MenuBuilder = {
     },
 
     addLayoutEntry: function (meta, id) {
-        var parentLi = App.DomLandmarks.layoutSelectLi;
+        var parentLi = App.DomMarks.layoutSelectLi;
         var optionsUl = parentLi.children[1];
 
         optionsUl.appendChild(

@@ -281,7 +281,7 @@ $subOptionIconMinWidth: 30px;
 $lightOpaque: 0.775;
 $hardOpaque: 0.925;
 $middleOpaque: ($lightOpaque + $hardOpaque) / 2;
-.editor-space, #information {
+.editor-space, #info {
     .sup-menu {
         opacity: $lightOpaque;
         &:hover {

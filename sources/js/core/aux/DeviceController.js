@@ -1,16 +1,6 @@
 
 /* global App, Env */
 
-App.device = Env.device;
-
-App.stdDev = function () {
-    return App.device === "std";
-};
-
-App.touchDev = function () {
-    return App.device === "touch";
-};
-
 App.DeviceController = {
 
     initialize: function () {

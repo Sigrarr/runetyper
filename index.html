@@ -9,7 +9,7 @@
         <meta name="keywords" content="runes, runic, writing, text editor, virtual keyboard, gothic alphabet, scripts">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
-            var T = {t0: Date.now()};
+            var timePts = {t0: Date.now()};
         </script>
         <link rel="stylesheet" type="text/css" href="assets/fontfaces.css">
         <link rel="stylesheet" type="text/css" href="assets/style.min.css">
@@ -52,7 +52,7 @@
                 <header class="sup-menu">
                     <h2 class="implicit">Workspace</h2>
                     <ul class="menu">
-                        <li class="select selector-alphabet">
+                        <li class="select selector-alphabet" id="selector-alphabet">
                             <div title="Select alphabet">
                                 <h4 class="icon logotext">ᚱ</h4>
                                 <em class="receiver-alphabet"
@@ -62,6 +62,7 @@
                             <ul></ul>
                         </li>
                         <li class="select selector-xchars receiver-alphabet"
+                            id="selector-xchars"
                             data-depend-alphabet="children,class">
                             <div title="Select letter variants">
                                 <h4 class="icon">&#x2605;</h4>
@@ -69,7 +70,7 @@
                                     data-depend-alphabet="children">
                                 </em>
                             </div>
-                            <ul class="protobox">
+                            <ul class="tmp">
                                 <li>
                                     <button title="Shift all backward [Ctrl+⬅]"
                                             data-topic="command"
@@ -86,8 +87,9 @@
                             </div>
                             <ul>
                                 <li class="select sub-select selector-layout receiver-device"
+                                    id="selector-layout"
                                     data-depend-device="class"
-                                    data-class-device-touch="protobox">
+                                    data-class-device-touch="tmp">
                                     <div>
                                         <h5>
                                             <span class="icon">&#x1F5AE;</span>
@@ -219,7 +221,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="switch-captions">
+                        <li class="cycle-captions" id="cycle-captions">
                             <h4 class="icon receiver-captions receiver-device"
                                 data-topic="captions"
                                 data-depend-captions="children,data-captions"
@@ -227,16 +229,16 @@
                                 data-data-captions-captions-keys="off"
                                 data-data-captions-captions-off="roman"
                                 data-depend-device="class"
-                                data-class-device-touch="protobox">
+                                data-class-device-touch="tmp">
                                 <button class="full"
                                         data-captions="roman"
-                                        title="Captions: romanization. Toggle: click or [Insert]">Æ</button>
+                                        title="Captions: romanization. Cycle with click or [Insert].">Æ</button>
                                 <button class="full"
                                         data-captions="keys"
-                                        title="Captions: keys. Toggle: click or [Insert]">&#x1F130;&#x1F134;</button>
+                                        title="Captions: keys. Cycle with click or [Insert].">&#x1F130;&#x1F134;</button>
                                 <button class="full"
                                         data-captions="off"
-                                        title="Captions: off. Toggle: click or [Insert]">&#x2014;</button>
+                                        title="Captions: off. Cycle with click or [Insert].">&#x2014;</button>
                             </h4>
                             <h4 class="icon receiver-captions receiver-device"
                                 data-topic="captions"
@@ -244,13 +246,13 @@
                                 data-data-captions-captions-off="roman"
                                 data-data-captions-captions-roman="off"
                                 data-depend-device="class"
-                                data-class-device-std="protobox">
+                                data-class-device-std="tmp">
                                 <button class="full">&#x1F130;<sub>&#x1f5d8;</sub></button>
                             </h4>
                         </li>
                         <li title="Information">
                             <h4 class="icon">
-                                <button data-topic="view" data-view="information">&#x1F6C8;</button>
+                                <button data-topic="view" data-view="info">&#x1F6C8;</button>
                             </h4>
                         </li>
                     </ul>
@@ -316,7 +318,7 @@
                                 data-toolbar="on"
                                 class="receiver-device"
                                 data-depend-device="class"
-                                data-class-device-touch="protobox">
+                                data-class-device-touch="tmp">
                                 <h4 class="icon danger">
                                     <button data-topic="command" data-command="eraseSelection">&#x2327;</button>
                                 </h4>
@@ -337,7 +339,7 @@
                      data-class-captions-roman="sup-captions-roman"
                      data-class-captions-keys="sup-captions-keys"
                      data-class-captions-off="sup-captions-off">
-                    <aside class="protobox" id="touchdev-inputs">
+                    <aside class="tmp" id="touchdev-inputs">
                         <div class="xletter-box">
                             <button class="itext" data-xchar=" ">&#x2423;</button>
                         </div>
@@ -360,7 +362,7 @@
                 </aside>
             </section>
 
-            <section class="information" id="information" data-view="information">
+            <section class="info" id="info" data-view="info">
                 <header>
                     <h1 class="logo"><span>R</span>unetyper</h1>
                     <address>
@@ -398,7 +400,7 @@
                     <ul class="menu">
                         <li title="Go back to the top">
                             <h4 class="icon">
-                                <a href="#information">
+                                <a href="#info">
                                     <button>&#x2BC5;</button>
                                 </a>
                             </h4>

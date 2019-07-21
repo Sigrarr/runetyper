@@ -5,13 +5,22 @@ include("lib/Updater.js");
 include("Env.js");
 
 var App = {
-    overrides: {}
+    overrides: {},
+    device: null,
+
+    stdDev: function () {
+        return this.device === "std";
+    },
+
+    touchDev: function () {
+        return this.device === "touch";
+    }
 };
 
 include("core/Literator.js");
 include("core/Writer.js");
 include("core/Commands.js");
-include("core/DomLandmarks.js");
+include("core/DomMarks.js");
 include("core/aux/DeviceController.js");
 include("core/aux/DomSignaler.js");
 include("core/aux/Storage.js");

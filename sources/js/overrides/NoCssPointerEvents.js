@@ -4,13 +4,11 @@
 App.overrides.NoCssPointerEvents = {
 
     test: function () {
-        return typeof document.body.style.pointerEvents === "undefined";
+        return !("pointerEvents" in document.body.style);
     },
 
-    depend: [],
-
     run: function () {
-        App.DomLandmarks.kBoardContainer.addEventListener("click", function (event) {
+        App.DomMarks.kBoardSpace.addEventListener("click", function (event) {
             if (!App.FitController.compact) {
                 return;
             }

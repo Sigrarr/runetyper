@@ -21,7 +21,7 @@ App.overrides.TouchDevice = {
         if (devSwitchText) {
             writer.textArea.value = devSwitchText;
         }
-        App.DomLandmarks.outputContainer.insertBefore(writer.textArea.div, App.DomLandmarks.outputContainer.firstChild);
+        App.DomMarks.editorSpace.insertBefore(writer.textArea.div, App.DomMarks.editorSpace.firstChild);
         App.OutFontSizeController.textArea = writer.textArea.div;
 
         writer.stdWrite = App.Writer.write;
@@ -35,7 +35,7 @@ App.overrides.TouchDevice = {
                     var selectionStart = wTextArea.selectionStart;
                     if (selectionStart === wTextArea.selectionEnd && selectionStart > 0) {
                         var value = wTextArea.value;
-                        var map = App.DomLandmarks.activeKBoard.backMap;
+                        var map = App.DomMarks.activeKBoard.backMap;
                         var back = 1;
                         for (var bytes = 1; bytes <= 4 && selectionStart - bytes >= 0; bytes++) {
                             if (value.substring(selectionStart - bytes, selectionStart) in map) {
@@ -50,12 +50,12 @@ App.overrides.TouchDevice = {
             this.stdWrite(xChar);
         };
 
-        var specialInputsprotoboxs = findOne("#touchdev-inputs").children;
-        for (var k in App.DomLandmarks.kBoards) {
-            var kBoard = App.DomLandmarks.kBoards[k];
+        var specialInputstmps = findOne("#touchdev-inputs").children;
+        for (var k in App.DomMarks.kBoards) {
+            var kBoard = App.DomMarks.kBoards[k];
             var targetRow = kBoard.lastElementChild.lastElementChild;
-            for (var i = 0; i < specialInputsprotoboxs.length; i++) {
-                var box = specialInputsprotoboxs[i].cloneNode(true);
+            for (var i = 0; i < specialInputstmps.length; i++) {
+                var box = specialInputstmps[i].cloneNode(true);
                 var button = box.firstElementChild;
                 targetRow.appendChild(box);
                 kBoard.backMap[button.getAttribute("data-xchar")] = button;
@@ -121,7 +121,7 @@ App.overrides.TouchDevice = {
             this.tail = createElement("span", null, null, [createTextNode("")]);
             this.div = createElement("div", ["touch-dev", "xtext"], attrs, [this.head, this.tail]);
 
-            this.div.addEventListener(typeof this.div.ontouchend === "undefined" ? "click" : "touchend", function () {
+            this.div.addEventListener("ontouchend" in this.div ? "touchend" : "click", function () {
                 setTimeout(App.Writer.textArea.adjust, 0);
             });
 

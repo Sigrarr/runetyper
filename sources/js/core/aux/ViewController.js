@@ -5,15 +5,15 @@ App.ViewController = {
     scrollCheck: null,
 
     getRequestedView: function () {
-        return this.isInfoSectionHash(window.location.hash) ? "information" : "workspace";
+        return this.isInfoSectionHash(window.location.hash) ? "info" : "workspace";
     },
 
     viewHandler: function (view) {
         var hash = window.location.hash;
         switch (view) {
-            case "information":
+            case "info":
                 if (!this.isInfoSectionHash(hash)) {
-                    window.location.hash = "information";
+                    window.location.hash = "info";
                 }
 
                 this.scrollCheck = setInterval(this.scrollHandler, 250);
@@ -30,18 +30,18 @@ App.ViewController = {
                     this.scrollCheck = null;
                 }
 
-                App.DomLandmarks.goTopButton.classList.remove("active");
+                App.DomMarks.goTopButton.classList.remove("active");
 
                 break;
         }
     },
 
     isInfoSectionHash: function (hash, confirmed) {
-        return hash === "#information" || (hash.charAt(1) === 'i' && (confirmed || findOne(hash)));
+        return hash === "#info" || (hash.charAt(1) === 'i' && (confirmed || findOne(hash)));
     },
 
     scrollHandler: function () {
-        var buttonClasses = App.DomLandmarks.goTopButton.classList;
+        var buttonClasses = App.DomMarks.goTopButton.classList;
         document.documentElement.scrollTop > window.innerHeight ?
                 buttonClasses.add("active") : buttonClasses.remove("active");
     }

@@ -5,7 +5,7 @@ App.DomSignaler = {
 
     initialize: function () {
         this.signalByXString = function (xString) {
-            var map = App.DomLandmarks.activeKBoard.backMap;
+            var map = App.DomMarks.activeKBoard.backMap;
             var multibyteXCharCandidate = "";
             var button = null;
             for (var i = xString.length - 1; i >= 0; i--) {

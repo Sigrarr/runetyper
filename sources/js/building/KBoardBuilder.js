@@ -47,8 +47,8 @@ App.KBoardBuilder = {
 
         this.checkForTall(kBoard, rowsN, sectionsN);
         kBoard.backMap = this.xCharToButton;
-        App.DomLandmarks.kBoards.push(kBoard);
-        App.DomLandmarks.kBoardContainer.appendChild(kBoard);
+        App.DomMarks.kBoards.push(kBoard);
+        App.DomMarks.kBoardSpace.appendChild(kBoard);
     },
 
     buildXCharButtons: function (entity) {

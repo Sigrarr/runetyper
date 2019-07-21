@@ -49,7 +49,7 @@ App.EventAssigner = {
     },
 
     initializeXCharButtonClicks: function () {
-        App.DomLandmarks.kBoardContainer.addEventListener("click", function (event) {
+        App.DomMarks.kBoardSpace.addEventListener("click", function (event) {
             if (event.target.hasAttribute("data-xchar")) {
                 App.Writer.clickWrite(
                         event.target.getAttribute("data-xchar")

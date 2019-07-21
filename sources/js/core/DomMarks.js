@@ -1,16 +1,15 @@
 /* global App */
 
-App.DomLandmarks = {
+App.DomMarks = {
 
     kBoards: [],
     activeKBoard: null,
-    kBoardContainer: null,
-    outputContainer: null,
+    kBoardSpace: null,
+    editorSpace: null,
     alphSelectLi: null,
     xCharsSelectLi: null,
     layoutSelectLi: null,
-    captionsSwitchLi: null,
-    viewSwitchLi: null,
+    captionsCycleLi: null,
     saveTextButton: null,
     goTopButton: null,
 

@@ -1,5 +1,5 @@
 
-/* global App, removeNode, T */
+/* global App, removeNode, timePts */
 
 App.cleanUp = function () {
 
@@ -15,11 +15,11 @@ App.cleanUp = function () {
     delete App.run;
     delete App.cleanUp;
 
-    var protoboxNodes = findMany(".protobox");
-    while (protoboxNodes.length > 0) {
-        removeNode(protoboxNodes[0]);
+    var tmpNodes = findMany(".tmp");
+    while (tmpNodes.length > 0) {
+        removeNode(tmpNodes[0]);
     }
 
-    T.t1 = Date.now();
-    console.log("@ready", (T.t1 - T.t0) + "ms");
+    timePts.t1 = Date.now();
+    console.log("@ready", (timePts.t1 - timePts.t0) + "ms");
 };

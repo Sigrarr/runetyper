@@ -65,7 +65,7 @@ App.Commands = {
     },
 
     shiftXChars: function (delta) {
-        var li = findActiveChild(App.DomLandmarks.xCharsSelectLi).firstElementChild;
+        var li = findActiveChild(App.DomMarks.xCharsSelectLi).firstElementChild;
         while (li = li.nextElementSibling) {
             var buttons = li.children;
             for (var i = 0; i < buttons.length; i++) {
@@ -90,7 +90,7 @@ App.Commands = {
     saveText: function () {
         App.Storage.set("_text", App.Writer.textArea.value);
         Updater.push("loadable_text", +(App.Writer.textArea.value.length > 0));
-        App.DomSignaler.signalButton(App.DomLandmarks.saveTextButton);
+        App.DomSignaler.signalButton(App.DomMarks.saveTextButton);
     },
 
     pasteText: function () {

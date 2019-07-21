@@ -20,7 +20,7 @@ App.FitController = {
         }
         controller.lock = true;
 
-        var container = App.DomLandmarks.kBoardContainer;
+        var container = App.DomMarks.kBoardSpace;
         var narrowScreen = Math.abs(window.innerWidth - container.offsetWidth) < 100;
 
         container.classList.add("resizing");
@@ -34,7 +34,7 @@ App.FitController = {
             controller.compact = true;
             controller.compactRet = false;
             method = controller.fitCompact;
-            mKBoard = App.DomLandmarks.activeKBoard;
+            mKBoard = App.DomMarks.activeKBoard;
             mParam = narrowScreen;
             fitClass = "compact";
         } else {
@@ -68,8 +68,8 @@ App.FitController = {
         var containerFree = container.offsetHeight - effectiveHeight;
 
         if (narrowScreen) {
-            var outputContainer = App.DomLandmarks.outputContainer;
-            outputContainer.style.height = outputContainer.offsetHeight + containerFree + "px";
+            var editorSpace = App.DomMarks.editorSpace;
+            editorSpace.style.height = editorSpace.offsetHeight + containerFree + "px";
         } else {
             mKBoard.style.top = (containerFree / 2) + "px";
         }
@@ -120,7 +120,7 @@ App.FitController = {
     },
 
     release: function (container, mKBoard) {
-        var aKBoard = App.DomLandmarks.activeKBoard;
+        var aKBoard = App.DomMarks.activeKBoard;
         if (mKBoard !== aKBoard) {
             mKBoard.style.display = "none";
             aKBoard.style.removeProperty("display");
@@ -137,18 +137,18 @@ App.FitController = {
     },
 
     preset: function (mKBoard, fitClass) {
-        var landmarks = App.DomLandmarks;
+        var landmarks = App.DomMarks;
 
-        landmarks.outputContainer.style.removeProperty("height");
+        landmarks.editorSpace.style.removeProperty("height");
 
-        var kBoardContainerClasses = landmarks.kBoardContainer.classList;
+        var kBoardSpaceClasses = landmarks.kBoardSpace.classList;
         var allFitClasses = this.allFitClasses;
         for (var i in allFitClasses) {
             if (allFitClasses[i] !== fitClass) {
-                kBoardContainerClasses.remove(allFitClasses[i]);
+                kBoardSpaceClasses.remove(allFitClasses[i]);
             }
         }
-        kBoardContainerClasses.add(fitClass);
+        kBoardSpaceClasses.add(fitClass);
 
         var kBoards = landmarks.kBoards;
         for (var i in kBoards) {
@@ -183,7 +183,7 @@ App.FitController = {
     },
 
     initialize: function () {
-        var probeBox = createElement("div", ["extremes-probe", "protobox"]);
+        var probeBox = createElement("div", ["extremes-probe", "tmp"]);
         document.body.appendChild(probeBox);
         var probeBoxStyle = getComputedStyle(probeBox);
         this.boxMaxSize = parseInt(probeBoxStyle.getPropertyValue("max-width"));

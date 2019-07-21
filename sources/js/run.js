@@ -1,18 +1,18 @@
 
-/* global App, Updater, Env, findOne, removeNode, T */
+/* global App, Updater, Env, findOne, removeNode, timePts */
 
 App.run = function () {
-    T.run0 = Date.now();
+    timePts.run0 = Date.now();
 
     App.Writer.textArea = findOne("#output");
-    App.DomLandmarks.kBoardContainer = findOne(".kboard-space");
-    App.DomLandmarks.outputContainer = findOne(".editor-space");
-    App.DomLandmarks.alphSelectLi = findOne(".selector-alphabet");
-    App.DomLandmarks.xCharsSelectLi = findOne(".selector-xchars");
-    App.DomLandmarks.layoutSelectLi = findOne(".selector-layout");
-    App.DomLandmarks.captionsSwitchLi = findOne(".switch-captions");
-    App.DomLandmarks.saveTextButton = findOne("#save-text-button");
-    App.DomLandmarks.goTopButton = findOne("#go-top");
+    App.DomMarks.kBoardSpace = findOne("#kboard-space");
+    App.DomMarks.editorSpace = findOne("#editor-space");
+    App.DomMarks.alphSelectLi = findOne("#selector-alphabet");
+    App.DomMarks.xCharsSelectLi = findOne("#selector-xchars");
+    App.DomMarks.layoutSelectLi = findOne("#selector-layout");
+    App.DomMarks.captionsCycleLi = findOne("#cycle-captions");
+    App.DomMarks.saveTextButton = findOne("#save-text-button");
+    App.DomMarks.goTopButton = findOne("#go-top");
 
     App.DeviceController.initialize();
     App.Constructor.buildLayouts();
@@ -26,7 +26,7 @@ App.run = function () {
 
     Updater.register('_', App.Storage);
     Updater.register("device", App.DeviceController);
-    Updater.register("alphabet", App.DomLandmarks);
+    Updater.register("alphabet", App.DomMarks);
     Updater.register("alphabet", App.Literator);
     Updater.register("layout", App.Literator);
     Updater.register("command", App.Commands);
@@ -82,22 +82,13 @@ App.run = function () {
 
     for (var key in App.overrides) {
         var override = App.overrides[key];
-
-        for (var i in override.depend) {
-            var dependencyKey = override.depend[i];
-            if (!App.overrides[dependencyKey].resolved) {
-                throw "@orverride " + key + ": unresolved dependency " + dependencyKey;
-            }
-        }
-
         if (override.test()) {
             console.log("@override", key);
             override.run();
         }
-        override.resolved = true;
     }
 
-    T.run1 = Date.now();
+    timePts.run1 = Date.now();
 
     if (Env.ok) {
         setTimeout(function () {
@@ -106,7 +97,7 @@ App.run = function () {
                 removeNode(findOne("#loader"));
                 document.body.classList.remove("sup-loader");
             }, 500);
-        }, Math.max(0, 500 - (T.run1 - T.t0)));
+        }, Math.max(0, 500 - (timePts.run1 - timePts.t0)));
     }
 
     App.cleanUp();
