@@ -30,7 +30,7 @@ var Updater = {
     },
 
     confirmTopic: function (topicName) {
-        if (!this.topics.hasOwnProperty(topicName)) {
+        if (!(topicName in this.topics)) {
             if (topicName.charAt(0) === '_' || topicName.indexOf('-') >= 0) {
                 throw "Illegal topic name: starts with '_' or contains '-'";
             }
@@ -102,7 +102,7 @@ var Updater = {
     },
 
     push: function (topicName, newValueMixed) {
-        if (!this.topics.hasOwnProperty(topicName)) {
+        if (!(topicName in this.topics)) {
             throw "Unregistered topic: " + topicName;
         }
 

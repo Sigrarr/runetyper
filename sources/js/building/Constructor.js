@@ -63,8 +63,7 @@ App.Constructor = {
                 var set = {};
 
                 for (var key in alphMap) {
-                    if (key.length > 1
-                            && !(layoutMap.hasOwnProperty(key) && layoutMap[key] === null)) {
+                    if (key.length > 1 && layoutMap[key] !== null) {
                         set[key.charAt(0)] = true;
                     }
                 }
@@ -76,7 +75,7 @@ App.Constructor = {
 
     buildAlphabets: function () {
         var data;
-        while (data = this.alphabetsData.shift()) {
+        while ((data = this.alphabetsData.shift())) {
             this.buildAlphabet(data);
         }
 
@@ -93,7 +92,7 @@ App.Constructor = {
 
     buildLayouts: function () {
         var data;
-        while (data = this.layoutsData.shift()) {
+        while ((data = this.layoutsData.shift())) {
             this.buildLayout(data);
         }
     },

@@ -1,5 +1,5 @@
 
-/* global App, findMany, createTextNode */
+/* global App, findMany, newText */
 
 App.fillEmail = function () {
     var mail = [
@@ -13,6 +13,6 @@ App.fillEmail = function () {
     var as = findMany(".email");
     for (var i = 0; i < as.length; i++) {
         as[i].setAttribute("href", href);
-        as[i].appendChild(createTextNode(mail));
+        as[i].appendChild(newText(mail));
     }
 };

@@ -1,5 +1,5 @@
 
-/* global App, findOne, createElement, createTextNode */
+/* global App, findOne, newElement, newText */
 
 App.buildOutline = function (depth) {
 
@@ -18,9 +18,9 @@ App.buildOutline = function (depth) {
             return null;
         }
 
-        var sectionLi = createElement("li", null, null, [
-            createElement("a", null, {href: "#" + section.id}, [
-                createTextNode(sectionHeading.textContent)
+        var sectionLi = newElement("li", null, null, [
+            newElement("a", null, {href: "#" + section.id}, [
+                newText(sectionHeading.textContent)
             ])
         ]);
 
@@ -32,7 +32,7 @@ App.buildOutline = function (depth) {
         }
 
         if (nestedSectionLis.length > 0) {
-            sectionLi.appendChild(createElement("ul", null, null, nestedSectionLis));
+            sectionLi.appendChild(newElement("ul", null, null, nestedSectionLis));
         }
 
         return sectionLi;

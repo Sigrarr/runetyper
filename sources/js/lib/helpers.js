@@ -1,7 +1,7 @@
 
 /* global Updater */
 
-function createElement(tagName, classes, attributes, childNodes) {
+function newElement(tagName, classes, attributes, childNodes) {
     var element = document.createElement(tagName);
 
     if (Array.isArray(classes)) {
@@ -30,7 +30,7 @@ function createElement(tagName, classes, attributes, childNodes) {
     return element;
 }
 
-function createTextNode(text) {
+function newText(text) {
     return document.createTextNode(text);
 }
 
@@ -75,4 +75,10 @@ function findActiveChild(parent) {
         }
     }
     return null;
+}
+
+function setProperties(object, properties) {
+    for (var key in properties) {
+        object[key] = properties[key];
+    }
 }

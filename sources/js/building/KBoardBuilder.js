@@ -1,5 +1,5 @@
 
-/* global App, createElement */
+/* global App, newElement */
 
 App.KBoardBuilder = {
 
@@ -14,7 +14,7 @@ App.KBoardBuilder = {
     buildAndAddKboard: function (data, alphId) {
         this.xCharToButton = {};
         this.keyToEntity = {};
-        var kBoard = createElement("div", ["kboard"], {"data-alphabet": alphId});
+        var kBoard = newElement("div", ["kboard"], {"data-alphabet": alphId});
 
         for (var e in data.entities) {
             var entity = data.entities[e];
@@ -28,11 +28,11 @@ App.KBoardBuilder = {
         var sectionsN = 0;
         for (var s in data.order) {
             sectionsN++;
-            var section = createElement("section");
+            var section = newElement("section");
             var sectionOrder = data.order[s];
             for (var r in sectionOrder) {
                 rowsN++;
-                var row = createElement("section", ["row"]);
+                var row = newElement("section", ["row"]);
                 var rowOrder = sectionOrder[r];
                 var colsN = rowOrder.length;
                 this.checkForWide(kBoard, colsN);
@@ -55,7 +55,7 @@ App.KBoardBuilder = {
         var xCharsN = entity.chars.length;
         for (var x = 0; x < xCharsN; x++) {
             var xChar = entity.chars[x];
-            this.xCharToButton[xChar] = createElement(
+            this.xCharToButton[xChar] = newElement(
                     "button",
                     ["xtext"],
                     [["data-xchar", xChar]]
@@ -65,7 +65,7 @@ App.KBoardBuilder = {
                     .concat(
                             x > 0 ? [["style", "display: none;"]] : []
                     ),
-                    [createTextNode(xChar)]
+                    [newText(xChar)]
             );
         }
     },
@@ -74,7 +74,7 @@ App.KBoardBuilder = {
         var entity = this.keyToEntity[key];
         var xCharsN = entity.chars.length;
 
-        var box = createElement(
+        var box = newElement(
                 "div",
                 ["xletter-box"].concat(
                         xCharsN > 1 ? ["receiver-" + entity.topicName] : []
@@ -87,12 +87,12 @@ App.KBoardBuilder = {
         }
 
         var romans = entity.roman.split(' ');
-        box.appendChild(createElement(
+        box.appendChild(newElement(
                 "p", ["roman"], null, [
-                    createElement("i", null, null, [
-                        createElement("span", null, null, [createTextNode(romans[0])])
+                    newElement("i", null, null, [
+                        newElement("span", null, null, [newText(romans[0])])
                     ].concat(
-                        romans.length > 1 ? [createTextNode(" " + romans.slice(1).join(' '))] : []
+                        romans.length > 1 ? [newText(" " + romans.slice(1).join(' '))] : []
                     ))
                 ]
         ));
@@ -122,20 +122,20 @@ App.KBoardBuilder = {
         for (var keySet in keySetToLayoutIds) {
             var keys = keySet.split(' ');
             keySpans.push(
-                    createElement(
+                    newElement(
                         "span",
                         null,
                         layoutDependency ? {"data-layout": keySetToLayoutIds[keySet]} : null,
                         [
-                            createElement("span", null, null, [createTextNode(keys[0])])
+                            newElement("span", null, null, [newText(keys[0])])
                         ].concat(
-                                keys.length > 1 ? [createTextNode(" " + keys.slice(1).join(' '))] : []
+                                keys.length > 1 ? [newText(" " + keys.slice(1).join(' '))] : []
                         )
                     )
             );
         }
 
-        return createElement(
+        return newElement(
                 "p",
                 ["keys", "typetext"].concat(
                         layoutDependency ? ["receiver-layout"] : []

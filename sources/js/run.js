@@ -1,18 +1,20 @@
 
-/* global App, Updater, Env, findOne, removeNode, timePts */
+/* global App, Updater, Env, findOne, removeNode, setProperties, timePts */
 
 App.run = function () {
     timePts.run0 = Date.now();
 
     App.Writer.textArea = findOne("#output");
-    App.DomMarks.kBoardSpace = findOne("#kboard-space");
-    App.DomMarks.editorSpace = findOne("#editor-space");
-    App.DomMarks.alphSelectLi = findOne("#selector-alphabet");
-    App.DomMarks.xCharsSelectLi = findOne("#selector-xchars");
-    App.DomMarks.layoutSelectLi = findOne("#selector-layout");
-    App.DomMarks.captionsCycleLi = findOne("#cycle-captions");
-    App.DomMarks.saveTextButton = findOne("#save-text-button");
-    App.DomMarks.goTopButton = findOne("#go-top");
+    setProperties(App.DomMarks, {
+        kBoardSpace: findOne("#kboard-space"),
+        editorSpace: findOne("#editor-space"),
+        alphSelectLi: findOne("#selector-alphabet"),
+        xCharsSelectLi: findOne("#selector-xchars"),
+        layoutSelectLi: findOne("#selector-layout"),
+        captionsCycleLi: findOne("#cycle-captions"),
+        saveTextButton: findOne("#save-text-button"),
+        goTopButton: findOne("#go-top")
+    });
 
     App.DeviceController.initialize();
     App.Constructor.buildLayouts();
@@ -65,8 +67,7 @@ App.run = function () {
 
     for (var t in Updater.topics) {
         var topicName = Updater.topics[t].name;
-        if (App.Storage.passesTopic(topicName)
-                && !primaryDefaults.hasOwnProperty(topicName)) {
+        if (App.Storage.passesTopic(topicName) && !(topicName in primaryDefaults)) {
             Updater.push(
                     topicName,
                     App.Storage.get(topicName) || 0

@@ -1,5 +1,5 @@
 
-/* global App, Env, findOne, createElement, createTextNode */
+/* global App, Env, findOne, newElement, newText */
 
 App.MenuBuilder = {
 
@@ -10,14 +10,14 @@ App.MenuBuilder = {
         var name = meta.name[Env.lang];
 
         indicatorEm.appendChild(
-                createElement("span", null, {"data-alphabet": id}, [
-                    createTextNode(name)
+                newElement("span", null, {"data-alphabet": id}, [
+                    newText(name)
                 ])
         );
 
         optionsUl.appendChild(
-                createElement("li", null, null, [
-                    createElement(
+                newElement("li", null, null, [
+                    newElement(
                             "button",
                             ["receiver-alphabet"],
                             [
@@ -27,9 +27,9 @@ App.MenuBuilder = {
                                 ["data-class-alphabet-" + id, "active"]
                             ],
                             [
-                                createElement("span", null, null, [createTextNode(name)]),
-                                createTextNode(" "),
-                                createElement("span", ["xtext"], null, [createTextNode(meta.sample)])
+                                newElement("span", null, null, [newText(name)]),
+                                newText(" "),
+                                newElement("span", ["xtext"], null, [newText(meta.sample)])
                             ]
                     )
                 ])
@@ -41,8 +41,8 @@ App.MenuBuilder = {
         var indicatorEm = parentLi.children[0].children[1];
 
         indicatorEm.appendChild(
-                createElement("span", null, {"data-alphabet": alphId}, [
-                    createTextNode(entities.length)
+                newElement("span", null, {"data-alphabet": alphId}, [
+                    newText(entities.length)
                 ])
         );
 
@@ -51,7 +51,7 @@ App.MenuBuilder = {
             return;
         }
 
-        var ul = createElement("ul", ["selector-xchar"], {"data-alphabet": alphId});
+        var ul = newElement("ul", ["selector-xchar"], {"data-alphabet": alphId});
 
         var massShiftLi = parentLi.children[1].children[0];
         ul.appendChild(massShiftLi.cloneNode(true));
@@ -59,9 +59,9 @@ App.MenuBuilder = {
         for (var i in entities) {
             var entity = entities[i];
             var topicName = entity.topicName;
-            var li = createElement("li");
+            var li = newElement("li");
             for (var ch in entity.chars) {
-                li.appendChild(createElement(
+                li.appendChild(newElement(
                         "button",
                         ["xtext", "receiver-" + topicName].concat(ch == 0 ? ["active"] : []),
                         [
@@ -70,7 +70,7 @@ App.MenuBuilder = {
                             ["data-depend-" + topicName, "class"],
                             ["data-class-" + topicName + "-" + ch, "active"]
                         ],
-                        [createTextNode(entity.chars[ch])]
+                        [newText(entity.chars[ch])]
                 ));
             }
 
@@ -85,8 +85,8 @@ App.MenuBuilder = {
         var optionsUl = parentLi.children[1];
 
         optionsUl.appendChild(
-                createElement("li", null, null, [
-                    createElement(
+                newElement("li", null, null, [
+                    newElement(
                             "button",
                             ["receiver-layout"],
                             [
@@ -95,7 +95,7 @@ App.MenuBuilder = {
                                 ["data-depend-layout", "class"],
                                 ["data-class-layout-" + id, "active"]
                             ],
-                            [createTextNode(meta.name)]
+                            [newText(meta.name)]
                     )
                 ])
         );

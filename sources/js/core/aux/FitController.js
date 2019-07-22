@@ -1,5 +1,5 @@
 
-/* global App, Updater, findOne, createElement, removeNode */
+/* global App, Updater, findOne, newElement, removeNode */
 
 App.FitController = {
 
@@ -183,7 +183,7 @@ App.FitController = {
     },
 
     initialize: function () {
-        var probeBox = createElement("div", ["extremes-probe", "tmp"]);
+        var probeBox = newElement("div", ["extremes-probe", "tmp"]);
         document.body.appendChild(probeBox);
         var probeBoxStyle = getComputedStyle(probeBox);
         this.boxMaxSize = parseInt(probeBoxStyle.getPropertyValue("max-width"));

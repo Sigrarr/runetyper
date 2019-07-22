@@ -14,7 +14,7 @@ App.Literator = {
 
     tryTrans: function (rawInput) {
         return this.alphMap[
-                this.layoutMap.hasOwnProperty(rawInput) ? this.layoutMap[rawInput] : rawInput
+                rawInput in this.layoutMap ? this.layoutMap[rawInput] : rawInput
         ] || '';
     },
 

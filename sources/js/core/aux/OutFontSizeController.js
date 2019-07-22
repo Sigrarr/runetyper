@@ -1,5 +1,5 @@
 
-/* global App, Updater */
+/* global App, Updater, setProperties */
 
 App.OutFontSizeController = {
 
@@ -31,13 +31,18 @@ App.OutFontSizeController = {
 
     fontsizeHandler: function (initialValue) {
         var textArea = App.Writer.textArea;
-        this.textArea = textArea;
         var style = getComputedStyle(textArea);
-        this.current = this.styleDefault = parseInt(style.getPropertyValue("font-size"));
-        this.min = parseInt(textArea.getAttribute("data-min-font-size"));
-        this.max = parseInt(textArea.getAttribute("data-max-font-size"));
-        this.step = parseInt(textArea.getAttribute("data-step-font-size"));
-        this.lineRatio = parseFloat(style.getPropertyValue("line-height")) / this.current;
+        var startSize = parseInt(style.getPropertyValue("font-size"));
+
+        setProperties(this, {
+            textArea: textArea,
+            current: startSize,
+            styleDefault: startSize,
+            min: parseInt(textArea.getAttribute("data-min-font-size")),
+            max: parseInt(textArea.getAttribute("data-max-font-size")),
+            step: parseInt(textArea.getAttribute("data-step-font-size")),
+            lineRatio: parseFloat(style.getPropertyValue("line-height")) / startSize
+        });
 
         initialValue = parseInt(initialValue);
         this.set(this.validate(initialValue) ? initialValue : this.current);

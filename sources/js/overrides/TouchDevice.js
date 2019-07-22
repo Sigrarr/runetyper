@@ -1,5 +1,5 @@
 
-/* global App, Updater, findOne, removeNode, createElement, createTextNode */
+/* global App, Updater, findOne, removeNode, newElement, newText */
 
 App.overrides.TouchDevice = {
 
@@ -117,9 +117,9 @@ App.overrides.TouchDevice = {
             this.selectionRoot = window.getSelection ? window : document;
             this.unselectMethod = this.getSelection().empty ? "empty" : "removeAllRanges";
 
-            this.head = createElement("span", ["caret"], null, [createTextNode("")]);
-            this.tail = createElement("span", null, null, [createTextNode("")]);
-            this.div = createElement("div", ["touch-dev", "xtext"], attrs, [this.head, this.tail]);
+            this.head = newElement("span", ["caret"], null, [newText("")]);
+            this.tail = newElement("span", null, null, [newText("")]);
+            this.div = newElement("div", ["touch-dev", "xtext"], attrs, [this.head, this.tail]);
 
             this.div.addEventListener("ontouchend" in this.div ? "touchend" : "click", function () {
                 setTimeout(App.Writer.textArea.adjust, 0);
@@ -197,7 +197,7 @@ App.overrides.TouchDevice = {
 
         set: function (element, text) {
             removeNode(element.firstChild);
-            element.appendChild(createTextNode(text));
+            element.appendChild(newText(text));
         },
 
         getSelection: function () {
