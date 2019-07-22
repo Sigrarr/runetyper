@@ -1,34 +1,25 @@
 "use strict";
 
 include("Env.js");
-
-var App = {
-    overrides: {},
-    device: null,
-
-    stdDev: function () {
-        return this.device === "std";
-    },
-
-    touchDev: function () {
-        return this.device === "touch";
-    }
-};
-
 include("lib/Updater.js");
 include("lib/helpers.js");
-include("core/Literator.js");
-include("core/Writer.js");
-include("core/Commands.js");
-include("core/DomMarks.js");
-include("core/aux/DeviceController.js");
-include("core/aux/DomSignaler.js");
-include("core/aux/Storage.js");
-include("core/aux/ViewController.js");
-include("core/aux/FitController.js");
-include("core/aux/MsgController.js");
-include("core/aux/OutFontSizeController.js");
-include("core/aux/MenuSelectController.js");
+
+var App = {
+    overrides: {}
+};
+
+include("live/base/Storage.js");
+include("live/base/Dev.js");
+include("live/Literator.js");
+include("live/Writer.js");
+include("live/Commands.js");
+include("live/DomMarks.js");
+include("live/aux/DomSignaler.js");
+include("live/aux/ViewController.js");
+include("live/aux/FitController.js");
+include("live/aux/MsgController.js");
+include("live/aux/OutFontSizeController.js");
+include("live/aux/MenuSelectController.js");
 include("building/Constructor.js");
 include("building/MenuBuilder.js");
 include("building/KBoardBuilder.js");
@@ -37,7 +28,7 @@ include("building/aux/fillEmail.js");
 include("building/aux/buildOutline.js");
 include("overrides/MsKeys.js");
 include("overrides/NoCssPointerEvents.js");
-include("overrides/TouchDevice.js");
+include("overrides/TouchDevCaptions.js");
 
 include("run.js");
 include("cleanup.js");
@@ -50,13 +41,15 @@ App.Constructor.enterAlphabets(
         include("/data/alphabets/04-gothic_alphabet.json")
 );
 
-App.Constructor.enterLayouts(
-        include("/data/layouts/00-uni.json"),
-        include("/data/layouts/01-da-no.json"),
-        include("/data/layouts/02-de.json"),
-        include("/data/layouts/03-fo.json"),
-        include("/data/layouts/04-is.json"),
-        include("/data/layouts/05-sv.json")
-);
+if (App.Dev.std) {
+    App.Constructor.enterLayouts(
+            include("/data/layouts/00-uni.json"),
+            include("/data/layouts/01-da-no.json"),
+            include("/data/layouts/02-de.json"),
+            include("/data/layouts/03-fo.json"),
+            include("/data/layouts/04-is.json"),
+            include("/data/layouts/05-sv.json")
+    );
+}
 
 window.addEventListener("load", App.run);

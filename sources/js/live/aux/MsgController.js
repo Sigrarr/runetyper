@@ -10,7 +10,7 @@ App.MsgController = {
             p: null,
 
             test: function () {
-                return App.touchDev();
+                return App.Dev.touch;
             }
         },
         {

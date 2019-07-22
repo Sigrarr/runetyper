@@ -29,7 +29,13 @@ var Updater = {
         isBusy: false
     },
 
-    confirmTopic: function (topicName) {
+    startTopics: function (topicNames) {
+        for (var i in topicNames) {
+            this.startTopic(topicNames[i]);
+        }
+    },
+
+    startTopic: function (topicName) {
         if (!(topicName in this.topics)) {
             if (topicName.charAt(0) === '_' || topicName.indexOf('-') >= 0) {
                 throw "Illegal topic name: starts with '_' or contains '-'";
@@ -38,7 +44,9 @@ var Updater = {
         }
     },
 
-    register: function (receiver, topicName, isTopicConfirmed) {
+    register: function (receiver, topicName) {
+        this.validate(topicName);
+
         var hasHandler = (typeof receiver[topicName + "Handler"] === "function");
 
         if (topicName === '_') {
@@ -46,9 +54,6 @@ var Updater = {
                 this.reportTopic.receivers.push(receiver);
             }
             return;
-        }
-        if (!isTopicConfirmed) {
-            this.confirmTopic(topicName);
         }
 
         var list = this.topics[topicName].receivers;
@@ -76,7 +81,6 @@ var Updater = {
     },
 
     registerDomReceivers: function (topicName) {
-        this.confirmTopic(topicName);
         var receivers = findMany(".receiver-" + topicName);
         for (var i = 0; i < receivers.length; i++) {
             this.register(receivers[i], topicName, true);
@@ -84,6 +88,7 @@ var Updater = {
     },
 
     unregister: function (receiver, topicName) {
+        this.validate(topicName);
         var listsToRemoveFrom = [];
         var topicReceivers = this.topics[topicName].receivers;
 
@@ -102,9 +107,7 @@ var Updater = {
     },
 
     push: function (topicName, newValueMixed) {
-        if (!(topicName in this.topics)) {
-            throw "Unregistered topic: " + topicName;
-        }
+        this.validate(topicName);
 
         var topic = this.topics[topicName];
         var updateId = ++topic.upId;
@@ -196,5 +199,12 @@ var Updater = {
             childrenToActivate[i].classList.add("active");
             childrenToActivate[i].style.removeProperty("display");
         }
+    },
+
+    validate: function (refTopicName) {
+        if (!(refTopicName in this.topics || refTopicName === this.reportTopic.name)) {
+            throw "Unregistered topic: " + refTopicName;
+        }
     }
+
 };

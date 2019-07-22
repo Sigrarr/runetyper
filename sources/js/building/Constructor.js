@@ -1,5 +1,5 @@
 
-/* global App, Updater */
+/* global App, Updater, findOne */
 
 App.Constructor = {
 
@@ -13,15 +13,45 @@ App.Constructor = {
     },
 
     alphabetsData: [],
-    layoutsData: [],
     alphId: -1,
+    layoutsData: [],
     layId: -1,
+
+    run: function() {
+        if (App.Dev.std) {
+            this.buildLayouts();
+            this.buildAlphabets();
+            this.buildKeyHeadSets();
+        } else {
+            App.KBoardBuilder.controlsProtos = findOne("#touch-controls").children;
+            this.buildAlphabets();
+        }
+    },
+
+    buildAlphabets: function () {
+        var data;
+        while ((data = this.alphabetsData.shift())) {
+            this.buildAlphabet(data);
+        }
+
+        var wideKBoards = App.KBoardBuilder.wideKBoards;
+        for (var d in wideKBoards) {
+            wideKBoards[d].classList.add("wide");
+        }
+
+        var tallKBoards = App.KBoardBuilder.tallKBoards;
+        for (var d in tallKBoards) {
+            tallKBoards[d].classList.add("tall");
+        }
+    },
 
     buildAlphabet: function (data) {
         var map = new this.AlphMap(data);
         var id = ++this.alphId;
 
-        App.Literator.alphMaps.push(map);
+        if (App.Dev.std) {
+            App.Literator.alphMaps.push(map);
+        }
         App.MenuBuilder.addAlphabetEntry(data.meta, id);
 
         var multiXCharEntities = [];
@@ -39,6 +69,7 @@ App.Constructor = {
                     App.DomSignaler.signalByXString(newXChar);
                 };
 
+                Updater.startTopic(topicName);
                 Updater.register(entity, topicName);
                 multiXCharEntities.push(entity);
             }
@@ -46,6 +77,13 @@ App.Constructor = {
 
         App.MenuBuilder.addXCharsEntry(multiXCharEntities, id);
         App.KBoardBuilder.buildAndAddKboard(data, id);
+    },
+
+    buildLayouts: function () {
+        var data;
+        while ((data = this.layoutsData.shift())) {
+            this.buildLayout(data);
+        }
     },
 
     buildLayout: function (data) {
@@ -70,30 +108,6 @@ App.Constructor = {
 
                 App.Literator.keyHeadSets[aId][lId] = set;
             }
-        }
-    },
-
-    buildAlphabets: function () {
-        var data;
-        while ((data = this.alphabetsData.shift())) {
-            this.buildAlphabet(data);
-        }
-
-        var wideKBoards = App.KBoardBuilder.wideKBoards;
-        for (var d in wideKBoards) {
-            wideKBoards[d].classList.add("wide");
-        }
-
-        var tallKBoards = App.KBoardBuilder.tallKBoards;
-        for (var d in tallKBoards) {
-            tallKBoards[d].classList.add("tall");
-        }
-    },
-
-    buildLayouts: function () {
-        var data;
-        while ((data = this.layoutsData.shift())) {
-            this.buildLayout(data);
         }
     },
 

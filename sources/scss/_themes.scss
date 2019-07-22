@@ -22,18 +22,19 @@ body, #loader {
     color: $darkColor;
 }
 
-.editor-space, #output {
+.editor-space, .output {
     background-color: white;
 }
 
-#output {
+.output {
     &, &:focus {
         border-right-color: $brightColor;
     }
     color: black;
-    &.touch-dev span.caret:after {
-        background-color: black;
-    }
+}
+
+#output-touch span.caret:after {
+    background-color: black;
 }
 
 .kboard-space {
@@ -121,18 +122,19 @@ body, #loader {
 
 body.theme-dark {
 
-    .editor-space, #output {
+    .editor-space, .output {
         background-color: darkColorFlatten(1);
     }
 
-    #output {
+    .output {
         &, &:focus {
             border-right-color: darkColorFlatten(2);
         }
         color: brightColorFlatten(1);
-        &.touch-dev span.caret:after {
-            background-color: brightColorFlatten(1);
-        }
+    }
+
+    #output-touch span.caret:after {
+        background-color: brightColorFlatten(1);
     }
 
     .kboard-space {

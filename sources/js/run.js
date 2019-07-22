@@ -4,7 +4,7 @@
 App.run = function () {
     timePts.run0 = Date.now();
 
-    App.Writer.textArea = findOne("#output");
+    App.Writer.initialize(findOne("#output-" + App.Dev.name));
     setProperties(App.DomMarks, {
         kBoardSpace: findOne("#kboard-space"),
         editorSpace: findOne("#editor-space"),
@@ -16,46 +16,41 @@ App.run = function () {
         goTopButton: findOne("#go-top")
     });
 
-    App.DeviceController.initialize();
-    App.Constructor.buildLayouts();
-    App.Constructor.buildAlphabets();
-    App.Constructor.buildKeyHeadSets();
-    App.EventAssigner.initializeKeyboardEvents();
-    App.EventAssigner.initializeXCharButtonClicks();
-    App.EventAssigner.initializeMenuClicks();
-    App.EventAssigner.initializeResizeHandling();
+    App.Constructor.run();
+    App.EventAssigner.run();
     App.FitController.initialize();
 
+    Updater.startTopics([
+        "device", "alphabet", "layout", "command", "view", "kbmode", "fontsize",
+        "captions", "xfont", "theme", "toolbar", "loadable_text", "fit"
+    ]);
+
     Updater.register(App.Storage, '_');
-    Updater.register(App.DeviceController, "device");
+    Updater.register(App.Dev, "device");
     Updater.register(App.DomMarks, "alphabet");
-    Updater.register(App.Literator, "alphabet");
-    Updater.register(App.Literator, "layout");
+    if (App.Dev.std) {
+        Updater.register(App.Literator, "alphabet");
+        Updater.register(App.Literator, "layout");
+    }
     Updater.register(App.Commands, "command");
     Updater.register(App.ViewController, "view");
     Updater.register(App.FitController, "view");
     Updater.register(App.FitController, "alphabet");
     Updater.register(App.FitController, "kbmode");
     Updater.register(App.OutFontSizeController, "fontsize");
-    Updater.confirmTopic("captions");
-    Updater.confirmTopic("xfont");
-    Updater.confirmTopic("theme");
-    Updater.confirmTopic("toolbar");
-    Updater.confirmTopic("loadable_text");
-    Updater.confirmTopic("fit");
     for (var t in Updater.topics) {
         Updater.registerDomReceivers(Updater.topics[t].name);
     }
 
     var primaryDefaults = {
-        "device": App.device,
-        "alphabet": 0,
-        "layout": 0,
-        "xfont": "noto",
-        "kbmode": "auto",
-        "toolbar": App.touchDev() ? "off" : "on",
-        "captions": App.touchDev() ? "off" : "roman",
-        "theme": App.touchDev() ? "dark" : "bright"
+        device: App.Dev.name,
+        alphabet: 0,
+        layout: 0,
+        xfont: "noto",
+        kbmode: "auto",
+        toolbar: App.Dev.std ? "on" : "off",
+        captions: App.Dev.std ? "roman" : "off",
+        theme: App.Dev.std ? "bright" : "dark"
     };
 
     for (var topicName in primaryDefaults) {

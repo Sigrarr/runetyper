@@ -1,5 +1,5 @@
 
-/* global App, newElement */
+/* global App, newElement, newText */
 
 App.KBoardBuilder = {
 
@@ -10,6 +10,7 @@ App.KBoardBuilder = {
     tallKBoards: [],
     maxRowsN: 0,
     subMaxSectionsN: 0,
+    controlsProtos: null,
 
     buildAndAddKboard: function (data, alphId) {
         this.xCharToButton = {};
@@ -43,6 +44,10 @@ App.KBoardBuilder = {
                 section.appendChild(row);
             }
             kBoard.appendChild(section);
+        }
+
+        if (App.Dev.touch) {
+            this.addControlButtons(row);
         }
 
         this.checkForTall(kBoard, rowsN, sectionsN);
@@ -97,11 +102,31 @@ App.KBoardBuilder = {
                 ]
         ));
 
-        if (App.stdDev()) {
+        if (App.Dev.std) {
             box.appendChild(this.buildKeysP(entity));
         }
 
         return box;
+    },
+
+    checkForWide: function (kBoard, colsN) {
+        if (colsN > this.maxColsN) {
+            this.maxColsN = colsN;
+            this.wideKBoards = [kBoard];
+        } else if (colsN === this.maxColsN && this.wideKBoards.indexOf(kBoard) < 0) {
+            this.wideKBoards.push(kBoard);
+        }
+    },
+
+    checkForTall: function (kBoard, rowsN, sectionsN) {
+        if (rowsN > this.maxRowsN || (rowsN === this.maxRowsN && sectionsN > this.subMaxSectionsN)) {
+            this.maxRowsN = rowsN;
+            this.subMaxSectionsN = sectionsN;
+            this.tallKBoards = [kBoard];
+        } else if (rowsN === this.maxRowsN && sectionsN === this.subMaxSectionsN
+                && this.tallKBoards.indexOf(kBoard) < 0) {
+            this.tallKBoards.push(kBoard);
+        }
     },
 
     buildKeysP: function(entity) {
@@ -172,23 +197,12 @@ App.KBoardBuilder = {
         return preservedKeys.concat(addedKeys).join(' ');
     },
 
-    checkForWide: function (kBoard, colsN) {
-        if (colsN > this.maxColsN) {
-            this.maxColsN = colsN;
-            this.wideKBoards = [kBoard];
-        } else if (colsN === this.maxColsN && this.wideKBoards.indexOf(kBoard) < 0) {
-            this.wideKBoards.push(kBoard);
-        }
-    },
-
-    checkForTall: function (kBoard, rowsN, sectionsN) {
-        if (rowsN > this.maxRowsN || (rowsN === this.maxRowsN && sectionsN > this.subMaxSectionsN)) {
-            this.maxRowsN = rowsN;
-            this.subMaxSectionsN = sectionsN;
-            this.tallKBoards = [kBoard];
-        } else if (rowsN === this.maxRowsN && sectionsN === this.subMaxSectionsN
-                && this.tallKBoards.indexOf(kBoard) < 0) {
-            this.tallKBoards.push(kBoard);
+    addControlButtons: function (targetRow) {
+        for (var i = 0; i < this.controlsProtos.length; i++) {
+            var box = this.controlsProtos[i].cloneNode(true);
+            var button = box.firstElementChild;
+            targetRow.appendChild(box);
+            this.xCharToButton[button.getAttribute("data-xchar")] = button;
         }
     }
 

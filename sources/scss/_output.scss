@@ -6,7 +6,7 @@
     100% {opacity: 0;}
 }
 
-#output {
+.output {
     width: calc(100% - #{4 * $spaceS + 2px});
     height: calc(100% - #{4 * $spaceS});
     resize: none;
@@ -23,20 +23,20 @@
         border-bottom: 0;
         outline: 0;
     }
+}
 
-    &.touch-dev {
-        white-space: pre;
-        text-align: left;
-        letter-spacing: 1px;
+#output-touch {
+    white-space: pre;
+    text-align: left;
+    letter-spacing: 1px;
 
-        span.caret:after {
-            display: inline-block;
-            width: 1px;
-            margin-right: -1px;
-            animation-name: caretBlink;
-            animation-duration: 1.25s;
-            animation-iteration-count: infinite;
-            content: " ";
-        }
+    span.caret:after {
+        display: inline-block;
+        width: 1px;
+        margin-right: -1px;
+        animation-name: caretBlink;
+        animation-duration: 1.25s;
+        animation-iteration-count: infinite;
+        content: " ";
     }
 }

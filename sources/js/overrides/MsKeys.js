@@ -4,7 +4,7 @@
 App.overrides.MsKeys = {
 
     test: function () {
-        return App.stdDev() && Env.browser === "ms";
+        return App.Dev.std && Env.browser === "ms";
     },
 
     run: function () {
@@ -45,4 +45,5 @@ App.overrides.MsKeys = {
             return event;
         }
     }
+
 };

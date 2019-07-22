@@ -23,7 +23,14 @@ App.cleanUp = function () {
 
     var tmpNodes = findMany(".tmp");
     while (tmpNodes.length > 0) {
-        removeNode(tmpNodes[0]);
+        var node = tmpNodes[0];
+        removeNode(node);
+        for (var key in App.DomMarks) {
+            if (App.DomMarks[key] === node) {
+                delete App.DomMarks[key];
+                break;
+            }
+        }
     }
 
     timePts.t1 = Date.now();

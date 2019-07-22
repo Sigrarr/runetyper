@@ -223,11 +223,9 @@
                         </li>
                         <li class="cycle-captions" id="cycle-captions">
                             <h4 class="icon receiver-captions receiver-device"
-                                data-topic="captions"
-                                data-depend-captions="children,data-captions"
-                                data-data-captions-captions-roman="keys"
-                                data-data-captions-captions-keys="off"
-                                data-data-captions-captions-off="roman"
+                                data-topic="command"
+                                data-command="cycleCaptions"
+                                data-depend-captions="children"
                                 data-depend-device="class"
                                 data-class-device-touch="tmp">
                                 <button class="full"
@@ -241,13 +239,13 @@
                                         title="Captions: off. Cycle with click or [Insert].">&#x2014;</button>
                             </h4>
                             <h4 class="icon receiver-captions receiver-device"
-                                data-topic="captions"
-                                data-depend-captions="data-captions"
-                                data-data-captions-captions-off="roman"
-                                data-data-captions-captions-roman="off"
+                                data-topic="command"
+                                data-command="cycleCaptions"
+                                data-depend-captions="children"
                                 data-depend-device="class"
                                 data-class-device-std="tmp">
-                                <button class="full">&#x1F130;<sub>&#x1f5d8;</sub></button>
+                                <button class="full" data-captions="off">&#x1F130;<sub>&#x1f5d8;</sub></button>
+                                <button class="full" data-captions="roman">&#x1F130;<sub>&#x1f5d8;</sub></button>
                             </h4>
                         </li>
                         <li title="Information">
@@ -258,13 +256,22 @@
                     </ul>
                 </header>
                 <div class="editor-space" id="editor-space">
-                    <textarea id="output"
-                              class="xtext"
+                    <textarea id="output-std"
+                              class="output xtext receiver-device"
+                              data-depend-device="class"
+                              data-class-device-touch="tmp"
                               placeholder="&#x16eb;&#x16eb;&#x16eb;"
                               spellcheck="false"
                               data-min-font-size="8"
                               data-max-font-size="100"
                               data-step-font-size="4"></textarea>
+                    <div id="output-touch"
+                         class="output xtext receiver-device"
+                         data-depend-device="class"
+                         data-class-device-std="tmp"
+                         data-min-font-size="8"
+                         data-max-font-size="100"
+                         data-step-font-size="4"></div>
                     <div class="sup-menu receiver-toolbar"
                          data-depend-toolbar="class"
                          data-class-toolbar-off="collapse">
@@ -339,7 +346,7 @@
                      data-class-captions-roman="sup-captions-roman"
                      data-class-captions-keys="sup-captions-keys"
                      data-class-captions-off="sup-captions-off">
-                    <aside class="tmp" id="touchdev-inputs">
+                    <aside class="tmp" id="touch-controls">
                         <div class="xletter-box">
                             <button class="itext" data-xchar=" ">&#x2423;</button>
                         </div>

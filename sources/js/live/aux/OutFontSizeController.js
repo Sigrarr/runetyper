@@ -30,7 +30,7 @@ App.OutFontSizeController = {
     },
 
     fontsizeHandler: function (initialValue) {
-        var textArea = App.Writer.textArea;
+        var textArea = App.Writer.textArea.div || App.Writer.textArea;
         var style = getComputedStyle(textArea);
         var startSize = parseInt(style.getPropertyValue("font-size"));
 

@@ -3,15 +3,16 @@
 
 App.EventAssigner = {
 
-    initializeKeyboardEvents: function () {
-        var output = App.Writer.textArea;
-        output.addEventListener("keydown", App.Writer.catchKeyDown);
-        output.addEventListener("keyup", App.Writer.catchKeyUp);
-
-        document.addEventListener("keydown", App.Commands.catchKeyDown);
+    run: function () {
+        this.assignMenuClicks();
+        this.assignXCharClicks();
+        this.assignResizeHandling();
+        if (App.Dev.std) {
+            this.assignCommandKeys();
+        }
     },
 
-    initializeMenuClicks: function () {
+    assignMenuClicks: function () {
         var menuClickHandler = function (event) {
             var topic = null;
             for (var i = 0, target = event.target; i < 3 && target && !topic; i++) {
@@ -48,7 +49,7 @@ App.EventAssigner = {
         workspace.addEventListener("click", selectClearingHandler);
     },
 
-    initializeXCharButtonClicks: function () {
+    assignXCharClicks: function () {
         App.DomMarks.kBoardSpace.addEventListener("click", function (event) {
             if (event.target.hasAttribute("data-xchar")) {
                 App.Writer.clickWrite(
@@ -58,8 +59,12 @@ App.EventAssigner = {
         });
     },
 
-    initializeResizeHandling: function () {
+    assignResizeHandling: function () {
         window.addEventListener("resize", App.FitController.fit);
+    },
+
+    assignCommandKeys: function () {
+        document.addEventListener("keydown", App.Commands.catchKeyDown);
     }
 
 };
