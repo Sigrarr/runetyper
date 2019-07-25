@@ -11,8 +11,6 @@ if (App.Dev.std) {
 
         initialize: function (element) {
             this.textArea = element;
-            element.addEventListener("keydown", this.catchKeyDown);
-            element.addEventListener("keyup", this.catchKeyUp);
         },
 
         catchKeyDown: function (event) {
@@ -101,9 +99,9 @@ if (App.Dev.touch) {
             head: null,
             tail: null,
 
-            selectionStart: 0,
-            selectionEnd: 0,
-            selectionRoot: null,
+            sStart: 0,
+            sEnd: 0,
+            sRoot: null,
             unselectMethod: "",
 
             get value() {
@@ -113,13 +111,13 @@ if (App.Dev.touch) {
             set value(newValue) {
                 this.set(this.tail, "");
                 this.set(this.head, "");
-                this.setSelection(0);
-                this.setRangeText(newValue);
+                this.updateSelection(0);
+                this.insert(newValue);
             },
 
-            setRangeText: function (text) {
-                var selectionStart = this.selectionStart;
-                var selectionEnd = this.selectionEnd;
+            insert: function (text) {
+                var selectionStart = this.sStart;
+                var selectionEnd = this.sEnd;
 
                 if (selectionStart === selectionEnd) {
                     this.add(this.head, text);
@@ -130,75 +128,8 @@ if (App.Dev.touch) {
                     this.set(this.head, oldText.substr(0, selectionStart) + text);
                 }
 
-                this.setSelection(this.head.innerText.length);
-                this.setCaret();
-            },
-
-            focus: function () {
-                this.div.focus();
-            },
-
-            adjust: function () {
-                var textArea = App.Writer.textArea;
-                var selection = textArea.getSelection();
-                var oldHeadText = textArea.head.innerText;
-                var oldHeadLength = oldHeadText.length;
-
-                if (selection.isCollapsed) {
-                    var oldTailText = textArea.tail.innerText;
-                    var offset = selection.anchorOffset;
-
-                    if (textArea.isHead(selection.anchorNode)) {
-                        textArea.set(textArea.head, oldHeadText.substr(0, offset));
-                        textArea.set(textArea.tail, oldHeadText.substr(offset) + oldTailText);
-                        textArea.setSelection(offset);
-                    } else {
-                        textArea.set(textArea.tail, oldTailText.substr(offset));
-                        textArea.add(textArea.head, oldTailText.substr(0, offset));
-                        textArea.setSelection(oldHeadLength + offset);
-                    }
-
-                } else {
-                    var anchorPoint = selection.anchorOffset
-                            + (textArea.isHead(selection.anchorNode) ? 0 : oldHeadLength);
-                    var focusPoint = selection.focusOffset
-                            + (textArea.isHead(selection.focusNode) ? 0 : oldHeadLength);
-                    textArea.setSelection(Math.min(anchorPoint, focusPoint), Math.max(anchorPoint, focusPoint));
-                }
-
-                textArea.setCaret();
-            },
-
-            isHead: function (textNode) {
-                return textNode === this.head
-                        || (textNode && textNode.parentElement === this.head);
-            },
-
-            setSelection: function (selectionStart, selectionEnd) {
-                this.selectionStart = selectionStart;
-                this.selectionEnd = selectionEnd || selectionStart;
-            },
-
-            setCaret: function () {
-                if (this.selectionStart === this.selectionEnd) {
-                    this.head.classList.add("caret");
-                } else {
-                    this.head.classList.remove("caret");
-                }
-            },
-
-            unselect: function (selectionOpt) {
-                (selectionOpt || this.getSelection())[this.unselectMethod]();
-            },
-
-            select: function () {
-                var selection = this.getSelection();
-                this.unselect(selection);
-                var range = document.createRange();
-                range.selectNode(this.div);
-                selection.addRange(range);
-                this.setSelection(0, this.value.length);
-                this.setCaret();
+                this.updateSelection(selectionStart + text.length);
+                this.updateCaret();
             },
 
             add: function (element, text) {
@@ -210,25 +141,83 @@ if (App.Dev.touch) {
                 element.appendChild(newText(text));
             },
 
-            getSelection: function () {
-                return this.selectionRoot.getSelection();
+            focus: function () {
+                this.div.focus();
+            },
+
+            select: function () {
+                var selection = this.sRoot.getSelection();
+                this.unselect(selection);
+                var range = document.createRange();
+                range.selectNode(this.div);
+                selection.addRange(range);
+                this.updateSelection(0, this.value.length);
+                this.updateCaret();
+            },
+
+            unselect: function (selectionOpt) {
+                (selectionOpt || this.sRoot.getSelection())[this.unselectMethod]();
+            },
+
+            updateSelection: function (selectionStart, selectionEnd) {
+                this.sStart = selectionStart;
+                this.sEnd = selectionEnd || selectionStart;
+            },
+
+            updateCaret: function () {
+                if (this.sStart === this.sEnd) {
+                    this.head.classList.add("caret");
+                } else {
+                    this.head.classList.remove("caret");
+                }
+            },
+
+            catchTouch: function () {
+                var textArea = App.Writer.textArea;
+                var selection = textArea.sRoot.getSelection();
+                var oldHeadText = textArea.head.innerText;
+                var oldHeadLength = oldHeadText.length;
+
+                if (selection.isCollapsed) {
+                    var oldTailText = textArea.tail.innerText;
+                    var offset = selection.anchorOffset;
+
+                    if (textArea.isHead(selection.anchorNode)) {
+                        textArea.set(textArea.head, oldHeadText.substr(0, offset));
+                        textArea.set(textArea.tail, oldHeadText.substr(offset) + oldTailText);
+                        textArea.updateSelection(offset);
+                    } else {
+                        textArea.set(textArea.tail, oldTailText.substr(offset));
+                        textArea.add(textArea.head, oldTailText.substr(0, offset));
+                        textArea.updateSelection(oldHeadLength + offset);
+                    }
+
+                } else {
+                    var anchorPoint = selection.anchorOffset
+                            + (textArea.isHead(selection.anchorNode) ? 0 : oldHeadLength);
+                    var focusPoint = selection.focusOffset
+                            + (textArea.isHead(selection.focusNode) ? 0 : oldHeadLength);
+                    textArea.updateSelection(Math.min(anchorPoint, focusPoint), Math.max(anchorPoint, focusPoint));
+                }
+
+                textArea.updateCaret();
+            },
+
+            isHead: function (node) {
+                return node && (node === this.head || node.parentElement === this.head);
             }
         },
 
         initialize: function (element) {
             var textArea = this.textArea;
-            textArea.selectionRoot = window.getSelection ? window : document;
-            textArea.unselectMethod = textArea.getSelection().empty ? "empty" : "removeAllRanges";
+            textArea.sRoot = window.getSelection ? window : document;
+            textArea.unselectMethod = textArea.sRoot.getSelection().empty ? "empty" : "removeAllRanges";
 
             textArea.div = element;
             textArea.head = newElement("span", ["caret"], null, [newText("")]);
             textArea.tail = newElement("span", null, null, [newText("")]);
             element.appendChild(textArea.head);
             element.appendChild(textArea.tail);
-
-            element.addEventListener("ontouchend" in element ? "touchend" : "click", function () {
-                setTimeout(App.Writer.textArea.adjust, 0);
-            });
         },
 
         write: function (xChar) {
@@ -238,8 +227,8 @@ if (App.Dev.touch) {
                     break;
                 case "@b":
                     var textArea = this.textArea;
-                    var selectionStart = textArea.selectionStart;
-                    if (selectionStart === textArea.selectionEnd && selectionStart > 0) {
+                    var selectionStart = textArea.sStart;
+                    if (selectionStart === textArea.sEnd && selectionStart > 0) {
                         var value = textArea.value;
                         var map = App.DomMarks.activeKBoard.backMap;
                         var back = 1;
@@ -249,11 +238,11 @@ if (App.Dev.touch) {
                                 break;
                             }
                         }
-                        textArea.selectionStart -= back;
+                        textArea.sStart -= back;
                     }
                     xChar = '';
             }
-            this.textArea.setRangeText(xChar);
+            this.textArea.insert(xChar);
         }
 
     };

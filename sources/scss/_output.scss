@@ -11,6 +11,7 @@
     height: calc(100% - #{4 * $spaceS});
     resize: none;
     padding: 0 $spaceS;
+    white-space: pre-wrap;
     overflow-x: hidden;
     font-size: $editorBaseFontSize;
     line-height: $editorBaseFontSize * 1.25;
@@ -26,7 +27,7 @@
 }
 
 #output-touch {
-    white-space: pre;
+    word-wrap: break-word;
     text-align: left;
     letter-spacing: 1px;
 

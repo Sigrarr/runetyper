@@ -8,8 +8,24 @@ App.EventAssigner = {
         this.assignXCharClicks();
         this.assignResizeHandling();
         if (App.Dev.std) {
+            this.assingKeyboardWriting();
             this.assignCommandKeys();
+        } else {
+            this.assignTouchSelection();
         }
+    },
+
+    assingKeyboardWriting: function () {
+        var textArea = App.Writer.textArea;
+        textArea.addEventListener("keydown", App.Writer.catchKeyDown);
+        textArea.addEventListener("keyup", App.Writer.catchKeyUp);
+    },
+
+    assignTouchSelection: function () {
+        var element = App.Writer.textArea.div;
+        element.addEventListener("ontouchend" in element ? "touchend" : "click", function () {
+            setTimeout(App.Writer.textArea.catchTouch, 0);
+        });
     },
 
     assignMenuClicks: function () {
