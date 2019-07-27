@@ -1,19 +1,19 @@
 
-/* global App, Updater, Env, findOne, removeNode, setProperties, timePts */
+/* global App, Updater, Env, getById, removeNode, setProperties, timePts */
 
 App.run = function () {
     timePts.run0 = Date.now();
 
-    App.Writer.initialize(findOne("#output-" + App.Dev.name));
+    App.Writer.initialize(getById("output-" + App.Dev.name));
     setProperties(App.DomMarks, {
-        kBoardSpace: findOne("#kboard-space"),
-        editorSpace: findOne("#editor-space"),
-        alphSelectLi: findOne("#selector-alphabet"),
-        xCharsSelectLi: findOne("#selector-xchars"),
-        layoutSelectLi: findOne("#selector-layout"),
-        captionsCycleLi: findOne("#cycle-captions"),
-        saveTextButton: findOne("#save-text-button"),
-        goTopButton: findOne("#go-top")
+        kBoardSpace: getById("kboard-space"),
+        editorSpace: getById("editor-space"),
+        alphSelectLi: getById("selector-alphabet"),
+        xCharsSelectLi: getById("selector-xchars"),
+        layoutSelectLi: getById("selector-layout"),
+        captionsCycleLi: getById("cycle-captions"),
+        saveTextButton: getById("save-text-button"),
+        goTopButton: getById("go-top")
     });
 
     App.Constructor.run();
@@ -21,13 +21,12 @@ App.run = function () {
     App.FitController.initialize();
 
     Updater.startTopics([
-        "device", "alphabet", "layout", "command", "view", "kbmode", "fontsize",
+        "device", "alphabet", "layout", "command", "view", "kbmode",
         "captions", "xfont", "theme", "toolbar", "loadable_text", "fit"
     ]);
 
     Updater.register(App.Storage, '_');
     Updater.register(App.Dev, "device");
-    Updater.register(App.DomMarks, "alphabet");
     if (App.Dev.std) {
         Updater.register(App.Literator, "alphabet");
         Updater.register(App.Literator, "layout");
@@ -37,7 +36,6 @@ App.run = function () {
     Updater.register(App.FitController, "view");
     Updater.register(App.FitController, "alphabet");
     Updater.register(App.FitController, "kbmode");
-    Updater.register(App.OutFontSizeController, "fontsize");
     for (var t in Updater.topics) {
         Updater.registerDomReceivers(Updater.topics[t].name);
     }
@@ -69,11 +67,11 @@ App.run = function () {
             );
         }
     }
-    Updater.push("view", App.ViewController.getRequestedView());
+    Updater.push("view", App.ViewController.requestedView);
 
     App.DomSignaler.initialize();
     App.MsgController.initialize();
-    App.fillEmail();
+    App.OutFontSizeController.initialize();
     App.buildOutline(2);
 
     for (var key in App.overrides) {
@@ -87,13 +85,7 @@ App.run = function () {
     timePts.run1 = Date.now();
 
     if (Env.ok) {
-        setTimeout(function () {
-            findOne("#loader").classList.add("fading");
-            setTimeout(function () {
-                removeNode(findOne("#loader"));
-                document.body.classList.remove("sup-loader");
-            }, 500);
-        }, Math.max(0, 500 - (timePts.run1 - timePts.t0)));
+        App.removeLoader();
     }
 
     App.cleanUp();

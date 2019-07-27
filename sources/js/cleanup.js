@@ -1,5 +1,5 @@
 
-/* global App, Updater, removeNode, setProperties, timePts */
+/* global App, Updater, removeNode, getByClass, setProperties, timePts */
 
 App.cleanUp = function () {
 
@@ -10,10 +10,13 @@ App.cleanUp = function () {
     delete App.MenuBuilder;
     delete App.KBoardBuilder;
     delete App.EventAssigner;
-    delete App.fillEmail;
     delete App.buildOutline;
+    delete App.removeLoader;
     delete App.run;
     delete App.cleanUp;
+    for (var key in App) {
+        delete App[key].initialize;
+    }
 
     setProperties(Updater.topics.device.receivers, {
         attr: {},
@@ -21,7 +24,7 @@ App.cleanUp = function () {
         children: []
     });
 
-    var tmpNodes = findMany(".tmp");
+    var tmpNodes = getByClass("tmp");
     while (tmpNodes.length > 0) {
         var node = tmpNodes[0];
         removeNode(node);

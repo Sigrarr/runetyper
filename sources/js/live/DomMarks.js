@@ -3,7 +3,10 @@
 App.DomMarks = {
 
     kBoards: [],
-    activeKBoard: null,
+    get activeKBoard() {
+        return this.kBoards[App.Storage.get("alphabet")];
+    },
+
     kBoardSpace: null,
     editorSpace: null,
     alphSelectLi: null,
@@ -11,10 +14,6 @@ App.DomMarks = {
     layoutSelectLi: null,
     captionsCycleLi: null,
     saveTextButton: null,
-    goTopButton: null,
-
-    alphabetHandler: function (alphId) {
-        this.activeKBoard = this.kBoards[alphId];
-    }
+    goTopButton: null
 
 };

@@ -1,5 +1,5 @@
 
-/* global App, Updater, findOne */
+/* global App, Updater, getById */
 
 App.EventAssigner = {
 
@@ -41,25 +41,25 @@ App.EventAssigner = {
                 );
             }
         };
-        var menus = findMany(".menu");
+        var menus = getByClass("menu");
         for (var i = 0; i < menus.length; i++) {
             menus[i].addEventListener("click", menuClickHandler);
         }
 
-        var workspace = findOne("#workspace");
+        var workspace = getById("workspace");
 
         var selectSwitchHandler = function (event) {
-            var select = App.MenuSelectController.findContainingSelect(event.target, true);
+            var select = App.SelectsController.findContainingSelect(event.target, true);
             if (select) {
                 event.stopPropagation();
-                App.MenuSelectController.handle(select);
+                App.SelectsController.handle(select);
             }
         };
         workspace.firstElementChild.children[1].addEventListener("click", selectSwitchHandler);
 
         var selectClearingHandler = function (event) {
-            if (!App.MenuSelectController.findContainingSelect(event.target, false)) {
-                App.MenuSelectController.clear();
+            if (!App.SelectsController.findContainingSelect(event.target, false)) {
+                App.SelectsController.clear();
             }
         };
         workspace.addEventListener("click", selectClearingHandler);

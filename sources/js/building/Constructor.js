@@ -1,5 +1,5 @@
 
-/* global App, Updater, findOne */
+/* global App, Updater, getById */
 
 App.Constructor = {
 
@@ -23,7 +23,7 @@ App.Constructor = {
             this.buildAlphabets();
             this.buildKeyHeadSets();
         } else {
-            App.KBoardBuilder.controlsProtos = findOne("#touch-controls").children;
+            App.KBoardBuilder.controlsProtos = getById("touch-controls").children;
             this.buildAlphabets();
         }
     },

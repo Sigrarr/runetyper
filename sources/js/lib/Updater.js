@@ -1,5 +1,5 @@
 
-/* global findMany */
+/* global getByClass */
 
 var Updater = {
 
@@ -81,7 +81,7 @@ var Updater = {
     },
 
     registerDomReceivers: function (topicName) {
-        var receivers = findMany(".receiver-" + topicName);
+        var receivers = getByClass("receiver-" + topicName);
         for (var i = 0; i < receivers.length; i++) {
             this.register(receivers[i], topicName, true);
         }

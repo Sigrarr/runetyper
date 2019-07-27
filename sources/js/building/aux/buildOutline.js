@@ -1,5 +1,5 @@
 
-/* global App, findOne, newElement, newText */
+/* global App, getById, newElement, newText */
 
 App.buildOutline = function (depth) {
 
@@ -38,8 +38,8 @@ App.buildOutline = function (depth) {
         return sectionLi;
     };
 
-    var parentUl = findOne("#outline").children[1];
-    var infoChildren = findOne(".long-text-content").children;
+    var parentUl = getById("outline").children[1];
+    var infoChildren = getById("info-content").children;
 
     for (var i = 0, entry = null; i < infoChildren.length; i++) {
         if ((entry = buildSectionEntry(infoChildren[i], depth))) {

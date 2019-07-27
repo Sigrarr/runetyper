@@ -130,27 +130,27 @@ App.KBoardBuilder = {
     },
 
     buildKeysP: function(entity) {
-        var keySetToLayoutIds = {};
+        var keysStringToLayoutIds = {};
         var keySetsN = 0;
         for (var lId in App.Literator.layoutMaps) {
-            var keySet = this.resolveKeys(App.Literator.layoutMaps[lId], entity.keys);
-            if (keySetToLayoutIds[keySet]) {
-                keySetToLayoutIds[keySet] += ',' + lId;
+            var keysString = this.resolveKeys(App.Literator.layoutMaps[lId], entity.keys);
+            if (keysStringToLayoutIds[keysString]) {
+                keysStringToLayoutIds[keysString] += ',' + lId;
             } else {
-                keySetToLayoutIds[keySet] = lId;
+                keysStringToLayoutIds[keysString] = lId;
                 keySetsN++;
             }
         }
 
         var layoutDependency = keySetsN > 1;
         var keySpans = [];
-        for (var keySet in keySetToLayoutIds) {
-            var keys = keySet.split(' ');
+        for (var keysString in keysStringToLayoutIds) {
+            var keys = keysString.split(' ');
             keySpans.push(
                     newElement(
                         "span",
                         null,
-                        layoutDependency ? {"data-layout": keySetToLayoutIds[keySet]} : null,
+                        layoutDependency ? {"data-layout": keysStringToLayoutIds[keysString]} : null,
                         [
                             newElement("span", null, null, [newText(keys[0])])
                         ].concat(

@@ -47,24 +47,16 @@ function removeNode(node) {
     }
 }
 
-function findOne(query) {
-    switch (query.substr(0, 1)) {
-        case '.':
-            return document.getElementsByClassName(query.substr(1))[0];
-        case '#':
-            return document.getElementById(query.substr(1));
-        default:
-            return document.getElementsByTagName(query)[0];
-    }
+function getById(id) {
+    return document.getElementById(id);
 }
 
-function findMany(query) {
-    switch (query.substr(0, 1)) {
-        case '.':
-            return document.getElementsByClassName(query.substr(1));
-        default:
-            return document.getElementsByTagName(query);
-    }
+function getByClass(className) {
+    return document.getElementsByClassName(className);
+}
+
+function getOneOf(className) {
+    return getByClass(className)[0];
 }
 
 function findActiveChild(parent) {

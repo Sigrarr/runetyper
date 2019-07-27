@@ -4,7 +4,7 @@ App.ViewController = {
 
     scrollCheck: null,
 
-    getRequestedView: function () {
+    get requestedView() {
         return this.isInfoSectionHash(window.location.hash) ? "info" : "workspace";
     },
 
@@ -37,7 +37,7 @@ App.ViewController = {
     },
 
     isInfoSectionHash: function (hash, confirmed) {
-        return hash === "#info" || (hash.charAt(1) === 'i' && (confirmed || findOne(hash)));
+        return hash === "#info" || (hash.charAt(1) === 'i' && (confirmed || getById(hash)));
     },
 
     scrollHandler: function () {

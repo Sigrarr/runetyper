@@ -26,28 +26,25 @@ App.OutFontSizeController = {
         this.textArea.style.fontSize = newValue + "px";
         this.textArea.style.lineHeight = (this.lineRatio * newValue) + "px";
         this.current = newValue;
-        App.Storage.set("fontsize", newValue);
+        App.Storage.set("_fontsize", newValue);
     },
 
-    fontsizeHandler: function (initialValue) {
+    initialize: function () {
         var textArea = App.Writer.textArea.div || App.Writer.textArea;
         var style = getComputedStyle(textArea);
-        var startSize = parseInt(style.getPropertyValue("font-size"));
+        var cssSize = parseInt(style.getPropertyValue("font-size"));
 
         setProperties(this, {
             textArea: textArea,
-            current: startSize,
-            styleDefault: startSize,
+            styleDefault: cssSize,
             min: parseInt(textArea.getAttribute("data-min-font-size")),
             max: parseInt(textArea.getAttribute("data-max-font-size")),
             step: parseInt(textArea.getAttribute("data-step-font-size")),
-            lineRatio: parseFloat(style.getPropertyValue("line-height")) / startSize
+            lineRatio: parseFloat(style.getPropertyValue("line-height")) / cssSize
         });
 
-        initialValue = parseInt(initialValue);
-        this.set(this.validate(initialValue) ? initialValue : this.current);
-        delete Updater.topics["fontsize"];
-        delete this.fontsizeHandler;
+        var initialValue = parseInt(App.Storage.get("_fontsize"));
+        this.set(this.validate(initialValue) ? initialValue : cssSize);
     }
 
 };

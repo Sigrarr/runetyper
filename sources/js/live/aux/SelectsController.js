@@ -1,6 +1,6 @@
 /* global App */
 
-App.MenuSelectController = {
+App.SelectsController = {
 
     active: {
         top: null,
@@ -80,7 +80,7 @@ App.MenuSelectController = {
 
     activate: function (select, lockSiblings) {
         if (lockSiblings) {
-            this.setSiblingsLock(select, true);
+            this.setSiblingsLock(select, "add");
         }
         select.classList.remove("lock");
         select.classList.add("active");
@@ -88,17 +88,17 @@ App.MenuSelectController = {
 
     deactivate: function (select, unlockSiblings) {
         if (unlockSiblings) {
-            this.setSiblingsLock(select, false);
+            this.setSiblingsLock(select, "remove");
         }
         select.classList.remove("active");
     },
 
-    setSiblingsLock: function (startElement, lockState) {
+    setSiblingsLock: function (startElement, lockActionMethod) {
         var element = startElement;
         while ((element = (element.nextElementSibling || element.parentNode.firstElementChild))
                 !== startElement) {
             if (element.classList.contains("select")) {
-                lockState ? element.classList.add("lock") : element.classList.remove("lock");
+                element.classList[lockActionMethod]("lock");
             }
         }
     },

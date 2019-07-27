@@ -1,5 +1,5 @@
 
-/* global App, Updater, findOne, newElement, removeNode */
+/* global App, Updater, getOneOf, newElement, removeNode */
 
 App.FitController = {
 
@@ -41,11 +41,11 @@ App.FitController = {
             controller.compact = false;
             if (narrowScreen) {
                 method = controller.fitStdNarrowScr;
-                mKBoard = findOne(".tall");
+                mKBoard = getOneOf("tall");
                 fitClass = "fit-w";
             } else {
                 method = controller.fitStdWideScr;
-                mKBoard = findOne(".wide");
+                mKBoard = getOneOf("wide");
                 fitClass = "fit-h";
             }
             mParam = mKBoard.firstElementChild.firstElementChild.firstElementChild;
@@ -188,7 +188,6 @@ App.FitController = {
         var probeBoxStyle = getComputedStyle(probeBox);
         this.boxMaxSize = parseInt(probeBoxStyle.getPropertyValue("max-width"));
         this.boxMinSize = parseInt(probeBoxStyle.getPropertyValue("min-width"));
-        delete this.initialize;
     }
 
 };

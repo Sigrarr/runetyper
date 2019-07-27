@@ -16,7 +16,6 @@ App.DomSignaler = {
                 }
             }
         };
-        delete App.DomSignaler.initialize;
     },
 
     signalByXString: function () {},

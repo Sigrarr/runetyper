@@ -1,5 +1,5 @@
 
-/* global App, Updater, findOne, removeNode */
+/* global App, Updater, getById, removeNode */
 
 App.MsgController = {
 
@@ -45,7 +45,7 @@ App.MsgController = {
     supShow: false,
 
     initialize: function () {
-        this.container = findOne("#messages");
+        this.container = getById("messages");
         var disposable = [];
         var clickable = [];
 
@@ -53,7 +53,7 @@ App.MsgController = {
             var module = this.modules[i];
             var key = module.key;
             this.mByKey[key] = module;
-            module.p = findOne("#msg-" + key);
+            module.p = getById("msg-" + key);
 
             if (App.Storage.get("_msg_" + key)) {
                 disposable.push(module);

@@ -79,7 +79,7 @@ if (App.Dev.std) {
 
         switch (event.key) {
             case "Escape":
-                App.MenuSelectController.clear();
+                App.SelectsController.clear();
                 Updater.push("view", "workspace");
                 match = true;
                 break;

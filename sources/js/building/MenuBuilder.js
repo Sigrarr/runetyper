@@ -1,5 +1,5 @@
 
-/* global App, Env, findOne, newElement, newText */
+/* global App, Env, newElement, newText */
 
 App.MenuBuilder = {
 
