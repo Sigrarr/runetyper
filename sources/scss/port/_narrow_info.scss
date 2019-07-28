@@ -17,7 +17,7 @@ $WBreakpoint0: $defaultColumnW + 2 * 5 * $spaceS;
         white-space: pre;
         content: "\a";
     }
-    address dt:not(:first-child) {
+    address dt:not(.narrow-keep) {
         display: none;
     }
 
