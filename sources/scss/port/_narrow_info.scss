@@ -3,7 +3,7 @@
  * The width is too low to keep enough space between the text
  * and the buttons (close, top) in the information view.
  */
-$WBreakpoint0: $columnW + 2 * 5 * $spaceS;
+$WBreakpoint0: $defaultColumnW + 2 * 5 * $spaceS;
 
 @media only screen and (max-width: $WBreakpoint0) {
     dt, dd {
@@ -25,13 +25,11 @@ $WBreakpoint0: $columnW + 2 * 5 * $spaceS;
         display: none;
     }
 
-    #info {
-        .long-text-content {
-            margin-left: 0;
-            margin-right: 0;
-            padding-left: 2*$spaceS;
-            padding-right: 2*$spaceS;
-        }
+    .info-content {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 2*$spaceS;
+        padding-right: 2*$spaceS;
 
         #outline, section, p, h1, h2, h3, h4, h5, h6 {
             margin-left: 0;
@@ -50,16 +48,18 @@ $WBreakpoint0: $columnW + 2 * 5 * $spaceS;
             }
         }
 
-        #info-closing, #go-top {
-            &, ul, li, h4, a, button {
-                width: $midButtonSize;
-                height: $midButtonSize;
-                line-height: $midButtonSize;
-            }
-        }
-
         p {
             text-align: left;
+        }
+    }
+
+    #info-closing, #go-top {
+        &, ul, li, h4, a, button {
+            width: $midButtonSize;
+            height: $midButtonSize;
+            min-width: $midButtonSize;
+            min-height: $midButtonSize;
+            line-height: $midButtonSize;
         }
     }
 

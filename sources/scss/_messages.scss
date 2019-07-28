@@ -4,9 +4,9 @@
     z-index: 1;
     top: 0;
     right: 0;
-    max-width: 920px;
+    max-width: $defaultColumnW;
     margin: ($tileSize + 2*$spaceS) ($tileSize + $spaceS);
-    
+
     p {
         position: relative;
         min-height: $midButtonSize+4*$spaceS;
@@ -15,7 +15,7 @@
         }
         padding: 2*$spaceS;
         text-align: justify;
-        
+
         &:before {
             display: block;
             float: right;
@@ -32,11 +32,11 @@
         &:hover:before {
             background-color: $coolColor;
         }
-        
+
         &.fading {
             opacity: 0;
         }
-        
+
         border-left: $spaceS solid $coolColor;
         background-color: black;
     }

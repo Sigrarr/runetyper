@@ -1,19 +1,7 @@
 
-$columnW: 920px;
-
-#info {
+.info {
     position: relative;
     padding-bottom: $spaceS;
-
-    .info-content {
-        padding: $spaceS 0;
-
-        & > section, & > aside {
-            max-width: $columnW;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    }
 
     header {
         padding: 2*$spaceS;
@@ -24,20 +12,30 @@ $columnW: 920px;
         padding: $spaceS;
     }
 
-    #outline {
-        padding: ($tileSize/2 - $spaceS) 0 $tileSize/2 0;
+    .xtext {
+        font-family: NotoSansRunicGothic;
+    }
+
+    .sup-menu, ul.menu, .menu li, .menu h4 {
+        width: $tileSize;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.info-content {
+    padding: $spaceS 0;
+
+    & > section, & > aside {
+        max-width: $defaultColumnW;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     p, ul, ol, h3, h4, h5, h6 {
         margin-left: $tileSize;
         margin-right: $tileSize;
-    }
-
-    p, ul, ol, h4, h5, h6 {
         text-align: justify;
-    }
-
-    p, ul, ol, h4, h5, h6, dl {
         line-height: 150%;
     }
 
@@ -86,16 +84,10 @@ $columnW: 920px;
     h4 {
         font-size: $baseFontSize + 2px;
     }
+}
 
-    .xtext {
-        font-family: NotoSansRunicGothic;
-    }
-
-    .sup-menu, ul.menu, .menu li, .menu h4 {
-        width: $tileSize;
-        padding: 0;
-        margin: 0;
-    }
+#outline {
+    padding: ($tileSize/2 - $spaceS) 0 $tileSize/2 0;
 }
 
 #info-closing {
@@ -109,6 +101,7 @@ $columnW: 920px;
     bottom: $spaceS;
     right: $spaceS;
     &:not(.active) {
+        display: none;
         opacity: 0;
     }
 }
@@ -116,11 +109,14 @@ $columnW: 920px;
 dl {
     position: relative;
     width: 100%;
+    line-height: 150%;
 }
+
 dt, dd {
     display: inline-block;
     margin: 0;
 }
+
 dt {
     width: calc(50% - #{$tileSize*2.5});
     padding-right: 2*$spaceS;
@@ -131,6 +127,7 @@ dt {
         content: ":";
     }
 }
+
 dd {
     width: calc(50% - #{2*$spaceS});
     text-align: left;

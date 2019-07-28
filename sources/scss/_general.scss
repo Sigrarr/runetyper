@@ -31,6 +31,14 @@ button {
     }
 }
 
+a.button {
+    display: block;
+    &, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
 .icon {
     display: inline-block;
     min-height: $tileSize;

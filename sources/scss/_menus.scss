@@ -142,7 +142,7 @@ $menuOptionLightBorder: 1px solid darkColorFlatten(1);
         font-style: normal;
     }
 
-    &, button, .select li {
+    &, button, a:not([target]), .select li {
         background-color: $darkColor;
         color: $brightColor;
     }
