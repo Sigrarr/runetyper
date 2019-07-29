@@ -55,7 +55,7 @@ App.EventAssigner = {
                 App.SelectsController.handle(select);
             }
         };
-        workspace.firstElementChild.children[1].addEventListener("click", selectSwitchHandler);
+        getById("main-menu").addEventListener("click", selectSwitchHandler);
 
         var selectClearingHandler = function (event) {
             if (!App.SelectsController.findContainingSelect(event.target, false)) {

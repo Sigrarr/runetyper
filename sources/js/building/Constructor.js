@@ -18,7 +18,9 @@ App.Constructor = {
     layId: -1,
 
     run: function() {
+        App.MenuBuilder.alphSelectLi = getById("selector-alphabet");
         if (App.Dev.std) {
+            App.MenuBuilder.layoutSelectLi = getById("selector-layout");
             this.buildLayouts();
             this.buildAlphabets();
             this.buildKeyHeadSets();
@@ -46,28 +48,35 @@ App.Constructor = {
     },
 
     buildAlphabet: function (data) {
-        var map = new this.AlphMap(data);
         var id = ++this.alphId;
+        var map = null;
+        var genericXCharHandlerForEntity;
 
         if (App.Dev.std) {
+            map = new this.AlphMap(data);
             App.Literator.alphMaps.push(map);
+
+            genericXCharHandlerForEntity = function (newXCharIndex) {
+                for (var k in this.keys) {
+                    this.map[this.keys[k]] = this.chars[newXCharIndex];
+                }
+                App.DomSignaler.signalByXString(this.chars[newXCharIndex]);
+            };
+        } else {
+            genericXCharHandlerForEntity = function (newXCharIndex) {
+                App.DomSignaler.signalByXString(this.chars[newXCharIndex]);
+            };
         }
-        App.MenuBuilder.addAlphabetEntry(data.meta, id);
 
         var multiXCharEntities = [];
         for (var eId in data.entities) {
             if (data.entities[eId].chars.length > 1) {
                 var entity = data.entities[eId];
                 var topicName = "xchar" + id + "_" + eId;
+
                 entity.topicName = topicName;
                 entity.map = map;
-                entity[topicName + "Handler"] = function (newXCharIndex) {
-                    var newXChar = this.chars[newXCharIndex];
-                    for (var k in this.keys) {
-                        this.map[this.keys[k]] = newXChar;
-                    }
-                    App.DomSignaler.signalByXString(newXChar);
-                };
+                entity[topicName + "Handler"] = genericXCharHandlerForEntity;
 
                 Updater.startTopic(topicName);
                 Updater.register(entity, topicName);
@@ -75,6 +84,7 @@ App.Constructor = {
             }
         }
 
+        App.MenuBuilder.addAlphabetEntry(data.meta, id);
         App.MenuBuilder.addXCharsEntry(multiXCharEntities, id);
         App.KBoardBuilder.buildAndAddKboard(data, id);
     },

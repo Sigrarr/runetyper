@@ -3,10 +3,12 @@
 
 App.MenuBuilder = {
 
+    alphSelectLi: null,
+    layoutSelectLi: null,
+
     addAlphabetEntry: function (meta, id) {
-        var parentLi = App.DomMarks.alphSelectLi;
-        var indicatorEm = parentLi.children[0].children[1];
-        var optionsUl = parentLi.children[1];
+        var indicatorEm = this.alphSelectLi.children[0].children[1];
+        var optionsUl = this.alphSelectLi.children[1];
         var name = meta.name[Env.lang];
 
         indicatorEm.appendChild(
@@ -81,10 +83,7 @@ App.MenuBuilder = {
     },
 
     addLayoutEntry: function (meta, id) {
-        var parentLi = App.DomMarks.layoutSelectLi;
-        var optionsUl = parentLi.children[1];
-
-        optionsUl.appendChild(
+        this.layoutSelectLi.children[1].appendChild(
                 newElement("li", null, null, [
                     newElement(
                             "button",

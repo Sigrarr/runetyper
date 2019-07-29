@@ -26,14 +26,7 @@ App.cleanUp = function () {
 
     var tmpNodes = getByClass("tmp");
     while (tmpNodes.length > 0) {
-        var node = tmpNodes[0];
-        removeNode(node);
-        for (var key in App.DomMarks) {
-            if (App.DomMarks[key] === node) {
-                delete App.DomMarks[key];
-                break;
-            }
-        }
+        removeNode(tmpNodes[0]);
     }
 
     timePts.t1 = Date.now();

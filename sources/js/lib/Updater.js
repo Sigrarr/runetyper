@@ -44,8 +44,10 @@ var Updater = {
         }
     },
 
-    register: function (receiver, topicName) {
-        this.validate(topicName);
+    register: function (receiver, topicName, omitTopicValidation) {
+        if (!omitTopicValidation) {
+            this.validate(topicName);
+        }
 
         var hasHandler = (typeof receiver[topicName + "Handler"] === "function");
 
@@ -81,6 +83,7 @@ var Updater = {
     },
 
     registerDomReceivers: function (topicName) {
+        this.validate(topicName);
         var receivers = getByClass("receiver-" + topicName);
         for (var i = 0; i < receivers.length; i++) {
             this.register(receivers[i], topicName, true);
@@ -203,7 +206,7 @@ var Updater = {
 
     validate: function (refTopicName) {
         if (!(refTopicName in this.topics || refTopicName === this.reportTopic.name)) {
-            throw "Unregistered topic: " + refTopicName;
+            throw "Unstarted topic: " + refTopicName;
         }
     }
 

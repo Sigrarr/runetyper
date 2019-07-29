@@ -3,7 +3,6 @@
 
 App.OutFontSizeController = {
 
-    textArea: null,
     styleDefault: 0,
     current: 0,
     max: 0,
@@ -23,19 +22,19 @@ App.OutFontSizeController = {
     },
 
     set: function (newValue) {
-        this.textArea.style.fontSize = newValue + "px";
-        this.textArea.style.lineHeight = (this.lineRatio * newValue) + "px";
+        var textArea = App.DomMarks.textArea;
+        textArea.style.fontSize = newValue + "px";
+        textArea.style.lineHeight = (this.lineRatio * newValue) + "px";
         this.current = newValue;
         App.Storage.set("_fontsize", newValue);
     },
 
     initialize: function () {
-        var textArea = App.Writer.textArea.div || App.Writer.textArea;
+        var textArea = App.DomMarks.textArea;
         var style = getComputedStyle(textArea);
         var cssSize = parseInt(style.getPropertyValue("font-size"));
 
         setProperties(this, {
-            textArea: textArea,
             styleDefault: cssSize,
             min: parseInt(textArea.getAttribute("data-min-font-size")),
             max: parseInt(textArea.getAttribute("data-max-font-size")),

@@ -3,9 +3,8 @@
 
 App.MsgController = {
 
-    modules: [
-        {
-            key: "touch",
+    topics: {
+        touch: {
             show: false,
             p: null,
 
@@ -13,8 +12,7 @@ App.MsgController = {
                 return App.Dev.touch;
             }
         },
-        {
-            key: "compact",
+        compact: {
             show: false,
             p: null,
 
@@ -23,11 +21,11 @@ App.MsgController = {
             },
 
             rec: {
-                start: function (module) {
-                    Updater.register(module, "fit");
+                start: function (topic) {
+                    Updater.register(topic, "fit");
                 },
-                stop: function (module) {
-                    Updater.unregister(module, "fit");
+                stop: function (topic) {
+                    Updater.unregister(topic, "fit");
                 }
             },
 
@@ -36,9 +34,8 @@ App.MsgController = {
                 App.MsgController.superUpdate();
             }
         }
-    ],
+    },
 
-    mByKey: {},
     container: null,
     n: 2,
     showN: 0,
@@ -46,28 +43,26 @@ App.MsgController = {
 
     initialize: function () {
         this.container = getById("messages");
-        var disposable = [];
+        var disposableKeys = [];
         var clickable = [];
 
-        for (var i in this.modules) {
-            var module = this.modules[i];
-            var key = module.key;
-            this.mByKey[key] = module;
-            module.p = getById("msg-" + key);
+        for (var key in this.topics) {
+            var topic = this.topics[key];
+            topic.p = getById("msg-" + key);
 
             if (App.Storage.get("_msg_" + key)) {
-                disposable.push(module);
+                disposableKeys.push(key);
             } else {
-                if (module.rec) {
-                    module.rec.start(module);
+                if (topic.rec) {
+                    topic.rec.start(topic);
                 }
-                this.update(module);
-                clickable.push(module);
+                this.update(topic);
+                clickable.push(topic);
             }
         }
 
-        for (var d in disposable) {
-            this.remove(disposable[d]);
+        for (var dK in disposableKeys) {
+            this.remove(disposableKeys[dK]);
         }
 
         if (clickable.length > 0) {
@@ -103,42 +98,42 @@ App.MsgController = {
         }
     },
 
-    update: function (module) {
-        var pClasses = module.p.classList;
-        if (module.test()) {
+    update: function (topic) {
+        var pClasses = topic.p.classList;
+        if (topic.test()) {
             pClasses.remove("hidden");
-            if (!module.show) {
+            if (!topic.show) {
                 this.showN++;
-                module.show = true;
+                topic.show = true;
             }
         } else {
             pClasses.add("hidden");
-            if (module.show) {
+            if (topic.show) {
                 this.showN--;
-                module.show = false;
+                topic.show = false;
             }
         }
     },
 
     dismiss: function (key) {
-        var module = this.mByKey[key];
-        if (module.rec) {
-            module.rec.stop(module);
+        var topic = this.topics[key];
+        if (topic.rec) {
+            topic.rec.stop(topic);
         }
         App.Storage.set("_msg_" + key, 1);
-        this.remove(module);
+        this.remove(key);
         this.superUpdate();
     },
 
-    remove: function (module) {
-        if (module.show) {
+    remove: function (key) {
+        var topic = this.topics[key];
+        if (topic.show) {
             this.showN--;
         }
         this.n--;
-        module.p.classList.add("fading");
-        setTimeout(removeNode, 250, module.p);
-        this.modules.splice(this.modules.indexOf(module), 1);
-        delete this.modules[module.key];
+        topic.p.classList.add("fading");
+        setTimeout(removeNode, 250, topic.p);
+        delete this.topics[key];
     }
 
 };

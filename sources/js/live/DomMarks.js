@@ -3,15 +3,18 @@
 App.DomMarks = {
 
     kBoards: [],
+
     get activeKBoard() {
         return this.kBoards[App.Storage.get("alphabet")];
     },
 
+    get textArea() {
+        return App.Writer.textArea.div || App.Writer.textArea;
+    },
+
     kBoardSpace: null,
     editorSpace: null,
-    alphSelectLi: null,
     xCharsSelectLi: null,
-    layoutSelectLi: null,
     captionsCycleLi: null,
     saveTextButton: null,
     goTopButton: null

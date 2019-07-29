@@ -8,9 +8,7 @@ App.run = function () {
     setProperties(App.DomMarks, {
         kBoardSpace: getById("kboard-space"),
         editorSpace: getById("editor-space"),
-        alphSelectLi: getById("selector-alphabet"),
         xCharsSelectLi: getById("selector-xchars"),
-        layoutSelectLi: getById("selector-layout"),
         captionsCycleLi: getById("cycle-captions"),
         saveTextButton: getById("save-text-button"),
         goTopButton: getById("go-top")

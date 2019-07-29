@@ -1,4 +1,4 @@
-/* global App */
+/* global App, getById */
 
 App.ViewController = {
 
@@ -9,7 +9,9 @@ App.ViewController = {
     },
 
     viewHandler: function (view) {
+        this.clearScrollCheck();
         var hash = window.location.hash;
+
         switch (view) {
             case "info":
                 if (!this.isInfoSectionHash(hash)) {
@@ -17,7 +19,6 @@ App.ViewController = {
                 }
 
                 this.scrollCheck = setInterval(this.scrollHandler, 250);
-
                 break;
 
             case "workspace":
@@ -25,13 +26,7 @@ App.ViewController = {
                     window.location.hash = "";
                 }
 
-                if (this.scrollCheck !== null) {
-                    clearInterval(this.scrollCheck);
-                    this.scrollCheck = null;
-                }
-
                 App.DomMarks.goTopButton.classList.remove("active");
-
                 break;
         }
     },
@@ -44,6 +39,13 @@ App.ViewController = {
         var buttonClasses = App.DomMarks.goTopButton.classList;
         document.documentElement.scrollTop > window.innerHeight ?
                 buttonClasses.add("active") : buttonClasses.remove("active");
+    },
+
+    clearScrollCheck: function () {
+        if (this.scrollCheck !== null) {
+            clearInterval(this.scrollCheck);
+            this.scrollCheck = null;
+        }
     }
 
 };
