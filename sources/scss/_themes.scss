@@ -69,6 +69,9 @@ body, #loader {
     color: $brightColor;
 }
 
+$externalLinkColor: #0366d6;
+$externalLinkActiveColor: lighten(#0366d6, $flatRatio*3);
+
 .info {
     background-color: darkColorFlatten(2);
     color: $brightColor;
@@ -92,8 +95,6 @@ body, #loader {
         }
     }
 
-    $externalLinkColor: #0366d6;
-    $externalLinkActiveColor: lighten(#0366d6, $flatRatio*3);
     section a[target] {
         &, &:link, &:visited {
             color: $externalLinkColor;
@@ -102,19 +103,21 @@ body, #loader {
             color: $externalLinkActiveColor;
         }
     }
-    header a {
-        &, &:link, &:visited {
-            color: $externalLinkActiveColor;
-        }
-        &:hover {
-            color: lighten($externalLinkActiveColor, $flatRatio);
-        }
-    }
 
     h6 {
         color: darkColorFlatten(4);
     }
 }
+
+.info header a, .loader a {
+    &, &:link, &:visited {
+        color: $externalLinkActiveColor;
+    }
+    &:hover {
+        color: lighten($externalLinkActiveColor, $flatRatio);
+    }
+}
+
 
 .messages {
     color: $brightColor;

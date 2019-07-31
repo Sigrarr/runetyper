@@ -24,10 +24,11 @@ body.sup-loader {
     div {
         position: relative;
         padding: 2*$spaceS;
+        max-width: $defaultColumnW;
     }
 
     h1 {
-        font-size: 4*$baseFontSize;
+        font-size: 5*$baseFontSize;
         margin-bottom: $tileSize;
     }
 

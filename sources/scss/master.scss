@@ -10,6 +10,7 @@ $phiWidePart: 0.618;
 $phiNarrowPart: 1 - $phiWidePart;
 
 $defaultColumnW: 920px;
+$minScreenWidth: 300px;
 
 @import 'general';
 @import 'fontfamilies';

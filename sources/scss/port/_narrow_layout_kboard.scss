@@ -97,3 +97,9 @@ $WBreakpoint1: 910px;
         @include compactKBoardRelativeSize(100vh, $phiWidePart, $tileSize);
     }
 }
+
+@media only screen and (max-width: $WBreakpoint1) {
+    #loader h1 {
+        font-size: 3*$baseFontSize;
+    }
+}

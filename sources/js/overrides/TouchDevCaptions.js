@@ -1,7 +1,7 @@
 
 /* global App, Updater */
 
-App.overrides.TouchDevCaptions = {
+App.overrides.after.TouchDevCaptions = {
 
     test: function () {
         return App.Dev.touch && App.Storage.get("captions") === "keys";

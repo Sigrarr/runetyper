@@ -1,8 +1,16 @@
 
-/* global App, Updater, Env, getById, removeNode, setProperties, timePts */
+/* global App, Updater, Env, getById, setProperties, timePts */
 
 App.run = function () {
     timePts.run0 = Date.now();
+
+    for (var key in App.overrides.before) {
+        var override = App.overrides.before[key];
+        if (override.test()) {
+            console.log("@" + key);
+            override.run();
+        }
+    }
 
     App.Writer.initialize(getById("output-" + App.Dev.name));
     setProperties(App.DomMarks, {
@@ -72,10 +80,10 @@ App.run = function () {
     App.OutFontSizeController.initialize();
     App.buildOutline(2);
 
-    for (var key in App.overrides) {
-        var override = App.overrides[key];
+    for (var key in App.overrides.after) {
+        var override = App.overrides.after[key];
         if (override.test()) {
-            console.log("@override", key);
+            console.log("@" + key);
             override.run();
         }
     }

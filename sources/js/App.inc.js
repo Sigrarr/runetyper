@@ -5,7 +5,10 @@ include("lib/Updater.js");
 include("lib/helpers.js");
 
 var App = {
-    overrides: {}
+    overrides: {
+        before: {},
+        after: {}
+    }
 };
 
 include("live/base/Storage.js");
@@ -26,8 +29,10 @@ include("building/KBoardBuilder.js");
 include("building/EventAssigner.js");
 include("building/aux/buildOutline.js");
 include("building/aux/removeLoader.js");
-include("overrides/MsKeys.js");
-include("overrides/NoCssPointerEvents.js");
+include("overrides/NoGoOnCssFlexLack.js");
+include("overrides/JsStringMethodsLack.js");
+include("overrides/JsSetRangeTextLack.js");
+include("overrides/MsKeyboardEvents.js");
 include("overrides/TouchDevCaptions.js");
 
 include("run.js");
