@@ -4,8 +4,13 @@
 App.Commands = {
 
     shiftXChars: function (delta) {
-        var li = findActiveChild(App.DomMarks.xCharsSelectLi).firstElementChild;
-        while (li = li.nextElementSibling) {
+        var activeUl = findActiveChild(App.DomMarks.xCharsSelectLi);
+        if (!activeUl) {
+            return;
+        }
+
+        var li = activeUl.firstElementChild;
+        while ((li = li.nextElementSibling)) {
             var buttons = li.children;
             for (var i = 0; i < buttons.length; i++) {
                 if (buttons[i].classList.contains("active")) {
@@ -31,8 +36,9 @@ App.Commands = {
         );
     },
 
-    changeFontSize: function(deltaSgn) {
-        App.OutFontSizeController.tryChange(+deltaSgn);
+    changeFontSize: function (deltaSgn) {
+        var controller = App.OutFontSizeController;
+        deltaSgn ? controller.tryChange(+deltaSgn) : controller.set(controller.styleDefault);
     },
 
     saveText: function () {
@@ -74,64 +80,44 @@ App.Commands = {
 if (App.Dev.std) {
 
     App.Commands.catchKeyDown = function (event) {
-        var commands = App.Commands;
-        var match = false;
+        if (App.Commands.runMatch(event) !== false) {
+            event.stopPropagation();
+            event.preventDefault();
+        }
+    };
 
+    App.Commands.runMatch = function (event) {
+        var commands = this;
         switch (event.key) {
             case "Escape":
                 App.SelectsController.clear();
                 Updater.push("view", "workspace");
-                match = true;
-                break;
+                return true;
             case "ArrowLeft":
-                if (event.ctrlKey) {
-                    commands.shiftXChars(-1);
-                    match = true;
-                }
-                break;
+                return event.ctrlKey
+                        && commands.shiftXChars(-1);
             case "ArrowRight":
-                if (event.ctrlKey) {
-                    commands.shiftXChars(1);
-                    match = true;
-                }
-                break;
+                return event.ctrlKey
+                        && commands.shiftXChars(1);
             case "Insert":
-                commands.cycleCaptions();
-                match = true;
-                break;
+                return commands.cycleCaptions();
             case 's':
-                if (event.ctrlKey) {
-                    commands.saveText();
-                    match = true;
-                }
+                return event.ctrlKey
+                        && commands.saveText();
             case '-':
             case '_':
-                if (event.ctrlKey && event.shiftKey) {
-                    commands.changeFontSize(-1);
-                    match = true;
-                }
-                break;
+                return event.ctrlKey && event.shiftKey
+                        && commands.changeFontSize(-1);
             case '+':
             case '=':
-                if (event.ctrlKey && event.shiftKey) {
-                    commands.changeFontSize(1);
-                    match = true;
-                }
-                break;
+                return event.ctrlKey && event.shiftKey
+                        && commands.changeFontSize(1);
             case '0':
             case ')':
-                if (event.ctrlKey && event.shiftKey) {
-                    var controller = App.OutFontSizeController;
-                    controller.set(controller.styleDefault);
-                    match = true;
-                }
-                break;
+                return event.ctrlKey && event.shiftKey
+                        && commands.changeFontSize(0);
         }
-
-        if (match) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
+        return false;
     };
 
 }

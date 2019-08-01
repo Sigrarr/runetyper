@@ -107,6 +107,10 @@ $externalLinkActiveColor: lighten(#0366d6, $flatRatio*3);
     h6 {
         color: darkColorFlatten(4);
     }
+
+    em.active {
+        text-shadow: 0 0 2px $brightColor;
+    }
 }
 
 .info header a, .loader a {

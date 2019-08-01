@@ -20,10 +20,13 @@ App.DomSignaler = {
 
     signalByXString: function () {},
 
-    signalButton: function (button, delay) {
+    signalButton: function (button, optDelay) {
+        var delay = optDelay || 0;
+
         setTimeout(function () {
             button.classList.add("signal");
         }, delay);
+
         setTimeout(function () {
             button.classList.remove("signal");
         }, 250 + delay);
