@@ -110,6 +110,8 @@ $keyPadding) {
 }
 
 .kboard {
+    font-size: 0;
+
     & > section {
         &:not(:last-child) .row:last-child {
             display: inline-block;

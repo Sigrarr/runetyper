@@ -107,13 +107,13 @@ $WBreakpoint2: 700px;
 
     .selector-alphabet {
         div, li {
-            min-width: initial;
+            min-width: 0;
         }
     }
 
     .selector-xchars {
         div {
-            min-width: initial;
+            min-width: 0;
         }
         &.active ul.selector-xchar.active {
             padding: 2*$spaceS;
