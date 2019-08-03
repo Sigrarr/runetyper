@@ -39,3 +39,14 @@ if (App.Dev.std) {
     };
 
 }
+
+if (App.Dev.touch) {
+
+    App.Literator = {
+        allChars: {
+            " ":    true,
+            "\n":   true
+        }
+    };
+
+}

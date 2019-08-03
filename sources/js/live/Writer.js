@@ -230,10 +230,9 @@ if (App.Dev.touch) {
                     var selectionStart = textArea.sStart;
                     if (selectionStart === textArea.sEnd && selectionStart > 0) {
                         var value = textArea.value;
-                        var map = App.DomMarks.activeKBoard.backMap;
                         var back = 1;
                         for (var bytes = 1; bytes <= 4 && selectionStart - bytes >= 0; bytes++) {
-                            if (value.substring(selectionStart - bytes, selectionStart) in map) {
+                            if (value.substring(selectionStart - bytes, selectionStart) in App.Literator.allChars) {
                                 back = bytes;
                                 break;
                             }

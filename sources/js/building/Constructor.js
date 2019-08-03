@@ -70,8 +70,15 @@ App.Constructor = {
 
         var multiXCharEntities = [];
         for (var eId in data.entities) {
-            if (data.entities[eId].chars.length > 1) {
-                var entity = data.entities[eId];
+            var entity = data.entities[eId];
+
+            if (App.Dev.touch) {
+                for (var ch in entity.chars) {
+                    App.Literator.allChars[entity.chars[ch]] = true;
+                }
+            }
+
+            if (entity.chars.length > 1) {
                 var topicName = "xchar" + id + "_" + eId;
 
                 entity.topicName = topicName;
