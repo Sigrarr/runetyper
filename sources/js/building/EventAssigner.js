@@ -4,15 +4,17 @@
 App.EventAssigner = {
 
     run: function () {
-        this.assignMenuClicks();
-        this.assignXCharClicks();
-        this.assignResizeHandling();
         if (App.Dev.std) {
             this.assingKeyboardWriting();
             this.assignCommandKeys();
         } else {
             this.assignTouchSelection();
         }
+
+        this.assignClickWriting();
+        this.assignMenuClicks();
+        this.assignClickRepeats();
+        this.assignResizeHandling();
     },
 
     assingKeyboardWriting: function () {
@@ -21,10 +23,24 @@ App.EventAssigner = {
         textArea.addEventListener("keyup", App.Writer.catchKeyUp);
     },
 
+    assignCommandKeys: function () {
+        document.addEventListener("keydown", App.Commands.catchKeyDown);
+    },
+
     assignTouchSelection: function () {
         var element = App.Writer.textArea.div;
-        element.addEventListener("ontouchend" in element ? "touchend" : "click", function () {
+        element.addEventListener(App.EventMarks.click.end, function () {
             setTimeout(App.Writer.textArea.catchTouch, 0);
+        });
+    },
+
+    assignClickWriting: function () {
+        App.DomMarks.kBoardSpace.addEventListener(App.EventMarks.click.single, function (event) {
+            if (event.target.hasAttribute("data-xchar")) {
+                App.Writer.clickWrite(
+                        event.target.getAttribute("data-xchar")
+                );
+            }
         });
     },
 
@@ -42,11 +58,9 @@ App.EventAssigner = {
             }
         };
         var menus = getByClass("menu");
-        for (var i = 0; i < menus.length; i++) {
-            menus[i].addEventListener("click", menuClickHandler);
+        for (var i = menus.length - 1; i >= 0; i--) {
+            menus[i].addEventListener(App.EventMarks.click.single, menuClickHandler);
         }
-
-        var workspace = getById("workspace");
 
         var selectSwitchHandler = function (event) {
             var select = App.SelectsController.findContainingSelect(event.target, true);
@@ -55,32 +69,49 @@ App.EventAssigner = {
                 App.SelectsController.handle(select);
             }
         };
-        getById("main-menu").addEventListener("click", selectSwitchHandler);
+        getById("main-menu").addEventListener(App.EventMarks.click.single, selectSwitchHandler);
 
         var selectClearingHandler = function (event) {
             if (!App.SelectsController.findContainingSelect(event.target, false)) {
                 App.SelectsController.clear();
             }
         };
-        workspace.addEventListener("click", selectClearingHandler);
+        getById("workspace").addEventListener(App.EventMarks.click.single, selectClearingHandler);
     },
 
-    assignXCharClicks: function () {
-        App.DomMarks.kBoardSpace.addEventListener("click", function (event) {
-            if (event.target.hasAttribute("data-xchar")) {
-                App.Writer.clickWrite(
-                        event.target.getAttribute("data-xchar")
-                );
+    assignClickRepeats: function () {
+        var starter = function (event) {
+            var target = event.target;
+            if (target.hasAttribute("data-xchar") || target.classList.contains("repeatable")) {
+                target.repeatable = true;
+                setTimeout(function (target) {
+                    if (target.repeatable && !target.repeating) {
+                        target.repeating = setInterval(function (target) {
+                            if (target.repeatable) {
+                                target[App.EventMarks.click.single]();
+                            } else if (target.repeating) {
+                                clearInterval(target.repeating);
+                                target.repeating = false;
+                            }
+                        }, 125, target);
+                    }
+                }, 275, target);
             }
-        });
+        };
+
+        var cleaner = function (event) {
+            event.target.repeatable = false;
+        };
+
+        var targetContainers = [App.DomMarks.kBoardSpace, getById("toolbar")];
+        for (var i = targetContainers.length - 1; i >= 0; i--) {
+            targetContainers[i].addEventListener(App.EventMarks.click.start, starter);
+            targetContainers[i].addEventListener(App.EventMarks.click.end, cleaner);
+        }
     },
 
     assignResizeHandling: function () {
         window.addEventListener("resize", App.FitController.fit);
-    },
-
-    assignCommandKeys: function () {
-        document.addEventListener("keydown", App.Commands.catchKeyDown);
     }
 
 };

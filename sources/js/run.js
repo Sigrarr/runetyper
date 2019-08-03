@@ -1,5 +1,5 @@
 
-/* global App, Updater, Env, getById, setProperties, timePts */
+/* global App, Updater, Env, getById, timePts */
 
 App.run = function () {
     timePts.run0 = Date.now();
@@ -13,15 +13,8 @@ App.run = function () {
     }
 
     App.Writer.initialize(getById("output-" + App.Dev.name));
-    setProperties(App.DomMarks, {
-        kBoardSpace: getById("kboard-space"),
-        editorSpace: getById("editor-space"),
-        xCharsSelectLi: getById("selector-xchars"),
-        captionsCycleLi: getById("cycle-captions"),
-        saveTextButton: getById("save-text-button"),
-        goTopButton: getById("go-top")
-    });
-
+    App.DomMarks.initialize();
+    App.EventMarks.initialize();
     App.Constructor.run();
     App.EventAssigner.run();
     App.FitController.initialize();

@@ -23,6 +23,7 @@ include("live/aux/FitController.js");
 include("live/aux/MsgController.js");
 include("live/aux/OutFontSizeController.js");
 include("live/aux/SelectsController.js");
+include("live/aux/EventMarks.js");
 include("building/Constructor.js");
 include("building/MenuBuilder.js");
 include("building/KBoardBuilder.js");

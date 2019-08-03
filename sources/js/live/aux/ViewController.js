@@ -2,7 +2,7 @@
 
 App.ViewController = {
 
-    scrollCheck: null,
+    scrollChecking: false,
 
     get requestedView() {
         return this.isInfoSectionHash(window.location.hash) ? "info" : "workspace";
@@ -18,7 +18,7 @@ App.ViewController = {
                     window.location.hash = "info";
                 }
 
-                this.scrollCheck = setInterval(this.scrollHandler, 250);
+                this.scrollChecking = setInterval(this.scrollHandler, 250);
                 break;
 
             case "workspace":
@@ -42,9 +42,9 @@ App.ViewController = {
     },
 
     clearScrollCheck: function () {
-        if (this.scrollCheck !== null) {
-            clearInterval(this.scrollCheck);
-            this.scrollCheck = null;
+        if (this.scrollChecking !== false) {
+            clearInterval(this.scrollChecking);
+            this.scrollChecking = false;
         }
     }
 

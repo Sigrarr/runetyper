@@ -1,4 +1,4 @@
-/* global App */
+/* global App, setProperties */
 
 App.DomMarks = {
 
@@ -17,6 +17,17 @@ App.DomMarks = {
     xCharsSelectLi: null,
     captionsCycleLi: null,
     saveTextButton: null,
-    goTopButton: null
+    goTopButton: null,
+
+    initialize: function () {
+        setProperties(this, {
+            kBoardSpace: getById("kboard-space"),
+            editorSpace: getById("editor-space"),
+            xCharsSelectLi: getById("selector-xchars"),
+            captionsCycleLi: getById("cycle-captions"),
+            saveTextButton: getById("save-text-button"),
+            goTopButton: getById("go-top")
+        });
+    }
 
 };
