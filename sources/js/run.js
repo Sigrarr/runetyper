@@ -15,6 +15,7 @@ App.run = function () {
     App.Writer.initialize(getById("output-" + App.Dev.name));
     App.DomMarks.initialize();
     App.EventMarks.initialize();
+    App.ClickRepeater.initialize();
     App.Constructor.run();
     App.EventAssigner.run();
     App.FitController.initialize();

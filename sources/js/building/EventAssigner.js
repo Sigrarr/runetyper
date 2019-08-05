@@ -76,37 +76,16 @@ App.EventAssigner = {
                 App.SelectsController.clear();
             }
         };
-        getById("workspace").addEventListener(App.EventMarks.click.single, selectClearingHandler);
+        App.DomMarks.workspace.addEventListener(App.EventMarks.click.single, selectClearingHandler);
     },
 
     assignClickRepeats: function () {
-        var starter = function (event) {
-            var target = event.target;
-            if (target.hasAttribute("data-xchar") || target.classList.contains("repeatable")) {
-                target.repeatable = true;
-                setTimeout(function (target) {
-                    if (target.repeatable && !target.repeating) {
-                        target.repeating = setInterval(function (target) {
-                            if (target.repeatable) {
-                                target[App.EventMarks.click.single]();
-                            } else if (target.repeating) {
-                                clearInterval(target.repeating);
-                                target.repeating = false;
-                            }
-                        }, 125, target);
-                    }
-                }, 275, target);
-            }
-        };
-
-        var cleaner = function (event) {
-            event.target.repeatable = false;
-        };
-
+        var repeater = App.ClickRepeater;
         var targetContainers = [App.DomMarks.kBoardSpace, getById("toolbar")];
+
         for (var i = targetContainers.length - 1; i >= 0; i--) {
-            targetContainers[i].addEventListener(App.EventMarks.click.start, starter);
-            targetContainers[i].addEventListener(App.EventMarks.click.end, cleaner);
+            targetContainers[i].addEventListener(App.EventMarks.click.start, repeater.catchDown);
+            targetContainers[i].addEventListener(App.EventMarks.click.end, repeater.clear);
         }
     },
 

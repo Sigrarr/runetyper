@@ -12,6 +12,7 @@ App.DomMarks = {
         return App.Writer.textArea.div || App.Writer.textArea;
     },
 
+    workspace: null,
     kBoardSpace: null,
     editorSpace: null,
     xCharsSelectLi: null,
@@ -21,6 +22,7 @@ App.DomMarks = {
 
     initialize: function () {
         setProperties(this, {
+            workspace: getById("workspace"),
             kBoardSpace: getById("kboard-space"),
             editorSpace: getById("editor-space"),
             xCharsSelectLi: getById("selector-xchars"),

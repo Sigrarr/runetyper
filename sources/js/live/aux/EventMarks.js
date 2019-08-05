@@ -6,14 +6,16 @@ App.EventMarks = {
     click: {
         start: "",
         end: "",
-        single: ""
+        single: "",
+        move: ""
     },
 
     initialize: function () {
         var clickEventsToCheck = {
             start: ["touchstart", "mousedown"],
             end: ["touchend", "mouseup"],
-            single: ["touch", "tap", "click", "touchend", "mouseup"]
+            single: ["touch", "tap", "click", "touchend", "mouseup"],
+            move: ["touchmove", "mousemove"]
         };
 
         for (var key in clickEventsToCheck) {
