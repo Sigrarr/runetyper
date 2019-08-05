@@ -13,8 +13,12 @@
         &:not(:first-child) {
             margin-top: 2*$spaceS;
         }
-        padding: 2*$spaceS;
-        text-align: justify;
+        padding: 4*$spaceS;
+        text-align: left;
+
+        & > span:last-child {
+            white-space: nowrap;
+        }
 
         &:before {
             display: block;
