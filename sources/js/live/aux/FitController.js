@@ -182,7 +182,7 @@ App.FitController = {
         };
     },
 
-    initialize: function () {
+    init: function () {
         var probeBox = newElement("div", ["extremes-probe", "tmp"]);
         document.body.appendChild(probeBox);
         var probeBoxStyle = getComputedStyle(probeBox);

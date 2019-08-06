@@ -1,16 +1,14 @@
 
 /* global App */
 
-App.EventMarks = {
+App.ClickEvents = {
 
-    click: {
-        start: "",
-        end: "",
-        single: "",
-        move: ""
-    },
+    start: "",
+    end: "",
+    single: "",
+    move: "",
 
-    initialize: function () {
+    init: function () {
         var clickEventsToCheck = {
             start: ["touchstart", "mousedown"],
             end: ["touchend", "mouseup"],
@@ -21,7 +19,7 @@ App.EventMarks = {
         for (var key in clickEventsToCheck) {
             for (var i in clickEventsToCheck[key]) {
                 if (("on" + clickEventsToCheck[key][i]) in document.body) {
-                    this.click[key] = clickEventsToCheck[key][i];
+                    this[key] = clickEventsToCheck[key][i];
                     break;
                 }
             }

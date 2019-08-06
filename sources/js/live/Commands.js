@@ -37,7 +37,7 @@ App.Commands = {
     },
 
     changeFontSize: function (deltaSgn) {
-        var controller = App.OutFontSizeController;
+        var controller = App.OutFontResizer;
         deltaSgn ? controller.tryChange(+deltaSgn) : controller.set(controller.styleDefault);
     },
 

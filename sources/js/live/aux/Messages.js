@@ -1,7 +1,7 @@
 
 /* global App, Updater, getById, removeNode */
 
-App.MsgController = {
+App.Messages = {
 
     topics: {
         touch: {
@@ -30,8 +30,8 @@ App.MsgController = {
             },
 
             fitHandler: function () {
-                App.MsgController.update(this);
-                App.MsgController.superUpdate();
+                App.Messages.update(this);
+                App.Messages.superUpdate();
             }
         }
     },
@@ -41,7 +41,7 @@ App.MsgController = {
     showN: 0,
     supShow: false,
 
-    initialize: function () {
+    init: function () {
         this.container = getById("messages");
         var disposableKeys = [];
         var clickable = [];
@@ -71,7 +71,7 @@ App.MsgController = {
                 while (!targetMsgP.id) {
                     targetMsgP = targetMsgP.parentNode;
                 }
-                App.MsgController.dismiss(targetMsgP.id.split('-')[1]);
+                App.Messages.dismiss(targetMsgP.id.split('-')[1]);
             };
             for (var c in clickable) {
                 clickable[c].p.addEventListener("click", listener);
@@ -86,7 +86,7 @@ App.MsgController = {
 
         if (this.n <= 0) {
             setTimeout(removeNode, 250, container);
-            delete App.MsgController;
+            delete App.Messages;
         } else if (this.showN > 0 && !this.supShow) {
             container.classList.remove("hidden");
             this.supShow = true;

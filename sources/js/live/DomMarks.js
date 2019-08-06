@@ -20,7 +20,7 @@ App.DomMarks = {
     saveTextButton: null,
     goTopButton: null,
 
-    initialize: function () {
+    init: function () {
         setProperties(this, {
             workspace: getById("workspace"),
             kBoardSpace: getById("kboard-space"),

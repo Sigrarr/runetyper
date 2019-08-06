@@ -59,6 +59,10 @@ function getOneOf(className) {
     return getByClass(className)[0];
 }
 
+function getByPoint(point) {
+    return document.elementFromPoint(point.clientX, point.clientY);
+}
+
 function findActiveChild(parent) {
     var children = parent.children;
     for (var i = 0; i < children.length; i++) {

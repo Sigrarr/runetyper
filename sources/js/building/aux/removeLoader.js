@@ -1,5 +1,5 @@
 
-/* global App, getById, timePts */
+/* global App, getById, timestamps */
 
 App.removeLoader = function () {
     setTimeout(function () {
@@ -8,5 +8,5 @@ App.removeLoader = function () {
             removeNode(getById("loader"));
             document.body.classList.remove("sup-loader");
         }, 500);
-    }, Math.max(0, 500 - (timePts.run1 - timePts.t0)));
+    }, Math.max(0, 500 - (timestamps.run1 - timestamps.head)));
 };

@@ -1,8 +1,8 @@
 
-/* global App, Updater, removeNode, getByClass, setProperties, timePts */
+/* global App, Updater, removeNode, getByClass, setProperties, timestamps */
 
 App.cleanUp = function () {
-
+    timestamps.clean0 = Date.now();
     window.removeEventListener("load", App.run);
 
     delete App.overrides;
@@ -15,7 +15,7 @@ App.cleanUp = function () {
     delete App.run;
     delete App.cleanUp;
     for (var key in App) {
-        delete App[key].initialize;
+        delete App[key].init;
     }
 
     setProperties(Updater.topics.device.receivers, {
@@ -29,6 +29,6 @@ App.cleanUp = function () {
         removeNode(tmpNodes[0]);
     }
 
-    timePts.t1 = Date.now();
-    console.log("@ready", (timePts.t1 - timePts.t0) + "ms");
+    timestamps.clean1 = Date.now();
+    console.log("@ready", (timestamps.clean1 - timestamps.head) + "ms");
 };

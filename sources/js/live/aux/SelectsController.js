@@ -104,14 +104,18 @@ App.SelectsController = {
     },
 
     findContainingSelect: function (startElement, breakAtActionButton) {
-        var select = null;
-        for (var i = 0, element = startElement; i < 5 && element && !select; i++, element = element.parentNode) {
+        for (
+                var i = 0, element = startElement, select = null;
+                i < 5 && !select && element && element.classList;
+                i++, element = element.parentNode
+        ) {
             if (element.classList.contains("select") && !element.classList.contains("disabled")) {
                 select = element;
             } else if (breakAtActionButton && element.hasAttribute("data-topic")) {
                 break;
             }
         }
+
         return select;
     }
 

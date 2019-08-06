@@ -1,5 +1,5 @@
 
-/* global App */
+/* global App, getByPoint */
 
 App.ClickRepeater = {
 
@@ -7,14 +7,14 @@ App.ClickRepeater = {
     repeating: false,
     tryId: -1,
 
-    initialize: function () {
-        if (App.EventMarks.click.move.startsWith("touch")) {
+    init: function () {
+        if (App.ClickEvents.move.startsWith("touch")) {
             this.isOut = this.isOutTouch;
         }
         delete this.isOutTouch;
     },
 
-    catchDown: function (event) {
+    catchStart: function (event) {
         var repeater = App.ClickRepeater;
         repeater.clear();
 
@@ -43,7 +43,7 @@ App.ClickRepeater = {
     repeat: function () {
         var repeater = App.ClickRepeater;
         if (repeater.target) {
-            repeater.target[App.EventMarks.click.single]();
+            repeater.target[App.ClickEvents.single]();
         } else if (repeater.repeating) {
             clearInterval(repeater.repeating);
             repeater.repeating = false;
@@ -60,18 +60,17 @@ App.ClickRepeater = {
 
     onMove: function (whatToDoWithEventListener) {
         App.DomMarks.workspace[whatToDoWithEventListener + "EventListener"](
-                App.EventMarks.click.move, App.ClickRepeater.catchMove
+                App.ClickEvents.move, App.ClickRepeater.catchMove
         );
     },
 
-    isOut: function (event) {
-        return document.elementFromPoint(event.clientX, event.clientY) !== this.target;
+    isOut: function (moveEvent) {
+        return getByPoint(moveEvent) !== this.target;
     },
 
-    isOutTouch: function (event) {
-        var touches = event.targetTouches;
-        return touches.length !== 1
-                || document.elementFromPoint(touches[0].clientX, touches[0].clientY) !== this.target;
+    isOutTouch: function (moveEvent) {
+        var touches = moveEvent.targetTouches;
+        return touches.length !== 1 || getByPoint(touches[0]) !== this.target;
     }
 
 };

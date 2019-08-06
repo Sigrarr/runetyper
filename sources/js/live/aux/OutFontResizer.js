@@ -1,7 +1,7 @@
 
 /* global App, Updater, setProperties */
 
-App.OutFontSizeController = {
+App.OutFontResizer = {
 
     styleDefault: 0,
     current: 0,
@@ -29,7 +29,7 @@ App.OutFontSizeController = {
         App.Storage.set("_fontsize", newValue);
     },
 
-    initialize: function () {
+    init: function () {
         var textArea = App.DomMarks.textArea;
         var style = getComputedStyle(textArea);
         var cssSize = parseInt(style.getPropertyValue("font-size"));

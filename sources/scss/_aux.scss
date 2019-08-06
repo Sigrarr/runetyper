@@ -32,3 +32,8 @@ button, .messages p {
 .messages p {
     transition: opacity 0.25s linear;
 }
+
+.menu, button {
+    user-select: none;
+    -moz-user-select: none;
+}

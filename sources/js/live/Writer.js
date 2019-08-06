@@ -9,7 +9,7 @@ if (App.Dev.std) {
         buffChar: '',
         xText: "",
 
-        initialize: function (element) {
+        init: function (element) {
             this.textArea = element;
         },
 
@@ -208,7 +208,7 @@ if (App.Dev.touch) {
             }
         },
 
-        initialize: function (element) {
+        init: function (element) {
             var textArea = this.textArea;
             textArea.sRoot = window.getSelection ? window : document;
             textArea.unselectMethod = textArea.sRoot.getSelection().empty ? "empty" : "removeAllRanges";

@@ -1,8 +1,8 @@
 
-/* global App, Updater, Env, getById, timePts */
+/* global App, Updater, Env, getById, timestamps */
 
 App.run = function () {
-    timePts.run0 = Date.now();
+    timestamps.run0 = Date.now();
 
     for (var key in App.overrides.before) {
         var override = App.overrides.before[key];
@@ -12,13 +12,14 @@ App.run = function () {
         }
     }
 
-    App.Writer.initialize(getById("output-" + App.Dev.name));
-    App.DomMarks.initialize();
-    App.EventMarks.initialize();
-    App.ClickRepeater.initialize();
+    App.Writer.init(getById("output-" + App.Dev.name));
+    App.DomMarks.init();
+    App.ClickEvents.init();
+    App.ClickRepeater.init();
+    App.FitController.init();
+
     App.Constructor.run();
     App.EventAssigner.run();
-    App.FitController.initialize();
 
     Updater.startTopics([
         "device", "alphabet", "layout", "command", "view", "kbmode",
@@ -50,7 +51,6 @@ App.run = function () {
         captions: App.Dev.std ? "roman" : "off",
         theme: App.Dev.std ? "bright" : "dark"
     };
-
     for (var topicName in primaryDefaults) {
         Updater.push(
                 topicName,
@@ -69,9 +69,9 @@ App.run = function () {
     }
     Updater.push("view", App.ViewController.requestedView);
 
-    App.DomSignaler.initialize();
-    App.MsgController.initialize();
-    App.OutFontSizeController.initialize();
+    App.DomSignaler.init();
+    App.Messages.init();
+    App.OutFontResizer.init();
     App.buildOutline(2);
 
     for (var key in App.overrides.after) {
@@ -82,7 +82,7 @@ App.run = function () {
         }
     }
 
-    timePts.run1 = Date.now();
+    timestamps.run1 = Date.now();
 
     if (Env.ok) {
         App.removeLoader();
