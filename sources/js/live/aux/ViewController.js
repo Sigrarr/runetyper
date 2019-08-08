@@ -32,7 +32,7 @@ App.ViewController = {
     },
 
     isInfoSectionHash: function (hash, confirmed) {
-        return hash === "#info" || (hash.charAt(1) === 'i' && (confirmed || getById(hash)));
+        return hash === "#info" || (hash.charAt(1) === 'i' && (confirmed || getById(hash.substr(1))));
     },
 
     scrollHandler: function () {

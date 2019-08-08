@@ -104,12 +104,16 @@ $externalLinkActiveColor: lighten(#0366d6, $flatRatio*3);
         }
     }
 
-    h6 {
+    h6, td:last-child {
         color: darkColorFlatten(4);
     }
 
+    table, tr, td {
+        border-color: brightColorFlatten(2);
+    }
+
     em.active {
-        text-shadow: 0 0 2px $brightColor;
+        text-shadow: 0 0 1px $brightColor;
     }
 }
 
