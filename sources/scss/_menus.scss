@@ -117,11 +117,22 @@ $menuOptionLightBorder: 1px solid darkColorFlatten(1);
     .select {
         ul {
             top: $tileSize;
-            padding-bottom: $tileSize * 0.75;
+
+            $comfortBottomPadding: $tileSize * 0.75;
+            &:after {
+                display: block;
+                width: 100%;
+                height: $comfortBottomPadding;
+                position: absolute;
+                bottom: -$comfortBottomPadding;
+                content: " ";
+            }
         }
+
         h4, h5 {
             padding-right: $spaceS;
         }
+
         button, div {
             padding: 0 2*$spaceS;
         }
@@ -142,7 +153,7 @@ $menuOptionLightBorder: 1px solid darkColorFlatten(1);
         font-style: normal;
     }
 
-    &, button, a:not([target]), .select li {
+    &, button, a.button, .select li {
         background-color: $darkColor;
         color: $brightColor;
     }
@@ -151,7 +162,7 @@ $menuOptionLightBorder: 1px solid darkColorFlatten(1);
         color: $disabledColor;
     }
 
-    button:not(.disabled), .select:not(.disabled) div {
+    button:not(.disabled), a.button:not(.disabled), .select:not(.disabled) div {
         &:hover {
             background-color: $coolColor;
         }
@@ -204,15 +215,29 @@ $menuOptionLightBorder: 1px solid darkColorFlatten(1);
         min-width: 70px;
     }
 
+    ul {
+        padding: $spaceS;
+        background-color: $darkColor;
+    }
+
+    $minOptionsNForCompactRows: 6;
+    li:nth-last-child(n+#{$minOptionsNForCompactRows + 1}) ~ li {
+        float: left;
+        min-width: (100% / 3);
+    }
+
     li {
-        padding: 0 2*$spaceS;
-        &:first-child {
-            height: $midButtonSize + 4*$spaceS;
-            padding-top: 2*$spaceS;
-            padding-bottom: $spaceS;
+        padding: 0 $spaceS;
+
+        &:nth-child(3n+2) {
+            clear: left;
         }
-        &:last-child {
-            height: $midButtonSize + 2*$spaceS;
+
+        &:first-child {
+            width: 100%;
+            float: none;
+            height: $midButtonSize + 4*$spaceS;
+            padding-top: $spaceS;
             padding-bottom: $spaceS;
         }
     }

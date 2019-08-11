@@ -1,0 +1,113 @@
+
+$radiusL: 2*$spaceS - 1px;
+
+.menu {
+    button, a.button, h4, div {
+        border-radius: inherit
+    }
+}
+
+.select > ul {
+    border-radius: 0 0 $radiusL $radiusL;
+}
+
+$radiusM: ($midButtonSize / $tileSize) * $radiusL - 2px;
+.selector-xchars {
+    button {
+        &:first-child {
+            border-radius: $radiusM 0 0 $radiusM;
+        }
+        &:last-child {
+            border-radius: 0 $radiusM $radiusM 0;
+        }
+        &:nth-child(n+2):nth-last-child(n+2) {
+            border-radius: 0;
+        }
+    }
+    li:first-child {
+        button {
+            border-radius: $radiusM;
+        }
+    }
+}
+
+#info-closing, #go-top {
+    &, li {
+        border-radius: $radiusL;
+    }
+}
+@media only screen and (max-width: $WBreakpoint0) {
+    #info-closing, #go-top {
+        &, li {
+            border-radius: $radiusM;
+        }
+    }
+}
+
+@media only screen and (min-width: #{$WBreakpoint2 + 1px}) {
+
+    .select li li:last-child {
+        border-radius: 0 0 $radiusL 0;
+    }
+
+    .select li:not(:first-child) li:first-child {
+        border-radius: 0 $radiusL 0 0;
+    }
+
+    @mixin applyForLastLisStickingOut() {
+        $maxOptsN: 6;
+        $selector : '';
+        @for $supI from 1 through $maxOptsN {
+            $selector : $selector + '.select li:nth-last-child(' + $supI + ')'
+                + ' li:last-child:nth-child(n+' + ($supI + 1) + '), ';
+        }
+        #{$selector} {
+            @content;
+        }
+    }
+    @include applyForLastLisStickingOut() {
+        border-radius: 0 0 $radiusL $radiusL;
+    }
+
+    .menu > .select > ul > li:last-child:not(.select) {
+        border-radius: 0 0 $radiusL $radiusL;
+    }
+
+    .select > ul > li.select:last-child {
+        &, & > div:first-child:before {
+            border-radius: 0 0 0 $radiusL;
+        }
+    }
+
+}
+
+@media only screen and (orientation: landscape) and (min-width: #{$WBreakpoint1 + 1px}) {
+    #toolbar {
+        &, li:last-child {
+            border-radius: $radiusL;
+        }
+
+        li {
+            &:first-child {
+                border-radius: $radiusL 0 0 $radiusL;
+            }
+            &:nth-last-child(2) {
+                border-radius: 0 $radiusL $radiusL 0;
+            }
+        }
+    }
+}
+
+@media only screen and (orientation: portrait), (max-width: $WBreakpoint1) {
+    #toolbar {
+        &:not(.collapse), li:nth-last-child(2) {
+            border-radius: 0 0 $radiusL $radiusL;
+        }
+    }
+}
+
+.messages p {
+    &, &:before {
+        border-radius: $radiusL;
+    }
+}

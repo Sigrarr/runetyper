@@ -26,5 +26,6 @@ $minScreenWidth: 300px;
 @import 'port/narrow_layout_kboard';
 @import 'port/narrow_menus';
 @import 'port/narrow_info';
-@import 'port/small_menus';
-@import 'aux';
+@import 'port/small_layout_select';
+@import 'effects';
+@import 'menu_radiuses';

@@ -1,0 +1,29 @@
+
+/**
+ * The height is too low for the full layouts list in the narrow mode.
+ */
+$HBreakpoint: 8 * $tileSize + $spaceS;
+
+@media only screen and (max-height: $HBreakpoint) and (max-width: $WBreakpoint2) {
+    .selector-layout.active {
+        ul {
+            max-width: 100%;
+            white-space: normal;
+        }
+
+        li {
+            display: inline-block;
+            min-width: (100% / 3);
+
+            &:not(:nth-child(3n+1)) {
+                border-left: $menuOptionLightBorder;
+            }
+
+            &:nth-child(-n+3) {
+                button {
+                    border-top: 0;
+                }
+            }
+        }
+    }
+}
