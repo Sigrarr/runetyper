@@ -87,6 +87,18 @@ App.EventAssigner = {
 
         resizeHandling: function () {
             window.addEventListener("resize", App.FitController.fit);
+        },
+
+        contextMenuBlocking: App.Dev.touch && function () {
+            App.DomMarks.workspace.addEventListener("contextmenu", function (event) {
+                for (var target = event.target, i = 0; i < 2 && target; i++, target = target.parentNode) {
+                    if (target === App.Writer.textArea.div) {
+                        return;
+                    }
+                }
+                event.stopPropagation();
+                event.preventDefault();
+            });
         }
 
     }
