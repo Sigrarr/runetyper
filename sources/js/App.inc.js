@@ -25,6 +25,7 @@ include("live/aux/OutFontResizer.js");
 include("live/aux/SelectsController.js");
 include("live/aux/ClickEvents.js");
 include("live/aux/ClickRepeater.js");
+include("live/aux/Selection.js");
 include("building/Constructor.js");
 include("building/MenuBuilder.js");
 include("building/KBoardBuilder.js");

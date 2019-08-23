@@ -20,6 +20,8 @@ App.FitController = {
         }
         controller.lock = true;
 
+        document.body.style.height = window.innerHeight + "px";
+
         var container = App.DomMarks.kBoardSpace;
         var narrowScreen = Math.abs(window.innerWidth - container.offsetWidth) < 100;
 

@@ -16,6 +16,7 @@ App.run = function () {
     App.DomMarks.init();
     App.ClickEvents.init();
     App.ClickRepeater.init();
+    App.Dev.touch && App.Selection.init();
     App.FitController.init();
 
     App.Constructor.run();

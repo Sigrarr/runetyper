@@ -207,10 +207,6 @@ $keyPadding) {
     $keyFontS:      calc((#{$whole * $areaPart} - #{$pad * $areaPart + 2 * $spaceS}) * #{(1 / $fillRatio) / $maxRowsN * $xTxtPart * $keyToRoman});
     $keyPadding:    calc((#{$whole * $areaPart} - #{$pad * $areaPart + 2 * $spaceS}) * #{(1 / $fillRatio) / $maxRowsN * $xTxtPart * $keyPadToCap});
 
-    button {
-        line-height: $buttonH;
-    }
-
     button, p i span {
         font-size: $fontS;
     }
@@ -284,7 +280,7 @@ $keyPadding) {
         }
     }
 
-    &.sup-captions-roman .kboard p.roman, &.sup-captions-keys .kboard p.keys {
+    &.sup-captions-roman .kboard p.roman, &.sup-captions-keys .kboard p.keys, button {
         display: flex;
         align-items: center;
         justify-content: center;

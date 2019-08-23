@@ -12,6 +12,8 @@ $WBreakpoint1: 910px;
 @media only screen and (orientation: portrait), (max-width: $WBreakpoint1) {
 
     .workspace {
+        padding-top: 0;
+
         header.sup-menu {
             width: calc(100% - #{$tileSize});
             z-index: 5;
@@ -25,7 +27,8 @@ $WBreakpoint1: 910px;
     $narrowEditorVPart: 0.5;
     .editor-space {
         width: 100%;
-        height: calc((100vh - #{$tileSize}) * #{$narrowEditorVPart});
+        height: calc((100% - #{$tileSize}) * #{$narrowEditorVPart});
+        margin-top: $tileSize;
 
         .sup-menu {
             position: fixed;
@@ -61,8 +64,8 @@ $WBreakpoint1: 910px;
     $narrowKBoardVPart: 1 - $narrowEditorVPart;
     .kboard-space {
         width: 100%;
-        min-height: calc((100vh - #{$tileSize}) * #{$narrowKBoardVPart});
-        height: calc((100vh - #{$tileSize}) * #{$narrowKBoardVPart});
+        min-height: calc((100% - #{$tileSize}) * #{$narrowKBoardVPart});
+        height: calc((100% - #{$tileSize}) * #{$narrowKBoardVPart});
     }
 
     .fit-w {
@@ -81,12 +84,12 @@ $WBreakpoint1: 910px;
 
 @media only screen and (orientation: landscape) and (max-width: $WBreakpoint1) {
     .editor-space {
-        height: calc((100vh - #{$tileSize}) * #{$phiNarrowPart});
+        height: calc((100% - #{$tileSize}) * #{$phiNarrowPart});
     }
 
     .kboard-space {
-        min-height: calc((100vh - #{$tileSize}) * #{$phiWidePart});
-        height: calc((100vh - #{$tileSize}) * #{$phiWidePart});
+        min-height: calc((100% - #{$tileSize}) * #{$phiWidePart});
+        height: calc((100% - #{$tileSize}) * #{$phiWidePart});
     }
 
     .fit-h {

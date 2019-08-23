@@ -25,9 +25,7 @@ App.EventAssigner = {
         },
 
         touchSelection: App.Dev.touch && function () {
-            App.Writer.textArea.div.addEventListener(App.ClickEvents.end, function () {
-                setTimeout(App.Writer.textArea.catchTouch, 0);
-            });
+            App.Selection.eElement.addEventListener(App.Selection.eName, App.Writer.textArea.catchSelection);
         },
 
         clickWriting: function () {

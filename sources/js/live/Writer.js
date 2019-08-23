@@ -98,11 +98,8 @@ if (App.Dev.touch) {
             div: null,
             head: null,
             tail: null,
-
             sStart: 0,
             sEnd: 0,
-            sRoot: null,
-            unselectMethod: "",
 
             get value() {
                 return this.div.innerText;
@@ -122,7 +119,7 @@ if (App.Dev.touch) {
                 if (selectionStart === selectionEnd) {
                     this.add(this.head, text);
                 } else {
-                    this.unselect();
+                    App.Selection.clear();
                     var oldText = this.value;
                     this.set(this.tail, oldText.substr(selectionEnd));
                     this.set(this.head, oldText.substr(0, selectionStart) + text);
@@ -146,17 +143,9 @@ if (App.Dev.touch) {
             },
 
             select: function () {
-                var selection = this.sRoot.getSelection();
-                this.unselect(selection);
-                var range = document.createRange();
-                range.selectNode(this.div);
-                selection.addRange(range);
+                App.Selection.make(this.div);
                 this.updateSelection(0, this.value.length);
                 this.updateCaret();
-            },
-
-            unselect: function (selectionOpt) {
-                (selectionOpt || this.sRoot.getSelection())[this.unselectMethod]();
             },
 
             updateSelection: function (selectionStart, selectionEnd) {
@@ -172,9 +161,12 @@ if (App.Dev.touch) {
                 }
             },
 
-            catchTouch: function () {
+            catchSelection: function () {
+                if (App.Selection.lock) {
+                    return false;
+                }
                 var textArea = App.Writer.textArea;
-                var selection = textArea.sRoot.getSelection();
+                var selection = App.Selection.get();
                 var oldHeadText = textArea.head.innerText;
                 var oldHeadLength = oldHeadText.length;
 
@@ -204,15 +196,12 @@ if (App.Dev.touch) {
             },
 
             isHead: function (node) {
-                return node && (node === this.head || node.parentElement === this.head);
+                return node && (node === this.head || node.parentNode === this.head);
             }
         },
 
         init: function (element) {
             var textArea = this.textArea;
-            textArea.sRoot = window.getSelection ? window : document;
-            textArea.unselectMethod = textArea.sRoot.getSelection().empty ? "empty" : "removeAllRanges";
-
             textArea.div = element;
             textArea.head = newElement("span", ["caret"], null, [newText("")]);
             textArea.tail = newElement("span", null, null, [newText("")]);
