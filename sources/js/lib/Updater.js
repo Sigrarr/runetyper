@@ -64,9 +64,7 @@ var Updater = {
             list.handler.push(receiver);
         }
 
-        if (typeof receiver.nodeType !== "undefined"
-                && receiver.nodeType === 1
-                && receiver.hasAttribute("data-depend-" + topicName)) {
+        if (receiver.nodeType === 1 && receiver.hasAttribute("data-depend-" + topicName)) {
             var dependencies = receiver.getAttribute("data-depend-" + topicName).split(',');
             for (var i in dependencies) {
                 var dependency = dependencies[i];

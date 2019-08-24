@@ -1,7 +1,7 @@
 
 /* global App, Updater, getOneOf, newElement, removeNode */
 
-App.FitController = {
+App.Fitter = {
 
     setting: null,
     lock: false,
@@ -13,12 +13,12 @@ App.FitController = {
     boxMinSize: 0,
 
     fit: function () {
-        var controller = App.FitController;
-        if (controller.lock && !controller.compactRet) {
-            controller.repeat = true;
+        var fitter = App.Fitter;
+        if (fitter.lock && !fitter.compactRet) {
+            fitter.repeat = true;
             return;
         }
-        controller.lock = true;
+        fitter.lock = true;
 
         document.body.style.height = window.innerHeight + "px";
 
@@ -32,32 +32,32 @@ App.FitController = {
         var mParam;
         var fitClass;
 
-        if (controller.compactRet || controller.setting === "compact") {
-            controller.compact = true;
-            controller.compactRet = false;
-            method = controller.fitCompact;
+        if (fitter.compactRet || fitter.setting === "compact") {
+            fitter.compact = true;
+            fitter.compactRet = false;
+            method = fitter.fitCompact;
             mKBoard = App.DomMarks.activeKBoard;
             mParam = narrowScreen;
             fitClass = "compact";
         } else {
-            controller.compact = false;
+            fitter.compact = false;
             if (narrowScreen) {
-                method = controller.fitStdNarrowScr;
+                method = fitter.fitStdNarrowScr;
                 mKBoard = getOneOf("tall");
                 fitClass = "fit-w";
             } else {
-                method = controller.fitStdWideScr;
+                method = fitter.fitStdWideScr;
                 mKBoard = getOneOf("wide");
                 fitClass = "fit-h";
             }
             mParam = mKBoard.firstElementChild.firstElementChild.firstElementChild;
         }
 
-        controller.preset(mKBoard, fitClass);
-        setTimeout(method, 0, controller, container, mKBoard, mParam);
+        fitter.preset(mKBoard, fitClass);
+        setTimeout(method, 0, fitter, container, mKBoard, mParam);
     },
 
-    fitCompact: function (controller, container, mKBoard, narrowScreen) {
+    fitCompact: function (fitter, container, mKBoard, narrowScreen) {
         var kBoardStyle = getComputedStyle(mKBoard);
         var effectiveHeight = parseInt(kBoardStyle.getPropertyValue("padding-top"))
                 + parseInt(kBoardStyle.getPropertyValue("padding-bottom"));
@@ -76,19 +76,19 @@ App.FitController = {
             mKBoard.style.top = (containerFree / 2) + "px";
         }
 
-        controller.release(container, mKBoard);
+        fitter.release(container, mKBoard);
     },
 
-    fitStdNarrowScr: function (controller, container, mKBoard, box) {
+    fitStdNarrowScr: function (fitter, container, mKBoard, box) {
         if (mKBoard.offsetHeight >= container.offsetHeight) {
             container.classList.remove("fit-w");
             container.classList.add("fit-h");
         }
 
-        setTimeout(controller.finalizeStd, 0, controller, container, mKBoard, box);
+        setTimeout(fitter.finalizeStd, 0, fitter, container, mKBoard, box);
     },
 
-    fitStdWideScr: function (controller, container, mKBoard, box) {
+    fitStdWideScr: function (fitter, container, mKBoard, box) {
         var boxSize = box.offsetHeight;
         var fit = true;
 
@@ -103,22 +103,22 @@ App.FitController = {
             }
         }
 
-        setTimeout(controller.finalizeStd, 0, controller, container, mKBoard, box);
+        setTimeout(fitter.finalizeStd, 0, fitter, container, mKBoard, box);
     },
 
-    finalizeStd: function (controller, container, mKBoard, box) {
+    finalizeStd: function (fitter, container, mKBoard, box) {
         var boxWidth = box.offsetWidth;
 
-        if (controller.setting === "auto" && boxWidth < controller.boxMinSize) {
-            controller.compactRet = true;
-            controller.fit();
+        if (fitter.setting === "auto" && boxWidth < fitter.boxMinSize) {
+            fitter.compactRet = true;
+            fitter.fit();
             return;
-        } else if (boxWidth >= controller.boxMaxSize) {
+        } else if (boxWidth >= fitter.boxMaxSize) {
             container.classList.remove("fit-w", "fit-h");
             container.classList.add("fit-max");
         }
 
-        controller.release(container, mKBoard);
+        fitter.release(container, mKBoard);
     },
 
     release: function (container, mKBoard) {

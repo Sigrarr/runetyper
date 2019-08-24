@@ -19,7 +19,7 @@ include("live/Commands.js");
 include("live/DomMarks.js");
 include("live/aux/DomSignaler.js");
 include("live/aux/ViewController.js");
-include("live/aux/FitController.js");
+include("live/aux/Fitter.js");
 include("live/aux/Messages.js");
 include("live/aux/OutFontResizer.js");
 include("live/aux/SelectsController.js");

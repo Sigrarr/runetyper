@@ -17,7 +17,7 @@ App.Messages = {
             p: null,
 
             test: function () {
-                return App.FitController.compact;
+                return App.Fitter.compact;
             },
 
             rec: {

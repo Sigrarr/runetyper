@@ -5,7 +5,7 @@ App.buildOutline = function (depth) {
 
     var buildSectionEntry = function (section, depth) {
         if (!(depth > 0
-                && section.tagName.toLowerCase() === "section"
+                && section.tagName === "SECTION"
                 && section.id
                 && App.ViewController.isInfoSectionHash("#" + section.id, true))) {
             return null;
@@ -13,8 +13,7 @@ App.buildOutline = function (depth) {
 
         var sectionChildren = section.children;
         var sectionHeading = sectionChildren[0];
-        var sectionHeadingTagName = sectionHeading.tagName.toLowerCase();
-        if (sectionHeadingTagName.length !== 2 || sectionHeadingTagName.charAt(0) !== 'h') {
+        if (sectionHeading.tagName.length !== 2 || sectionHeading.tagName.charAt(0) !== 'H') {
             return null;
         }
 

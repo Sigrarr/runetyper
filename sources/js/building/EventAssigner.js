@@ -84,7 +84,7 @@ App.EventAssigner = {
         },
 
         resizeHandling: function () {
-            window.addEventListener("resize", App.FitController.fit);
+            window.addEventListener("resize", App.Fitter.fit);
         },
 
         contextMenuBlocking: App.Dev.touch && function () {

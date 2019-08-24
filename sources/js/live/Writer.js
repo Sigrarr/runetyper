@@ -1,5 +1,5 @@
 
-/* global App, newElement, newText */
+/* global App, getById, newElement, newText */
 
 if (App.Dev.std) {
 
@@ -9,8 +9,8 @@ if (App.Dev.std) {
         buffChar: '',
         xText: "",
 
-        init: function (element) {
-            this.textArea = element;
+        init: function () {
+            this.textArea = getById("output-std");
         },
 
         catchKeyDown: function (event) {
@@ -96,8 +96,8 @@ if (App.Dev.touch) {
 
         textArea: {
             div: null,
-            head: null,
-            tail: null,
+            head: newElement("span", ["caret"], null, [newText("")]),
+            tail: newElement("span", null, null, [newText("")]),
             sStart: 0,
             sEnd: 0,
 
@@ -200,13 +200,12 @@ if (App.Dev.touch) {
             }
         },
 
-        init: function (element) {
+        init: function () {
+            var element = getById("output-touch");
             var textArea = this.textArea;
-            textArea.div = element;
-            textArea.head = newElement("span", ["caret"], null, [newText("")]);
-            textArea.tail = newElement("span", null, null, [newText("")]);
             element.appendChild(textArea.head);
             element.appendChild(textArea.tail);
+            textArea.div = element;
         },
 
         write: function (xChar) {

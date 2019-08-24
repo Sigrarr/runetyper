@@ -1,5 +1,5 @@
 
-/* global App, getById, timestamps */
+/* global App, getById, removeNode, timestamps */
 
 App.removeLoader = function () {
     setTimeout(function () {

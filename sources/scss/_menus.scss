@@ -291,7 +291,7 @@ $subOptionIconMinWidth: 30px;
     .sup-menu {
         position: fixed;
         bottom: $spaceS;
-        left: calc((#{100% * $phiNarrowPart} - #{7 * $tileSize}) / 2);
+        left: calc(#{100% * $phiNarrowPart / 2} - #{7 * $tileSize / 2});
         &.collapse {
             left: $spaceS;
         }

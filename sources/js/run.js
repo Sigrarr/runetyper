@@ -1,5 +1,5 @@
 
-/* global App, Updater, Env, getById, timestamps */
+/* global App, Updater, Env, timestamps */
 
 App.run = function () {
     timestamps.run0 = Date.now();
@@ -12,12 +12,14 @@ App.run = function () {
         }
     }
 
-    App.Writer.init(getById("output-" + App.Dev.name));
+    App.Writer.init();
     App.DomMarks.init();
     App.ClickEvents.init();
     App.ClickRepeater.init();
-    App.Dev.touch && App.Selection.init();
-    App.FitController.init();
+    App.Fitter.init();
+    if (App.Dev.touch) {
+        App.Selection.init();
+    }
 
     App.Constructor.run();
     App.EventAssigner.run();
@@ -35,9 +37,9 @@ App.run = function () {
     }
     Updater.register(App.Commands, "command");
     Updater.register(App.ViewController, "view");
-    Updater.register(App.FitController, "view");
-    Updater.register(App.FitController, "alphabet");
-    Updater.register(App.FitController, "kbmode");
+    Updater.register(App.Fitter, "view");
+    Updater.register(App.Fitter, "alphabet");
+    Updater.register(App.Fitter, "kbmode");
     for (var t in Updater.topics) {
         Updater.registerDomReceivers(Updater.topics[t].name);
     }
