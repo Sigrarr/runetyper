@@ -188,3 +188,11 @@ a[target] {
 .info header em {
     text-decoration: underline;
 }
+
+.info-content.sup-std .info-touch, .info-content.sup-touch .info-std {
+    display: none;
+}
+
+.info-content.sup-compact .info-compact-disabled, .info-content.sup-touch .info-touch-disabled {
+    color: mix($disabledColor, gray);
+}
