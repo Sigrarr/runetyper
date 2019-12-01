@@ -9,6 +9,7 @@ App.Fitter = {
     compact: false,
     compactRet: false,
     allFitClasses: ["fit-w", "fit-h", "fit-max", "compact"],
+    fitClass: null,
     boxMaxSize: 0,
     boxMinSize: 0,
 
@@ -134,11 +135,12 @@ App.Fitter = {
             this.fit();
         } else {
             container.classList.remove("resizing");
-            Updater.push("fit", 1);
+            Updater.push("fit", this.fitClass);
         }
     },
 
     preset: function (mKBoard, fitClass) {
+        this.fitClass = fitClass;
         var landmarks = App.DomMarks;
 
         landmarks.editorSpace.style.removeProperty("height");

@@ -6,8 +6,7 @@ $logoInitialRatio: 1.15;
     font-weight: 400;
 
     span {
-        display: inline-block;
-        margin-right: 0.24ch;
+        letter-spacing: 0.13em;
         font-size: 100% * $logoInitialRatio;
     }
 }

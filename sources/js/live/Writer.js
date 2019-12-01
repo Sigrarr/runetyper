@@ -17,7 +17,7 @@ if (App.Dev.std) {
             var writer = App.Writer;
             var key = event.key;
 
-            if (!event.ctrlKey && key.length === 1 && key !== ' ') {
+            if (!event.ctrlKey && !event.metaKey && key.length === 1 && key !== ' ') {
                 var newSequence = true;
                 if (writer.buffChar) {
                     var previousChar = writer.popBuffChar();

@@ -27,13 +27,12 @@ App.Commands = {
         }
     },
 
-    cycleCaptions: function () {
-        var target = findActiveChild(App.DomMarks.captionsCycleLi.firstElementChild);
-        Updater.push(
-                "captions",
-                (target.nextElementSibling || target.parentNode.firstElementChild)
-                    .getAttribute("data-captions")
-        );
+    cycleCaptions: function (deltaSgn) {
+        var active = findActiveChild(App.DomMarks.captionsCycleLi.firstElementChild);
+        var target = deltaSgn < 0 ? (active.previousElementSibling || active.parentNode.lastElementChild)
+            : (active.nextElementSibling || active.parentNode.firstElementChild);
+
+        Updater.push("captions", target.getAttribute("data-captions"));
     },
 
     changeFontSize: function (deltaSgn) {
@@ -89,6 +88,10 @@ if (App.Dev.std) {
     App.Commands.runMatch = function (event) {
         var commands = this;
         switch (event.key) {
+            case "Help":
+                App.SelectsController.clear();
+                Updater.push("view", "info");
+                return true;
             case "Escape":
                 App.SelectsController.clear();
                 Updater.push("view", "workspace");
@@ -99,8 +102,12 @@ if (App.Dev.std) {
             case "ArrowRight":
                 return event.ctrlKey
                         && commands.shiftXChars(1);
-            case "Insert":
-                return commands.cycleCaptions();
+            case "PageUp":
+                return App.ViewController.current === "workspace"
+                        && commands.cycleCaptions(-1);
+            case "PageDown":
+                return App.ViewController.current === "workspace"
+                        && commands.cycleCaptions(1);
             case 's':
                 return event.ctrlKey
                         && commands.saveText();

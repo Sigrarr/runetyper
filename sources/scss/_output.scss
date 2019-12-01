@@ -6,6 +6,8 @@
     100% {opacity: 0;}
 }
 
+$lineHeightToFontSize: 1.25;
+
 .output {
     width: calc(100% - #{4 * $spaceS + 2px});
     height: calc(100% - #{4 * $spaceS});
@@ -14,7 +16,9 @@
     white-space: pre-wrap;
     overflow-x: hidden;
     font-size: $editorBaseFontSize;
-    line-height: $editorBaseFontSize * 1.25;
+    line-height: $editorBaseFontSize * $lineHeightToFontSize;
+    letter-spacing: 0.18ch;
+    word-spacing: 0.18ch;
 
     &, &:focus {
         border-left: 0;
@@ -29,11 +33,12 @@
 #output-touch {
     word-wrap: break-word;
     text-align: left;
-    letter-spacing: 1px;
 
     span.caret:after {
         display: inline-block;
         width: 1px;
+        height: #{$lineHeightToFontSize - 0.01}em;
+        vertical-align: bottom;
         margin-right: -1px;
         animation-name: caretBlink;
         animation-duration: 1.25s;

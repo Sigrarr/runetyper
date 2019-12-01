@@ -238,13 +238,13 @@
                                 data-class-device-touch="tmp">
                                 <button class="full"
                                         data-captions="roman"
-                                        title="Podpisy: latynizacja. Zmiana: kliknięcie lub [Insert].">Æ</button>
+                                        title="Podpisy: latynizacja. Zmiana: kliknięcie, [PageDown], [PageUp]">Æ</button>
                                 <button class="full"
                                         data-captions="keys"
-                                        title="Podpisy: klawisze. Zmiana: kliknięcie lub [Insert].">&#x1F130;&#x1F134;</button>
+                                        title="Podpisy: klawisze. Zmiana: kliknięcie, [PageDown], [PageUp]">&#x1F130;&#x1F134;</button>
                                 <button class="full"
                                         data-captions="off"
-                                        title="Podpisy: wyłączone. Zmiana: kliknięcie lub [Insert].">&#x2014;</button>
+                                        title="Podpisy: wyłączone. Zmiana: kliknięcie, [PageDown], [PageUp]">&#x2014;</button>
                             </h4>
                             <h4 class="icon receiver-captions receiver-device"
                                 data-topic="command"
@@ -328,7 +328,7 @@
                                             data-class-loadable_text-0="disabled">&#x1F4CB;</button>
                                 </h4>
                             </li>
-                            <li title="Zaznacz wszystko [Ctrl+a]" data-toolbar="on">
+                            <li title="Zaznacz wszystko" data-toolbar="on">
                                 <h4 class="icon">
                                     <button data-topic="command" data-command="selectAll">&#x1F5A2;</button>
                                 </h4>
@@ -425,8 +425,8 @@
                      data-depend-device="class"
                      data-class-device-std="sup-std"
                      data-class-device-touch="sup-touch"
-                     data-depend-kbmode="class"
-                     data-class-kbmode-compact="sup-compact">
+                     data-depend-fit="class"
+                     data-class-fit-compact="sup-compact">
                     <aside id="outline" class="super-p">
                         <h5>Spis treści</h5>
                         <ul></ul>
@@ -444,9 +444,9 @@
                             <p>Pisanie wybranym alfabetem <a href="#i2_2_1">(2.2.1)</a> odbywa się w głównym polu tekstowym (początkowo oznaczonym: <span class="xtext">᛫᛫᛫</span>).
                                 <span class="info-std">Gdy pole tekstowe jest aktywne, można rozpocząć pisanie na klawiaturze: domyślne wartości klawiszy będą konwertowane do znaków historycznych.</span></p>
                             <ul class="info-std">
-                                <li>Aby sprawdzić powiązania klawiszy ze znakami, przełącz podpisy w tryb klawiszy, wciskając <span class="hint"><span class="op">[</span>Insert<span class="op">]</span></span> lub używając przycisku w menu: <span class="hint"><span class="op">[</span><span class="itext">Æ</span><span class="op">]</span></span>→<span class="hint"><span class="op">[</span><span class="itext" data-captions="keys">&#x1F130;&#x1F134;</span><span class="op">]</span></span> <a href="#i2_2_4">(2.2.4)</a>.</li>
+                                <li>Aby sprawdzić powiązania klawiszy ze znakami, przełącz podpisy w tryb klawiszy, wciskając <span class="hint"><span class="op">[</span>PageDown<span class="op">]</span></span> lub używając przycisku w menu: <span class="hint"><span class="op">[</span><span class="itext">Æ</span><span class="op">]</span></span>→<span class="hint"><span class="op">[</span><span class="itext" data-captions="keys">&#x1F130;&#x1F134;</span><span class="op">]</span></span> <a href="#i2_2_4">(2.2.4)</a>.</li>
                                 <li>Niektóre znaki wprowadza się kombinacją dwóch klawiszy (podawanych w podpisach bez odstępu między nimi). Aby wprowadzić taki znak, wciśnij pierwszy klawisz, a zaraz po nim drugi, przed zwolnieniem pierwszego.</li>
-                                <li>W polu tekstowym powinno być możliwe używanie podstawowych klawiszy kontrolnych i białych znaków,&nbsp;a także niektórych skrótów klawiaturowych (w zależności od systemu operacyjnego i przeglądarki).</li>
+                                <li>W polu tekstowym powinno być możliwe używanie podstawowych klawiszy kontrolnych i białych znaków, a&nbsp;także niektórych skrótów klawiaturowych (w zależności od systemu operacyjnego i przeglądarki).</li>
                             </ul>
                             <p>Panel alfabetu służy jako klawiatura wirtualna – można <span class="info-std">również</span> pisać klikając przyciski znaków.</p>
                         </section>
@@ -458,12 +458,12 @@
                                     <span class="info-std">lub skrótów: <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>→<span class="op">]</span></span>, <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>←<span class="op">]</span></span></span> aby jednocześnie zmienić dostępne warianty wszystkich znaków bieżącego alfabetu.</li>
                                 <li id="i2_2_3"><span class="hint"><span class="op">[</span><span class="itext">&#x2699;</span><span class="op">]</span></span> <strong>Ustawienia (podmenu):</strong>
                                     <ul>
-                                        <li class="info-std"><span class="hint"><span class="op">[</span><span class="itext">&#x1F5AE;</span><span class="op">]</span></span> Wybierz <strong>alfabet wejściowy</strong>, aby dostosować powiązanie klawiszy ze znakami do lokalnego układu klawiatury. Aplikacja obsługuje alfabety kilku języków germańskich oraz polskiego. Domyślny układ o nazwie UNI („uniwersalny”) wykorzystuje jedynie podstawowe klawisze standardowej klawiatury międzynarodowej (blok Unicode’u <i>Basic Latin</i>).</li>
-                                        <li>Dostosuj wygląd aplikacji używając opcji: <strong>krój znaków historycznych</strong> <span class="hint"><span class="op">[</span><span class="itext">&#x2619;</span><span class="op">]</span></span>, <strong>kolorystyka</strong> <span class="hint"><span class="op">[</span><span class="itext">&#x25D0;</span><span class="op">]</span></span> i <strong>panel alfabetu</strong> <span class="hint"><span class="op">[</span><span class="itext">&#x25A6;</span><span class="op">]</span></span>.</li>
+                                        <li class="info-std"><span class="hint"><span class="op">[</span><span class="itext">&#x1F5AE;</span><span class="op">]</span></span> Wybierz <strong>alfabet wejściowy</strong>, aby dostosować powiązanie klawiszy ze znakami do lokalnego układu klawiatury. Aplikacja obsługuje alfabety kilku języków germańskich. Domyślny układ o nazwie UNI („uniwersalny”) wykorzystuje jedynie podstawowe klawisze standardowej klawiatury międzynarodowej (blok Unicode’u <i>Basic Latin</i>).</li>
+                                        <li>Dostosuj wygląd aplikacji używając opcji: <strong>krój znaków historycznych</strong>&nbsp;<span class="hint"><span class="op">[</span><span class="itext">&#x2619;</span><span class="op">]</span></span>, <strong>kolorystyka</strong>&nbsp;<span class="hint"><span class="op">[</span><span class="itext">&#x25D0;</span><span class="op">]</span></span> i <strong>panel alfabetu</strong>&nbsp;<span class="hint"><span class="op">[</span><span class="itext">&#x25A6;</span><span class="op">]</span></span>.</li>
                                         <li><span class="hint"><span class="op">[</span><span class="itext">&#x1F4BB;</span><span class="op">]</span></span> <strong>Ustawienia urządzenia.</strong> Runetyper może być uruchomiony w trybie ekranu dotykowego albo klawiatury sprzętowej, w zależności od używanych urządzeń lub preferencji.</li>
                                     </ul>
                                 </li>
-                                <li id="i2_2_4"><span class="info-std"><span class="hint"><span class="op">[</span><span class="itext">Æ</span><span class="op">|</span><span class="itext" data-captions="keys">&#x1F130;&#x1F134;</span><span class="op">|</span><span class="itext">&#x2014;</span><span class="op">]</span></span> <strong>Cykliczne przełączanie podpisów</strong>. Klawisz: <span class="hint"><span class="op">[</span>Insert<span class="op">]</span></span></span>
+                                <li id="i2_2_4"><span class="info-std"><span class="hint"><span class="op">[</span><span class="itext">Æ</span><span class="op">|</span><span class="itext" data-captions="keys">&#x1F130;&#x1F134;</span><span class="op">|</span><span class="itext">&#x2014;</span><span class="op">]</span></span> <strong>Cykliczne przełączanie podpisów</strong>. Klawisze: <span class="hint"><span class="op">[</span>PageDown<span class="op">]</span></span>, <span class="hint"><span class="op">[</span>PageUp<span class="op">]</span></span></span>
                                     <ul class="info-std">
                                         <li><span class="hint"><span class="op">[</span><span class="itext">Æ</span><span class="op">]</span></span> Początkowo podpisy zawierają latynizację znaków <a href="#i3_2_1">(3.2.1)</a>.</li>
                                         <li><span class="hint"><span class="op">[</span><span class="itext" data-captions="keys">&#x1F130;&#x1F134;</span><span class="op">]</span></span> W kolejnym stanie pokazane są klawisze (i ich pary) generujące dany znak.</li>
@@ -477,7 +477,7 @@
                         <section id="i2_3"><h4>2.3. Pasek narzędzi edytora</h4>
                             <ol>
                                 <li id="i2_3_1"><span class="hint"><span class="op">[</span><span class="itext">&#x1F5DA;</span><span class="op">]</span></span> <span class="hint"><span class="op">[</span><span class="itext">&#x1F5DB;</span><span class="op">]</span></span> Regulacja rozmiaru czcionki.
-                                    <span class="info-std">Skróty: <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>+<span class="op">]</span></span>, <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>-<span class="op">]</span></span> and <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>0<span class="op">]</span></span>.</span></li>
+                                    <span class="info-std">Skróty: <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>+<span class="op">]</span></span>, <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>-<span class="op">]</span></span> i <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>0<span class="op">]</span></span>.</span></li>
                                 <li id="i2_3_2"><span class="hint"><span class="op">[</span><span class="itext">&#x1F5F8;</span><span class="op">]</span></span> <strong>Zapisz</strong> bieżącą treść pola tekstowego w pamięci podręcznej przeglądarki internetowej.
                                     <span class="info-std">Skrót: <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>s<span class="op">]</span></span>.</span>
                                     Poprzedni zapis zostanie nadpisany (o ile istnieje).
@@ -585,7 +585,7 @@
                                 <section class="super-p"><h6>Uwagi</h6>
                                     <ul>
                                         <li>Blok gocki Unicode’u nie zawiera żadnych znaków interpunkcyjnych, w związku z czym do reprezentacji znaków przestankowych, które występują w gockich manuskryptach, stosuje się zwykły dwukropek i kropkę środkową.</li>
-                                        <li>Goccy autorzy stosowali niekiedy literę <span class="xtext">&#x10339</span> z dierezą – ‹<span class="xtext">&#x10339;&#x308;</span>› – ale nie została ona uwzględniona w Unicodzie.</li>
+                                        <li>Goccy autorzy stosowali niekiedy literę <span class="xtext">&#x10339;</span> z dierezą – ‹<span class="xtext">&#x10339;&#x308;</span>› – ale nie została ona uwzględniona w Unicodzie.</li>
                                     </ul>
                                 </section>
                             </section>
@@ -613,7 +613,7 @@
                                     <tr><td class="xtext">ᛀ</td><td><i>N</i></td></tr>
                                     <tr><td class="xtext">ᛛ</td><td><i>L</i></td></tr>
                                 </table>
-                                <p>Te znaki nie należą do historycznych alfabetów.</p>
+                                <p>Te znaki nie należały do historycznych alfabetów.</p>
                             </section>
 
                             <section id="i3_4_3"><h5>3.4.3. Runy złotoliczbowe</h5>
@@ -690,7 +690,7 @@
                             <section class="super-p">
                                 <h6>Zobacz też:</h6>
                                 <ul class="following">
-                                    <li><i>Orðstírr</i>: artykuły w sekcjach „Language” i „Runes”, tam dalsza bibliografia, <a href="https://ordstirr.wordpress.com" target="_blank"><span class="urlprefix">https://</span>ordstirr.wordpress.com</a></li>
+                                    <li><em>Orðstírr</em>: artykuły w sekcjach „Language” i „Runes”, tam dalsza bibliografia, <a href="https://ordstirr.wordpress.com" target="_blank"><span class="urlprefix">https://</span>ordstirr.wordpress.com</a></li>
                                     <li>Bibliografia hasła na Wikipedii: <a href="https://en.wikipedia.org/wiki/Runes" target="_blank"><span class="urlprefix">https://</span>en.wikipedia.org/wiki/Runes</a></li>
                                 </ul>
                             </section>

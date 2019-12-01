@@ -7,18 +7,14 @@ App.Messages = {
         touch: {
             show: false,
             p: null,
-
-            test: function () {
+            get on() {
                 return App.Dev.touch;
             }
         },
         compact: {
             show: false,
             p: null,
-
-            test: function () {
-                return App.Fitter.compact;
-            },
+            on: false,
 
             rec: {
                 start: function (topic) {
@@ -29,7 +25,8 @@ App.Messages = {
                 }
             },
 
-            fitHandler: function () {
+            fitHandler: function (fitMode) {
+                this.on = fitMode === "compact";
                 App.Messages.update(this);
                 App.Messages.superUpdate();
             }
@@ -100,7 +97,7 @@ App.Messages = {
 
     update: function (topic) {
         var pClasses = topic.p.classList;
-        if (topic.test()) {
+        if (topic.on) {
             pClasses.remove("hidden");
             if (!topic.show) {
                 this.showN++;

@@ -35,6 +35,7 @@ include("building/aux/removeLoader.js");
 include("overrides/NoGoOnCssFlexLack.js");
 include("overrides/JsStringMethodsLack.js");
 include("overrides/JsSetRangeTextLack.js");
+include("overrides/JsScrollingElementLack.js");
 include("overrides/MsKeyboardEvents.js");
 include("overrides/TouchDevCaptions.js");
 
@@ -45,7 +46,7 @@ App.Constructor.enterAlphabets(
         include("/data/alphabets/00-elder_futhark.json"),
         include("/data/alphabets/01-anglo-saxon_futhorc.json"),
         include("/data/alphabets/02-younger_futhark.json"),
-        include("/data/alphabets/03-high-medieval_runes.json"),
+        include("/data/alphabets/03-medieval_runes.json"),
         include("/data/alphabets/04-gothic_alphabet.json")
 );
 

@@ -3,12 +3,14 @@
 App.ViewController = {
 
     scrollChecking: false,
+    current: null,
 
     get requestedView() {
         return this.isInfoSectionHash(window.location.hash) ? "info" : "workspace";
     },
 
     viewHandler: function (view) {
+        this.current = view;
         this.clearScrollCheck();
         var hash = window.location.hash;
 
@@ -37,7 +39,7 @@ App.ViewController = {
 
     scrollHandler: function () {
         var buttonClasses = App.DomMarks.goTopButton.classList;
-        document.documentElement.scrollTop > window.innerHeight ?
+        document.scrollingElement.scrollTop > window.innerHeight ?
                 buttonClasses.add("active") : buttonClasses.remove("active");
     },
 

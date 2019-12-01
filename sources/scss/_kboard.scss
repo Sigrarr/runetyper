@@ -280,7 +280,7 @@ $keyPadding) {
         }
     }
 
-    &.sup-captions-roman .kboard p.roman, &.sup-captions-keys .kboard p.keys, button {
+    &.sup-captions-roman .kboard p.roman, &.sup-captions-keys .kboard p.keys {
         display: flex;
         align-items: center;
         justify-content: center;
