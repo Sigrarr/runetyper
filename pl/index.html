@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8">
+        <title>Runetyper</title>
+        <meta name="application-name" content="Runetyper">
+        <meta name="author" content="Wiktor Banaszewski">
+        <meta name="description" content="Prosty przeglądarkowy edytor tekstu do pisania dawnymi alfabetami germańskimi, głównie runicznymi.">
+        <meta name="keywords" content="runy, runiczny, pisanie, edytor tekstu, klawiatura wirtualna, alfabet gocki, pismo, unicode, utf-8">
+        <meta property="og:title" content="Runetyper">
+        <meta property="og:description" content="Prosty przeglądarkowy edytor tekstu do pisania dawnymi alfabetami germańskimi, głównie runicznymi.">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://sigrarr.github.io/runetyper/assets/images/og-image.jpg">
+        <meta property="og:url" content="https://sigrarr.github.io/runetyper/pl/">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="alternate" href="https://sigrarr.github.io/runetyper/" hreflang="en">
+        <script>
+            var timestamps = {head: Date.now()};
+        </script>
+        <link rel="stylesheet" type="text/css" href="https://sigrarr.github.io/runetyper/assets/fontfaces.css">
+        <link rel="stylesheet" type="text/css" href="https://sigrarr.github.io/runetyper/assets/style.min.css">
+        <link rel="icon" href="https://sigrarr.github.io/runetyper/assets/images/icon.png" sizes="196x196" type="image/png">
+        <script charset="utf-8" src="https://sigrarr.github.io/runetyper/assets/app.min.js"></script>
+    </head>
+    <body class="receiver-xfont receiver-theme sup-loader"
+          data-depend-xfont="class"
+          data-class-xfont-noto="xfont-noto"
+          data-class-xfont-pfeffer="xfont-pfeffer"
+          data-depend-theme="class"
+          data-class-theme-bright="theme-bright"
+          data-class-theme-dark="theme-dark">
+        <aside class="loader" id="loader">
+            <div>
+                <h1 class="logo"><span>R</span>unetyper</h1>
+                <p>Ładowanie aplikacji...</p>
+                <p>
+                    <small>
+                        Jeśli tę wiadomość widać dłużej niż przez kilka sekund, proszę się upewnić,
+                        że JavaScript jest aktywny, a przeglądarka nie jest przestarzała.
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        Obsługiwane przeglądarki: Chrome, Firefox, Opera, Safari, Edge
+                        i Internet&nbsp;Explorer&nbsp;11.
+                    </small>
+                </p>
+                <footer>
+                    <small>
+                        <span class="logo"><span>R</span>unetyper</span> &copy; 2019 Wiktor Banaszewski,
+                        <a href="mailto:wiktor.banaszewski@protonmail.com">wiktor.banaszewski@protonmail.com</a>
+                    </small>
+                </footer>
+            </div>
+        </aside>
+        <main class="receiver-view"
+              data-depend-view="children,class"
+              data-class-view-workspace="sup-workspace">
+            <section class="workspace" id="workspace" data-view="workspace">
+                <header class="sup-menu">
+                    <h2 class="implicit">Przestrzeń robocza</h2>
+                    <ul class="menu" id="main-menu">
+                        <li class="select selector-alphabet" id="selector-alphabet">
+                            <div title="Wybór alfabetu">
+                                <h4 class="icon logotext">ᚱ</h4>
+                                <em class="receiver-alphabet"
+                                    data-depend-alphabet="children">
+                                </em>
+                            </div>
+                            <ul></ul>
+                        </li>
+                        <li class="select selector-xchars receiver-alphabet"
+                            id="selector-xchars"
+                            data-depend-alphabet="children,class">
+                            <div title="Wybór wariantów liter">
+                                <h4 class="icon">&#x2605;</h4>
+                                <em class="receiver-alphabet"
+                                    data-depend-alphabet="children">
+                                </em>
+                            </div>
+                            <ul class="tmp">
+                                <li class="itext">
+                                    <button title="Przełącz wszystkie wstecz [Ctrl+⬅]"
+                                            data-topic="command"
+                                            data-command="shiftXChars:-1">&#x2B84;</button>
+                                    <button title="Przełącz wszystkie wprzód [Ctrl+➡]"
+                                            data-topic="command"
+                                            data-command="shiftXChars:1">&#x2B86;</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="select selector-settings">
+                            <div title="Ustawienia">
+                                <h4 class="icon">&#x2699;</h4>
+                            </div>
+                            <ul>
+                                <li class="select sub-select selector-layout receiver-device"
+                                    id="selector-layout"
+                                    data-depend-device="class"
+                                    data-class-device-touch="tmp">
+                                    <div>
+                                        <h5>
+                                            <span class="icon">&#x1F5AE;</span>
+                                            Alfabet wejściowy
+                                        </h5>
+                                    </div>
+                                    <ul></ul>
+                                </li>
+                                <li class="select sub-select selector-xfont">
+                                    <div>
+                                        <h5>
+                                            <span class="icon">&#x2619;</span>
+                                            Krój znaków historycznych
+                                        </h5>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <button class="receiver-xfont"
+                                                    data-topic="xfont"
+                                                    data-xfont="noto"
+                                                    data-depend-xfont="class"
+                                                    data-class-xfont-noto="active">
+                                                Google Noto Sans
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="receiver-xfont"
+                                                    data-topic="xfont"
+                                                    data-xfont="pfeffer"
+                                                    data-depend-xfont="class"
+                                                    data-class-xfont-pfeffer="active">
+                                                Pfeffer Mediæval
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="select sub-select selector-theme">
+                                    <div>
+                                        <h5>
+                                            <span class="icon">&#x25D0;</span>
+                                            Kolorystyka
+                                        </h5>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <button class="receiver-theme"
+                                                    data-topic="theme"
+                                                    data-theme="bright"
+                                                    data-depend-theme="class"
+                                                    data-class-theme-bright="active">
+                                                jasna
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="receiver-theme"
+                                                    data-topic="theme"
+                                                    data-theme="dark"
+                                                    data-depend-theme="class"
+                                                    data-class-theme-dark="active">
+                                                ciemna
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="select sub-select selector-kbmode">
+                                    <div>
+                                        <h5>
+                                            <span class="icon">&#x25A6;</span>
+                                            Panel alfabetu
+                                        </h5>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <button class="receiver-kbmode"
+                                                    data-topic="kbmode"
+                                                    data-kbmode="auto"
+                                                    data-depend-kbmode="class"
+                                                    data-class-kbmode-auto="active">
+                                                automatyczny
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="receiver-kbmode"
+                                                    data-topic="kbmode"
+                                                    data-kbmode="compact"
+                                                    data-depend-kbmode="class"
+                                                    data-class-kbmode-compact="active">
+                                                kompaktowy
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="receiver-kbmode"
+                                                    data-topic="kbmode"
+                                                    data-kbmode="std"
+                                                    data-depend-kbmode="class"
+                                                    data-class-kbmode-std="active">
+                                                drobiazgowy
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="select sub-select selector-device">
+                                    <div>
+                                        <h5>
+                                            <span class="icon">&#x1F4BB;</span>
+                                            Urządzenie
+                                        </h5>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <button class="receiver-device"
+                                                    data-topic="device"
+                                                    data-device="std"
+                                                    data-depend-device="class"
+                                                    data-class-device-std="active">
+                                                klawiatura sprzętowa
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="receiver-device"
+                                                    data-topic="device"
+                                                    data-device="touch"
+                                                    data-depend-device="class"
+                                                    data-class-device-touch="active">
+                                                ekran dotykowy
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="cycle-captions" id="cycle-captions">
+                            <h4 class="icon receiver-captions receiver-device"
+                                data-topic="command"
+                                data-command="cycleCaptions"
+                                data-depend-captions="children"
+                                data-depend-device="class"
+                                data-class-device-touch="tmp">
+                                <button class="full"
+                                        data-captions="roman"
+                                        title="Podpisy: latynizacja. Zmiana: kliknięcie, [PageDown], [PageUp]">Æ</button>
+                                <button class="full"
+                                        data-captions="keys"
+                                        title="Podpisy: klawisze. Zmiana: kliknięcie, [PageDown], [PageUp]">&#x1F130;&#x1F134;</button>
+                                <button class="full"
+                                        data-captions="off"
+                                        title="Podpisy: wyłączone. Zmiana: kliknięcie, [PageDown], [PageUp]">&#x2014;</button>
+                            </h4>
+                            <h4 class="icon receiver-captions receiver-device"
+                                data-topic="command"
+                                data-command="cycleCaptions"
+                                data-depend-captions="children"
+                                data-depend-device="class"
+                                data-class-device-std="tmp">
+                                <button class="full" data-captions="off">&#x1F130;<sub>&#x1f5d8;</sub></button>
+                                <button class="full" data-captions="roman">&#x1F130;<sub>&#x1f5d8;</sub></button>
+                            </h4>
+                        </li>
+                        <li title="Informacje">
+                            <h4 class="icon">
+                                <button data-topic="view" data-view="info">&#x1F6C8;</button>
+                            </h4>
+                        </li>
+                    </ul>
+                </header>
+                <div class="editor-space" id="editor-space">
+                    <textarea id="output-std"
+                              class="output xtext receiver-device"
+                              data-depend-device="class"
+                              data-class-device-touch="tmp"
+                              placeholder="&#x16eb;&#x16eb;&#x16eb;"
+                              spellcheck="false"
+                              data-min-font-size="8"
+                              data-max-font-size="100"
+                              data-step-font-size="4"></textarea>
+                    <div id="output-touch"
+                         class="output xtext receiver-device"
+                         data-depend-device="class"
+                         data-class-device-std="tmp"
+                         data-min-font-size="8"
+                         data-max-font-size="100"
+                         data-step-font-size="4"></div>
+                    <div id="toolbar"
+                         class="sup-menu receiver-toolbar"
+                         data-depend-toolbar="class"
+                         data-class-toolbar-off="collapse">
+                        <ul class="menu receiver-toolbar"
+                            data-depend-toolbar="children">
+                            <li title="Zwiń pasek narzędzi" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button data-topic="toolbar" data-toolbar="off"><span class="horizontal">&#x2BC7;</span><span class="vertical">&#x2BC5;</span></button>
+                                </h4>
+                            </li>
+                            <li title="Zwiększ rozmiar czcionki [Ctrl+Shift++]" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button class="repeatable"
+                                            data-topic="command"
+                                            data-command="changeFontSize:1">&#x1F5DA;</button>
+                                </h4>
+                            </li>
+                            <li title="Zmniejsz rozmiar czczionki [Ctrl+Shift+-]" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button class="repeatable"
+                                            data-topic="command"
+                                            data-command="changeFontSize:-1">&#x1F5DB;</button>
+                                </h4>
+                            </li>
+                            <li class="receiver-loadable_text"
+                                data-depend-loadable_text="title"
+                                title="Zapisz podręcznie [Ctrl+s]"
+                                data-title-loadable_text-0="Zapisz podręcznie [Ctrl+s]"
+                                data-title-loadable_text-1="Zapisz podręcznie (nadpisuje poprzedni zapis) [Ctrl+s]"
+                                data-toolbar="on">
+                                <h4 class="icon receiver-loadable_text"
+                                    data-depend-loadable_text="class"
+                                    data-class-loadable_text-1="caution">
+                                    <button data-topic="command"
+                                            data-command="saveText"
+                                            id="save-text-button">&#x1F5F8;</button>
+                                </h4>
+                            </li>
+                            <li title="Wklej zapisany tekst" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button data-topic="command"
+                                            data-command="pasteText"
+                                            class="receiver-loadable_text"
+                                            data-depend-loadable_text="class"
+                                            data-class-loadable_text-0="disabled">&#x1F4CB;</button>
+                                </h4>
+                            </li>
+                            <li title="Zaznacz wszystko" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button data-topic="command" data-command="selectAll">&#x1F5A2;</button>
+                                </h4>
+                            </li>
+                            <li title="Skasuj zaznaczony tekst"
+                                data-toolbar="on"
+                                class="receiver-device"
+                                data-depend-device="class"
+                                data-class-device-touch="tmp">
+                                <h4 class="icon danger">
+                                    <button data-topic="command" data-command="eraseSelection">&#x2327;</button>
+                                </h4>
+                            </li>
+                            <li title="Rozwiń pasek narzędzi" data-toolbar="off">
+                                <h4 class="icon">
+                                    <button data-topic="toolbar" data-toolbar="on"><span class="horizontal">&#x2BC8;</span><span class="vertical">&#x2BC6;</span></button>
+                                </h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="kboard-space receiver-alphabet receiver-captions"
+                     id="kboard-space"
+                     data-depend-alphabet="children"
+                     data-depend-captions="class"
+                     data-class-captions-roman="sup-captions-roman"
+                     data-class-captions-keys="sup-captions-keys"
+                     data-class-captions-off="sup-captions-off">
+                    <aside class="tmp" id="touch-controls">
+                        <div class="xletter-box">
+                            <button class="itext" data-xchar=" ">&#x2423;</button>
+                        </div>
+                        <div class="xletter-box">
+                            <button class="itext" data-xchar="@n">&#x2BA0;</button>
+                        </div>
+                        <div class="xletter-box">
+                            <button class="itext" data-xchar="@b">&#x232B;</button>
+                        </div>
+                    </aside>
+                </div>
+
+                <aside class="messages hidden" id="messages">
+                    <p id="msg-touch">
+                        Aplikacja działa w trybie ekranu dotykowego i funkcjonalności są ograniczone.
+                            Jeśli urządzenie posiada klawiaturę sprzętową, zaleca się zmianę tego trybu:
+                            <span><span class="itext">&#x2699;</span> Ustawienia <span class="itext">&#x2BC8;</span> <span class="itext">&#x1F4BB;</span> Urządzenie.</span>
+                    </p>
+                    <p id="msg-compact">
+                        Panel alfabetu jest wyświetlany w stylu kompaktowym. Jeśli ekran urządzenia jest dość duży,
+                            warto sprawdzić tryb drobiazgowy, prezentujący więcej detali:
+                            <span><span class="itext">&#x2699;</span> Ustawienia <span class="itext">&#x2BC8;</span> <span class="itext">&#x25A6;</span> Panel alfabetu.</span>
+                    </p>
+                </aside>
+            </section>
+
+            <section class="info" id="info" data-view="info">
+                <header>
+                    <h1 class="logo"><span>R</span>unetyper</h1>
+                    <address>
+                        <dl>
+                            <dt class="narrow-keep">Autor</dt>
+                            <dd>Wiktor Banaszewski</dd>
+                            <dt>Kontakt</dt>
+                            <dd><a href="mailto:wiktor.banaszewski@protonmail.com">wiktor.banaszewski@protonmail.com</a></dd>
+                            <dt>Repozytorium projektu</dt>
+                            <dd>
+                                <a href="https://github.com/sigrarr/runetyper" target="_blank">https://github.com/sigrarr/runetyper</a>
+                            </dd>
+                            <dt class="narrow-keep">Język</dt>
+                            <dd>
+                                <a href="https://sigrarr.github.io/runetyper/"
+                                   hreflang="en"
+                                   title="Language: English"
+                                   target="_self">EN</a>
+                                | <em class="active" title="Język: polski (aktywny)">PL</em>
+                            </dd>
+                        </dl>
+                    </address>
+                </header>
+
+                <div class="sup-menu" id="info-closing">
+                    <ul class="menu">
+                        <li>
+                            <h4 title="Zamknij [Esc]" class="icon">
+                                <button data-topic="view" data-view="workspace">&#x1F5D9;</button>
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="info-content"
+                     class="info-content receiver-device receiver-kbmode"
+                     data-depend-device="class"
+                     data-class-device-std="sup-std"
+                     data-class-device-touch="sup-touch"
+                     data-depend-fit="class"
+                     data-class-fit-compact="sup-compact">
+                    <aside id="outline" class="super-p">
+                        <h5>Spis treści</h5>
+                        <ul></ul>
+                    </aside>
+
+                    <section id="i1"><h3>1. Opis ogólny</h3>
+                        <p>Niniejsza aplikacja powstała, aby umożliwiać wygodne posługiwanie się historycznymi alfabetami germańskimi, tj. runami i&nbsp;alfabetem gockim.</p>
+                        <p>Głównym elementem Runetypera jest edytor tekstu, konwertujący standardowe znaki z klawiatury na litery wybranego alfabetu. Powiązanie owych liter z klawiszami, za pomocą których są wprowadzane, zostało ułożone z myślą o walorach zarówno praktycznych, jak i językoznawczych.</p>
+                        <p>Z polem tekstowym edytora sąsiaduje panel zawierający przyciski ze wszystkimi znakami wybranego alfabetu wraz z&nbsp;objaśniającymi podpisami. Panel ten pełni funkcję klawiatury wirtualnej – można wpisywać litery poprzez klikanie przycisków; jest to też jedyny możliwy sposób korzystania z Runetypera na urządzeniach mobilnych.</p>
+                        <p>Tekst wyjściowy jest generowany w standardzie Unicode (UTF-8) i może być kopiowany do innych aplikacji. Trzeba jednak mieć świadomość, że do poprawnego wyświetlania skopiowanej treści w innych programach lub serwisach internetowych potrzebne są odpowiednie czcionki; mogą być one zawarte w tych aplikacjach lub dostępne w systemie operacyjnym.</p>
+                    </section>
+
+                    <section id="i2"><h3>2. Instrukcja</h3>
+                        <section id="i2_1"><h4>2.1. Użycie podstawowe</h4>
+                            <p>Pisanie wybranym alfabetem <a href="#i2_2_1">(2.2.1)</a> odbywa się w głównym polu tekstowym (początkowo oznaczonym: <span class="xtext">᛫᛫᛫</span>).
+                                <span class="info-std">Gdy pole tekstowe jest aktywne, można rozpocząć pisanie na klawiaturze: domyślne wartości klawiszy będą konwertowane do znaków historycznych.</span></p>
+                            <ul class="info-std">
+                                <li>Aby sprawdzić powiązania klawiszy ze znakami, przełącz podpisy w tryb klawiszy, wciskając <span class="hint"><span class="op">[</span>PageDown<span class="op">]</span></span> lub używając przycisku w menu: <span class="hint"><span class="op">[</span><span class="itext">Æ</span><span class="op">]</span></span>→<span class="hint"><span class="op">[</span><span class="itext" data-captions="keys">&#x1F130;&#x1F134;</span><span class="op">]</span></span> <a href="#i2_2_4">(2.2.4)</a>.</li>
+                                <li>Niektóre znaki wprowadza się kombinacją dwóch klawiszy (podawanych w podpisach bez odstępu między nimi). Aby wprowadzić taki znak, wciśnij pierwszy klawisz, a zaraz po nim drugi, przed zwolnieniem pierwszego.</li>
+                                <li>W polu tekstowym powinno być możliwe używanie podstawowych klawiszy kontrolnych i białych znaków, a&nbsp;także niektórych skrótów klawiaturowych (w zależności od systemu operacyjnego i przeglądarki).</li>
+                            </ul>
+                            <p>Panel alfabetu służy jako klawiatura wirtualna – można <span class="info-std">również</span> pisać klikając przyciski znaków.</p>
+                        </section>
+
+                        <section id="i2_2"><h4>2.2. Główne opcje</h4>
+                            <ol>
+                                <li id="i2_2_1"><span class="hint"><span class="op">[</span><span class="itext logotext">ᚱ</span><span class="op">]</span></span> <strong>Wybór alfabetu</strong>.</li>
+                                <li id="i2_2_2"><span class="hint"><span class="op">[</span><span class="itext">&#x2605;</span><span class="op">]</span></span> <strong>Wybór wariantów liter</strong>. Możesz sprawdzić, które litery mają więcej niż jeden wariant graficzny (wyróżniony w Unicodzie, zob. 3.1) i wskazać preferowane formy. Użyj przycisków: <span class="hint"><span class="op">[</span><span class="itext">&#x2B84;</span><span class="op">]</span></span>, <span class="hint"><span class="op">[</span><span class="itext">&#x2B86;</span><span class="op">]</span></span>
+                                    <span class="info-std">lub skrótów: <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>→<span class="op">]</span></span>, <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>←<span class="op">]</span></span></span> aby jednocześnie zmienić dostępne warianty wszystkich znaków bieżącego alfabetu.</li>
+                                <li id="i2_2_3"><span class="hint"><span class="op">[</span><span class="itext">&#x2699;</span><span class="op">]</span></span> <strong>Ustawienia (podmenu):</strong>
+                                    <ul>
+                                        <li class="info-std"><span class="hint"><span class="op">[</span><span class="itext">&#x1F5AE;</span><span class="op">]</span></span> Wybierz <strong>alfabet wejściowy</strong>, aby dostosować powiązanie klawiszy ze znakami do lokalnego układu klawiatury. Aplikacja obsługuje alfabety kilku języków germańskich. Domyślny układ o nazwie UNI („uniwersalny”) wykorzystuje jedynie podstawowe klawisze standardowej klawiatury międzynarodowej (blok Unicode’u <i>Basic Latin</i>).</li>
+                                        <li>Dostosuj wygląd aplikacji używając opcji: <strong>krój znaków historycznych</strong>&nbsp;<span class="hint"><span class="op">[</span><span class="itext">&#x2619;</span><span class="op">]</span></span>, <strong>kolorystyka</strong>&nbsp;<span class="hint"><span class="op">[</span><span class="itext">&#x25D0;</span><span class="op">]</span></span> i <strong>panel alfabetu</strong>&nbsp;<span class="hint"><span class="op">[</span><span class="itext">&#x25A6;</span><span class="op">]</span></span>.</li>
+                                        <li><span class="hint"><span class="op">[</span><span class="itext">&#x1F4BB;</span><span class="op">]</span></span> <strong>Ustawienia urządzenia.</strong> Runetyper może być uruchomiony w trybie ekranu dotykowego albo klawiatury sprzętowej, w zależności od używanych urządzeń lub preferencji.</li>
+                                    </ul>
+                                </li>
+                                <li id="i2_2_4"><span class="info-std"><span class="hint"><span class="op">[</span><span class="itext">Æ</span><span class="op">|</span><span class="itext" data-captions="keys">&#x1F130;&#x1F134;</span><span class="op">|</span><span class="itext">&#x2014;</span><span class="op">]</span></span> <strong>Cykliczne przełączanie podpisów</strong>. Klawisze: <span class="hint"><span class="op">[</span>PageDown<span class="op">]</span></span>, <span class="hint"><span class="op">[</span>PageUp<span class="op">]</span></span></span>
+                                    <ul class="info-std">
+                                        <li><span class="hint"><span class="op">[</span><span class="itext">Æ</span><span class="op">]</span></span> Początkowo podpisy zawierają latynizację znaków <a href="#i3_2_1">(3.2.1)</a>.</li>
+                                        <li><span class="hint"><span class="op">[</span><span class="itext" data-captions="keys">&#x1F130;&#x1F134;</span><span class="op">]</span></span> W kolejnym stanie pokazane są klawisze (i ich pary) generujące dany znak.</li>
+                                        <li><span class="hint"><span class="op">[</span><span class="itext">&#x2014;</span><span class="op">]</span></span> Podpisy można też wyłączyć.</li>
+                                    </ul>
+                                    <span class="info-touch"><span class="hint"><span class="op">[</span><span class="itext">&#x1F130;<sub>&#x1f5d8;</sub></span><span class="op">]</span></span><strong>Przełączanie zawartości przycisków</strong> między znakami historycznymi a ich łacińską transliteracją.</span>
+                                </li>
+                            </ol>
+                        </section>
+
+                        <section id="i2_3"><h4>2.3. Pasek narzędzi edytora</h4>
+                            <ol>
+                                <li id="i2_3_1"><span class="hint"><span class="op">[</span><span class="itext">&#x1F5DA;</span><span class="op">]</span></span> <span class="hint"><span class="op">[</span><span class="itext">&#x1F5DB;</span><span class="op">]</span></span> Regulacja rozmiaru czcionki.
+                                    <span class="info-std">Skróty: <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>+<span class="op">]</span></span>, <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>-<span class="op">]</span></span> i <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>0<span class="op">]</span></span>.</span></li>
+                                <li id="i2_3_2"><span class="hint"><span class="op">[</span><span class="itext">&#x1F5F8;</span><span class="op">]</span></span> <strong>Zapisz</strong> bieżącą treść pola tekstowego w pamięci podręcznej przeglądarki internetowej.
+                                    <span class="info-std">Skrót: <span class="hint"><span class="op">[</span>Ctrl<span class="op">+</span>s<span class="op">]</span></span>.</span>
+                                    Poprzedni zapis zostanie nadpisany (o ile istnieje).
+                                </li>
+                                <li id="i2_3_3"><span class="hint"><span class="op">[</span><span class="itext">&#x1F4CB;</span><span class="op">]</span></span> <strong>Wklej</strong> uprzednio zapisany tekst <a href="#i2_3_2">(2.3.2)</a> do pola tekstowego.</li>
+                                <li id="i2_3_4"><span class="hint"><span class="op">[</span><span class="itext">&#x1F5A2;</span><span class="op">]</span></span> <strong>Zaznacz wszystko</strong>.</li>
+                                <li id="i2_3_5" class="info-std"><span class="hint"><span class="op">[</span><span class="itext">&#x2327;</span><span class="op">]</span></span> <strong>Skasuj</strong> zaznaczony tekst.</li>
+                            </ol>
+                        </section>
+                    </section>
+
+                    <section id="i3"><h3>3. Reprezentacja alfabetów</h3>
+                        <p>Pismo runiczne nigdy nie było systemem jednolitym ani niezmiennym. Przyjęło się wyróżniać kilka alfabetów z konkretnymi zestawami znaków, ale należy pamiętać, że istniały stany pośrednie między starszymi i nowszymi formami pisma, a także wariacje terytorialne. Poszczególne runy także występowały w różnych kształtach.</p>
+                        <div class="super-p">
+                            <p>Alfabetu gockiego nie można nazwać runicznym, ale został uwzględniony w niniejszym projekcie ze względu na kilka wspólnych cech, które dzieli z pismami runicznymi. Wszystkie uwzględnione alfabety:</p>
+                            <ul>
+                                <li>są interesujące z językoznawczego punktu widzenia, ponieważ służyły do zapisu dawnych języków germańskich,</li>
+                                <li>nie rozróżniają wielkich i małych liter,</li>
+                                <li>nie wyróżniają długich ani nosowych głosek, nawet gdy w języku mówionym były to cechy fonemiczne. <a href="#i3_3_3_n1">(*)</a></li>
+                            </ul>
+                        </div>
+
+                        <section id="i3_1"><h4>3.1. Standard Unicode</h4>
+                            <p>Runetyper robi użytek z dwóch bloków Unicode'u, są to:</p>
+                            <figure>
+                                <dl>
+                                    <dt>Blok runiczny Unicode'u</dt>
+                                    <dd><a href="https://www.unicode.org/charts/PDF/U16A0.pdf" target="_blank"><span class="urlprefix">https://www.</span>unicode.org/charts/PDF/U16A0.pdf</a></dd>
+                                    <dt>Blok gocki Unicode'u</dt>
+                                    <dd><a href="https://www.unicode.org/charts/PDF/U10330.pdf" target="_blank"><span class="urlprefix">https://www.</span>unicode.org/charts/PDF/U10330.pdf</a></dd>
+                                </dl>
+                            </figure>
+                            <p>Blok runiczny został zaprojektowany jako zbiór abstrakcyjnych reprezentacji i ma ograniczoną wartość paleograficzną. Liczne znaki powiązano z więcej niż jednym alfabetem, aby uniknąć redundancji (co jest oczywiście rozsądne).</p>
+                        </section>
+
+                        <section id="i3_2"><h4>3.2. Latynizacja i sekcje</h4>
+                            <section id="i3_2_1"><h5>3.2.1. Latynizacja </h5>
+                                <div class="super-p">
+                                    <p>Panel alfabetu zawiera latynizację wszystkich znaków, na którą składają się:</p>
+                                    <ul>
+                                        <li>transliteracja – prosty związek jeden-do-jednego, użyteczny do identyfikacji znaków,</li>
+                                        <li class="info-compact-disabled">oraz transkrypcja – biorąca pod uwagę możliwe wartości fonetyczne znaków w danym języku.</li>
+                                    </ul>
+                                </div>
+                                <div class="super-p info-compact-disabled">
+                                    <p>Latynizacja jednego znaku może zawierać więcej niż jedną wartość w następujących przypadkach:</p>
+                                    <ul>
+                                        <li>gdy dany alfabet służył do zapisu kilku języków (lub dialektów),</li>
+                                        <li>gdy znakiem zapisywano wiele fonemów danego języka, reprezentowanych przez różne litery w łacińskiej ortografii tego języka,</li>
+                                        <li>gdy wśród uczonych funkcjonuje kilka różnych konwencji dot. latynizacji tego znaku,</li>
+                                        <li>gdy nie ma pewności co do wartości fonetycznej znaku.</li>
+                                    </ul>
+                                </div>
+                                <p>Należy zwrócić uwagę, że w dawnych językach germańskich długość samogłosek była fonemiczna, czyli użytkownicy tych języków rozpoznawali krótkie i długie samogłoski jako różne dźwięki; to samo się tyczy nosowości samogłosek w języku pragermańskim i staronordyckim. W ortografiach łacińskich oraz lingwistycznych konwencjach wspomniane cechy są często oddawane za pomocą znaków diakrytycznych, jednakże w oryginalnych zapisach runicznych i gockich brak jest takiego rozróżnienia, dlatego w niniejszej aplikacji również go nie stosowano.</p>
+                            </section>
+
+                            <section id="i3_2_2"><h5>3.2.2. Sekcje</h5>
+                                <div class="super-p">
+                                    <p>Każdy alfabet został podzielony na sekcje oddzielone w panelu alfabetu cienką poziomą linią albo pasem w tle:</p>
+                                    <ul>
+                                        <li>pierwsza sekcja składa się z głównego zbioru liter,</li>
+                                        <li>środkowa sekcja, o ile jest obecna, zawiera dodatkowe znaki o ograniczonym lub nieznanym zakresie użycia,</li>
+                                        <li>ostatnia sekcja zawiera znaki pomocnicze, w szczególności interpunkcyjne.</li>
+                                    </ul>
+                                </div>
+                            </section>
+                        </section>
+
+                        <section id="i3_3"><h4>3.3. Alfabety: opis historyczny i uwagi na temat reprezentacji</h4>
+                            <section id="i3_3_1"><h5>3.3.1. Futhark starszy</h5>
+                                <p>Pierwszy alfabet runiczny, uważny przez ludy germańskie w wielu rejonach Europy, zawierający 24 runy. Najstarsze znane inskrypcje są datowane na II w. n.e., ale pismo prawdopodobnie istniało już wcześniej. Nie ulega wątpliwości, że futhark pochodzi od archaicznego alfabetu greckiego, jednakże, zdaniem większości uczonych, nie bezpośrednio; prawdopodobnie został stworzony na bazie alfabetu łacińskiego lub starszego pisma italskiego. Futharkiem starszym tworzono inskrypcje w&nbsp;późnych dialektach języka pragermańskiego i pierwotnych stadiach rozwijających się języków germańskich.</p>
+                                <section class="super-p"><h6>Uwagi</h6>
+                                    <ul>
+                                        <li>Podział zbioru znaków na trzy wiersze po 8 run jest potwierdzony epigraficznie.</li>
+                                        <li>Unicode zawiera tylko jeden znak reprezentujący runę futharku starszego o wartości /s/, mimo że w&nbsp;rzeczywistości występowała ona w rozmaitych zygzakowatych kształtach, dających się w znacznym uproszczeniu podzielić na “wariant Σ” (sugerowany przez Unicode) i “wariant S” (pominięty przez Unicode). Niniejsza aplikacja używa znaku ‹<span class="xtext">ᛋ</span>› jako substytutu wariantu S, mimo pewnej różnicy geometrycznej i faktu, że sugestie Unicode’u wiążą go tylko z późniejszymi alfabetami.</li>
+                                        <li>Podobnie, runie H futharku starszego odpowiada tylko jeden znak Unicode’u, o sugerowanym kształcie zawierającym jedną poprzeczną belkę, podczas gdy ryto ją także z dwiema lub trzema belkami. Znak dwubelkowy jest traktowany przez Unicode jako znak wyłącznie anglosaski, jednakże niniejsza aplikacja traktuje ją również jako wariant runy futharku starszego.</li>
+                                    </ul>
+                                </section>
+                            </section>
+
+                            <section id="i3_3_2"><h5>3.3.2. Futhorc anglosaski</h5>
+                                <p>Bliski potomek futharku starszego, zmodyfikowany i rozszerzony. Funkcjonował od V do ok. XI w. w Anglii. We wczesnych stadiach można go utożsamiać z tzw. <i>runami anglo-fryzyjskimi</i>. Wskutek procesu chrystianizacji <i>futhorc</i> stopniowo ustępował miejsca łacińskiemu alfabetowi staroangielskiemu.</p>
+                                <section class="super-p"><h6>Uwagi</h6>
+                                    <ul>
+                                        <li>Znak ‹j› został podany jako główna transliteracja run ‹<span class="xtext">ᛄ</span>› i ‹<span class="xtext">ᛡ</span>›, jednak w literaturze staroangielskiej głoskę /j/ zapisywano literą ‹g›.</li>
+                                    </ul>
+                                </section>
+                            </section>
+
+                            <section id="i3_3_3"><h5>3.3.3. Futhark młodszy</h5>
+                                <p>Skandynawskie pismo runiczne, którym posługiwali się użytkownicy języka staronordyckiego w epoce wikingów, od VIII do ok. XI w. Ukształtowane poprzez redukcję futharku starszego, zawierało jedynie 16 znaków, mimo że zakres głosek języka mówionego się rozszerzył. W rezultacie większość run była przeciążona co najmniej dwoma fonemami, a ortografia była niespójna, zwłaszcza w odniesieniu do samogłosek. Ponadto dziewięć run występowało równolegle w dwóch formach graficznych, zwanych „długogałązkowymi” i „krótkogałązkowymi”.</p>
+                                <section class="super-p"><h6>Uwagi</h6>
+                                    <ul>
+                                        <li id="i3_3_3_n1">Główna transliteracja runy ‹<span class="xtext">ᚬ</span>/<span class="xtext">ᚭ</span>› – ‹ą› – wskazuje na nosowość głoski, ponieważ przez długi okres była to jedyna cecha fonetycznie odróżniająca tę runę od ‹<span class="xtext">ᛅ</span>/<span class="xtext">ᛆ</span>› (jest to wyjątkowy przypadek w ortografii runicznej).</li>
+                                    </ul>
+                                </section>
+                            </section>
+
+                            <section id="i3_3_4"><h5>3.3.4. Runy średniowieczne</h5>
+                                <p>Formy run skandynawskich używane równolegle z alfabetem łacińskim po epoce wikingów. Motywacją ich wykształcenia była potrzeba większej jednoznaczności fonetycznej. Aby ją osiągnąć, rozszerzano zestaw znaków, głównie poprzez dodawanie kropek do niektórych run oraz włączanie do systemu wariantów długo- i krótkogałązkowych jako oddzielnych liter o&nbsp;konkretnych wartościach fonetycznych.</p>
+                            </section>
+
+                            <section id="i3_3_5"><h5>3.3.5. Alfabet gocki</h5>
+                                <p>Alfabet stworzony w IV w. przez Wulfilę, ariańskiego misjonarza i biskupa, na potrzeby przekładu Biblii na język gocki. Większość liter została zaczerpnięta z alfabetu greckiego i łacińskiego, ale niektóre mogły mieć pochodze runiczne. Mimo że alfabet gocki nigdy nie był szeroko stosowany, językoznawcza wartość gockiej Biblii jest nie do przecenienia, jako iż jest to najstarszy zabytek literacki w jakimkolwiek języku germańskim.</p>
+                                <section class="super-p"><h6>Uwagi</h6>
+                                    <ul>
+                                        <li>Blok gocki Unicode’u nie zawiera żadnych znaków interpunkcyjnych, w związku z czym do reprezentacji znaków przestankowych, które występują w gockich manuskryptach, stosuje się zwykły dwukropek i kropkę środkową.</li>
+                                        <li>Goccy autorzy stosowali niekiedy literę <span class="xtext">&#x10339;</span> z dierezą – ‹<span class="xtext">&#x10339;&#x308;</span>› – ale nie została ona uwzględniona w Unicodzie.</li>
+                                    </ul>
+                                </section>
+                            </section>
+                        </section>
+
+                        <section id="i3_4"><h4>3.4. Suplement</h4>
+                            <p>Blok runiczny Unicode’u zawiera kilka grup znaków, które nie są używane w Runetyperze, ponieważ nie należą do żadnego z&nbsp;ww. historycznych alfabetów lub są zbyt nietypowe, by uwzględniać je jako normalną część systemu pisma. Tytuły poniższych podrozdziałów (z wyjątkiem 3.4.2) są nazwami grup w arkuszu bloku Unicode’u <a href="#i3_1">(3.1)</a>.</p>
+
+                            <section id="i3_4_1"><h5>3.4.1. Litery kryptogramiczne</h5>
+                                <table>
+                                    <tr><td class="xtext">ᛴ</td><td><span class="xtext">ᚩ</span></td></tr>
+                                    <tr><td class="xtext">ᛵ</td><td><span class="xtext">ᛁ</span></td></tr>
+                                    <tr><td class="xtext">ᛶ</td><td><span class="xtext">ᛖ</span></td></tr>
+                                    <tr><td class="xtext">ᛷ</td><td><span class="xtext">ᚪ</span></td></tr>
+                                    <tr><td class="xtext">ᛸ</td><td><span class="xtext">ᚫ</span></td></tr>
+                                </table>
+                                <p>Runy te zostały użyte tylko raz, w anglosaskiej inskrypcji na artefakcie znanym jako „szkatułka Franksa”, datowanym na VIII&nbsp;w. Służyły za kryptograficzne odpowiedniki standardowych run samogłoskowych.</p>
+                            </section>
+
+                            <section id="i3_4_2"><h5>3.4.2. Rozszerzenia korpusu skandynawskiego</h5>
+                                <table>
+                                    <tr><td class="xtext">ᚥ</td><td><i>w</i></td></tr>
+                                    <tr><td class="xtext">ᚰ</td><td><i>on/ǫ</i></td></tr>
+                                    <tr><td class="xtext">ᚶ</td><td><i>ŋ(g)</i></td></tr>
+                                    <tr><td class="xtext">ᛀ</td><td><i>N</i></td></tr>
+                                    <tr><td class="xtext">ᛛ</td><td><i>L</i></td></tr>
+                                </table>
+                                <p>Te znaki nie należały do historycznych alfabetów.</p>
+                            </section>
+
+                            <section id="i3_4_3"><h5>3.4.3. Runy złotoliczbowe</h5>
+                                <table>
+                                    <tr><td class="xtext">ᛮ</td><td><i>17.</i></td></tr>
+                                    <tr><td class="xtext">ᛯ</td><td><i>18.</i></td></tr>
+                                    <tr><td class="xtext">ᛰ</td><td><i>19.</i></td></tr>
+                                </table>
+                                <p>Wyżej wymienione symbole stworzono na potrzeby reprezentacji trzech złotych liczb – siedemnastej, osiemnastej i&nbsp;dziewiętnastej – w skandynawskich kalendarzach runicznych, używanych od XIII lub XIV w. aż po XIX w.</p>
+                            </section>
+
+                            <section id="i3_4_4"><h5>3.4.4. Rozszerzenia tolkienowskie</h5>
+                                <table>
+                                    <tr><td class="xtext">ᛱ</td><td><i>k</i></td></tr>
+                                    <tr><td class="xtext">ᛲ</td><td><i>sh</i></td></tr>
+                                    <tr><td class="xtext">ᛳ</td><td><i>oo</i></td></tr>
+                                </table>
+                                <p>Niniejsze litery stanowią część artystycznego wariantu <i>futhorcu</i> J.R.R. Tolkeina, będącego adaptacją run anglosaskich do współczesnej angielszczyzny (lub „Westronu” w Śródziemiu). Nawiasem mówiąc, forma ‹<span class="xtext">ᛳ</span>› występuje w wielu inskrypcjach w&nbsp;futharku starszym i&nbsp;prawdopodobnie należy ją odczytywać jako
+                                    <span class="xtext">ᛁ</span> + <span class="xtext">ᛜ</span> = <i>ing</i>, jednak nie została uwzględniona w Unicodzie, a&nbsp;w&nbsp;alfabecie Tolkiena ma zupełnie inne znaczenie.</p>
+                            </section>
+                        </section>
+                    </section>
+
+                    <section id="i4"><h3>4. Wykorzystane materiały, literatura</h3>
+                        <section id="i4_1"><h4>4.1. Czcionki</h4>
+                            <p>Następujące czcionki (fonty) zostały wykorzystane do prezentacji historycznych alfabetów:</p>
+                            <ul class="entities">
+                                <li><strong>Noto Sans Runic</strong><br>
+                                    Copyright 2017 Google Inc. All Rights Reserved.<br>
+                                    <a href="https://www.google.com/get/noto/" target="_blank"><span class="urlprefix">https://www.</span>google.com/get/noto/</a><br>
+                                    Licencja: <a href="http://scripts.sil.org/OFL" target="_blank">OFL 1.1</a>
+                                </li>
+                                <li><strong>Noto Sans Gothic</strong><br>
+                                    Copyright 2012 Google Inc. All Rights Reserved.<br>
+                                    <a href="http://www.google.com/fonts/earlyaccess" target="_blank"><span class="urlprefix">http://www.</span>google.com/fonts/earlyaccess</a><br>
+                                    Licencja: <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License 2.0</a>
+                                </li>
+                                <li><strong>Pfeffer Mediæval</strong><br>
+                                    Copyright © Robert Pfeffer, Hessen, 2010.<br>
+                                    <a href="http://robert-pfeffer.net/schriftarten" target="_blank"><span class="urlprefix">http://</span>robert-pfeffer.net/schriftarten</a><br>
+                                    Licencja: Pozwolenie na swobodne wykorzystanie w celach niekomercyjnych.<br>
+                                    Modyfikacja w Runetyperze: Małe litery w bloku gockim zostały zastąpione wielkimi literami gockimi z&nbsp;przestrzeni prywatnego użytku.
+
+                                </li>
+                            </ul>
+                            <p>Zwykły tekst jest prezentowany przy użyciu <a href="http://libertine-fonts.org/" target="_blank">fontów Biolinum</a> autorstwa Philippa Polla, a podpisy z klawiszami przy użyciu fontu Courier Prime firmy <a href="https://quoteunquoteapps.com/" target="_blank">Quote-Unquote Apps</a>.</p>
+                        </section>
+
+                        <section id="i4_2"><h4>4.2. Literatura: runologia i lingwistyka germańska</h4>
+                            <ul>
+                                <li>E.H. Antonsen, <em>Runes and Germanic Linguistics</em>, 2002</li>
+                                <li class="super-p"><span>M. Barnes</span>
+                                    <ul>
+                                        <li><em>A New Introduction to Old Norse. Part I: Grammar</em>, 2008, <a href="http://vsnrweb-publications.org.uk" target="_blank"><span class="urlprefix">http://</span>vsnrweb-publications.org.uk</a></li>
+                                        <li><em>The Scandinavian Languages in the Viking Age</em> [in:] <em>The Viking World</em>, Ed. S. Brink, N. Price, 2008</li>
+                                    </ul>
+                                </li>
+                                <li><em>Futhark: International Journal of Runic Studies</em>, Ed. J.E. Knirk, H. Williams, <a href="http://futhark-journal.com" target="_blank"><span class="urlprefix">http://</span>futhark-journal.com</a></li>
+                                <li>W. Harbert, <em>The Germanic Languages</em>, 2007</li>
+                                <li>G. Kroonen, <em>Etymological Dictionary of Proto-Germanic</em>, 2013</li>
+                                <li>T. Looijenga, <em>Texts & Contexts of the Oldest Runic Inscriptions</em>, 2003</li>
+                                <li>W. Maciejewski et al., <em>Runy</em>, 2011</li>
+                                <li>J.W. Marchand, <em>The Sounds and Phonemes of Wulfila's Gothic</em>, 1973</li>
+                                <li>V. Orel, <em>A Handbook of Germanic Etymology</em>, 2003</li>
+                                <li class="super-p"><span>R.I. Page</span>
+                                    <ul>
+                                        <li><em>Pismo runiczne</em>, tłum. Joanna Strzelczyk, 1998</li>
+                                        <li><em>An Introduction to English Runes</em>, 1999</li>
+                                        <li><em>Runes and Runic Inscriptions</em>, Ed. D. Parsons, 1999</li>
+                                    </ul>
+                                </li>
+                                <li>H. Williams, <em>Runes</em> [in:] <em>The Viking World</em>, Ed. S. Brink, N. Price, 2008</li>
+                            </ul>
+                            <section class="super-p">
+                                <h6>Zobacz też:</h6>
+                                <ul class="following">
+                                    <li><em>Orðstírr</em>: artykuły w sekcjach „Language” i „Runes”, tam dalsza bibliografia, <a href="https://ordstirr.wordpress.com" target="_blank"><span class="urlprefix">https://</span>ordstirr.wordpress.com</a></li>
+                                    <li>Bibliografia hasła na Wikipedii: <a href="https://en.wikipedia.org/wiki/Runes" target="_blank"><span class="urlprefix">https://</span>en.wikipedia.org/wiki/Runes</a></li>
+                                </ul>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+
+                <div class="sup-menu" id="go-top">
+                    <ul class="menu">
+                        <li title="Na początek">
+                            <h4 class="icon">
+                                <a href="#info" class="button">&#x2BC5;</a>
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+                <footer>
+                    <small>
+                        <span class="logo"><span>R</span>unetyper</span> &copy; 2019 Wiktor Banaszewski
+                    </small>
+                </footer>
+            </section>
+        </main>
+    </body>
+</html>
