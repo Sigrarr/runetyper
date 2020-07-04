@@ -61,335 +61,6 @@
         <main class="receiver-view"
               data-depend-view="children,class"
               data-class-view-workspace="sup-workspace">
-            <section class="workspace" id="workspace" data-view="workspace">
-                <header class="sup-menu">
-                    <h2 class="implicit">Przestrzeń robocza</h2>
-                    <ul class="menu" id="main-menu">
-                        <li class="select selector-alphabet" id="selector-alphabet">
-                            <div title="Wybór alfabetu">
-                                <h4 class="icon logotext">ᚱ</h4>
-                                <em class="receiver-alphabet"
-                                    data-depend-alphabet="children">
-                                </em>
-                            </div>
-                            <ul></ul>
-                        </li>
-                        <li class="select selector-xchars receiver-alphabet"
-                            id="selector-xchars"
-                            data-depend-alphabet="children,class">
-                            <div title="Wybór wariantów liter">
-                                <h4 class="icon">&#x2605;</h4>
-                                <em class="receiver-alphabet"
-                                    data-depend-alphabet="children">
-                                </em>
-                            </div>
-                            <ul class="tmp">
-                                <li class="itext">
-                                    <button title="Przełącz wszystkie wstecz [Ctrl+⬅]"
-                                            data-topic="command"
-                                            data-command="shiftXChars:-1">&#x2B84;</button>
-                                    <button title="Przełącz wszystkie wprzód [Ctrl+➡]"
-                                            data-topic="command"
-                                            data-command="shiftXChars:1">&#x2B86;</button>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="select selector-settings">
-                            <div title="Ustawienia">
-                                <h4 class="icon">&#x2699;</h4>
-                            </div>
-                            <ul>
-                                <li class="select sub-select selector-layout receiver-device"
-                                    id="selector-layout"
-                                    data-depend-device="class"
-                                    data-class-device-touch="tmp">
-                                    <div>
-                                        <h5>
-                                            <span class="icon">&#x1F5AE;</span>
-                                            Alfabet wejściowy
-                                        </h5>
-                                    </div>
-                                    <ul></ul>
-                                </li>
-                                <li class="select sub-select selector-xfont">
-                                    <div>
-                                        <h5>
-                                            <span class="icon">&#x2619;</span>
-                                            Krój znaków historycznych
-                                        </h5>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <button class="receiver-xfont"
-                                                    data-topic="xfont"
-                                                    data-xfont="noto"
-                                                    data-depend-xfont="class"
-                                                    data-class-xfont-noto="active">
-                                                Google Noto Sans
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button class="receiver-xfont"
-                                                    data-topic="xfont"
-                                                    data-xfont="pfeffer"
-                                                    data-depend-xfont="class"
-                                                    data-class-xfont-pfeffer="active">
-                                                Pfeffer Mediæval
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="select sub-select selector-theme">
-                                    <div>
-                                        <h5>
-                                            <span class="icon">&#x25D0;</span>
-                                            Kolorystyka
-                                        </h5>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <button class="receiver-theme"
-                                                    data-topic="theme"
-                                                    data-theme="bright"
-                                                    data-depend-theme="class"
-                                                    data-class-theme-bright="active">
-                                                jasna
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button class="receiver-theme"
-                                                    data-topic="theme"
-                                                    data-theme="dark"
-                                                    data-depend-theme="class"
-                                                    data-class-theme-dark="active">
-                                                ciemna
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="select sub-select selector-kbmode">
-                                    <div>
-                                        <h5>
-                                            <span class="icon">&#x25A6;</span>
-                                            Panel alfabetu
-                                        </h5>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <button class="receiver-kbmode"
-                                                    data-topic="kbmode"
-                                                    data-kbmode="auto"
-                                                    data-depend-kbmode="class"
-                                                    data-class-kbmode-auto="active">
-                                                automatyczny
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button class="receiver-kbmode"
-                                                    data-topic="kbmode"
-                                                    data-kbmode="compact"
-                                                    data-depend-kbmode="class"
-                                                    data-class-kbmode-compact="active">
-                                                kompaktowy
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button class="receiver-kbmode"
-                                                    data-topic="kbmode"
-                                                    data-kbmode="std"
-                                                    data-depend-kbmode="class"
-                                                    data-class-kbmode-std="active">
-                                                drobiazgowy
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="select sub-select selector-device">
-                                    <div>
-                                        <h5>
-                                            <span class="icon">&#x1F4BB;</span>
-                                            Urządzenie
-                                        </h5>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <button class="receiver-device"
-                                                    data-topic="device"
-                                                    data-device="std"
-                                                    data-depend-device="class"
-                                                    data-class-device-std="active">
-                                                klawiatura sprzętowa
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button class="receiver-device"
-                                                    data-topic="device"
-                                                    data-device="touch"
-                                                    data-depend-device="class"
-                                                    data-class-device-touch="active">
-                                                ekran dotykowy
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="cycle-captions" id="cycle-captions">
-                            <h4 class="icon receiver-captions receiver-device"
-                                data-topic="command"
-                                data-command="cycleCaptions"
-                                data-depend-captions="children"
-                                data-depend-device="class"
-                                data-class-device-touch="tmp">
-                                <button class="full"
-                                        data-captions="roman"
-                                        title="Podpisy: latynizacja. Zmiana: kliknięcie, [PageDown], [PageUp]">Æ</button>
-                                <button class="full"
-                                        data-captions="keys"
-                                        title="Podpisy: klawisze. Zmiana: kliknięcie, [PageDown], [PageUp]">&#x1F130;&#x1F134;</button>
-                                <button class="full"
-                                        data-captions="off"
-                                        title="Podpisy: wyłączone. Zmiana: kliknięcie, [PageDown], [PageUp]">&#x2014;</button>
-                            </h4>
-                            <h4 class="icon receiver-captions receiver-device"
-                                data-topic="command"
-                                data-command="cycleCaptions"
-                                data-depend-captions="children"
-                                data-depend-device="class"
-                                data-class-device-std="tmp">
-                                <button class="full" data-captions="off">&#x1F130;<sub>&#x1f5d8;</sub></button>
-                                <button class="full" data-captions="roman">&#x1F130;<sub>&#x1f5d8;</sub></button>
-                            </h4>
-                        </li>
-                        <li title="Informacje">
-                            <h4 class="icon">
-                                <button data-topic="view" data-view="info">&#x1F6C8;</button>
-                            </h4>
-                        </li>
-                    </ul>
-                </header>
-                <div class="editor-space" id="editor-space">
-                    <textarea id="output-std"
-                              class="output xtext receiver-device"
-                              data-depend-device="class"
-                              data-class-device-touch="tmp"
-                              placeholder="&#x16eb;&#x16eb;&#x16eb;"
-                              spellcheck="false"
-                              data-min-font-size="8"
-                              data-max-font-size="100"
-                              data-step-font-size="4"></textarea>
-                    <div id="output-touch"
-                         class="output xtext receiver-device"
-                         data-depend-device="class"
-                         data-class-device-std="tmp"
-                         data-min-font-size="8"
-                         data-max-font-size="100"
-                         data-step-font-size="4"></div>
-                    <div id="toolbar"
-                         class="sup-menu receiver-toolbar"
-                         data-depend-toolbar="class"
-                         data-class-toolbar-off="collapse">
-                        <ul class="menu receiver-toolbar"
-                            data-depend-toolbar="children">
-                            <li title="Zwiń pasek narzędzi" data-toolbar="on">
-                                <h4 class="icon">
-                                    <button data-topic="toolbar" data-toolbar="off"><span class="horizontal">&#x2BC7;</span><span class="vertical">&#x2BC5;</span></button>
-                                </h4>
-                            </li>
-                            <li title="Zwiększ rozmiar czcionki [Ctrl+Shift++]" data-toolbar="on">
-                                <h4 class="icon">
-                                    <button class="repeatable"
-                                            data-topic="command"
-                                            data-command="changeFontSize:1">&#x1F5DA;</button>
-                                </h4>
-                            </li>
-                            <li title="Zmniejsz rozmiar czczionki [Ctrl+Shift+-]" data-toolbar="on">
-                                <h4 class="icon">
-                                    <button class="repeatable"
-                                            data-topic="command"
-                                            data-command="changeFontSize:-1">&#x1F5DB;</button>
-                                </h4>
-                            </li>
-                            <li class="receiver-loadable_text"
-                                data-depend-loadable_text="title"
-                                title="Zapisz podręcznie [Ctrl+s]"
-                                data-title-loadable_text-0="Zapisz podręcznie [Ctrl+s]"
-                                data-title-loadable_text-1="Zapisz podręcznie (nadpisuje poprzedni zapis) [Ctrl+s]"
-                                data-toolbar="on">
-                                <h4 class="icon receiver-loadable_text"
-                                    data-depend-loadable_text="class"
-                                    data-class-loadable_text-1="caution">
-                                    <button data-topic="command"
-                                            data-command="saveText"
-                                            id="save-text-button">&#x1F5F8;</button>
-                                </h4>
-                            </li>
-                            <li title="Wklej zapisany tekst" data-toolbar="on">
-                                <h4 class="icon">
-                                    <button data-topic="command"
-                                            data-command="pasteText"
-                                            class="receiver-loadable_text"
-                                            data-depend-loadable_text="class"
-                                            data-class-loadable_text-0="disabled">&#x1F4CB;</button>
-                                </h4>
-                            </li>
-                            <li title="Zaznacz wszystko" data-toolbar="on">
-                                <h4 class="icon">
-                                    <button data-topic="command" data-command="selectAll">&#x1F5A2;</button>
-                                </h4>
-                            </li>
-                            <li title="Skasuj zaznaczony tekst"
-                                data-toolbar="on"
-                                class="receiver-device"
-                                data-depend-device="class"
-                                data-class-device-touch="tmp">
-                                <h4 class="icon danger">
-                                    <button data-topic="command" data-command="eraseSelection">&#x2327;</button>
-                                </h4>
-                            </li>
-                            <li title="Rozwiń pasek narzędzi" data-toolbar="off">
-                                <h4 class="icon">
-                                    <button data-topic="toolbar" data-toolbar="on"><span class="horizontal">&#x2BC8;</span><span class="vertical">&#x2BC6;</span></button>
-                                </h4>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="kboard-space receiver-alphabet receiver-captions"
-                     id="kboard-space"
-                     data-depend-alphabet="children"
-                     data-depend-captions="class"
-                     data-class-captions-roman="sup-captions-roman"
-                     data-class-captions-keys="sup-captions-keys"
-                     data-class-captions-off="sup-captions-off">
-                    <aside class="tmp" id="touch-controls">
-                        <div class="xletter-box">
-                            <button class="itext" data-xchar=" ">&#x2423;</button>
-                        </div>
-                        <div class="xletter-box">
-                            <button class="itext" data-xchar="@n">&#x2BA0;</button>
-                        </div>
-                        <div class="xletter-box">
-                            <button class="itext" data-xchar="@b">&#x232B;</button>
-                        </div>
-                    </aside>
-                </div>
-
-                <aside class="messages hidden" id="messages">
-                    <p id="msg-touch">
-                        Aplikacja działa w trybie ekranu dotykowego i funkcjonalności są ograniczone.
-                            Jeśli urządzenie posiada klawiaturę sprzętową, zaleca się zmianę tego trybu:
-                            <span><span class="itext">&#x2699;</span> Ustawienia <span class="itext">&#x2BC8;</span> <span class="itext">&#x1F4BB;</span> Urządzenie.</span>
-                    </p>
-                    <p id="msg-compact">
-                        Panel alfabetu jest wyświetlany w stylu kompaktowym. Jeśli ekran urządzenia jest dość duży,
-                            warto sprawdzić tryb drobiazgowy, prezentujący więcej detali:
-                            <span><span class="itext">&#x2699;</span> Ustawienia <span class="itext">&#x2BC8;</span> <span class="itext">&#x25A6;</span> Panel alfabetu.</span>
-                    </p>
-                </aside>
-            </section>
-
             <section class="info" id="info" data-view="info">
                 <header>
                     <h1 class="logo"><span>R</span>unetyper</h1>
@@ -718,6 +389,335 @@
                     </small>
                 </footer>
             </section>
+
+            <section class="workspace" id="workspace" data-view="workspace">
+                <header class="sup-menu">
+                    <h2 class="implicit">Przestrzeń robocza</h2>
+                    <ul class="menu" id="main-menu">
+                        <li class="select selector-alphabet" id="selector-alphabet">
+                            <div title="Wybór alfabetu">
+                                <h4 class="icon logotext">ᚱ</h4>
+                                <em class="receiver-alphabet"
+                                    data-depend-alphabet="children">
+                                </em>
+                            </div>
+                            <ul></ul>
+                        </li>
+                        <li class="select selector-xchars receiver-alphabet"
+                            id="selector-xchars"
+                            data-depend-alphabet="children,class">
+                            <div title="Wybór wariantów liter">
+                                <h4 class="icon">&#x2605;</h4>
+                                <em class="receiver-alphabet"
+                                    data-depend-alphabet="children">
+                                </em>
+                            </div>
+                            <ul class="tmp">
+                                <li class="itext">
+                                    <button title="Przełącz wszystkie wstecz [Ctrl+⬅]"
+                                            data-topic="command"
+                                            data-command="shiftXChars:-1">&#x2B84;</button>
+                                    <button title="Przełącz wszystkie wprzód [Ctrl+➡]"
+                                            data-topic="command"
+                                            data-command="shiftXChars:1">&#x2B86;</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="select selector-settings">
+                            <div title="Ustawienia">
+                                <h4 class="icon">&#x2699;</h4>
+                            </div>
+                            <ul>
+                                <li class="select sub-select selector-layout receiver-device"
+                                    id="selector-layout"
+                                    data-depend-device="class"
+                                    data-class-device-touch="tmp">
+                                    <div>
+                                        <h5>
+                                            <span class="icon">&#x1F5AE;</span>
+                                            Alfabet wejściowy
+                                        </h5>
+                                    </div>
+                                    <ul></ul>
+                                </li>
+                                <li class="select sub-select selector-xfont">
+                                    <div>
+                                        <h5>
+                                            <span class="icon">&#x2619;</span>
+                                            Krój znaków historycznych
+                                        </h5>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <button class="receiver-xfont"
+                                                    data-topic="xfont"
+                                                    data-xfont="noto"
+                                                    data-depend-xfont="class"
+                                                    data-class-xfont-noto="active">
+                                                Google Noto Sans
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="receiver-xfont"
+                                                    data-topic="xfont"
+                                                    data-xfont="pfeffer"
+                                                    data-depend-xfont="class"
+                                                    data-class-xfont-pfeffer="active">
+                                                Pfeffer Mediæval
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="select sub-select selector-theme">
+                                    <div>
+                                        <h5>
+                                            <span class="icon">&#x25D0;</span>
+                                            Kolorystyka
+                                        </h5>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <button class="receiver-theme"
+                                                    data-topic="theme"
+                                                    data-theme="bright"
+                                                    data-depend-theme="class"
+                                                    data-class-theme-bright="active">
+                                                jasna
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="receiver-theme"
+                                                    data-topic="theme"
+                                                    data-theme="dark"
+                                                    data-depend-theme="class"
+                                                    data-class-theme-dark="active">
+                                                ciemna
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="select sub-select selector-kbmode">
+                                    <div>
+                                        <h5>
+                                            <span class="icon">&#x25A6;</span>
+                                            Panel alfabetu
+                                        </h5>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <button class="receiver-kbmode"
+                                                    data-topic="kbmode"
+                                                    data-kbmode="auto"
+                                                    data-depend-kbmode="class"
+                                                    data-class-kbmode-auto="active">
+                                                automatyczny
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="receiver-kbmode"
+                                                    data-topic="kbmode"
+                                                    data-kbmode="compact"
+                                                    data-depend-kbmode="class"
+                                                    data-class-kbmode-compact="active">
+                                                kompaktowy
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="receiver-kbmode"
+                                                    data-topic="kbmode"
+                                                    data-kbmode="std"
+                                                    data-depend-kbmode="class"
+                                                    data-class-kbmode-std="active">
+                                                drobiazgowy
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="select sub-select selector-device">
+                                    <div>
+                                        <h5>
+                                            <span class="icon">&#x1F4BB;</span>
+                                            Urządzenie
+                                        </h5>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <button class="receiver-device"
+                                                    data-topic="device"
+                                                    data-device="std"
+                                                    data-depend-device="class"
+                                                    data-class-device-std="active">
+                                                klawiatura sprzętowa
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="receiver-device"
+                                                    data-topic="device"
+                                                    data-device="touch"
+                                                    data-depend-device="class"
+                                                    data-class-device-touch="active">
+                                                ekran dotykowy
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="cycle-captions" id="cycle-captions">
+                            <h4 class="icon receiver-captions receiver-device"
+                                data-topic="command"
+                                data-command="cycleCaptions"
+                                data-depend-captions="children"
+                                data-depend-device="class"
+                                data-class-device-touch="tmp">
+                                <button class="full"
+                                        data-captions="roman"
+                                        title="Podpisy: latynizacja. Zmiana: kliknięcie, [PageDown], [PageUp]">Æ</button>
+                                <button class="full"
+                                        data-captions="keys"
+                                        title="Podpisy: klawisze. Zmiana: kliknięcie, [PageDown], [PageUp]">&#x1F130;&#x1F134;</button>
+                                <button class="full"
+                                        data-captions="off"
+                                        title="Podpisy: wyłączone. Zmiana: kliknięcie, [PageDown], [PageUp]">&#x2014;</button>
+                            </h4>
+                            <h4 class="icon receiver-captions receiver-device"
+                                data-topic="command"
+                                data-command="cycleCaptions"
+                                data-depend-captions="children"
+                                data-depend-device="class"
+                                data-class-device-std="tmp">
+                                <button class="full" data-captions="off">&#x1F130;<sub>&#x1f5d8;</sub></button>
+                                <button class="full" data-captions="roman">&#x1F130;<sub>&#x1f5d8;</sub></button>
+                            </h4>
+                        </li>
+                        <li title="Informacje">
+                            <h4 class="icon">
+                                <button data-topic="view" data-view="info">&#x1F6C8;</button>
+                            </h4>
+                        </li>
+                    </ul>
+                </header>
+                <div class="editor-space" id="editor-space">
+                    <textarea id="output-std"
+                              class="output xtext receiver-device"
+                              data-depend-device="class"
+                              data-class-device-touch="tmp"
+                              placeholder="&#x16eb;&#x16eb;&#x16eb;"
+                              spellcheck="false"
+                              data-min-font-size="8"
+                              data-max-font-size="100"
+                              data-step-font-size="4"></textarea>
+                    <div id="output-touch"
+                         class="output xtext receiver-device"
+                         data-depend-device="class"
+                         data-class-device-std="tmp"
+                         data-min-font-size="8"
+                         data-max-font-size="100"
+                         data-step-font-size="4"></div>
+                    <div id="toolbar"
+                         class="sup-menu receiver-toolbar"
+                         data-depend-toolbar="class"
+                         data-class-toolbar-off="collapse">
+                        <ul class="menu receiver-toolbar"
+                            data-depend-toolbar="children">
+                            <li title="Zwiń pasek narzędzi" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button data-topic="toolbar" data-toolbar="off"><span class="horizontal">&#x2BC7;</span><span class="vertical">&#x2BC5;</span></button>
+                                </h4>
+                            </li>
+                            <li title="Zwiększ rozmiar czcionki [Ctrl+Shift++]" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button class="repeatable"
+                                            data-topic="command"
+                                            data-command="changeFontSize:1">&#x1F5DA;</button>
+                                </h4>
+                            </li>
+                            <li title="Zmniejsz rozmiar czczionki [Ctrl+Shift+-]" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button class="repeatable"
+                                            data-topic="command"
+                                            data-command="changeFontSize:-1">&#x1F5DB;</button>
+                                </h4>
+                            </li>
+                            <li class="receiver-loadable_text"
+                                data-depend-loadable_text="title"
+                                title="Zapisz podręcznie [Ctrl+s]"
+                                data-title-loadable_text-0="Zapisz podręcznie [Ctrl+s]"
+                                data-title-loadable_text-1="Zapisz podręcznie (nadpisuje poprzedni zapis) [Ctrl+s]"
+                                data-toolbar="on">
+                                <h4 class="icon receiver-loadable_text"
+                                    data-depend-loadable_text="class"
+                                    data-class-loadable_text-1="caution">
+                                    <button data-topic="command"
+                                            data-command="saveText"
+                                            id="save-text-button">&#x1F5F8;</button>
+                                </h4>
+                            </li>
+                            <li title="Wklej zapisany tekst" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button data-topic="command"
+                                            data-command="pasteText"
+                                            class="receiver-loadable_text"
+                                            data-depend-loadable_text="class"
+                                            data-class-loadable_text-0="disabled">&#x1F4CB;</button>
+                                </h4>
+                            </li>
+                            <li title="Zaznacz wszystko" data-toolbar="on">
+                                <h4 class="icon">
+                                    <button data-topic="command" data-command="selectAll">&#x1F5A2;</button>
+                                </h4>
+                            </li>
+                            <li title="Skasuj zaznaczony tekst"
+                                data-toolbar="on"
+                                class="receiver-device"
+                                data-depend-device="class"
+                                data-class-device-touch="tmp">
+                                <h4 class="icon danger">
+                                    <button data-topic="command" data-command="eraseSelection">&#x2327;</button>
+                                </h4>
+                            </li>
+                            <li title="Rozwiń pasek narzędzi" data-toolbar="off">
+                                <h4 class="icon">
+                                    <button data-topic="toolbar" data-toolbar="on"><span class="horizontal">&#x2BC8;</span><span class="vertical">&#x2BC6;</span></button>
+                                </h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="kboard-space receiver-alphabet receiver-captions"
+                     id="kboard-space"
+                     data-depend-alphabet="children"
+                     data-depend-captions="class"
+                     data-class-captions-roman="sup-captions-roman"
+                     data-class-captions-keys="sup-captions-keys"
+                     data-class-captions-off="sup-captions-off">
+                    <aside class="tmp" id="touch-controls">
+                        <div class="xletter-box">
+                            <button class="itext" data-xchar=" ">&#x2423;</button>
+                        </div>
+                        <div class="xletter-box">
+                            <button class="itext" data-xchar="@n">&#x2BA0;</button>
+                        </div>
+                        <div class="xletter-box">
+                            <button class="itext" data-xchar="@b">&#x232B;</button>
+                        </div>
+                    </aside>
+                </div>
+
+                <aside class="messages hidden" id="messages">
+                    <p id="msg-touch">
+                        Aplikacja działa w trybie ekranu dotykowego i funkcjonalności są ograniczone.
+                            Jeśli urządzenie posiada klawiaturę sprzętową, zaleca się zmianę tego trybu:
+                            <span><span class="itext">&#x2699;</span> Ustawienia <span class="itext">&#x2BC8;</span> <span class="itext">&#x1F4BB;</span> Urządzenie.</span>
+                    </p>
+                    <p id="msg-compact">
+                        Panel alfabetu jest wyświetlany w stylu kompaktowym. Jeśli ekran urządzenia jest dość duży,
+                            warto sprawdzić tryb drobiazgowy, prezentujący więcej detali:
+                            <span><span class="itext">&#x2699;</span> Ustawienia <span class="itext">&#x2BC8;</span> <span class="itext">&#x25A6;</span> Panel alfabetu.</span>
+                    </p>
+                </aside>
+            </section>            
         </main>
     </body>
 </html>
