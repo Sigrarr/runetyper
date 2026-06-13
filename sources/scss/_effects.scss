@@ -1,4 +1,8 @@
 
+html {
+    scroll-behavior: smooth;
+}
+
 button, .menu > li {
     transition: background-color 0.07s linear;
 }

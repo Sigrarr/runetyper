@@ -13,6 +13,10 @@ var Env = {
     })() ? "ms" : "std",
 
     device: (typeof window.ontouchstart !== "undefined"
-            || navigator.maxTouchPoints > 0) ? "touch" : "std"
+            || navigator.maxTouchPoints > 0) ? "touch" : "std",
+
+    themePreference: typeof window.matchMedia !== "undefined" ?
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light")
+        : undefined
 
 };
