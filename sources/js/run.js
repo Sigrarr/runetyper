@@ -52,7 +52,7 @@ App.run = function () {
         kbmode: "auto",
         toolbar: App.Dev.std ? "on" : "off",
         captions: App.Dev.std ? "roman" : "off",
-        theme: App.Dev.std ? "bright" : "dark"
+        theme: Env.themePreference || (App.Dev.std ? "light" : "dark")
     };
     for (var topicName in primaryDefaults) {
         Updater.push(
