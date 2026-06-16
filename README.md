@@ -9,9 +9,16 @@ Runetyper converts standard keyboard input to the selected alphabet’s characte
 The generated output is Unicode text (UTF-8). The application utilizes Unicode blocks Runic and Gothic.
 
 ## Building
+
+```
+./build.sh [js|css]
+```
+
+Or:
+
 ### JavaScript
 1. Input: /sources/js/App.inc.js
-2. Replace each occurrence of the pseudo-function `include(String filePath)` with the content of the specified file. Paths are relative to the input file (*.inc.js), or to the project root if start with /
+2. Replace each occurrence of the custom directive `include(String filePath)` with the content of the specified file. Paths are relative to the input file (*.inc.js), or to the project root if start with `/`
 3. Minify/compress the code.
 4. Output: /assets/app.min.js
 ### CSS
